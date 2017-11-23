@@ -6,8 +6,8 @@
 <mapper namespace="all.about.apartment.mappers.BillMapper">
 
 
-	<select id="test" resultType="FacilityTime">
-		SELECT * FROM facility_time
+	<select id="getPersonal_mgmt_ex" resultType="Personal_mgmt_ex">
+		SELECT * FROM Personal_mgmt_ex
 	</select>
 </mapper>  
 
