@@ -9,15 +9,16 @@
 </head>
 <body>
   <!-- 헤더영역 -->
-       <tiles:insertAttribute name="header"/>
-       <hr>
+	  <tiles:insertAttribute name="header"/>
        
-       <!-- 바디영역 -->
+      
        <tiles:insertAttribute name="body"/>
-       <hr>
+
+       <!-- 바디영역 -->
        
+      <tiles:insertAttribute name="footer"/>
        <!-- 푸터영역 -->
-       <tiles:insertAttribute name="footer"/>
+       
 
 </body>
 </html>

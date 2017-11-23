@@ -29,7 +29,7 @@ Licence URI: http://www.os-templates.com/template-terms
         <li><a href="#">Home</a></li>
         <li><a href="#">Lorem</a></li>
         <li><a href="#">Ipsum</a></li>
-        <li><a href="#">Full Width</a></li>
+        <li><a href="#">관리비 조회</a></li>
       </ul>
       <!-- ################################################################################################ -->
     </div>

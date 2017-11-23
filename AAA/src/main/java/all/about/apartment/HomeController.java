@@ -14,7 +14,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import all.about.apartment.bill.domain.Personal_mgmt_ex;
+import all.about.apartment.bill.domain.Personal_mgmt_exVO;
 import all.about.apartment.bill.persistence.BillDAO;
 
 /**

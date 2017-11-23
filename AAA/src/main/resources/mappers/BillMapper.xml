@@ -6,9 +6,14 @@
 <mapper namespace="all.about.apartment.mappers.BillMapper">
 
 
-	<select id="getPersonal_mgmt_ex" resultType="Personal_mgmt_ex">
+	<select id="getPersonal_mgmt_ex" resultType="Personal_mgmt_exVO">
 		SELECT * FROM Personal_mgmt_ex
 	</select>
+	
+	 <select id="getOnePersonal_mgmt_ex" resultType="Personal_mgmt_exVO">
+		SELECT * FROM Personal_mgmt_ex WHERE u_id = #{u_id} AND p_month = #{p_month}	
+	</select> 
+	
 </mapper>  
 
 

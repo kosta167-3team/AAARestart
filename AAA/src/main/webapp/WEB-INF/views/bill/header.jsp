@@ -61,7 +61,7 @@ Licence URI: http://www.os-templates.com/template-terms
         <li class="active"><a class="drop" href="#">Pages</a>
           <ul>
             <li><a href="gallery.html">Gallery</a></li>
-            <li class="active"><a href="full-width.html">Full Width</a></li>
+            <li class="active"><a href="full-width.html">관리비 조회</a></li>
             <li><a href="sidebar-left.html">Sidebar Left</a></li>
             <li><a href="sidebar-right.html">Sidebar Right</a></li>
             <li><a href="basic-grid.html">Basic Grid</a></li>

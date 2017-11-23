@@ -1,6 +1,6 @@
 package all.about.apartment.bill.domain;
 
-public class Personal_mgmt_ex {
+public class Personal_mgmt_exVO {
 	
 	private int input_num;
 	private String p_month;
@@ -26,10 +26,10 @@ public class Personal_mgmt_ex {
 	int width;
 	int outstanding_pay;
 	
-	public Personal_mgmt_ex(){};
+	public Personal_mgmt_exVO(){};
 	
 	
-	public Personal_mgmt_ex(int input_num, String p_month, String u_id, int general_mgmt, int clean, int fumigate,
+	public Personal_mgmt_exVO(int input_num, String p_month, String u_id, int general_mgmt, int clean, int fumigate,
 			int elevator_maintain, int repair, int long_term_repair, int building_insurance, int security,
 			int consignment, int personal_elec, int public_elec, int tv, int personal_water, int personal_heat_water,
 			int trash_pick_up, int resident_repre, int emc, String pay_check, int width, int outstanding_pay) {
