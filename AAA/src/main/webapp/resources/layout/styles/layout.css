@@ -205,6 +205,7 @@ td{border-width:0 1px;}
 /* Font Awesome Social Icons
 --------------------------------------------------------------------------------------------------------------- */
 .faico{margin:0; padding:0; list-style:none;}
+
 .faico li{display:inline-block; float:left; margin:0 2px 0 0; padding:5px; line-height:normal;}
 .faico li:last-child{margin-right:0;}
 
@@ -305,6 +306,9 @@ tr, #comments li, #comments input[type="submit"], #comments input[type="reset"]{
 tr:nth-child(even), #comments li:nth-child(even){color:inherit; background-color:#F7F7F7;}
 table a, #comments a{background-color:inherit;}
 
+select {display: inline; float: none;}
+
+
 
 /* ------------------------------------------------------------------------------------------------------------ */
 /* ------------------------------------------------------------------------------------------------------------ */
@@ -327,6 +331,9 @@ table a, #comments a{background-color:inherit;}
 
 	.last{margin-bottom:0;}
 
+	
+	.ho .dong{display: inline-block;}
+
 	#topbar{text-align:center;}
 	#topbar .inline{margin-bottom:15px;}
 	#topbar .faico li{float:none;}
@@ -340,6 +347,7 @@ table a, #comments a{background-color:inherit;}
 }
 
 @media screen and (min-width:180px) and (max-width:900px) {
+
 	#topbar, #header, #pageintro, #breadcrumb, .container, #info, #footer, #copyright{max-width:90%;}
 
 	#topbar{}
@@ -370,6 +378,7 @@ table a, #comments a{background-color:inherit;}
 /* Max Wrapper Width - Laptop, Desktop etc.
 --------------------------------------------------------------------------------------------------------------- */
 @media screen and (min-width:978px) {
+
 	#topbar, #header, #pageintro, #breadcrumb, .container, #info, #footer, #copyright{max-width:978px;}
 }
 

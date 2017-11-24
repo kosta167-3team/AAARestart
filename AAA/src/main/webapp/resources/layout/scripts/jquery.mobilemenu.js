@@ -10,6 +10,7 @@ Thanks to:
 "Convert a Menu to a Dropdown for Small Screens" from Chris Collier - http://css-tricks.com/convert-menu-to-dropdown/
 "Submenu's with a dash" Daryn St. Pierre - http://jsfiddle.net/bloqhead/Kq43X/
 
+
  */
 
 $('<form action="#"><select /></form>').appendTo("#mainav");

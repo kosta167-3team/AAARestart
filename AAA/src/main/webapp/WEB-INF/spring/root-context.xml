@@ -11,6 +11,7 @@
 
 
 	<!-- Root Context: defines shared resources visible to all other web components -->
+
 	<bean id="dataSource"
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver" />
@@ -26,6 +27,7 @@
 		<property name="mapperLocations" value="classpath:/mappers/**/*Mapper.xml"></property>
 		<!-- 앞으로의 xml파일은 전부 ~~~Mapper.xml로 끝나야한다. -->
 	</bean>
+
 
 
 	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
