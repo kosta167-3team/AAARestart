@@ -23,6 +23,14 @@
 	
 	<context:component-scan base-package="all.about.apartment" />
 	
+	<beans:bean id ="loginInteceptor"
+		class="all.about.apartment.intercepter.LoginInteceptor"/>
+	<interceptors>
+		<interceptor>
+			<mapping path="/user/loginPost"/>
+			<beans:ref bean="loginInteceptor"/>
+		</interceptor>
+	</interceptors>
 	
 	
 </beans:beans>
