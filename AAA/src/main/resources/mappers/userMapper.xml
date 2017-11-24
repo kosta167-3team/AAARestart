@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="all.about.apartment.mappers.UserMapper">
+
+	<select id="login" resultType="ResidentVO" parameterType="LoginDTO">
+		SELECT * FROM RESIDENT
+		WHERE R_ID = #{urd}
+		AND R_PW = #{upw}
+	</select>
+</mapper>  
+
+
+
+
+
+
+
+
+
+
+
