@@ -1,6 +1,14 @@
 package all.about.apartment.bill.domain;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class Personal_mgmt_exVO {
+	
+	private static String[] list = {
+			"일반 관리비", "청소비", "소독비", "승강기 유지비", "수선유지비", "장기 수선 충당금", "건물 보험료", "경비비", "관리 수수료", "세대전기료", "공동전기료",
+			"TV 수신료","세대수도료","세대 급탕비","생활 폐기물수거","입대위운영비","선관위 운영비"
+	};
 	
 	private int input_num;
 	private String p_month;
@@ -9,22 +17,22 @@ public class Personal_mgmt_exVO {
 	private int clean;
 	private int fumigate;
 	private int elevator_maintain;
-	int repair;
-	int long_term_repair;
-	int building_insurance;
-	int security;
-	int consignment;
-	int personal_elec;
-	int public_elec;
-	int tv;
-	int personal_water;
-	int personal_heat_water;
-	int trash_pick_up;
-	int resident_repre;
-	int emc;
-	String pay_check;
-	int width;
-	int outstanding_pay;
+	private int repair;
+	private int long_term_repair;
+	private int building_insurance;
+	private int security;
+	private int consignment;
+	private int personal_elec;
+	private int public_elec;
+	private int tv;
+	private int personal_water;
+	private int personal_heat_water;
+	private int trash_pick_up;
+	private int resident_repre;
+	private int emc;
+	private String pay_check;
+	private int width;
+	private int outstanding_pay;
 	
 	public Personal_mgmt_exVO(){};
 	
@@ -287,6 +295,38 @@ public class Personal_mgmt_exVO {
 
 	public void setOutstanding_pay(int outstanding_pay) {
 		this.outstanding_pay = outstanding_pay;
+	}
+	public int allBill(){		
+	
+		return general_mgmt + clean + fumigate + elevator_maintain + repair + long_term_repair + building_insurance
+				+ security + consignment + personal_elec + public_elec + tv + personal_water + personal_heat_water
+				+ trash_pick_up + resident_repre + emc + outstanding_pay;
+	}
+	public Map<String,Integer> getSeris() {
+		Map<String, Integer> map = new HashMap<String,Integer>();
+		
+		for( int i = 0; i < this.list.length; i++ ){
+			map.put(this.list[i], getDetailBill()[i]);
+		}
+		return map;
+	}
+	
+	public int[] getDetailBill(){
+		int[] bill = {
+				 general_mgmt , clean , fumigate , elevator_maintain , repair , long_term_repair , building_insurance
+					, security , consignment , personal_elec, public_elec , tv + personal_water , personal_heat_water
+					, trash_pick_up , resident_repre,  emc , outstanding_pay	
+		};
+		return bill;
+	}
+	
+	public static String[] getList() {
+		return list;
+	}
+
+
+	public static void setList(String[] list) {
+		Personal_mgmt_exVO.list = list;
 	}
 
 

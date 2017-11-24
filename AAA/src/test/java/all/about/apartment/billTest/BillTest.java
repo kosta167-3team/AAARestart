@@ -28,5 +28,6 @@ public class BillTest {
 		System.out.println(dao.getPersonal_mgmt_exList());
 	}
 	
+	
 
 }
