@@ -6,6 +6,8 @@
 <configuration>
 	<typeAliases>
 		<package name="all.about.apartment.bill.domain"/>
+		<package name="all.about.apartment.visit.domain"/>
+		<package name="all.about.apartment.visit.dto"/>
 	</typeAliases>
 	
 	

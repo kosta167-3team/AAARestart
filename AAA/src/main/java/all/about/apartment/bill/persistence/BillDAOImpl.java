@@ -15,7 +15,7 @@ public class BillDAOImpl implements BillDAO {
 	@Inject
 	private SqlSession session;
 	
-	private static String namespace = "all.about.apartment.mappers.BillMapper";
+	private static String namespace = "all.about.apartment.mappers.visitMapper";
 	
 	@Override
 	public List<FacilityTime> testMethod() throws Exception {

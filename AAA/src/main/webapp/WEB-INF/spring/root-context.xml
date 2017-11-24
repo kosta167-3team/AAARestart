@@ -12,29 +12,21 @@
 	
 	
 	<!-- Root Context: defines shared resources visible to all other web components -->
-		<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/>
-		<property name="url" value="jdbc:oracle:thin:@localhost:1521:xe"/>
-		
-		<property name="username" value="team3"/>
-		<property name="password" value="1234"/>
+		<bean id="dataSource"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver" />
+		<property name="url" value="jdbc:oracle:thin:@localhost:1521:XE" />
+		<property name="username" value="team3" />
+		<property name="password" value="1234" />
 	</bean>
-	
-	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">	
-		<property name="dataSource" ref="dataSource"/>
-		<property name="configLocation" value="classpath:/mybatis-config.xml"/>
-		<property name="mapperLocations" value="classpath:/mappers/**/*Mapper.xml"></property>
-		<!-- 앞으로의 xml파일은 전부 ~~~Mapper.xml로 끝나야한다. -->
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<!-- mybtis=config.xml의 경로를 value에 넣는다 -->
+		<property name="configLocation" value="classpath:mybatis-config.xml" />
+		<property name="mapperLocations" value="classpath:mappers/**/*Mapper.xml"/>
 	</bean>
-	
-	
 	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
 		<constructor-arg name="sqlSessionFactory" ref="sqlSessionFactory"/>
-	</bean>
-	
-	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-		<property name="dataSource" ref="dataSource"></property>
-	
 	</bean>
 		
 		
