@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <!--
 Template Name: Viral
@@ -10,16 +11,16 @@ Licence URI: http://www.os-templates.com/template-terms
 -->
 <html>
 <head>
-<title>AAA</title>
+<title>Viral | Pages | Full Width</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-
-<link href="/resources/layout/styles/layout.css" rel="stylesheet" >
+<link href="/resources/layout/styles/layout.css" rel="stylesheet" type="text/css" media="all">
 </head>
 <body id="top">
 <!-- ################################################################################################ -->
 <!-- ################################################################################################ -->
 <!-- ################################################################################################ -->
+
 <div class="wrapper row0">
   <div id="topbar" class="clear"> 
     <!-- ################################################################################################ -->
@@ -31,9 +32,13 @@ Licence URI: http://www.os-templates.com/template-terms
     </div>
     <div class="fl_right">
       <ul class="faico clear">
-        <li><a  href="#">로그인</a></li>
-        <li><a  href="#">마이페이지</a></li>
-        <li><a  href="#"></a></li>
+        <li><a class="faicon-facebook" href="#"><i class="fa fa-facebook"></i></a></li>
+        <li><a class="faicon-pinterest" href="#"><i class="fa fa-pinterest"></i></a></li>
+        <li><a class="faicon-twitter" href="#"><i class="fa fa-twitter"></i></a></li>
+        <li><a class="faicon-dribble" href="#"><i class="fa fa-dribbble"></i></a></li>
+        <li><a class="faicon-linkedin" href="#"><i class="fa fa-linkedin"></i></a></li>
+        <li><a class="faicon-google-plus" href="#"><i class="fa fa-google-plus"></i></a></li>
+        <li><a class="faicon-rss" href="#"><i class="fa fa-rss"></i></a></li>
       </ul>
     </div>
     <!-- ################################################################################################ -->
@@ -50,14 +55,15 @@ Licence URI: http://www.os-templates.com/template-terms
     </div>
     <nav id="mainav" class="fl_right">
       <ul class="clear">
-        <li class="active"><a href="index.html">Home</a></li>
-        <li><a class="drop" href="#">Pages</a>
+        <li><a href="resourcesindex.html">Home</a></li>
+        
+        <li class="active"><a class="drop" href="#">Pages</a>
           <ul>
-            <li><a href="/pages/gallery">Gallery</a></li>
-            <li><a href="/bill/full-width">Full Width</a></li>
-            <li><a href="/pages/sidebar-left">Sidebar Left</a></li>
-            <li><a href="/pages/sidebar-right">Sidebar Right</a></li>
-            <li><a href="/pages/basic-grid">Basic Grid</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+            <li class="active"><a href="full-width.html">Full Width</a></li>
+            <li><a href="sidebar-left.html">Sidebar Left</a></li>
+            <li><a href="sidebar-right.html">Sidebar Right</a></li>
+            <li><a href="basic-grid.html">Basic Grid</a></li>
           </ul>
         </li>
         <li><a class="drop" href="#">Dropdown</a>
@@ -78,42 +84,23 @@ Licence URI: http://www.os-templates.com/template-terms
     <!-- ################################################################################################ -->
   </header>
 </div>
+
+
 <!-- ################################################################################################ -->
 <!-- ################################################################################################ -->
 <!-- ################################################################################################ -->
-<div class="wrapper row2 bgded" style="background-image:url('/resources/images/main/backgrounds/01.png');">
+<div class="wrapper row2 bgded" style="background-image:url('resourcesimages/main/backgrounds/01.png');">
   <div class="overlay">
-    <section id="pageintro" class="clear"> 
+    <div id="breadcrumb" class="clear"> 
       <!-- ################################################################################################ -->
-      <div class="center btmspace-80">
-        <h2 class="heading xxl uppercase btmspace-30">Ultricies convallis</h2>
-        <p class="xl nospace capitalise">Aenean et cursus adipiscing</p>
-      </div>
-      <ul class="nospace group services">
-        <li class="one_third first">
-          <article class="overlay"><a href="#"><i class="fa fa-legal"></i></a>
-            <h6 class="heading">Dui leo egestas augue</h6>
-            <p>Maecenas libero nunc, volutpat eu erat sed, blandit elementum mi etiam scelerisque&hellip;</p>
-            <footer><a href="#">Read More &raquo;</a></footer>
-          </article>
-        </li>
-        <li class="one_third">
-          <article class="overlay"><a href="#"><i class="fa fa-line-chart"></i></a>
-            <h6 class="heading">Eget molestie augue diam</h6>
-            <p>Donec facilisis volutpat ligula nec egestas aliquam malesuada, lectus sed sollicitudin&hellip;</p>
-            <footer><a href="#">Read More &raquo;</a></footer>
-          </article>
-        </li>
-        <li class="one_third">
-          <article class="overlay"><a href="#"><i class="fa fa-archive"></i></a>
-            <h6 class="heading">Fusce quis feugiat urna</h6>
-            <p>Aenean semper elementum tellus, ut placerat leo. Quisque vehicula, urna sit amet&hellip;</p>
-            <footer><a href="#">Read More &raquo;</a></footer>
-          </article>
-        </li>
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Lorem</a></li>
+        <li><a href="#">Ipsum</a></li>
+        <li><a href="#">Full Width</a></li>
       </ul>
       <!-- ################################################################################################ -->
-    </section>
+    </div>
   </div>
 </div>
 <!-- ################################################################################################ -->
@@ -123,74 +110,132 @@ Licence URI: http://www.os-templates.com/template-terms
   <main class="container clear"> 
     <!-- main body -->
     <!-- ################################################################################################ -->
-    <div class="group">
-      <div class="one_third first"><img src="/resources/images/main/460x700.png" alt=""></div>
-      <div class="two_third">
-        <h2 class="heading">Etiam finibus tempus felis eget ullamcorper</h2>
-        <p>Cras pellentesque neque, consectetur adipiscing elit. Fusce venenatis elit ac ligula euismod varius. Maecenas feugiat purus quam, vel aliquet tellus sodales eu. Integer vitae vestibulum turpis, in sollicitudin quam. Aliquam vulputate non felis non luctus. Vestibulum eget augue nulla. Aliquam dignissim nibh mi, ut bibendum quam dapibus eget. Nam nec nisi vel sapien pulvinar ultrices. Curabitur rutrum nisl sagittis, pretium velit eget, convallis lacus. Nulla fermentum nulla ut lacus maximus, ut porttitor neque varius. Nullam sed vulputate sem. Sed bibendum porttitor metus.</p>
-        <p class="btmspace-80">Donec lacinia lacus eros, nec luctus odio bibendum dictum. Vivamus nec egestas libero, non faucibus mauris. In in efficitur felis. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nunc porttitor turpis in ex porttitor, nec sagittis diam ultrices.</p>
-        <ul class="nospace group">
-          <li class="one_third first">
-            <h6 class="nospace btmspace-10"><a href="#"><i class="fa fa-location-arrow"></i> Praesent neque</a></h6>
-            <p class="nospace">Mauris consectetur vel tellus quis consectetur&hellip;</p>
+    <div class="content"> 
+      <!-- ################################################################################################ -->
+      <h1>&lt;h1&gt; to &lt;h6&gt; - Headline Colour and Size Are All The Same</h1>
+      <img class="imgr borderedbox inspace-5" src=/"resources/images/main/imgr.gif" alt="">
+      <p>Aliquatjusto quisque nam consequat doloreet vest orna partur scetur portortis nam. Metadipiscing eget facilis elit sagittis felisi eger id justo maurisus convallicitur.</p>
+      <p>Dapiensociis <a href="#">temper donec auctortortis cumsan</a> et curabitur condis lorem loborttis leo. Ipsumcommodo libero nunc at in velis tincidunt pellentum tincidunt vel lorem.</p>
+      <img class="imgl borderedbox inspace-5" src="/resources/images/main/imgl.gif" alt="">
+      <p>This is a W3C compliant free website template from <a href="http://www.os-templates.com/" title="Free Website Templates">OS Templates</a>. For full terms of use of this template please read our <a href="http://www.os-templates.com/template-terms">website template licence</a>.</p>
+      <p>You can use and modify the template for both personal and commercial use. You must keep all copyright information and credit links in the template and associated files. For more website templates visit our <a href="http://www.os-templates.com/">free website templates</a> section.</p>
+      <p>Portortornec condimenterdum eget consectetuer condis consequam pretium pellus sed mauris enim. Puruselit mauris nulla hendimentesque elit semper nam a sapien urna sempus.</p>
+      <h1>Table(s)</h1>
+      <div class="scrollable">
+        <table>
+          <thead>
+            <tr>
+              <th>Header 1</th>
+              <th>Header 2</th>
+              <th>Header 3</th>
+              <th>Header 4</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><a href="#">Value 1</a></td>
+              <td>Value 2</td>
+              <td>Value 3</td>
+              <td>Value 4</td>
+            </tr>
+            <tr>
+              <td>Value 5</td>
+              <td>Value 6</td>
+              <td>Value 7</td>
+              <td><a href="#">Value 8</a></td>
+            </tr>
+            <tr>
+              <td>Value 9</td>
+              <td>Value 10</td>
+              <td>Value 11</td>
+              <td>Value 12</td>
+            </tr>
+            <tr>
+              <td>Value 13</td>
+              <td><a href="#">Value 14</a></td>
+              <td>Value 15</td>
+              <td>Value 16</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div id="comments">
+        <h2>Comments</h2>
+        <ul>
+          <li>
+            <article>
+              <header>
+                <figure class="avatar"><img src="/resources/images/main/avatar.png" alt=""></figure>
+                <address>
+                By <a href="#">A Name</a>
+                </address>
+                <time datetime="2045-04-06T08:15+00:00">Friday, 6<sup>th</sup> April 2045 @08:15:00</time>
+              </header>
+              <div class="comcont">
+                <p>This is an example of a comment made on a post. You can either edit the comment, delete the comment or reply to the comment. Use this as a place to respond to the post or to share what you are thinking.</p>
+              </div>
+            </article>
           </li>
-          <li class="one_third">
-            <h6 class="nospace btmspace-10"><a href="#"><i class="fa fa-lock"></i> Integer tinciduntt</a></h6>
-            <p class="nospace">Mauris consectetur vel tellus quis consectetur&hellip;</p>
+          <li>
+            <article>
+              <header>
+                <figure class="avatar"><img src="/resources/images/main/avatar.png" alt=""></figure>
+                <address>
+                By <a href="#">A Name</a>
+                </address>
+                <time datetime="2045-04-06T08:15+00:00">Friday, 6<sup>th</sup> April 2045 @08:15:00</time>
+              </header>
+              <div class="comcont">
+                <p>This is an example of a comment made on a post. You can either edit the comment, delete the comment or reply to the comment. Use this as a place to respond to the post or to share what you are thinking.</p>
+              </div>
+            </article>
           </li>
-          <li class="one_third last">
-            <h6 class="nospace btmspace-10"><a href="#"><i class="fa fa-map-marker"></i> Aliquam mauris</a></h6>
-            <p class="nospace">Mauris consectetur vel tellus quis consectetur&hellip;</p>
+          <li>
+            <article>
+              <header>
+                <figure class="avatar"><img src="/resources/images/main/avatar.png" alt=""></figure>
+                <address>
+                By <a href="#">A Name</a>
+                </address>
+                <time datetime="2045-04-06T08:15+00:00">Friday, 6<sup>th</sup> April 2045 @08:15:00</time>
+              </header>
+              <div class="comcont">
+                <p>This is an example of a comment made on a post. You can either edit the comment, delete the comment or reply to the comment. Use this as a place to respond to the post or to share what you are thinking.</p>
+              </div>
+            </article>
           </li>
         </ul>
+        <h2>Write A Comment</h2>
+        <form action="#" method="post">
+          <div class="one_third first">
+            <label for="name">Name <span>*</span></label>
+            <input type="text" name="name" id="name" value="" size="22">
+          </div>
+          <div class="one_third">
+            <label for="email">Mail <span>*</span></label>
+            <input type="text" name="email" id="email" value="" size="22">
+          </div>
+          <div class="one_third">
+            <label for="url">Website</label>
+            <input type="text" name="url" id="url" value="" size="22">
+          </div>
+          <div class="block clear">
+            <label for="comment">Your Comment</label>
+            <textarea name="comment" id="comment" cols="25" rows="10"></textarea>
+          </div>
+          <div>
+            <input name="submit" type="submit" value="Submit Form">
+            &nbsp;
+            <input name="reset" type="reset" value="Reset Form">
+          </div>
+        </form>
       </div>
+      <!-- ################################################################################################ -->
     </div>
     <!-- ################################################################################################ -->
     <!-- / main body -->
     <div class="clear"></div>
   </main>
-</div>
-<!-- ################################################################################################ -->
-<!-- ################################################################################################ -->
-<!-- ################################################################################################ -->
-<div class="wrapper row4">
-  <section id="info" class="clear"> 
-    <!-- ################################################################################################ -->
-    <div class="center btmspace-80">
-      <h2 class="heading uppercase btmspace-30">Curabitur eget elit sit amet purus congue</h2>
-      <p class="lrspace">Aenean semper elementum tellus, ut placerat leo. Quisque vehicula, urna sit amet pulvinar dapibus, dui leo egestas augue, eget molestie augue diam nec ante. Fusce quis feugiat urna. Curabitur a sapien tincidunt, ullamcorper mauris sit amet, ornare augue. Suspendisse potenti. Sed eget ultricies sem. Proin quis lacus egestas, adipiscing nunc ornare, gravida diam. Donec luctus convallis rhoncus.</p>
-    </div>
-    <div class="group">
-      <div class="one_half first"><img src="/resources/images/main/600x700.png" alt=""></div>
-      <div class="one_half">
-        <ul class="nospace group services">
-          <li>
-            <article><a href="#"><i class="fa fa-asterisk"></i></a>
-              <h6 class="heading">Ut pharetra nisi eu massa</h6>
-              <p>Nunc nec tincidunt turpis sed feugiat dui vestibulum euismod nunc sed vestibulum interdum&hellip;</p>
-              <footer><a href="#">Read More &raquo;</a></footer>
-            </article>
-          </li>
-          <li>
-            <article><a href="#"><i class="fa fa-bar-chart"></i></a>
-              <h6 class="heading">Pellentesque neque porttitor</h6>
-              <p>Maecenas luctus sed nulla ac faucibus cras pellent esque neque vitae tincidunt tempus&hellip;</p>
-              <footer><a href="#">Read More &raquo;</a></footer>
-            </article>
-          </li>
-          <li>
-            <article><a href="#"><i class="fa fa-paper-plane-o"></i></a>
-              <h6 class="heading">Nulla lobortis ultrices nibh</h6>
-              <p>Quisque sit amet tellus nunc praesent nunc augue, eleifend ac consequat sed egestas eu nunc&hellip;</p>
-              <footer><a href="#">Read More &raquo;</a></footer>
-            </article>
-          </li>
-        </ul>
-      </div>
-    </div>
-    <!-- ################################################################################################ -->
-    <div class="clear"></div>
-  </section>
 </div>
 <!-- ################################################################################################ -->
 <!-- ################################################################################################ -->

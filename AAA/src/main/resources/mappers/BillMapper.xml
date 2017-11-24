@@ -6,9 +6,26 @@
 <mapper namespace="all.about.apartment.mappers.BillMapper">
 
 
-	<select id="test" resultType="FacilityTime">
-		SELECT * FROM facility_time
+	<select id="getPersonal_mgmt_ex" resultType="Personal_mgmt_exVO">
+		SELECT * FROM Personal_mgmt_ex
 	</select>
+	
+	 <select id="getOnePersonal_mgmt_ex" resultType="Personal_mgmt_exVO">
+		SELECT * FROM Personal_mgmt_ex WHERE u_id = #{u_id} AND p_month = #{p_month}	
+	</select> 
+	
+	<select id="getSaleBill" resultType="SaleBillVO">
+		SELECT * FROM sale_bill WHERE input_num = #{input_num}
+	</select>
+	
+	<select id="getEnergyList" resultType="EnergyVO">
+		SELECT e.* 
+		FROM personal_mgmt_ex p, energy e  
+		WHERE p.u_id = #{u_id} AND p.p_month = #{p_month} AND p.input_num = e.input_num
+
+	</select>
+	
+	
 </mapper>  
 
 

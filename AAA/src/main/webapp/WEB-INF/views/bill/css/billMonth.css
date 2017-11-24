@@ -1,0 +1,8 @@
+@CHARSET "UTF-8";
+
+#select_month{
+	text-align: center;
+	margin-bottom: 30px;
+	display: block;
+	padding-bottom: 10px;
+}

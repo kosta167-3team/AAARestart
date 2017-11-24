@@ -116,6 +116,7 @@
 			<version>4.12</version>
 			<scope>test</scope>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.springframework/spring-test -->
 
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -199,6 +200,7 @@
 			<version>1.3.2</version>
 		</dependency>
 
+
 		<!-- Caced -->
 		<!-- https://mvnrepository.com/artifact/org.apache.cxf/cxf-api -->
 		<dependency>
@@ -210,6 +212,27 @@
 
 
 
+		<!-- 타일 -->
+
+		<dependency>
+			<groupId>org.apache.tiles</groupId>
+			<artifactId>tiles-jsp</artifactId>
+			<version>3.0.7</version>
+		</dependency>
+		
+
+		<dependency>
+			<groupId>org.apache.tiles</groupId>
+			<artifactId>tiles-core</artifactId>
+			<version>3.0.7</version>
+		</dependency>
+
+
+		<dependency>
+			<groupId>org.apache.tiles</groupId>
+			<artifactId>tiles-api</artifactId>
+			<version>3.0.7</version>
+		</dependency>
 
 
 
