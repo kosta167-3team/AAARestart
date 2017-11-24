@@ -23,6 +23,7 @@ import all.about.apartment.bill.persistence.BillDAO;
 @Controller
 public class HomeController {
 	
+
 	@Inject
 	BillDAO dao;
 	
