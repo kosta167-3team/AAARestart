@@ -16,13 +16,18 @@
 	<resources mapping="/resources/**" location="/resources/" />
 
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
-	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-		<beans:property name="prefix" value="/WEB-INF/views/" />
-		<beans:property name="suffix" value=".jsp" />
-	</beans:bean>
 	
+
+	<beans:bean id ="loginInteceptor"
+		class="all.about.apartment.intercepter.LoginInteceptor"/>
+	<interceptors>
+		<interceptor>
+			<mapping path="/user/loginPost"/>
+			<beans:ref bean="loginInteceptor"/>
+		</interceptor>
+	</interceptors>
 	<context:component-scan base-package="all.about.apartment" />
-	
+
 	
 	
 </beans:beans>
