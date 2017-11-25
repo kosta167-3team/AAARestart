@@ -206,6 +206,7 @@ td{border-width:0 1px;}
 --------------------------------------------------------------------------------------------------------------- */
 .faico{margin:0; padding:0; list-style:none;}
 
+
 .faico li{display:inline-block; float:left; margin:0 2px 0 0; padding:5px; line-height:normal;}
 .faico li:last-child{margin-right:0;}
 
@@ -306,9 +307,8 @@ tr, #comments li, #comments input[type="submit"], #comments input[type="reset"]{
 tr:nth-child(even), #comments li:nth-child(even){color:inherit; background-color:#F7F7F7;}
 table a, #comments a{background-color:inherit;}
 
+
 select {display: inline; float: none;}
-
-
 
 /* ------------------------------------------------------------------------------------------------------------ */
 /* ------------------------------------------------------------------------------------------------------------ */

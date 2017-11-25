@@ -23,11 +23,10 @@ import all.about.apartment.bill.persistence.BillDAO;
  */
 @Controller
 public class HomeController {
-	
 
 	@Inject
 	BillDAO dao;
-	
+
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 	
 	/**
@@ -44,7 +43,9 @@ public class HomeController {
 		
 		model.addAttribute("serverTime", formattedDate );
 		
+
 		return "/main";
+
 	}
 	
 	@RequestMapping(value = "/pages/gallery", method = RequestMethod.GET)

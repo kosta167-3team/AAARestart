@@ -11,6 +11,7 @@ Thanks to:
 "Submenu's with a dash" Daryn St. Pierre - http://jsfiddle.net/bloqhead/Kq43X/
 
 
+
  */
 
 $('<form action="#"><select /></form>').appendTo("#mainav");
