@@ -14,6 +14,7 @@ import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.aspectj.org.eclipse.jdt.core.compiler.ITerminalSymbols;
 import org.json.XML;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -38,7 +39,7 @@ public class EntrcServiceImpl implements EntrcService {
 
 	@Override
 	@ResponseBody
-	public Map<String, Object> apt_list(String dong_code)throws Exception {
+	public List<Map<String, Object>> apt_list(String dong_code)throws Exception {
 
 		Map<String, Object> resultMap = new HashMap<>();
 
@@ -86,13 +87,24 @@ public class EntrcServiceImpl implements EntrcService {
 		Map<String, Object> body = (Map<String, Object>) dataResponse.get("body");
 		Map<String, Object> items = null;
 		List<Map<String, Object>> itemList = null;
-
-		if (body.get("items") == null) {
-			return items;
-		}
-		items = (Map<String, Object>) body.get("items");
 		
-		itemList = (List<Map<String, Object>>) items.get("item");
+		System.out.println(body);
+
+		int totalCount = (int)(body.get("totalCount"));
+
+		items = (Map<String, Object>) body.get("items");
+	
+		if (body.get("items") == null || totalCount==0) {
+			throw new Exception("검색결과 없음", new Throwable("검색결과없음"));
+			
+		}
+		if(items.get("item") instanceof Map){
+			Map<String, Object>item = (Map<String, Object>)(items.get("item"));
+			itemList.add(item);
+		}else{
+			itemList = (List<Map<String,Object>>)(items.get("item"));
+		}
+
 
 		System.out.println(itemList.size());
 		
@@ -105,7 +117,7 @@ public class EntrcServiceImpl implements EntrcService {
 		resultMap.clear();
 		resultMap.put("Result", "0001");
 
-		return items;
+		return itemList;
 
 	}
 
@@ -274,5 +286,11 @@ public class EntrcServiceImpl implements EntrcService {
 	public void insertApt(ApartmentVO vo) throws Exception {
 		dao.insertApt(vo);
 		
+	}
+
+	//아파트 목록 
+	@Override
+	public List<ApartmentVO> aptList() throws Exception {
+		return dao.aptList();
 	}
 }

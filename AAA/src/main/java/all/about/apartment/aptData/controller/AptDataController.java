@@ -35,6 +35,11 @@ public class AptDataController {
 	public String aptData(){
 		return "/pages/aptdata/aptData";
 	}
+	
+	@RequestMapping(value ="/changeXY",method = RequestMethod.GET)
+	public String changeXY(){
+		return "/pages/aptdata/changeXY";
+	}
 }
 
 
