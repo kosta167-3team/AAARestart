@@ -10,6 +10,11 @@ Author URI: http://www.os-templates.com/
 Licence: Free to use under our free template licence terms
 Licence URI: http://www.os-templates.com/template-terms
 -->
+
+<%
+	ResidentVO vo = (ResidentVO)session.getAttribute("login");
+	
+%>
 <html>
 <head>
 <title>Viral | Pages | Full Width</title>
@@ -23,13 +28,15 @@ Licence URI: http://www.os-templates.com/template-terms
 <script src="/resources/layout/scripts/jquery.mobilemenu.js"></script>
 <script type="text/javascript">
 $(function () {
-	var loginID= "<%=((ResidentVO)session.getAttribute("login")).getR_id()%>";
+	var loginID= "<%=vo%>";
 	
-	if(loginID != null){
+	if(loginID != "null"){
 		$('#login').text('로그아웃');
+		$('#login').attr('href','/user/logout');
 		$('#msg').html('쪽지 [<span>0</span>]');
 	}else{
 		$('#login').text('로그인');
+		$('#login').attr('href','/user/login');
 	}
 	
 })
@@ -53,7 +60,7 @@ $(function () {
     </div>
    <div class="fl_right">
       <ul class="faico clear">
-        <li><a  href="/user/login" id="login"></a></li>
+        <li><a  href="#" id="login"></a></li>
         <li><a  href="#">마이페이지</a></li>
         <li><a  href="#" id ="msg"></a></li>
       </ul>
