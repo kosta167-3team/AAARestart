@@ -23,6 +23,9 @@
 		
 	<beans:bean id="authInterceptor"
 		class="all.about.apartment.intercepter.AuthInterceptor"/>
+		
+		<beans:bean id="testInterceptor"
+		class="all.about.apartment.intercepter.testInterceptor"/>
 	
 
 	<interceptors>
@@ -34,6 +37,11 @@
 		<interceptor>
 			<mapping path="/bill/full-width"/>
 			<beans:ref bean="authInterceptor"/>
+		</interceptor>
+		
+		<interceptor>
+			<mapping path="/"/>
+			<beans:ref bean="testInterceptor"/>
 		</interceptor>
 		
 		

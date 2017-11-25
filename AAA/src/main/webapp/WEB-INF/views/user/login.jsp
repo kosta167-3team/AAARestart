@@ -38,7 +38,7 @@ $(function () {
             <div id="output"></div>
             <div class="avatar"></div>
             <div class="form-box">
-                <form id="loginForm" method="post">
+                <form id="loginForm" action="/user/loginPost" method="post">
                     <input name="urd" type="text" placeholder="username">
                     <input type="password" name="upw" placeholder="password">
                     <button class="btn btn-info btn-block login" type="submit">Login</button>
