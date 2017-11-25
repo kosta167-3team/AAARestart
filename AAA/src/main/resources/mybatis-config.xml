@@ -6,8 +6,13 @@
 <configuration>
 	<typeAliases>
 		<package name="all.about.apartment.bill.domain"/>
+
+		<package name="all.about.apartment.visit.domain"/>
+		<package name="all.about.apartment.visit.dto"/>
+
 		<package name="all.about.apartment.aptData.domain"/>
 		<package name="all.about.apartment.publicDomain"/>
+
 	</typeAliases>
 	
 	
