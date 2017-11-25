@@ -9,9 +9,9 @@ import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
+import all.about.apartment.publicDomain.ResidentVO;
 import all.about.apartment.visit.domain.ApplicationVO;
 import all.about.apartment.visit.domain.Criteria;
-import all.about.apartment.visit.domain.ResidentVO;
 import all.about.apartment.visit.dto.ApplicationDTO;
 
 @Repository

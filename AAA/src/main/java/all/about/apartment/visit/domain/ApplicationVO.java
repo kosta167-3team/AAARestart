@@ -11,15 +11,15 @@ public class ApplicationVO {
 	private Date vr_date;
 	private String v_contents;
 	private String v_state;
+	private String v_check;
+	
 	public String getV_state() {
 		return v_state;
 	}
 	public void setV_state(String v_state) {
 		this.v_state = v_state;
 	}
-	private String v_check;
-	private String dong;
-	private String ho;
+	
 	public String getVr_id() {
 		return vr_id;
 	}
@@ -68,22 +68,12 @@ public class ApplicationVO {
 	public void setV_check(String v_check) {
 		this.v_check = v_check;
 	}
-	public String getDong() {
-		return dong;
-	}
-	public void setDong(String dong) {
-		this.dong = dong;
-	}
-	public String getHo() {
-		return ho;
-	}
-	public void setHo(String ho) {
-		this.ho = ho;
-	}
 	@Override
 	public String toString() {
 		return "ApplicationVO [vr_id=" + vr_id + ", r_id=" + r_id + ", v_name=" + v_name + ", v_tel=" + v_tel
 				+ ", v_date=" + v_date + ", vr_date=" + vr_date + ", v_contents=" + v_contents + ", v_state=" + v_state
-				+ ", v_check=" + v_check + ", dong=" + dong + ", ho=" + ho + "]";
-	}		
+				+ ", v_check=" + v_check + "]";
+	}
+	
+
 }
