@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="all.about.apartment.mappers.visitMapper">
+	<select id="get" parameterType="ApplicationDTO" resultType="ResidentVO">
+		select * from resident
+		where r_dong = #{dong} and r_ho = #{ho}
+	</select>
+
+	<insert id="applicationVisit" parameterType="ApplicationDTO">
+		insert into
+		visit_reservation(vr_id, r_id, v_name, v_tel, v_date, vr_date,
+		v_contents, v_check, v_state)
+		values(#{vr_id}, #{r_id}, #{v_name}, #{v_tel},
+		#{v_date}, sysdate, #{v_contents}, 'X', '미확인')
+	</insert>
+
+	<select id="maxVR" resultType="Integer">
+		select max(vr_id) from
+		visit_reservation
+	</select>
+
+	<select id="applicationList" parameterType="String" resultType="ApplicationVO">
+		select * from visit_reservation
+		where r_id = #{r_id} and v_state='미확인'
+		order by v_date desc
+	</select>
+
+	<select id="listPage" resultType="ApplicationVO">
+            <![CDATA[
+                   select * from visit_reservation                 
+                   where r_id = #{r_id} and v_state='미확인'
+                   order by v_date desc
+            ]]>
+	</select>
+	
+	<select id="listCriteria" resultType="ApplicationVO">
+            <![CDATA[
+                   select * from visit_reservation                 
+                   where r_id = #{r_id} and v_state='미확인'
+                   order by v_date desc
+            ]]>
+    </select>
+    
+    <select id="totalCount" parameterType="String" resultType="int">
+        select count(*) from visit_reservation
+        where r_id = #{r_id} and v_state='미확인'
+    </select>
+    
+    <update id="updateCheck" parameterType="Map">
+    	update visit_reservation set v_state = #{state}
+    	where vr_id = #{vr_id}
+    </update>
+    
+    <select id="adminListPage" resultType="ApplicationVO">
+            <![CDATA[
+                   select * from visit_reservation                 
+                   where v_state in ('미확인', '승인')
+                   order by v_date desc
+            ]]>
+	</select>
+</mapper>  
+
+
+
+
+
+
+
+
+
+
+

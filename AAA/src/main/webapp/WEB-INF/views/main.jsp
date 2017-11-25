@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
+
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <!--
@@ -31,7 +32,9 @@ Licence URI: http://www.os-templates.com/template-terms
     </div>
     <div class="fl_right">
       <ul class="faico clear">
-        <li><a  href="#">로그인</a></li>
+
+        <li><a  href="/user/login">로그인</a></li>
+
         <li><a  href="#">마이페이지</a></li>
         <li><a  href="#"></a></li>
       </ul>
@@ -54,7 +57,9 @@ Licence URI: http://www.os-templates.com/template-terms
         <li><a class="drop" href="#">Pages</a>
           <ul>
             <li><a href="/pages/gallery">Gallery</a></li>
-            <li><a href="/pages/full-width">Full Width</a></li>
+
+            <li><a href="/bill/full-width">Full Width</a></li>
+
             <li><a href="/pages/sidebar-left">Sidebar Left</a></li>
             <li><a href="/pages/sidebar-right">Sidebar Right</a></li>
             <li><a href="/pages/basic-grid">Basic Grid</a></li>
@@ -195,6 +200,7 @@ Licence URI: http://www.os-templates.com/template-terms
 <!-- ################################################################################################ -->
 <!-- ################################################################################################ -->
 <!-- ################################################################################################ -->
+
 <div class="wrapper row5">
   <footer id="footer" class="clear"> 
     <!-- ################################################################################################ -->

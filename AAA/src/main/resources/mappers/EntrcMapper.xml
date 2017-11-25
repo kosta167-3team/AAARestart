@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="all.about.apartment.mappers.EntrcMapper">
+
+	<!-- 법정동 코드 가져오기 -->
+	<select id="dong_code" resultType="String">
+		SELECT DONG_CODE
+		FROM ENTRC_SEOUL
+		GROUP BY DONG_CODE
+	</select>
+
+	<select id="entrc_list" resultType="Entrc_seoulVO">
+		SELECT dong_code, si_name, gungu_name, dong_name, x, y
+		FROM entrc_seoul
+	</select>
+	
+	<!-- x,y좌표 가져오기 -->
+	<select id="getXY" parameterType="java.util.HashMap" resultType="java.util.HashMap" >
+		SELECT x,y FROM ENTRC_SEOUL
+		WHERE ZIPNO = #{zipNO}
+		AND BUILDINGNO = #{buildingNO}
+	</select>
+	
+	<!-- 아파트 정보 insert -->
+	<insert id="insertApt" parameterType="ApartmentVO">
+		insert into apartment
+			(KAPTCODE,KAPTNAME,SIGUNGU,DONGNAME,KAPTDACNT,LAT,LON,BJDCODE)
+			VALUES
+			(#{kaptCode},#{kaptName},#{sigungu},#{dong_name},#{kaptdaCnt},#{lat},#{lon},#{bjdCode})
+	</insert>
+	
+	<!-- 아파트 List -->
+	<select id="getAptList" resultType="ApartmentVO">
+		select * from apartment
+	</select>
+</mapper>  
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE  tiles-definitions PUBLIC
+	"-//Aapche Software Foundation//DTD Tiles Configuration 2.0//EN"
+	"http://tiles.apache.org/dtds/tiles-config_2_0.dtd"
+>
+
+	<tiles-definitions>
+		<!-- 각 디피니션에 header, footer를 적는 것보다 한번에 적은후 extends하는게 좋다. -->
+	<definition name="base_layout" template="/WEB-INF/views/template.jsp">
+		<put-attribute name="header" value = "/WEB-INF/views/header.jsp"/>
+		<put-attribute name="footer" value = "/WEB-INF/views/footer.jsp"/>
+	</definition>
+	
+	<!-- extends base_layout 를 해주면 자동으로 header,footer를 적용해준다. -->
+	<definition name="/bill/full-width" extends="base_layout">
+		<put-attribute name="body" value="/WEB-INF/views/bill/body.jsp"/>
+	</definition>	 
+	
+	<definition name="/main" extends="base_layout">
+		<put-attribute name="body" value="/WEB-INF/views/main_body.jsp"/>
+	</definition>
+
+	<!-- extends base_layout 를 해주면 자동으로 header,footer를 적용해준다. -->
+	<!-- <definition name="/bill/full-width" template="/WEB-INF/views/bill/template.jsp">
+		<put-attribute name="header" value = "/WEB-INF/views/bill/header.jsp"/>
+		<put-attribute name="body" value="/WEB-INF/views/bill/body.jsp"/>
+		<put-attribute name="footer" value = "/WEB-INF/views/bill/footer.jsp"/>
+	</definition>	 -->
+	<!-- extends base_layout 를 해주면 자동으로 header,footer를 적용해준다. -->
+	<!--  
+	<definition name="list" extends="base_layout">
+		<put-attribute name="body" value="/view/list.jsp"/>
+	</definition>
+	-->
+	<!-- extends base_layout 를 해주면 자동으로 header,footer를 적용해준다. -->
+	<!--  
+	<definition name="detail" extends="base_layout">
+		<put-attribute name="body" value="/view/detail.jsp"/>
+	</definition>
+	-->
+</tiles-definitions>
+
+
+
+
+
+
+
+
+
