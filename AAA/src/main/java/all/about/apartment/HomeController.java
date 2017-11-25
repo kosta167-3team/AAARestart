@@ -1,5 +1,3 @@
-
-
 package all.about.apartment;
 
 import java.text.DateFormat;
@@ -18,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
  */
 @Controller
 public class HomeController {
+	
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 	
 	/**
@@ -34,7 +33,28 @@ public class HomeController {
 		
 		model.addAttribute("serverTime", formattedDate );
 		
-		return "home";
+		return "main";
+	}
+	
+	@RequestMapping(value = "/pages/gallery", method = RequestMethod.GET)
+	public void gallery(){
+		
+	}
+	@RequestMapping(value = "/pages/full-width", method = RequestMethod.GET)
+	public void pagesfull(){
+		
+	}
+	@RequestMapping(value = "/pages/sidebar-left", method = RequestMethod.GET)
+	public void pagessidebarLeft(){
+	
+	}
+	@RequestMapping(value = "/pages/sidebar-right", method = RequestMethod.GET)
+	public void pagessidebarRight(){
+
+	}
+	@RequestMapping(value = "/pages/basic-grid", method = RequestMethod.GET)
+	public void pagesbasic(){
+
 	}
 	
 }

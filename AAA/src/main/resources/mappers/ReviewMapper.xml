@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="all.about.apartment.mappers.ReviewMapper">
+
+	<insert id="create" parameterType="ReviewVO">
+		insert into review(
+		rev_id,r_id,f_id,rev_contents,rev_date,rev_rate
+		) values (
+		#{rev_id}, #{r_id}, #{f_id}, #{rev_contents}, sysdate, #{rev_rate}
+		)
+	</insert>
+	
+	<select id="reviewMax" resultType="Integer">
+		SELECT MAX(rev_id) FROM review
+	</select>
+	
+	<select id="listAll" parameterType="int" resultType="ReviewVO">
+		SELECT * from review where f_id = #{f_id}
+	</select>
+	
+	<select id="selectedGuest" parameterType="String" resultType="TodayGuest">
+		select* from visit_history where vh_date = #{date}
+		
+	</select>
+
+</mapper>
+
+
+
