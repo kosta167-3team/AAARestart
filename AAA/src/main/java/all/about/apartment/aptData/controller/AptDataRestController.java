@@ -52,24 +52,31 @@ public class AptDataRestController {
 
 	
 	@RequestMapping(value = "/aptlist/{dong_code}", method = RequestMethod.GET)
-	public ResponseEntity<Map<String, Object>> aptlist(@PathVariable String dong_code) {
+	public ResponseEntity<List<Map<String, Object>>> aptlist(@PathVariable String dong_code) {
 		
-		ResponseEntity<Map<String, Object>> entity = null;
+		ResponseEntity<List<Map<String, Object>>> entity = null;
 
-		Map<String, Object> map = new HashMap<>();
+		//Map<String, Object> map = new HashMap<>();
+		List<Map<String, Object>> listMap = null;
 		
 		System.out.println(dong_code);
 
 		try {
-			map = (Map<String, Object>) service.apt_list(dong_code);
-			entity = new ResponseEntity<Map<String, Object>>(map, HttpStatus.OK);
+			listMap = service.apt_list(dong_code);
+			
+			for(Map<String, Object> map : listMap){
+				System.out.println("아파트 목록" + map);
+			
+			}
+			entity = new ResponseEntity<List<Map<String, Object>>>(listMap,HttpStatus.OK);
+			
 
 		} catch (Exception e) {
 			e.printStackTrace();
-			entity = new ResponseEntity<Map<String, Object>>(HttpStatus.BAD_REQUEST);
+			entity = new ResponseEntity<List<Map<String, Object>>>(HttpStatus.BAD_REQUEST);
 
 		}
-		System.out.println("아파트 목록"+map);
+		//System.out.println("아파트 목록"+map);
 		return entity;
 	}
 
@@ -164,5 +171,26 @@ public class AptDataRestController {
 		}
 
 	}
+	
+	@RequestMapping(value="/allAptList", method = RequestMethod.GET)
+	public ResponseEntity<List<ApartmentVO>> allAptList(){
+		System.out.println("AptRestController... > allAptList");
+		ResponseEntity<List<ApartmentVO>> entityList = null;
+		List<ApartmentVO> aptList = null;
+		
+		try {
+			aptList = service.aptList();
+			entityList = new ResponseEntity<List<ApartmentVO>>(aptList, HttpStatus.OK);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			entityList = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		}
+		 
+		return entityList;
+	}
+	
+	
+	
 
 }
