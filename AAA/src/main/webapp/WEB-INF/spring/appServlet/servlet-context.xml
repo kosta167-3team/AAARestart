@@ -28,7 +28,7 @@
 	<context:component-scan base-package="all.about.apartment" />
 
 
-	<beans:bean id ="loginInteceptor"
+	<!-- <beans:bean id ="loginInteceptor"
 		class="all.about.apartment.intercepter.LoginInteceptor"/>
 		
 	<beans:bean id="authInterceptor"
@@ -48,7 +48,7 @@
 		</interceptor>
 		
 		
-	</interceptors>
+	</interceptors> -->
 	<context:component-scan base-package="all.about.apartment" />
 
 	
