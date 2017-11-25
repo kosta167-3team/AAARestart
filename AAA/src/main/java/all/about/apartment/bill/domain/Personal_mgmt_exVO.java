@@ -9,6 +9,11 @@ public class Personal_mgmt_exVO {
 			"일반 관리비", "청소비", "소독비", "승강기 유지비", "수선유지비", "장기 수선 충당금", "건물 보험료", "경비비", "관리 수수료", "세대전기료", "공동전기료",
 			"TV 수신료","세대수도료","세대 급탕비","생활 폐기물수거","입대위운영비","선관위 운영비"
 	};
+	private static String[] EngList = { "general_mgmt", "clean", "fumigate", "elevator_maintain", "repair",
+			"long_term_repair", "building_insurance", "security", "consignment", "personal_elec", "public_elec", "tv",
+			"personal_water", "personal_heat_water", "trash_pick_up", "resident_repre", "emc"
+
+	};
 	
 	private int input_num;
 	private String p_month;
@@ -327,6 +332,18 @@ public class Personal_mgmt_exVO {
 
 	public static void setList(String[] list) {
 		Personal_mgmt_exVO.list = list;
+	}
+	
+	
+
+
+	public static String[] getEngList() {
+		return EngList;
+	}
+
+
+	public static void setEngList(String[] engList) {
+		EngList = engList;
 	}
 
 

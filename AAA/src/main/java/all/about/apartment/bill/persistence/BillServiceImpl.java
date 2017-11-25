@@ -37,6 +37,17 @@ public class BillServiceImpl implements BillService {
 		
 		return dao.getEnergyList(new SetMonthBill(u_id, p_month) );
 	}
+	@Override
+	public List<Personal_mgmt_exVO> getSelectDetail(String u_id, String p_month) throws Exception {
+		
+		String[] a_pMonth = p_month.split("-");
+		/* 20%%-01 와 같은 포멧을 만들기 위해서 */
+		String year = "20%%";// sql 적용을 위한 
+		String month = a_pMonth[1]; // 월 부분 가져오기
+		
+		
+		return dao.getSelectDetail(new SetMonthBill(u_id, year+"-"+month));
+	}
 
 
 
