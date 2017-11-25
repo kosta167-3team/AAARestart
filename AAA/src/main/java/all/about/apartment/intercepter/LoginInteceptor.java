@@ -10,6 +10,7 @@ import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 public class LoginInteceptor extends HandlerInterceptorAdapter{
 
+	private static final String LOGIN ="login";
 	@Override
 	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
 			ModelAndView modelAndView) throws Exception {
@@ -22,7 +23,12 @@ public class LoginInteceptor extends HandlerInterceptorAdapter{
 		if(residentVO != null){
 			//System.out.println();
 			System.out.println("로그인 성공");
-			response.sendRedirect("/");
+			session.setAttribute(LOGIN, residentVO);
+			
+			Object dest = session.getAttribute("dest");
+			session.removeAttribute("dest");
+			response.sendRedirect(dest!=null ? (String)dest : "/");
+//			response.sendRedirect("/");
 		}else{
 			//response.sendRedirect("/user/login");
 		}
@@ -37,7 +43,6 @@ public class LoginInteceptor extends HandlerInterceptorAdapter{
 		if(session.getAttribute("login") != null){
 			session.removeAttribute("login");
 			
-	
 		}
 		
 		return true;
