@@ -1,3 +1,4 @@
+<%@page import="all.about.apartment.publicDomain.ResidentVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
@@ -9,12 +10,38 @@ Author URI: http://www.os-templates.com/
 Licence: Free to use under our free template licence terms
 Licence URI: http://www.os-templates.com/template-terms
 -->
+
+<%
+	ResidentVO vo = (ResidentVO)session.getAttribute("login");
+	
+%>
 <html>
 <head>
 <title>Viral | Pages | Full Width</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <link href="/resources/layout/styles/layout.css" rel="stylesheet" type="text/css" media="all">
+
+<!-- JAVASCRIPTS -->
+<script src="/resources/layout/scripts/jquery.min.js"></script>
+<script src="/resources/layout/scripts/jquery.backtotop.js"></script>
+<script src="/resources/layout/scripts/jquery.mobilemenu.js"></script>
+<script type="text/javascript">
+$(function () {
+	var loginID= "<%=vo%>";
+	
+	if(loginID != "null"){
+		$('#login').text('로그아웃');
+		$('#login').attr('href','/user/logout');
+		$('#msg').html('쪽지 [<span>0</span>]');
+	}else{
+		$('#login').text('로그인');
+		$('#login').attr('href','/user/login');
+	}
+	
+})
+
+</script>
 </head>
 
 <body id="top">
@@ -31,15 +58,11 @@ Licence URI: http://www.os-templates.com/template-terms
         <li><i class="fa fa-envelope-o"></i> info@domain.com</li>
       </ul>
     </div>
-    <div class="fl_right">
+   <div class="fl_right">
       <ul class="faico clear">
-        <li><a class="faicon-facebook" href="#"><i class="fa fa-facebook"></i></a></li>
-        <li><a class="faicon-pinterest" href="#"><i class="fa fa-pinterest"></i></a></li>
-        <li><a class="faicon-twitter" href="#"><i class="fa fa-twitter"></i></a></li>
-        <li><a class="faicon-dribble" href="#"><i class="fa fa-dribbble"></i></a></li>
-        <li><a class="faicon-linkedin" href="#"><i class="fa fa-linkedin"></i></a></li>
-        <li><a class="faicon-google-plus" href="#"><i class="fa fa-google-plus"></i></a></li>
-        <li><a class="faicon-rss" href="#"><i class="fa fa-rss"></i></a></li>
+        <li><a  href="#" id="login"></a></li>
+        <li><a  href="#">마이페이지</a></li>
+        <li><a  href="#" id ="msg"></a></li>
       </ul>
     </div>
     <!-- ################################################################################################ -->
@@ -61,7 +84,7 @@ Licence URI: http://www.os-templates.com/template-terms
         <li class="active"><a class="drop" href="#">Pages</a>
           <ul>
             <li><a href="gallery.html">Gallery</a></li>
-            <li class="active"><a href="full-width.html">관리비 조회</a></li>
+            <li class="active"><a href="/bill/full-width">관리비 조회</a></li>
             <li><a href="sidebar-left.html">Sidebar Left</a></li>
             <li><a href="sidebar-right.html">Sidebar Right</a></li>
             <li><a href="basic-grid.html">Basic Grid</a></li>
@@ -87,11 +110,5 @@ Licence URI: http://www.os-templates.com/template-terms
 </div>
 
 
-
-
-<!-- JAVASCRIPTS -->
-<script src="/resources/layout/scripts/jquery.min.js"></script>
-<script src="/resources/layout/scripts/jquery.backtotop.js"></script>
-<script src="/resources/layout/scripts/jquery.mobilemenu.js"></script>
 </body>
 </html>

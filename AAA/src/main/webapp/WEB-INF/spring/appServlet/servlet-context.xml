@@ -23,7 +23,8 @@
 		
 	<beans:bean id="authInterceptor"
 		class="all.about.apartment.intercepter.AuthInterceptor"/>
-		
+	
+
 	<interceptors>
 		<interceptor>
 			<mapping path="/user/loginPost"/>
@@ -34,6 +35,8 @@
 			<mapping path="/bill/full-width"/>
 			<beans:ref bean="authInterceptor"/>
 		</interceptor>
+		
+		
 	</interceptors>
 	<context:component-scan base-package="all.about.apartment" />
 
