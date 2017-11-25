@@ -12,9 +12,9 @@
 	<insert id="applicationVisit" parameterType="ApplicationDTO">
 		insert into
 		visit_reservation(vr_id, r_id, v_name, v_tel, v_date, vr_date,
-		v_contents, v_state, v_check)
+		v_contents, v_check, v_state)
 		values(#{vr_id}, #{r_id}, #{v_name}, #{v_tel},
-		#{v_date}, sysdate, #{v_contents}, '미확인', 'X')
+		#{v_date}, sysdate, #{v_contents}, 'X', '미확인')
 	</insert>
 
 	<select id="maxVR" resultType="Integer">
