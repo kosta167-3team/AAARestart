@@ -107,7 +107,7 @@ Licence URI: http://www.os-templates.com/template-terms
 					
 					<c:forEach var="bill" items="${billSerise }">
 					<tr>
-						<td><a href ="" data-rno="${bill.listName }"> ${bill.listName }</a></td>
+						<td><a href="" class="selectDetail" data-rno1 = "${billMonth.p_month }" data-rno="${bill.listName }"> ${bill.listName }</a></td>
 						<td>${bill.monthBill }</td>	
 						<td>${bill.preMonthBill} </td>
 						<td>${bill.compareBill} </td>
@@ -118,6 +118,9 @@ Licence URI: http://www.os-templates.com/template-terms
 
 				</table>
 
+			</div>
+			<div id="selectDetailDiv">
+			
 			</div>
 
 

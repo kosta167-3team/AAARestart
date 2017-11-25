@@ -4,6 +4,17 @@
 
 var state = 0;
 var detailState = 0;
+var a = [1,2,3];
+var list = [
+	"일반 관리비", "청소비", "소독비", "승강기 유지비", "수선유지비", "장기 수선 충당금", "건물 보험료", "경비비", "관리 수수료", "세대전기료", "공동전기료",
+	"TV 수신료","세대수도료","세대 급탕비","생활 폐기물수거","입대위운영비","선관위 운영비"
+];
+var EngList = [ "general_mgmt", "clean", "fumigate", "elevator_maintain", "repair",
+	"long_term_repair", "building_insurance", "security", "consignment", "personal_elec", "public_elec", "tv",
+	"personal_water", "personal_heat_water", "trash_pick_up", "resident_repre", "emc"
+
+];
+
 
 	$(function() {		
 		var tableCount = 0;
@@ -26,8 +37,33 @@ var detailState = 0;
 				}
 				tableCount++;
 			});
-		}
+		};
+		function initDetailTable(){
+			console.log('ha');
+			$("#selectDetailTable").find("tr").find('td:eq(1)').each(function(){
+				
+				if(  parseInt($(this).html()) > 0){
+					console.log($(this).html);
+					$(this).html(function(i,orgText){
+						return "<img src = '/resources/images/bill/img/icon_up.png'>" + orgText;
+					}).css({
+						"color" : "red"
+					});
+				}
+				else if(parseInt($(this).html()) < 0 ){
+					$(this).html(function(i,orgText){
+						return "<img src = '/resources/images/bill/img/icon_down(1).png'>" + orgText;
+						
+					}).css({
+						"color" : "blue"
+					});				
+				}
+				tableCount++;
+			});
+		};
+	
 		initTable();
+		
 		
 		$("#payment_detail").on("click",function(){
 			event.preventDefault();
@@ -76,6 +112,52 @@ var detailState = 0;
 			
 			
 			
+			
+		});
+		
+		$(".selectDetail").on("click",function(event){
+			event.preventDefault();
+			var detailName = $(this).attr("data-rno");
+			var choiseNum = 0;
+			var engDetailName;
+			for( var i = 0; i < list.length; i++){
+				if( list[i] == detailName){
+					
+					choiseNum = i
+					console.log(list[i] + " : " + EngList[i] + " : " + choiseNum);
+				}
+			}
+			engDetailName = EngList[choiseNum];
+			console.log(engDetailName );
+			$.ajax({
+				type : 'GET',
+				url : "/billRest/SelectDetail/" + $(this).attr("data-rno1") + "/" + $(this).attr("data-rno"),
+				headers : {
+					"Content-Type" : "application/json",
+					"X-HTTP-Method-Override" : "GET"
+				},
+				dataType : 'json',
+				success : function(result) {					
+					var htm = "<p>" +detailName + "</p>";
+					htm += "<table id='selectDetailTable'>";
+					htm += "<tr class = 'table_title'>";
+					htm += "<td>날짜 </td>";
+					htm += "<td>우리집 </td>";
+					htm += "<td>면적 평균 </td>";
+					
+					htm += "</tr>";
+					$.each(result,function(index,data){
+						
+						htm += "<tr><td>" +data.p_month+  "</td> <td>"+ data[engDetailName] +"</td></tr>";											
+					});
+					htm += "</table>";
+					
+					$("#selectDetailDiv").html(htm);
+					$("#selectDetailDiv").css('display','block');
+					/*initDetailTable();*/
+				}
+				
+			});
 			
 		});
 		

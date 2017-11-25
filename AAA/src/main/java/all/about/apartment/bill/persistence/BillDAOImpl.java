@@ -44,6 +44,12 @@ public class BillDAOImpl implements BillDAO {
 		return session.selectList(namespace+".getEnergyList", setMonthBill);
 	}
 
+	@Override
+	public List<Personal_mgmt_exVO> getSelectDetail(SetMonthBill setMonthBill) throws Exception {
+		
+		return session.selectList(namespace + ".getSelectDetail", setMonthBill);
+	}
+
 
 
 }

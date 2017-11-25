@@ -1,14 +1,18 @@
 package all.about.apartment.bill.controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.StringTokenizer;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -17,6 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 import all.about.apartment.bill.domain.Personal_mgmt_exVO;
 import all.about.apartment.bill.domain.SaleBillVO;
 import all.about.apartment.bill.persistence.BillService;
+import all.about.apartment.publicDomain.ResidentVO;
 
 @RequestMapping("/billRest/*")
 @RestController
@@ -83,6 +88,39 @@ public class BillRestController {
 		map.put("outsideing", bill.getOutstanding_pay()+"");
 		
 		return map;
+		
+	}
+	@RequestMapping(value = "/SelectDetail/{select_p_month}/{detail}", method = RequestMethod.GET)
+	public List<Personal_mgmt_exVO> getSelectDetailBill(HttpServletRequest request,Model model, @PathVariable String select_p_month, @PathVariable String detail) throws Exception{
+		
+		/* u_id 구하기*/
+		HttpSession session = request.getSession();
+		ResidentVO residentvo = (ResidentVO)session.getAttribute("login");
+		String u_id = "";
+		
+		if( residentvo != null){
+			u_id = residentvo.getR_id();
+		}
+		else{
+			u_id = "alstlr123";
+		}
+		int detailListNum = 0;
+		
+		for( int i = 0; i < Personal_mgmt_exVO.getList().length; i++){
+			if(Personal_mgmt_exVO.getList()[i].equals(detail)){
+				detailListNum = i;
+			}
+		}
+		String engDetailList = Personal_mgmt_exVO.getEngList()[detailListNum];
+		
+		System.out.println(engDetailList);
+		
+		List<Personal_mgmt_exVO> list = service.getSelectDetail(u_id, select_p_month);	
+		
+		return list;
+		
+		
+		
 		
 	}
 

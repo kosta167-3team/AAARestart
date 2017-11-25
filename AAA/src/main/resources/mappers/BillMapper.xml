@@ -25,6 +25,12 @@
 
 	</select>
 	
+	<select id="getSelectDetail" resultType="Personal_mgmt_exVO">
+		SELECT * 
+		FROM personal_mgmt_ex 
+		WHERE u_id = #{u_id} AND p_month LIKE #{p_month} ORDER BY input_num
+	</select>
+	
 	
 </mapper>  
 
