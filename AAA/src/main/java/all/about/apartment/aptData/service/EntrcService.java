@@ -17,7 +17,8 @@ public interface EntrcService {
 	
 	//동코드 목록 뽑아오기
 	public List<String> list_dongcode() throws Exception;
-	public Map<String, Object> apt_list(String dong_code) throws Exception;
+	
+	public List<Map<String, Object>> apt_list(String dong_code) throws Exception;
 	
 	public Map<String,Object> apt_detail(String kaptCode) throws Exception;
 	
@@ -26,4 +27,8 @@ public interface EntrcService {
 	public Map<String, Object> getXY(String zipNO, int buildingNO) throws Exception;
 	
 	public void insertApt(ApartmentVO vo )throws Exception;
+	
+	//아파트 목록 가져오기
+	public List<ApartmentVO> aptList() throws Exception;
+	
 }

@@ -50,7 +50,10 @@
 				$(data).each(function(index,item){
 			
 					$.getJSON('/aptData/rest/aptlist/'+item,function(data){
-						detailApt(data.item[0]);
+						$(data).each(function(index,item){
+							//console.log(item);
+							detailApt(item);
+						})
 					})
 						
 					
@@ -65,7 +68,7 @@
 			var kaptCode = data.kaptCode;
 			var kaptName = data.kaptName;
 			
-			console.log((++i)+" : "+kaptCode + " , " + kaptName);
+			//console.log((++i)+" : "+kaptCode + " , " + kaptName);
 			
 		 	$.ajax({
 				type:'post',
@@ -77,9 +80,12 @@
          		data:JSON.stringify({
          			kaptCode : kaptCode,
          			kaptName : kaptName
-         		})
+         		}),
+         		success:function(){
+         			location.href = "/aptData/changeXY";
+         		}
 			}) 
-		}
+		};
 		//xy -> 위도 경도
 		function setCurrentCoord() {
 			try {
@@ -92,7 +98,7 @@
 				if (value == scrs) {
 
 				} else {
-					alert('dd');
+					//alert('dd');
 					/* var lonlat = new OpenLayers.LonLat($("#lon").val(),$("#lat").val()); */
 
 					var lonlat = new OpenLayers.LonLat("955633.899061",

@@ -27,10 +27,15 @@
 	<!-- 아파트 정보 insert -->
 	<insert id="insertApt" parameterType="ApartmentVO">
 		insert into apartment
-			(KAPTCODE,KAPTNAME,SIGUNGU,DONG_NAME,KAPTDACNT,LAT,LON,BJDCODE)
+			(KAPTCODE,KAPTNAME,SIGUNGU,DONGNAME,KAPTDACNT,LAT,LON,BJDCODE)
 			VALUES
 			(#{kaptCode},#{kaptName},#{sigungu},#{dong_name},#{kaptdaCnt},#{lat},#{lon},#{bjdCode})
 	</insert>
+	
+	<!-- 아파트 List -->
+	<select id="getAptList" resultType="ApartmentVO">
+		select * from apartment
+	</select>
 </mapper>  
 
 
