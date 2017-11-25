@@ -44,7 +44,7 @@ public class HomeController {
 		
 		model.addAttribute("serverTime", formattedDate );
 		
-		return "main";
+		return "/main";
 	}
 	
 	@RequestMapping(value = "/pages/gallery", method = RequestMethod.GET)
