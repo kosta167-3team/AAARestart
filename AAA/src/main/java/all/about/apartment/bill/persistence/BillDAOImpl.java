@@ -7,7 +7,6 @@ import javax.inject.Inject;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
-import all.about.apartment.bill.domain.FacilityTime;
 
 @Repository
 public class BillDAOImpl implements BillDAO {
@@ -17,11 +16,6 @@ public class BillDAOImpl implements BillDAO {
 	
 	private static String namespace = "all.about.apartment.mappers.BillMapper";
 	
-	@Override
-	public List<FacilityTime> testMethod() throws Exception {
-		
-		return session.selectList(namespace+".test");
-
-	}
+	
 
 }

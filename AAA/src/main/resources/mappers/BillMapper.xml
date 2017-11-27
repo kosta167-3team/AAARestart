@@ -6,9 +6,6 @@
 <mapper namespace="all.about.apartment.mappers.BillMapper">
 
 
-	<select id="test" resultType="FacilityTime">
-		SELECT * FROM facility_time
-	</select>
 </mapper>  
 
 

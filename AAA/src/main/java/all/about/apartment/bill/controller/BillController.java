@@ -18,9 +18,6 @@ public class BillController {
 	@RequestMapping(value = "/Bill", method = RequestMethod.GET)
 	public void BillControllerMethod() throws Exception{
 		
-		
-		
-		System.out.println(dao.testMethod());
 	}
 	
 }
