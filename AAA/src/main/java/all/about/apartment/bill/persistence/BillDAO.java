@@ -2,6 +2,7 @@ package all.about.apartment.bill.persistence;
 
 import java.util.List;
 
+
 import all.about.apartment.bill.domain.EnergyVO;
 import all.about.apartment.bill.domain.Personal_mgmt_exVO;
 import all.about.apartment.bill.domain.SaleBillVO;
@@ -16,6 +17,4 @@ public interface BillDAO {
 	public List<EnergyVO> getEnergyList(SetMonthBill setMonthBill) throws Exception;
 	public List<Personal_mgmt_exVO> getSelectDetail(SetMonthBill setMonthBill) throws Exception;
 	
-	
-
 }

@@ -60,5 +60,14 @@
 	<context:component-scan base-package="all.about.apartment" />
 
 	
+	<!-- 인터셉터 -->
+	      <beans:bean id="Interceptor" class="all.about.apartment.intercepter.Interceptor"></beans:bean>
+            <interceptors>
+                  <interceptor>
+                        <mapping path="/facility/getSpot/{fr_id}"/> 
+                        <beans:ref bean="Interceptor"/>
+                  </interceptor>
+            </interceptors>
+	
 	
 </beans:beans>

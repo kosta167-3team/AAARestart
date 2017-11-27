@@ -45,7 +45,6 @@ public class HomeController {
 		
 
 		return "/main";
-
 	}
 	
 	@RequestMapping(value = "/pages/gallery", method = RequestMethod.GET)

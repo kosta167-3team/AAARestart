@@ -34,7 +34,6 @@ Licence URI: http://www.os-templates.com/template-terms
       <ul class="faico clear">
 
         <li><a  href="/user/login">로그인</a></li>
-
         <li><a  href="#">마이페이지</a></li>
         <li><a  href="#"></a></li>
       </ul>
@@ -57,6 +56,7 @@ Licence URI: http://www.os-templates.com/template-terms
         <li><a class="drop" href="#">Pages</a>
           <ul>
             <li><a href="/pages/gallery">Gallery</a></li>
+
 
             <li><a href="/bill/full-width">Full Width</a></li>
 
