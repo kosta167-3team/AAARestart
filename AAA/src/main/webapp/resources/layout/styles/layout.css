@@ -205,10 +205,13 @@ td{border-width:0 1px;}
 /* Font Awesome Social Icons
 --------------------------------------------------------------------------------------------------------------- */
 .faico{margin:0; padding:0; list-style:none;}
-.faico li{display:inline-block; float:left; margin:0 2px 0 0; padding:0; line-height:normal;}
+
+.faico li{display:inline-block; float:left; margin:0 2px 0 0; padding:5px; line-height:normal;}
 .faico li:last-child{margin-right:0;}
 
-.faico a{display:inline-block; width:30px; height:30px; line-height:30px; font-size:16px; text-align:center;}
+
+.faico a{display:inline-block;line-height:30px; font-size:16px; text-align:center;}
+
 .faico a{color:#FFFFFF; background-color:#F3F3F3;}
 
 .faicon-dribble:hover{background-color:#EA4C89;}
@@ -304,6 +307,8 @@ tr:nth-child(even), #comments li:nth-child(even){color:inherit; background-color
 table a, #comments a{background-color:inherit;}
 
 
+select {display: inline; float: none;}
+
 /* ------------------------------------------------------------------------------------------------------------ */
 /* ------------------------------------------------------------------------------------------------------------ */
 /* ------------------------------------------------------------------------------------------------------------ */
@@ -324,6 +329,9 @@ table a, #comments a{background-color:inherit;}
 	.one_half, .one_third, .two_third, .one_quarter, .two_quarter, .three_quarter{display:block; float:none; width:auto; margin:0 0 30px 0; padding:0;}
 
 	.last{margin-bottom:0;}
+
+	
+	.ho .dong{display: inline-block;}
 
 	#topbar{text-align:center;}
 	#topbar .inline{margin-bottom:15px;}
@@ -368,6 +376,7 @@ table a, #comments a{background-color:inherit;}
 /* Max Wrapper Width - Laptop, Desktop etc.
 --------------------------------------------------------------------------------------------------------------- */
 @media screen and (min-width:978px) {
+
 	#topbar, #header, #pageintro, #breadcrumb, .container, #info, #footer, #copyright{max-width:978px;}
 }
 
@@ -380,4 +389,4 @@ table a, #comments a{background-color:inherit;}
 
 	.xxl{font-size:40px;}
 }
- 
+
