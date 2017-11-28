@@ -10,20 +10,16 @@ import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import org.apache.tiles.definition.dao.CachingLocaleUrlDefinitionDAO;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.ModelAndView;
 
 import all.about.apartment.bill.domain.EnergyVO;
 import all.about.apartment.bill.domain.Personal_mgmt_exVO;
 import all.about.apartment.bill.domain.SetBillSeries;
-import all.about.apartment.bill.persistence.BillDAO;
 import all.about.apartment.bill.persistence.BillService;
-import all.about.apartment.intercepter.LoginInteceptor;
 import all.about.apartment.publicDomain.ResidentVO;
 
 @Controller
@@ -94,7 +90,7 @@ public class BillController {
 		
 		Personal_mgmt_exVO preBill = service.getMonthBill(u_id, preMonth);		
 		////////////
-		/* 에너지 구하기 */
+		/* 에너지 구하기 
 		List<EnergyVO> energyList = service.getEnergyList(u_id, p_month);
 		EnergyVO allEnergy = new EnergyVO();
 		allEnergy.setInput_num(energyList.get(0).getInput_num());
@@ -112,7 +108,7 @@ public class BillController {
 		allEnergy.setWater(water);				
 				
 		//////
-		
+*/		
 		List<SetBillSeries> billList = new ArrayList<SetBillSeries>();
 		for( int i = 0; i < Personal_mgmt_exVO.getList().length; i++){
 			String listName = Personal_mgmt_exVO.getList()[i];
@@ -122,7 +118,7 @@ public class BillController {
 			billList.add(new SetBillSeries(listName, monthBill, preMonthBill,monthBill - preMonthBill));			
 		}
 		
-		model.addAttribute("energy", allEnergy);
+		/*model.addAttribute("energy", allEnergy);*/
 		
 		model.addAttribute("billSerise", billList);
 
