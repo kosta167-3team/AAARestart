@@ -29,6 +29,13 @@
 		FROM personal_mgmt_ex 
 		WHERE u_id = #{u_id} AND p_month LIKE #{p_month} ORDER BY input_num
 	</select>
+	
+	<select id="getYearEnergy" resultType="EnergyVO">
+		SELECT * 
+		FROM energy
+		WHERE input_num = (SELECT input_num FROM personal_mgmt_ex WHERE u_id = #{u_id} AND p_month = #{p_month} )
+	</select>
+
 
 </mapper>  
 

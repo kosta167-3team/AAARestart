@@ -55,13 +55,17 @@ Licence URI: http://www.os-templates.com/template-terms
       <h1><a href="/"><img src="/resources/images/main/main_log_mini.png" alt="" class="main_log_img"></a></h1>
     </div>
     <nav id="mainav" class="fl_right">
-      <ul class="clear">
+      <ul class="clear drop">
         <li><a href="resourcesindex.html">Home</a></li>
         
         <li class="active"><a class="drop" href="#">Pages</a>
           <ul>
             <li><a href="gallery.html">Gallery</a></li>
-            <li class="active"><a href="full-width">관리비 조회</a></li>
+            <li class="active"><a class="drop" href="full-width">관리비 조회</a>
+            	<ul>
+            		<li> <a href="" class="drop"> 관리비 성적표</a></li>
+            	</ul>            
+            </li>
             <li><a href="sidebar-left.html">Sidebar Left</a></li>
             <li><a href="sidebar-right.html">Sidebar Right</a></li>
             <li><a href="basic-grid.html">Basic Grid</a></li>

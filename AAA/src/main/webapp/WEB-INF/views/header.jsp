@@ -84,7 +84,11 @@ $(function () {
         <li class="active"><a class="drop" href="#">Pages</a>
           <ul>
             <li><a href="gallery.html">Gallery</a></li>
-            <li class="active"><a href="/bill/full-width">관리비 조회</a></li>
+            <li class="active"><a class="drop" href="/bill/full-width">관리비 조회</a>
+            	<ul>
+            		<li> <a href="/billScore/billScoreBody">관리비 성적표</a></li>
+            	</ul>
+            </li>
             <li><a href="sidebar-left.html">Sidebar Left</a></li>
             <li><a href="sidebar-right.html">Sidebar Right</a></li>
             <li><a href="basic-grid.html">Basic Grid</a></li>

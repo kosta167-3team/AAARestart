@@ -16,5 +16,6 @@ public interface BillDAO {
 	public List<SaleBillVO> getSaleBill(Integer input_num) throws Exception;
 	public List<EnergyVO> getEnergyList(SetMonthBill setMonthBill) throws Exception;
 	public List<Personal_mgmt_exVO> getSelectDetail(SetMonthBill setMonthBill) throws Exception;
+	public List<EnergyVO> getYearEnergy(SetMonthBill setMonthBill) throws Exception;
 	
 }

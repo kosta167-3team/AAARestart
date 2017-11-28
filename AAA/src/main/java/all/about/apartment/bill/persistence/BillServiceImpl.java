@@ -48,6 +48,11 @@ public class BillServiceImpl implements BillService {
 		
 		return dao.getSelectDetail(new SetMonthBill(u_id, year+"-"+month));
 	}
+	@Override
+	public List<EnergyVO> getYearEnergy(String u_id, String p_month) throws Exception {
+		
+		return dao.getYearEnergy(new SetMonthBill(u_id, p_month));
+	}
 
 
 
