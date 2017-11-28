@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import all.about.apartment.bill.domain.Personal_mgmt_exVO;
 import all.about.apartment.bill.domain.SaleBillVO;
-import all.about.apartment.bill.persistence.BillService;
+import all.about.apartment.bill.service.BillService;
 import all.about.apartment.publicDomain.ResidentVO;
 
 @RequestMapping("/billRest/*")

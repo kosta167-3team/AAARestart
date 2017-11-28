@@ -1,6 +1,9 @@
 package all.about.apartment.bill.domain;
 
 public class EnergyVO {
+	
+	private static String[] energyNameList ={"elec","water","fever","heat" };
+	
 	private int energy_num;
 	private int input_num;
 	private int elec;
@@ -77,10 +80,16 @@ public class EnergyVO {
 	public void setWeek_num(int week_num) {
 		this.week_num = week_num;
 	}
+	
 
 	
 	
 	
+	public static String[] getEnergyNameList() {
+		return energyNameList;
+	}
+
+
 	@Override
 	public String toString() {
 		return "EnergyVO [energy_num=" + energy_num + ", input_num=" + input_num + ", elec=" + elec + ", water=" + water

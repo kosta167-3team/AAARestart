@@ -1,4 +1,4 @@
-package all.about.apartment.bill.persistence;
+package all.about.apartment.bill.service;
 
 import java.util.List;
 
@@ -9,7 +9,9 @@ import org.springframework.stereotype.Service;
 import all.about.apartment.bill.domain.EnergyVO;
 import all.about.apartment.bill.domain.Personal_mgmt_exVO;
 import all.about.apartment.bill.domain.SaleBillVO;
+import all.about.apartment.bill.domain.SetEnergyAVG;
 import all.about.apartment.bill.domain.SetMonthBill;
+import all.about.apartment.bill.persistence.BillDAO;
 
 @Service
 public class BillServiceImpl implements BillService {
@@ -52,6 +54,11 @@ public class BillServiceImpl implements BillService {
 	public List<EnergyVO> getYearEnergy(String u_id, String p_month) throws Exception {
 		
 		return dao.getYearEnergy(new SetMonthBill(u_id, p_month));
+	}
+	@Override
+	public int getElecAVG(String energyName, String p_month, int width) throws Exception {
+		
+		return dao.getElecAVG(new SetEnergyAVG(energyName,p_month, width));
 	}
 
 

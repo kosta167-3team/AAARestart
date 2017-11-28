@@ -16,19 +16,21 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+
 import all.about.apartment.bill.domain.EnergyVO;
 import all.about.apartment.bill.domain.Personal_mgmt_exVO;
 import all.about.apartment.bill.domain.SetBillSeries;
-import all.about.apartment.bill.persistence.BillService;
+import all.about.apartment.bill.service.BillService;
 import all.about.apartment.publicDomain.ResidentVO;
 
 @Controller
+@RequestMapping("/bill/*")
 public class BillController {
 	
 	@Inject
 	private BillService service;
 	
-	@RequestMapping(value = "/bill/full-width", method = RequestMethod.GET)
+	@RequestMapping(value = "/full-width", method = RequestMethod.GET)
 	public String BillControllerMethod(HttpServletRequest request, Model model) throws Exception{
 		
 		HttpSession session = request.getSession();
@@ -118,6 +120,10 @@ public class BillController {
 		
 		/*model.addAttribute("energy", allEnergy);*/
 		
+		/**/
+		
+		///
+		
 		model.addAttribute("billSerise", billList);
 
 		model.addAttribute("allBill", billMonth.allBill());
@@ -126,7 +132,7 @@ public class BillController {
 		return "/bill/full-width";
 
 	}
-	@RequestMapping(value = "/bill/full-width/{select_p_month}", method = RequestMethod.GET)
+	@RequestMapping(value = "/full-width/{select_p_month}", method = RequestMethod.GET)
 	public String BillControllerMethodSelectMonth(HttpServletRequest request, Model model,@PathVariable String select_p_month) throws Exception{
 		
 		HttpSession session = request.getSession();
