@@ -59,7 +59,12 @@ public class VisitServiceImpl implements VisitService {
 	}
 
 	@Override
-	public List<ApplicationVO> adminApplicationList() {
-		return dao.adminListPage();
+	public List<ApplicationVO> adminApplicationList(String selectedDate) {
+		return dao.adminListPage(selectedDate);
 	}
+
+	/*@Override
+	public List<ApplicationVO> searchApplication(String selectedDate) {
+		return dao.searchApplication(selectedDate);
+	}*/
 }
