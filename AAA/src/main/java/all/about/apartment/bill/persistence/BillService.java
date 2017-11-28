@@ -13,4 +13,5 @@ public interface BillService {
 	public List<SaleBillVO> getSaleBill(Integer input_num) throws Exception;
 	public List<EnergyVO> getEnergyList(String u_id, String p_month) throws Exception;
 	public List<Personal_mgmt_exVO> getSelectDetail(String u_id, String p_month) throws Exception;
+	public List<EnergyVO> getYearEnergy(String u_id, String p_month) throws Exception;
 }

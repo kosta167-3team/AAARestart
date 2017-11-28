@@ -50,6 +50,12 @@ public class BillDAOImpl implements BillDAO {
 		return session.selectList(namespace + ".getSelectDetail", setMonthBill);
 	}
 
+	@Override
+	public List<EnergyVO> getYearEnergy(SetMonthBill setMonthBill) throws Exception {
+		
+		return session.selectList(namespace + ".getYearEnergy", setMonthBill);
+	}
+
 
 
 }

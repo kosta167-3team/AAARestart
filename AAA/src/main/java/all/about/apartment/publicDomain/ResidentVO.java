@@ -9,6 +9,8 @@ public class ResidentVO {
 	private int r_ho;
 	private String r_authority;
 	private int point;
+	
+	
 	public String getR_id() {
 		return r_id;
 	}
