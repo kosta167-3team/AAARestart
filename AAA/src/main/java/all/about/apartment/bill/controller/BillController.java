@@ -68,8 +68,6 @@ public class BillController {
 		ResidentVO resident = (ResidentVO)session.getAttribute("login");
 		
 		String u_id = "";
-	
-		
 		
 		if( resident != null){
 			u_id = resident.getR_id();
@@ -126,6 +124,7 @@ public class BillController {
 		
 		
 		return "/bill/full-width";
+
 	}
 	@RequestMapping(value = "/bill/full-width/{select_p_month}", method = RequestMethod.GET)
 	public String BillControllerMethodSelectMonth(HttpServletRequest request, Model model,@PathVariable String select_p_month) throws Exception{
