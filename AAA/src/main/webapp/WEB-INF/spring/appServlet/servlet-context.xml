@@ -3,7 +3,10 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:beans="http://www.springframework.org/schema/beans"
 	xmlns:context="http://www.springframework.org/schema/context"
-	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
+	xmlns:task="http://www.springframework.org/schema/task"
+	xsi:schemaLocation="http://cxf.apache.org/configuration/beans http://cxf.apache.org/schemas/configuration/cxf-beans.xsd
+		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
+		http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-4.3.xsd
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
@@ -28,7 +31,7 @@
 	<context:component-scan base-package="all.about.apartment" />
 
 
-	<!-- <beans:bean id ="loginInteceptor"
+	<beans:bean id ="loginInteceptor"
 		class="all.about.apartment.intercepter.LoginInteceptor"/>
 		
 	<beans:bean id="authInterceptor"
@@ -56,7 +59,7 @@
 		</interceptor>
 		
 		
-	</interceptors> -->
+	</interceptors>
 	<context:component-scan base-package="all.about.apartment" />
 
 	
@@ -69,5 +72,7 @@
                   </interceptor>
             </interceptors>
 	
+	<!-- 스프링 스케줄러 -->
+	<task:annotation-driven/>
 	
 </beans:beans>

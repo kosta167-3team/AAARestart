@@ -19,6 +19,10 @@
 	<definition name="/main" extends="base_layout">
 		<put-attribute name="body" value="/WEB-INF/views/main_body.jsp"/>
 	</definition>
+	
+	<definition name="/realEstate" extends="base_layout">
+		<put-attribute name="body" value="/WEB-INF/views/real_estate/res_body.jsp"/>
+	</definition>
 
 	<!-- extends base_layout 를 해주면 자동으로 header,footer를 적용해준다. -->
 	<!-- <definition name="/bill/full-width" template="/WEB-INF/views/bill/template.jsp">
