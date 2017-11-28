@@ -7,7 +7,8 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-
+import org.springframework.test.context.web.WebAppConfiguration;
+import org.springframework.web.context.annotation.ApplicationScope;
 
 import all.about.apartment.bill.persistence.BillDAO;
 
@@ -15,6 +16,7 @@ import all.about.apartment.bill.persistence.BillDAO;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration( locations = {"file:src/main/webapp/WEB-INF/spring/**/*.xml"})
+@WebAppConfiguration
 public class BillTest {
 	
 	@Inject
@@ -22,10 +24,14 @@ public class BillTest {
 	
 
 	
-	@Test
+/*	@Test
 	public void daoTest() throws Exception{
 		System.out.println("haha");
 		System.out.println(dao.getPersonal_mgmt_exList());
+	}*/
+	@Test
+	public void daoEnergyAVG() throws Exception{
+		System.out.println();
 	}
 	
 	

@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 import all.about.apartment.bill.domain.EnergyVO;
 import all.about.apartment.bill.domain.Personal_mgmt_exVO;
 import all.about.apartment.bill.domain.SaleBillVO;
+import all.about.apartment.bill.domain.SetEnergyAVG;
 import all.about.apartment.bill.domain.SetMonthBill;
 
 
@@ -54,6 +55,12 @@ public class BillDAOImpl implements BillDAO {
 	public List<EnergyVO> getYearEnergy(SetMonthBill setMonthBill) throws Exception {
 		
 		return session.selectList(namespace + ".getYearEnergy", setMonthBill);
+	}
+
+	@Override
+	public int getElecAVG(SetEnergyAVG setEnergyAVG) throws Exception {
+		
+		return session.selectOne( namespace+ ".getElecAVG", setEnergyAVG);
 	}
 
 

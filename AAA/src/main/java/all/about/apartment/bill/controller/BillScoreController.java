@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import all.about.apartment.bill.domain.EnergyVO;
 import all.about.apartment.bill.domain.Personal_mgmt_exVO;
-import all.about.apartment.bill.persistence.BillService;
+import all.about.apartment.bill.service.BillService;
 import all.about.apartment.publicDomain.ResidentVO;
 
 @Controller
@@ -94,6 +94,7 @@ public class BillScoreController {
 				EnergyVO ener = list.get(j);    
 				System.out.println(ener);
 			}
+			System.out.println("--------------------");
 		}
 		
 		/*for(int i = 0; i < oneYearEnergyList.size(); i++){

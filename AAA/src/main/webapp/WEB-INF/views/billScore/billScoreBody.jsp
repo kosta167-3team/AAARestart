@@ -23,6 +23,10 @@ Licence URI: http://www.os-templates.com/template-terms
 	type="text/css" media="all">
 
 <script src="/resources/layout/scripts/jquery.min.js"></script>
+<script src="/resources/images/billScore/js/billScoreBodyJS.js"></script>
+
+
+
 
 </head>
 <body id="top">
@@ -171,29 +175,49 @@ Licence URI: http://www.os-templates.com/template-terms
 							<th colspan="3" rowspan="3">날짜</th>
 						</tr>
 						<tr>
-							<c:forEach begin="1" end="5" var="a">
-								<th colspan="3">${a }주</th>
-							</c:forEach>
+
+							<th colspan="5">전기</th>
+							<th colspan="5">물</th>
+							<th colspan="5">난방</th>
+
 						</tr>
 						<tr>
-							<c:forEach begin="1" end="5" var="a">
-								<th>전기</th>
-								<th>물</th>
-								<th>난방</th>
-
+							<c:forEach begin="1" end="3">
+								<c:forEach begin="1" end="5" var="a">
+									<th>${a }</th>
+								</c:forEach>
 							</c:forEach>
+
 						</tr>
 
 					</thead>
-					<tbody>
+					<tbody id="energyValueTable">
 						<c:forEach var="secondList" items="${oneYearEnergyList }">
 							<tr>
 								<td colspan="3">3month</td>
-								<c:forEach var="energyObject" items="${secondList }">
-									<td>${energyObject.elec }</td>
-									<td>${energyObject.water }</td>
-									<td>${energyObject.fever }</td>
+								<c:forEach begin="1" end="5" var="count">
+									<c:forEach var="energyObject" items="${secondList }">
+										<c:if test="${energyObject.week_num == count }">
+										<td>${energyObject.elec }</td>
+										</c:if>
+									</c:forEach>
 								</c:forEach>
+								<c:forEach begin="1" end="5" var="count">
+									<c:forEach var="energyObject" items="${secondList }">
+										<c:if test="${energyObject.week_num == count }">
+										<td>${energyObject.heat }</td>
+										</c:if>
+									</c:forEach>
+								</c:forEach>
+								<c:forEach begin="1" end="5" var="count">
+									<c:forEach var="energyObject" items="${secondList }">
+										<c:if test="${energyObject.week_num == count }">
+										<td>${energyObject.fever }</td>
+										</c:if>
+									</c:forEach>
+								</c:forEach>
+
+
 							</tr>
 						</c:forEach>
 					</tbody>
