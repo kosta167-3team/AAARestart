@@ -29,6 +29,8 @@ public class AptDataRestController {
 	@Inject
 	EntrcService service;
 
+	
+	int ccnt =  0;
 	@RequestMapping(value = "/dong_list", method = RequestMethod.GET)
 	public ResponseEntity<List<String>> dong_list() {
 		ResponseEntity<List<String>> entity = null;
@@ -178,8 +180,10 @@ public class AptDataRestController {
 		ResponseEntity<List<ApartmentVO>> entityList = null;
 		List<ApartmentVO> aptList = null;
 		
+		
 		try {
 			aptList = service.aptList();
+			System.out.println(aptList.size());
 			entityList = new ResponseEntity<List<ApartmentVO>>(aptList, HttpStatus.OK);
 			
 		} catch (Exception e) {
@@ -190,7 +194,19 @@ public class AptDataRestController {
 		return entityList;
 	}
 	
-	
+	@RequestMapping(value ="/updateLocation" , method =RequestMethod.PUT)
+	public void updataLocation(@RequestBody ApartmentVO vo){
+		System.out.println("AptRestController... > updataLocation");
+		
+		System.out.println ((++ccnt )+":" +vo.toString());
+
+		
+		try {
+			service.updataLocation(vo);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 	
 
 }
