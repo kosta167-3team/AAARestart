@@ -75,6 +75,18 @@ public class BillDAOImpl implements BillDAO {
 		return session.selectList(namespace+".getHeatList");
 	}
 
+	@Override
+	public int getScoreNum(String viewName) throws Exception {
+		
+		return session.selectOne(namespace + ".getScoreNum", viewName);
+	}
+
+	@Override
+	public List<ScorePMEVO> getSelectEnergyList(String viewName) throws Exception {
+		
+		return session.selectList(namespace+ ".getSelectEnergyList", viewName);
+	}
+
 
 
 }

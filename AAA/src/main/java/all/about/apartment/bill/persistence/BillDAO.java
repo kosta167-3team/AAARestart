@@ -21,4 +21,6 @@ public interface BillDAO {
 	public int getElecAVG(SetEnergyAVG setEnergyAVG) throws Exception;
 	public List<ScorePMEVO> getElecList() throws Exception;
 	public List<ScorePMEVO> getHeatList() throws Exception;
+	public int getScoreNum(String viewName) throws Exception;
+	public List<ScorePMEVO> getSelectEnergyList(String viewName) throws Exception;
 }

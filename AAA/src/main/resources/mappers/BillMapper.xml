@@ -47,12 +47,19 @@
 	</select>
 	
 	<select id="getElecList" resultType="ScorePMEVO">
-		SELECT * FROM SCORE_elec_PERSONAL_MGMT_EX
+		SELECT rownum,input_num,allUsed FROM SCORE_elec_PERSONAL_MGMT_EX
 	</select>
 	<select id="getHeatList" resultType="ScorePMEVO">
-		SELECT * FROM SCORE_heat_personal_mgmt_ex
+		SELECT rownum,input_num,allUsed FROM SCORE_heat_personal_mgmt_ex
+	</select>
+	
+	<select id="getScoreNum" parameterType="String" resultType="int">
+		SELECT count(*) FROM ${value}
 	</select>
 
+	<select id = "getSelectEnergyList" resultType="ScorePMEVO">
+		SELECT rownum,input_num,allUsed FROM ${value}
+	</select>
 
 </mapper>  
 

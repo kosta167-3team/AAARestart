@@ -18,4 +18,6 @@ public interface BillService {
 	public int getElecAVG(String energyName,String p_month, int width) throws Exception;
 	public List<ScorePMEVO> getElecList() throws Exception;
 	public List<ScorePMEVO> getHeatList() throws Exception;
+	public int getScoreNum(String energyName) throws Exception;
+	public List<ScorePMEVO> getSelectEnergyList(String energyName) throws Exception;
 }

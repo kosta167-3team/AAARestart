@@ -71,6 +71,17 @@ public class BillServiceImpl implements BillService {
 		// TODO Auto-generated method stub
 		return dao.getHeatList();
 	}
+	@Override
+	public int getScoreNum(String energyName) throws Exception {
+		String viewName = "score_"+ energyName + "_personal_mgmt_ex";
+		
+		return dao.getScoreNum(viewName);
+	}
+	@Override
+	public List<ScorePMEVO> getSelectEnergyList(String energyName) throws Exception {
+		String viewName = "score_"+ energyName + "_personal_mgmt_ex";
+		return dao.getSelectEnergyList(viewName);
+	}
 
 
 

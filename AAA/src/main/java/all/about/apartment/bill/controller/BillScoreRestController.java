@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-
+import all.about.apartment.bill.domain.BillGradeSeletor;
 import all.about.apartment.bill.domain.EnergyVO;
 import all.about.apartment.bill.domain.Personal_mgmt_exVO;
 import all.about.apartment.bill.domain.ScorePMEVO;
@@ -31,22 +31,17 @@ public class BillScoreRestController {
 	@Inject
 	BillService service;
 	
-	@RequestMapping(value = "/setScoreBill/{energyName}/{energyUsed}", method = RequestMethod.GET)
-	public ResponseEntity<String> getScoreBill(HttpServletRequest request, @PathVariable("energyName") String energyName, @PathVariable("energyUsed") String energyUsed) throws Exception{
+	@RequestMapping(value = "/setScoreBill/{energyName}/{input_num}", method = RequestMethod.GET)
+	public ResponseEntity<String> getScoreBill(HttpServletRequest request, @PathVariable("energyName") String energyName, @PathVariable("input_num") int input_num) throws Exception{
 		ResponseEntity<String> entity = null;
+		BillGradeSeletor billGradeSeletor = new BillGradeSeletor(service);
 		
-		List<ScorePMEVO> scoreEnergyList = null;
+		billGradeSeletor.setEnergyName(energyName);
+		String grade = billGradeSeletor.getGrade(input_num);	
+		System.out.println("in REST COntroller");
+		entity = new ResponseEntity<String>(grade, HttpStatus.OK);
 		
-		if( energyName.equals("elec")){
-			scoreEnergyList = service.getElecList();
-			System.out.println(scoreEnergyList);
-			
-		}else if( energyName.equals("heat")){
-			scoreEnergyList = service.getHeatList();
-			System.out.println(scoreEnergyList);
-		}
 		
-		entity = new ResponseEntity<String>("A", HttpStatus.OK);
 		return entity;	
 	}
 	
