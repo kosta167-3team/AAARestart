@@ -1,6 +1,6 @@
 package all.about.apartment.bill.controller;
 
-import java.lang.reflect.Field;
+
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
@@ -17,9 +17,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-
+import all.about.apartment.bill.domain.BillGradeSeletor;
 import all.about.apartment.bill.domain.EnergyVO;
 import all.about.apartment.bill.domain.Personal_mgmt_exVO;
+import all.about.apartment.bill.domain.ScorePMEVO;
 import all.about.apartment.bill.service.BillService;
 import all.about.apartment.publicDomain.ResidentVO;
 
@@ -30,13 +31,15 @@ public class BillScoreRestController {
 	@Inject
 	BillService service;
 	
-	@RequestMapping(value = "/setScoreBill/{energyName}/{energyNum}", method = RequestMethod.GET)
-	public ResponseEntity<Map<String,String>> getScoreBill(HttpServletRequest request, @PathVariable String energyName, @PathVariable String energyNum) throws Exception{
-		ResponseEntity<Map<String,String>> entity = null;
+	@RequestMapping(value = "/setScoreBill/{energyName}/{input_num}", method = RequestMethod.GET)
+	public ResponseEntity<String> getScoreBill(HttpServletRequest request, @PathVariable("energyName") String energyName, @PathVariable("input_num") int input_num) throws Exception{
+		ResponseEntity<String> entity = null;
+		BillGradeSeletor billGradeSeletor = new BillGradeSeletor(service);
 		
-		
-		
-		
+		billGradeSeletor.setEnergyName(energyName);
+		String grade = billGradeSeletor.getGrade(input_num);	
+		System.out.println("in REST COntroller");
+		entity = new ResponseEntity<String>(grade, HttpStatus.OK);
 		
 		
 		return entity;	
@@ -68,7 +71,6 @@ public class BillScoreRestController {
 		
 		for( int i = 0; i < EnergyVO.getEnergyNameList().length; i++){
 			energyName = EnergyVO.getEnergyNameList()[i];
-			System.out.println(energyName + " : " + month + " : " + width);
 			avgEnergy = service.getElecAVG(energyName, month, width);
 			
 			energyMap.put(energyName, avgEnergy);			

@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import all.about.apartment.bill.domain.EnergyVO;
 import all.about.apartment.bill.domain.Personal_mgmt_exVO;
 import all.about.apartment.bill.domain.SaleBillVO;
+import all.about.apartment.bill.domain.ScorePMEVO;
 import all.about.apartment.bill.domain.SetEnergyAVG;
 import all.about.apartment.bill.domain.SetMonthBill;
 import all.about.apartment.bill.persistence.BillDAO;
@@ -59,6 +60,27 @@ public class BillServiceImpl implements BillService {
 	public int getElecAVG(String energyName, String p_month, int width) throws Exception {
 		
 		return dao.getElecAVG(new SetEnergyAVG(energyName,p_month, width));
+	}
+	@Override
+	public List<ScorePMEVO> getElecList() throws Exception {
+		
+		return dao.getElecList();
+	}
+	@Override
+	public List<ScorePMEVO> getHeatList() throws Exception {
+		// TODO Auto-generated method stub
+		return dao.getHeatList();
+	}
+	@Override
+	public int getScoreNum(String energyName) throws Exception {
+		String viewName = "score_"+ energyName + "_personal_mgmt_ex";
+		
+		return dao.getScoreNum(viewName);
+	}
+	@Override
+	public List<ScorePMEVO> getSelectEnergyList(String energyName) throws Exception {
+		String viewName = "score_"+ energyName + "_personal_mgmt_ex";
+		return dao.getSelectEnergyList(viewName);
 	}
 
 
