@@ -45,6 +45,13 @@
 							WHERE p_month like #{p_month} AND width = #{width}
 					)
 	</select>
+	
+	<select id="getElecList" resultType="ScorePMEVO">
+		SELECT * FROM SCORE_elec_PERSONAL_MGMT_EX
+	</select>
+	<select id="getHeatList" resultType="ScorePMEVO">
+		SELECT * FROM SCORE_heat_personal_mgmt_ex
+	</select>
 
 
 </mapper>  

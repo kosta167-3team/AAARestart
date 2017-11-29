@@ -1,6 +1,6 @@
 package all.about.apartment.bill.controller;
 
-import java.lang.reflect.Field;
+
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import all.about.apartment.bill.domain.EnergyVO;
 import all.about.apartment.bill.domain.Personal_mgmt_exVO;
+import all.about.apartment.bill.domain.ScorePMEVO;
 import all.about.apartment.bill.service.BillService;
 import all.about.apartment.publicDomain.ResidentVO;
 
@@ -30,15 +31,22 @@ public class BillScoreRestController {
 	@Inject
 	BillService service;
 	
-	@RequestMapping(value = "/setScoreBill/{energyName}/{energyNum}", method = RequestMethod.GET)
-	public ResponseEntity<Map<String,String>> getScoreBill(HttpServletRequest request, @PathVariable String energyName, @PathVariable String energyNum) throws Exception{
-		ResponseEntity<Map<String,String>> entity = null;
+	@RequestMapping(value = "/setScoreBill/{energyName}/{energyUsed}", method = RequestMethod.GET)
+	public ResponseEntity<String> getScoreBill(HttpServletRequest request, @PathVariable("energyName") String energyName, @PathVariable("energyUsed") String energyUsed) throws Exception{
+		ResponseEntity<String> entity = null;
 		
+		List<ScorePMEVO> scoreEnergyList = null;
 		
+		if( energyName.equals("elec")){
+			scoreEnergyList = service.getElecList();
+			System.out.println(scoreEnergyList);
+			
+		}else if( energyName.equals("heat")){
+			scoreEnergyList = service.getHeatList();
+			System.out.println(scoreEnergyList);
+		}
 		
-		
-		
-		
+		entity = new ResponseEntity<String>("A", HttpStatus.OK);
 		return entity;	
 	}
 	
@@ -68,7 +76,6 @@ public class BillScoreRestController {
 		
 		for( int i = 0; i < EnergyVO.getEnergyNameList().length; i++){
 			energyName = EnergyVO.getEnergyNameList()[i];
-			System.out.println(energyName + " : " + month + " : " + width);
 			avgEnergy = service.getElecAVG(energyName, month, width);
 			
 			energyMap.put(energyName, avgEnergy);			

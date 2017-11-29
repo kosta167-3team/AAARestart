@@ -64,6 +64,14 @@ public class BillTest {
 	public void getElecAVG() throws Exception{
 		dao.getElecAVG(new SetEnergyAVG("elec", "2017-11", 33));
 	}
+	@Test
+	public void getElecList() throws Exception{
+		System.out.println(dao.getElecList());
+	}
+	@Test
+	public void getHeatList() throws Exception{
+		System.out.println(dao.getHeatList());
+	}
 	
 	
 
