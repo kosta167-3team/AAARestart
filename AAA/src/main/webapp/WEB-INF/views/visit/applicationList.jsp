@@ -22,22 +22,22 @@ Licence URI: http://www.os-templates.com/template-terms
 	function submit() {
 		var etcs = new Array();
 		alert("qweqwe");
-		var checkObject = new Object();
+		var stateObject = new Object();
 		
 
-		$('select[name=check] option:selected').each(function(index) {
-			checkObject.state = $(this).attr('etc');
-			checkObject.vr_id = $('.vr_id').eq(index).attr('value');
+		$('select[name=state] option:selected').each(function(index) {
+			stateObject.state = $(this).attr('etc');
+			stateObject.vr_id = $('.vr_id').eq(index).attr('value');
 			$.ajax({
 				url: "/visit/applicationCheck", 
 				type: "POST",
-				data: checkObject,
+				data: stateObject,
 				dataType: "json"
 			});
+			history.go(0);
 			console.log(index);
 			//etcs.push(checkObject);
 		});
-
 	}
 </script>
 
@@ -152,7 +152,7 @@ Licence URI: http://www.os-templates.com/template-terms
 								<td>${application.v_date}</td>
 								<td>${application.v_contents}</td>
 								<td>
-									<select id="check" name="check">
+									<select id="state" name="state">
 										<option etc="accept" selected="selected">승인</option>
 										<option etc="denial">거부</option>										
 									</select>
