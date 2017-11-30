@@ -24,7 +24,7 @@
 		<put-attribute name="body" value="/WEB-INF/views/main_body.jsp"/>
 	</definition>
 	
-	<definition name="/realEstate" extends="base_layout">
+	<definition name="/real_estate" extends="base_layout">
 		<put-attribute name="body" value="/WEB-INF/views/real_estate/res_body.jsp"/>
 	</definition>
 

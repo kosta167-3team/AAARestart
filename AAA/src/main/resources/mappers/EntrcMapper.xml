@@ -35,6 +35,7 @@
 	<!-- 아파트 List -->
 	<select id="getAptList" resultType="ApartmentVO">
 		select * from apartment
+		where convert = 'false'
 	</select>
 	
 	<!-- xy -> 위도, 경도 -->

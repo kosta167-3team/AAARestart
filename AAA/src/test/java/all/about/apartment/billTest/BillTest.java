@@ -8,16 +8,19 @@ import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
+
 import org.springframework.web.context.annotation.ApplicationScope;
 
 import all.about.apartment.bill.domain.SetEnergyAVG;
 import all.about.apartment.bill.domain.SetMonthBill;
+
 import all.about.apartment.bill.persistence.BillDAO;
 import all.about.apartment.bill.service.BillService;
 
 
 
 @RunWith(SpringJUnit4ClassRunner.class)
+@WebAppConfiguration
 @ContextConfiguration( locations = {"file:src/main/webapp/WEB-INF/spring/**/*.xml"})
 @WebAppConfiguration
 public class BillTest {
