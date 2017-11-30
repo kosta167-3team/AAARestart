@@ -46,7 +46,7 @@ public class EntrcServiceImpl implements EntrcService {
 		StringBuilder urlBuilder = new StringBuilder(
 				"http://apis.data.go.kr/1611000/AptListService/getLegaldongAptList"); /* URL */
 		urlBuilder.append("?" + URLEncoder.encode("ServiceKey", "UTF-8")
-				+ "=IcNzhYlBXfA7zdFDpQcQj%2BMG00Nt6tqEQJKCsh0H2xIKSPMHSvPG4Q2VZnAcb05PCfm8SRCWyE2dCtAZDMADUA%3D%3D"); /*
+				+ "=OI5LYNDHa%2Bq3Qa6rIeQ%2BnJG8XYqzWPAZQPm5phhjuYYxb2KSIgLFTLqzU9PlMe6jiw55PTPUQJ8Ztg4urkLdIw%3D%3D"); /*
 																														 * Service
 																														 * Key
 																														 */
@@ -129,7 +129,7 @@ public class EntrcServiceImpl implements EntrcService {
 		StringBuilder urlBuilder = new StringBuilder(
 				"http://apis.data.go.kr/1611000/AptBasisInfoService/getAphusBassInfo"); /* URL */
 		urlBuilder.append("?" + URLEncoder.encode("ServiceKey", "UTF-8")
-				+ "=IcNzhYlBXfA7zdFDpQcQj%2BMG00Nt6tqEQJKCsh0H2xIKSPMHSvPG4Q2VZnAcb05PCfm8SRCWyE2dCtAZDMADUA%3D%3D"); /*
+				+ "=OI5LYNDHa%2Bq3Qa6rIeQ%2BnJG8XYqzWPAZQPm5phhjuYYxb2KSIgLFTLqzU9PlMe6jiw55PTPUQJ8Ztg4urkLdIw%3D%3D"); /*
 																														 * Service
 																														 * Key
 																														 */
@@ -202,7 +202,7 @@ public class EntrcServiceImpl implements EntrcService {
 		StringBuilder urlBuilder = new StringBuilder(
 				"http://openapi.epost.go.kr/postal/retrieveNewAdressAreaCdSearchAllService/retrieveNewAdressAreaCdSearchAllService/getNewAddressListAreaCdSearchAll"); /* URL */
 		urlBuilder.append("?" + URLEncoder.encode("ServiceKey", "UTF-8")
-				+ "=IcNzhYlBXfA7zdFDpQcQj%2BMG00Nt6tqEQJKCsh0H2xIKSPMHSvPG4Q2VZnAcb05PCfm8SRCWyE2dCtAZDMADUA%3D%3D"); /* Service Key */
+				+ "=OI5LYNDHa%2Bq3Qa6rIeQ%2BnJG8XYqzWPAZQPm5phhjuYYxb2KSIgLFTLqzU9PlMe6jiw55PTPUQJ8Ztg4urkLdIw%3D%3D"); /* Service Key */
 		urlBuilder.append(
 				"&" + URLEncoder.encode("srchwrd", "UTF-8") + "=" + URLEncoder.encode(kaptAddr, "UTF-8")); /* 검색어 */
 		urlBuilder.append("&" + URLEncoder.encode("countPerPage", "UTF-8") + "="

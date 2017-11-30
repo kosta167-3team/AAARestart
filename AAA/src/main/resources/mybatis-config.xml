@@ -19,6 +19,8 @@
 
 		<package name="all.about.apartment.aptData.domain"/>
 		<package name="all.about.apartment.publicDomain"/>
+		<package name="all.about.apartment.realEstate.domain"/>
+		
 	</typeAliases>
 	
 	

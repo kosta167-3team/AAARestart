@@ -81,7 +81,25 @@ function request(){
 	//lat,lon
 	//setCurrentCoord("1946411.15132","959975.551426");
 	var i = 0;
-	$.getJSON('/aptData/rest/allAptList',function(data){
+	$.ajax({
+		url:'/aptData/rest/allAptList',
+		type:'get',
+		dataType:'json',
+		async: false,
+		success:function(data){
+			$(data).each(function(index,item) {
+				console.log(item.kaptCode);
+				var location = setCurrentCoord(item.lat, item.lon);
+				console.log(location);
+				updataLocation(item.kaptCode,location);
+			});
+		}
+	});
+	
+	alert('성공');
+	location.href="/real_estate/inputdata";
+	
+/* 	$.getJSON('/aptData/rest/allAptList',function(data){
 		$(data).each(function(index,item) {
 			console.log(item.kaptCode);
 			var location = setCurrentCoord(item.lat, item.lon);
@@ -90,7 +108,7 @@ function request(){
 		});
 		//alert('업데이트 완료');
 		//location.href ="/";
-	});
+	}); */
 };
 function setCurrentCoord(lat,lon){
     try {
@@ -136,9 +154,7 @@ function updataLocation(kaptCode,location){
    			lat : location.lat,
    			lon : location.lon
    		}),
-   		success:function(){
-   			
-   		}
+   		async: false
 		
 	}) 
 };

@@ -84,9 +84,6 @@ Licence URI: http://www.os-templates.com/template-terms
 <!-- ################################################################################################ -->
 <!-- ################################################################################################ -->
 <a id="backtotop" href="#top"><i class="fa fa-chevron-up"></i></a> 
-<!-- JAVASCRIPTS -->
-<script src="/resources/layout/scripts/jquery.min.js"></script>
-<script src="/resources/layout/scripts/jquery.backtotop.js"></script>
-<script src="/resources/layout/scripts/jquery.mobilemenu.js"></script>
+
 </body>
 </html>
