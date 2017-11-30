@@ -32,15 +32,15 @@
 
 
 	<beans:bean id ="loginInteceptor"
+
 		class="all.about.apartment.intercepter.LoginInteceptor"/>
 		
 	<beans:bean id="authInterceptor"
 		class="all.about.apartment.intercepter.AuthInterceptor"/>
 
-		<beans:bean id="testInterceptor"
-		class="all.about.apartment.intercepter.testInterceptor"/>
-
-	
+	<beans:bean id = "loginTestInteceptor"
+		class="all.about.apartment.intercepter.LoginTestInteceptor"/>
+		
 
 	<interceptors>
 		<interceptor>
@@ -52,12 +52,11 @@
 			<mapping path="/bill/full-width"/>
 			<beans:ref bean="authInterceptor"/>
 		</interceptor>
-		
+
 		<interceptor>
-			<mapping path="/"/>
-			<beans:ref bean="testInterceptor"/>
+			<mapping path="/user/login"/>
+			<beans:ref bean="loginTestInteceptor"/>
 		</interceptor>
-		
 		
 	</interceptors>
 	<context:component-scan base-package="all.about.apartment" />

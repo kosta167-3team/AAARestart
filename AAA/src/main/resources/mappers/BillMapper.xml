@@ -29,6 +29,37 @@
 		FROM personal_mgmt_ex 
 		WHERE u_id = #{u_id} AND p_month LIKE #{p_month} ORDER BY input_num
 	</select>
+	
+	<select id="getYearEnergy" resultType="EnergyVO">
+		SELECT * 
+		FROM energy
+		WHERE input_num = (SELECT input_num FROM personal_mgmt_ex WHERE u_id = #{u_id} AND p_month = #{p_month} )
+	</select>
+	
+	<select id="getElecAVG" resultType="int">
+	SELECT AVG(${energyName}) 
+	FROM energy 
+	WHERE input_num IN(
+							SELECT input_num 
+							FROM personal_mgmt_ex 
+							WHERE p_month like #{p_month} AND width = #{width}
+					)
+	</select>
+	
+	<select id="getElecList" resultType="ScorePMEVO">
+		SELECT rownum,input_num,allUsed FROM SCORE_elec_PERSONAL_MGMT_EX
+	</select>
+	<select id="getHeatList" resultType="ScorePMEVO">
+		SELECT rownum,input_num,allUsed FROM SCORE_heat_personal_mgmt_ex
+	</select>
+	
+	<select id="getScoreNum" parameterType="String" resultType="int">
+		SELECT count(*) FROM ${value}
+	</select>
+
+	<select id = "getSelectEnergyList" resultType="ScorePMEVO">
+		SELECT rownum,input_num,allUsed FROM ${value}
+	</select>
 
 </mapper>  
 

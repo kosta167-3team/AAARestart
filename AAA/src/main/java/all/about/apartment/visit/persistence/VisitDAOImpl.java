@@ -59,13 +59,22 @@ public class VisitDAOImpl implements VisitDAO {
 	}
 	@Override
 	public void updateCheck(HashMap<String, Object> map) {
-		System.out.println(map.get("vr_id") + " " + map.get("state"));
+		System.out.println(map.get("vr_id") + " " + map.get("check"));
 		session.update(namespace+".updateCheck", map);
 	}
 	@Override
-	public List<ApplicationVO> adminListPage() {
-		return session.selectList(namespace + ".adminListPage");
+	public List<ApplicationVO> adminListPage(String selectedDate) {
+		return session.selectList(namespace + ".adminListPage", selectedDate);
 	}
+	@Override
+	public void updateState(HashMap<String, Object> map) {
+		System.out.println(map.get("vr_id") + " " + map.get("state"));
+		session.update(namespace+".updateState", map);		
+	}
+/*	@Override
+	public List<ApplicationVO> searchApplication(String selectedDate) {
+		return session.selectList(namespace+".searchApplication", selectedDate);
+	}*/
 	
 
 }
