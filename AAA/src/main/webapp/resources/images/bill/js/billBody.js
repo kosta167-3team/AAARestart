@@ -20,7 +20,7 @@ var EngList = [ "general_mgmt", "clean", "fumigate", "elevator_maintain", "repai
 	$(function() {		
 		var tableCount = 0;
 		function initTable(){
-			$("#payment_details_table").find("tr").find('td:eq(3)').each(function(){
+			$("#selectDetailTable").find("tr").find('td:eq(3)').each(function(){
 				if(  parseInt($(this).html()) > 0 && tableCount > 0){
 					$(this).html(function(i,orgText){
 						return "<img src = '/resources/images/bill/img/icon_up.png'>" + orgText;
