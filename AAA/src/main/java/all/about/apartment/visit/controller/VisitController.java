@@ -9,6 +9,8 @@ import java.util.HashMap;
 import java.util.List;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -40,15 +42,21 @@ public class VisitController {
 	}
 
 	@RequestMapping(value = "/application", method = RequestMethod.POST)
-	public String visitApplication(ApplicationDTO dto, RedirectAttributes rttr) throws Exception {
-
+	public String visitApplication(ApplicationDTO dto, RedirectAttributes rttr, HttpServletRequest request) throws Exception {
+		HttpSession session = request.getSession();
 		ResidentVO getResident = service.getResident(dto);
-		dto.setR_id(getResident.getR_id());
-		dto.setVr_id(Integer.toString(service.maxVR()));
-		System.out.println(dto.toString());
-		service.applicationVisit(dto);
-		rttr.addAttribute("dto", dto.getV_date());
-		return "redirect:/visit/sendPassImage";
+		if(getResident == null) {
+			session.setAttribute("state", "success");
+			return "redirect:/visit/application";
+		} else {
+			session.setAttribute("state", "fail");
+			dto.setR_id(getResident.getR_id());
+			dto.setVr_id(Integer.toString(service.maxVR()));
+			System.out.println(dto.toString());
+			service.applicationVisit(dto);
+			rttr.addAttribute("dto", dto.getV_date());
+			return "redirect:/visit/sendPassImage";
+		}		
 	}
 
 	@RequestMapping(value = "/sendPassImage", method = RequestMethod.GET)
@@ -124,8 +132,6 @@ public class VisitController {
 	public ResponseEntity<List<ApplicationVO>> searchApplication (@RequestBody String selectedDate, Model model) throws Exception {
 		ResponseEntity<List<ApplicationVO>> entity = null;
 		
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName("visit/admin/visitManagement");
 		List<ApplicationVO> list = new ArrayList<>();
 		list = service.adminApplicationList(selectedDate);
 		entity = new ResponseEntity<List<ApplicationVO>>(list, HttpStatus.OK);
@@ -135,7 +141,6 @@ public class VisitController {
 		System.out.println(list);
 		
 		//mav.addObject("applicationList", list);
-		model.addAttribute("applicationList", list);
 		return entity;
 	}
 

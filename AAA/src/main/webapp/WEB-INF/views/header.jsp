@@ -10,7 +10,11 @@ Author URI: http://www.os-templates.com/
 Licence: Free to use under our free template licence terms
 Licence URI: http://www.os-templates.com/template-terms
 -->
-
+<style>
+	li {
+		font-size: 18px;
+	}
+</style>
 <%
 	ResidentVO vo = (ResidentVO)session.getAttribute("login");
 	
@@ -54,8 +58,8 @@ $(function () {
     <!-- ################################################################################################ -->
     <div class="fl_left">
       <ul class="nospace inline">
-        <li><i class="fa fa-phone"></i> +00 (123) 456 7890</li>
-        <li><i class="fa fa-envelope-o"></i> info@domain.com</li>
+<!--         <li><i class="fa fa-phone"></i> +00 (123) 456 7890</li>
+        <li><i class="fa fa-envelope-o"></i> info@domain.com</li> -->
       </ul>
     </div>
    <div class="fl_right">
@@ -79,34 +83,48 @@ $(function () {
     </div>
     <nav id="mainav" class="fl_right">
       <ul class="clear">
-        <li><a href="resourcesindex.html">Home</a></li>
+        <li><a href="/">홈</a></li>
         
-        <li class="active"><a class="drop" href="#">Pages</a>
+        <li class="active"><a class="drop" href="#">관리비</a>
           <ul>
-            <li><a href="gallery.html">Gallery</a></li>
+            <li><a href="/">Gallery</a></li>
             <li class="active"><a class="drop" href="/bill/full-width">관리비 조회</a>
             	<ul>
             		<li> <a href="/billScore/billScoreBody">관리비 성적표</a></li>
             	</ul>
             </li>
-            <li><a href="sidebar-left.html">Sidebar Left</a></li>
-            <li><a href="sidebar-right.html">Sidebar Right</a></li>
-            <li><a href="basic-grid.html">Basic Grid</a></li>
+            <li><a href="/">관리비 1</a></li>
+            <li><a href="/">관리비 2</a></li>
+            <li><a href="/">관리비 3</a></li>
           </ul>
         </li>
-        <li><a class="drop" href="#">Dropdown</a>
+         <li class="active"><a class="drop" href="#">방문객</a>
           <ul>
-            <li><a href="#">Level 2</a></li>
-            <li><a class="drop" href="#">Level 2 + Drop</a>
-              <ul>
-                <li><a href="#">Level 3</a></li>
-                <li><a href="#">Level 3</a></li>
-              </ul>
-            </li>
+            <li><a href="/visit/application">방문 신청</a></li>
+            <li><a href="/visit/applicationList">방문 예약 내역 조회</a></li>
+            <li><a href="/visit/visitManagement">방문 예약 내역</a></li>
           </ul>
         </li>
-        <li><a href="#">Link Text</a></li>
-        <li><a href="#">Link Text</a></li>
+         <li class="active"><a class="drop" href="#">시설</a>
+          <ul>
+            <li><a href="/">시설 예약</a></li>
+            <li><a href="/">시설 예약 조회</a></li>
+          </ul>
+        </li>
+        <li><a class="drop" href="#">항의</a>
+          <ul>
+            <li><a href="/">항의하기</a></li>
+            <li><a href="/">항의..</a></li>
+          </ul>
+        </li>
+        <li><a href="#">커뮤니티</a></li>
+        <li><a href="#">부동산</a></li>
+        <li><a class="drop" href="#">경매</a>
+          <ul>
+            <li><a href="/bidd/bidDetail">경매 물품보기</a></li>
+            <li><a href="/">내 입찰 내역 조회</a></li>
+          </ul>
+        </li>
       </ul>
     </nav>
     <!-- ################################################################################################ -->

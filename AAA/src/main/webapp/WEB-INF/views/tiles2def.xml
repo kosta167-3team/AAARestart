@@ -24,6 +24,22 @@
 		<put-attribute name="body" value="/WEB-INF/views/main_body.jsp"/>
 	</definition>
 	
+	<definition name="/visit/application" extends="base_layout">
+		<put-attribute name="body" value="/WEB-INF/views/visit/application.jsp"/>
+	</definition>
+	
+	<definition name="/visit/applicationList" extends="base_layout">
+		<put-attribute name="body" value="/WEB-INF/views/visit/applicationList.jsp"/>
+	</definition>
+	
+	<definition name="/visit/sendPassImage" extends="base_layout">
+		<put-attribute name="body" value="/WEB-INF/views/visit/sendPassImage.jsp"/>
+	</definition>
+	
+	<definition name="/visit/visitManagement" extends="base_layout">
+		<put-attribute name="body" value="/WEB-INF/views/visit/admin/visitManagement.jsp"/>
+	</definition>
+	
 	<definition name="/realEstate" extends="base_layout">
 		<put-attribute name="body" value="/WEB-INF/views/real_estate/res_body.jsp"/>
 	</definition>

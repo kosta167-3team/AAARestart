@@ -59,6 +59,7 @@
 					html += '<option etc="O" >O</option>';
 					html += '<option etc="X" selected="selected">X</option>';
 					html += '</select> <input class="vr_id" type="hidden" value=' + item.vr_id + '></td>';
+				
 					html +=	'</tr>';
 					$('#visitManageBody').before(html);
 				})

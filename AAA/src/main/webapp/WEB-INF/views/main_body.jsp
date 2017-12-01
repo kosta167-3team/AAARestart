@@ -18,34 +18,34 @@
 <!-- ################################################################################################ -->
 <!-- ################################################################################################ -->
 <!-- ################################################################################################ -->
-<div class="wrapper row2 bgded" style="background-image:url('/resources/images/main/backgrounds/01.png');">
+<div class="wrapper row2 bgded" style="background-image:url('/resources/images/main/MainBackground.png');">
   <div class="overlay">
     <section id="pageintro" class="clear"> 
       <!-- ################################################################################################ -->
       <div class="center btmspace-80">
-        <h2 class="heading xxl uppercase btmspace-30">Ultricies convallis</h2>
-        <p class="xl nospace capitalise">Aenean et cursus adipiscing</p>
+        <h2 class="heading xxl uppercase btmspace-30" style="font-size: 75px; font-weight: 500">A A A</h2>
+        <p class="xl nospace capitalise" style=" letter-spacing : 8px; font-weight: bold "> All About Apartment</p>
       </div>
       <ul class="nospace group services">
         <li class="one_third first">
-          <article class="overlay"><a href="#"><i class="fa fa-legal"></i></a>
-            <h6 class="heading">Dui leo egestas augue</h6>
-            <p>Maecenas libero nunc, volutpat eu erat sed, blandit elementum mi etiam scelerisque&hellip;</p>
-            <footer><a href="#">Read More &raquo;</a></footer>
+          <article class="overlay"><a href="#"><i class="fa fa-bar-chart" aria-hidden="true"></i></a>
+            <h6 class="heading">관리비</h6>
+            <p>아파트 관리비의 상세 정보를 확인할 수 있습니다.&hellip;</p>
+            <footer><a href="#">상세 보기 &raquo;</a></footer>
           </article>
         </li>
         <li class="one_third">
-          <article class="overlay"><a href="#"><i class="fa fa-line-chart"></i></a>
-            <h6 class="heading">Eget molestie augue diam</h6>
-            <p>Donec facilisis volutpat ligula nec egestas aliquam malesuada, lectus sed sollicitudin&hellip;</p>
-            <footer><a href="#">Read More &raquo;</a></footer>
+            <article class="overlay"><a href="#"><i class="fa fa-calendar" aria-hidden="true"></i></a>
+            <h6 class="heading">시설 예약</h6>
+            <p>아파트내 시설 정보를 조회하고 예약할 수 있습니다.&hellip;</p>
+            <footer><a href="#">상세 보기 &raquo;</a></footer>
           </article>
         </li>
         <li class="one_third">
-          <article class="overlay"><a href="#"><i class="fa fa-archive"></i></a>
-            <h6 class="heading">Fusce quis feugiat urna</h6>
-            <p>Aenean semper elementum tellus, ut placerat leo. Quisque vehicula, urna sit amet&hellip;</p>
-            <footer><a href="#">Read More &raquo;</a></footer>
+          <article class="overlay"><a href="#"><i class="fa fa-street-view" aria-hidden="true"></i></a>
+            <h6 class="heading">방문객</h6>
+            <p>방문객분들은 예약을 하셔야 출입이 가능합니다.&hellip;</p>
+            <footer><a href="#">상세 보기  &raquo;</a></footer>
           </article>
         </li>
       </ul>
@@ -53,13 +53,9 @@
     </section>
   </div>
 </div>
-<!-- ################################################################################################ -->
-<!-- ################################################################################################ -->
-<!-- ################################################################################################ -->
 <div class="wrapper row3">
   <main class="container clear"> 
     <!-- main body -->
-    <!-- ################################################################################################ -->
     <div class="group">
       <div class="one_third first"><img src="/resources/images/main/460x700.png" alt=""></div>
       <div class="two_third">
@@ -82,17 +78,12 @@
         </ul>
       </div>
     </div>
-    <!-- ################################################################################################ -->
     <!-- / main body -->
     <div class="clear"></div>
   </main>
 </div>
-<!-- ################################################################################################ -->
-<!-- ################################################################################################ -->
-<!-- ################################################################################################ -->
 <div class="wrapper row4">
   <section id="info" class="clear"> 
-    <!-- ################################################################################################ -->
     <div class="center btmspace-80">
       <h2 class="heading uppercase btmspace-30">Curabitur eget elit sit amet purus congue</h2>
       <p class="lrspace">Aenean semper elementum tellus, ut placerat leo. Quisque vehicula, urna sit amet pulvinar dapibus, dui leo egestas augue, eget molestie augue diam nec ante. Fusce quis feugiat urna. Curabitur a sapien tincidunt, ullamcorper mauris sit amet, ornare augue. Suspendisse potenti. Sed eget ultricies sem. Proin quis lacus egestas, adipiscing nunc ornare, gravida diam. Donec luctus convallis rhoncus.</p>
