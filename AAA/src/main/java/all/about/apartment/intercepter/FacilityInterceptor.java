@@ -12,7 +12,7 @@ import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 import all.about.apartment.facility.service.FacilityService;
 
-public class Interceptor extends HandlerInterceptorAdapter {
+public class FacilityInterceptor extends HandlerInterceptorAdapter {
 
 	@Inject
 	FacilityService service;

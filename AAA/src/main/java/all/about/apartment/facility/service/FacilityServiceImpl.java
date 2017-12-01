@@ -1,19 +1,32 @@
 package all.about.apartment.facility.service;
 
-import java.security.Timestamp;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.imageio.ImageIO;
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.google.zxing.BarcodeFormat;
+import com.google.zxing.client.j2se.MatrixToImageConfig;
+import com.google.zxing.client.j2se.MatrixToImageWriter;
+import com.google.zxing.common.BitMatrix;
+import com.google.zxing.qrcode.QRCodeWriter;
 
 import all.about.apartment.facility.domain.Facility;
 import all.about.apartment.facility.domain.Facility_reservation;
+import all.about.apartment.facility.domain.Facility_state;
 import all.about.apartment.facility.domain.Facility_time;
 import all.about.apartment.facility.persistence.FacilityDAO;
+import sun.print.resources.serviceui;
 
 @Service
 public class FacilityServiceImpl implements FacilityService {
@@ -21,8 +34,8 @@ public class FacilityServiceImpl implements FacilityService {
 	@Inject
 	FacilityDAO facilityDao;
 
-	static int open;
-	static int close;
+	private static int open;
+	private static int close;
 
 	public List<Facility> getFacilityList() throws Exception {
 
@@ -33,7 +46,6 @@ public class FacilityServiceImpl implements FacilityService {
 
 		return facilityDao.getDetail(f_id);
 	}
-
 
 	public Map<String, List<Object>> getOptions(Map<String, Object> map) throws Exception {
 
@@ -62,7 +74,7 @@ public class FacilityServiceImpl implements FacilityService {
 		for (int j = open - 1; j < close; j++) {
 			runningTime.add(timeTable.get(j));
 
-			map.put("t_id", j+1);
+			map.put("t_id", j + 1);
 			spotList.add(getSpot(map));
 
 		}
@@ -88,7 +100,7 @@ public class FacilityServiceImpl implements FacilityService {
 		int f_capa = facility.getF_capa();
 
 		int spot = f_capa - taken;
- 
+
 		return spot;
 	}
 
@@ -117,15 +129,143 @@ public class FacilityServiceImpl implements FacilityService {
 
 	@Override
 	public List<Facility_reservation> getReservationList(Map<String, Object> map) throws Exception {
-		
+
 		return facilityDao.getReservationList(map);
 	}
 
 	@Override
 	public List<Facility_time> getTimetable() throws Exception {
-	 
+
 		return facilityDao.getTimetable();
 	}
 
- 
+	@Override
+	public String getReservationQR(int fr_id) throws Exception {
+
+		String imgPath = "";
+
+		File file = null;
+		String imgpath = "/C:/Users/conve/git/AAA/AAA/src/main/webapp/resources/images/facility_qr";
+
+		file = new File(imgpath);
+
+		if (!file.exists()) {
+			file.mkdirs();
+		}
+
+		String fr_id_qr = Integer.toString(fr_id);
+		int qrcodeColor = 0xFF2e4e96;
+		int backgroundColor = 0xFFFFFFFF;
+
+		QRCodeWriter qrCodeWriter = new QRCodeWriter();
+
+		BitMatrix bitMatrix = qrCodeWriter.encode(fr_id_qr, BarcodeFormat.QR_CODE, 200, 200);
+
+		MatrixToImageConfig matrixToImageConfig = new MatrixToImageConfig(qrcodeColor, backgroundColor);
+		BufferedImage bufferedImage = MatrixToImageWriter.toBufferedImage(bitMatrix, matrixToImageConfig);
+
+		ImageIO.write(bufferedImage, "png", new File(imgpath + "/" + fr_id_qr + ".png"));
+
+		imgPath = imgpath + "/" + fr_id_qr + ".png";
+
+		return imgPath;
+	}
+
+	@Override
+	public void deleteQR() throws Exception {
+		
+		File file = null;
+		String imgpath = "/C:/Users/conve/git/AAA/AAA/src/main/webapp/resources/images/facility_qr";
+
+		file = new File(imgpath);
+		
+		file.delete();		
+	}
+	
+	@Override
+	public List<String> getCancelmsgList(Map<String, Object> map) throws Exception {
+
+		return facilityDao.getCancelmsgList(map);
+	}
+
+	@Override
+	public void cancelAllReservation(Map<String, Object> map) throws Exception {
+
+		facilityDao.cancelAllReservation(map);
+	}
+
+	@Override
+	public void alterState(int f_id) throws Exception {
+
+		facilityDao.alterState(f_id);
+	}
+
+	@Override
+	public List<String> getDateList(int f_id) throws Exception {
+
+		List<Timestamp> list = Facility.Set_date();
+		Map<String, Object> map = new HashMap<>();
+
+		System.out.println("서비스 임플리먼트" + f_id);
+
+		map.put("f_id", f_id);
+
+		List<String> dateList = new ArrayList<>();
+
+		for (int i = 0; i < list.size(); i++) {
+
+			map.put("date", list.get(i));
+
+			System.out.println(list.get(i));
+
+			if (facilityDao.checkState(map) == 0) {
+
+				String date = Facility.TimestampToString(list.get(i));
+
+				dateList.add(date);
+			}
+
+			System.out.println("dateList:" + dateList.size());
+
+		}
+
+		return dateList;
+	}
+
+	@Transactional(propagation = Propagation.REQUIRED, rollbackFor = { Exception.class })
+	@Override
+	public void insertState(Facility_state state) throws Exception {
+
+		facilityDao.insertState(state);
+
+		Map<String, Object> cancelMap = new HashMap<>();
+
+		cancelMap.put("f_id", state.getF_id());
+		cancelMap.put("fs_start", state.getFs_start());
+		cancelMap.put("fs_end", state.getFs_end());
+
+		
+		System.out.println("map에서 찾기"+cancelMap.get("f_id"));
+		
+		if (facilityDao.getCancelmsgList(cancelMap) != null) {
+
+			// 1.취소하기
+			if (facilityDao.cancelAllReservation(cancelMap) > 0) {
+
+				// 2.쪽지 보내기
+				// cancelMap에 1.쪽지 유형 넣기 2.사유 넣기 3.받는 사람 목록(List<String>) 있음
+
+				//쪽지에 set하기
+				
+				//쪽지 받는 사람 목록				
+				facilityDao.getCancelmsgList(cancelMap);
+				
+				
+			}
+			throw new Exception("쪽지 발송 실패;대상 없음");
+
+		}
+
+	}
+
 }
