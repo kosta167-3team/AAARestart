@@ -7,11 +7,12 @@ var detailState = 0;
 var a = [1,2,3];
 var list = [
 	"일반 관리비", "청소비", "소독비", "승강기 유지비", "수선유지비", "장기 수선 충당금", "건물 보험료", "경비비", "관리 수수료", "세대전기료", "공동전기료",
-	"TV 수신료","세대수도료","세대 급탕비","생활 폐기물수거","입대위운영비","선관위 운영비"
+	"TV 수신료","세대수도료","세대 급탕비","생활 폐기물수거","입대위운영비","선관위 운영비","기본 난방비","공동 난방비","기타 난방비","세대 가스비","공동 가스비","세대 난방비"
 ];
 var EngList = [ "general_mgmt", "clean", "fumigate", "elevator_maintain", "repair",
 	"long_term_repair", "building_insurance", "security", "consignment", "personal_elec", "public_elec", "tv",
-	"personal_water", "personal_heat_water", "trash_pick_up", "resident_repre", "emc"
+	"personal_water", "personal_heat_water", "trash_pick_up", "resident_repre", "emc","basic_heat","public_heat","etc_heat",
+	"personal_gas","public_gas","personal_heat"
 
 ];
 

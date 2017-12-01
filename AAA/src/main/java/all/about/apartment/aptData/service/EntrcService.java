@@ -31,4 +31,7 @@ public interface EntrcService {
 	//아파트 목록 가져오기
 	public List<ApartmentVO> aptList() throws Exception;
 	
+	//xy -> 위도 경도
+	public void updataLocation(ApartmentVO vo) throws Exception;
+	
 }

@@ -2,7 +2,10 @@
 <beans:beans xmlns="http://www.springframework.org/schema/mvc"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:beans="http://www.springframework.org/schema/beans"
 	xmlns:context="http://www.springframework.org/schema/context"
-	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
+	xmlns:task="http://www.springframework.org/schema/task"
+	xsi:schemaLocation="http://cxf.apache.org/configuration/beans http://cxf.apache.org/schemas/configuration/cxf-beans.xsd
+		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
+		http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-4.3.xsd
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
@@ -30,9 +33,11 @@
 	<context:component-scan base-package="all.about.apartment" />
 
 
-	<beans:bean id="loginInteceptor"
-		class="all.about.apartment.intercepter.LoginInteceptor" />
 
+	<beans:bean id ="loginInteceptor"
+
+		class="all.about.apartment.intercepter.LoginInteceptor"/>
+		
 	<beans:bean id="authInterceptor"
 		class="all.about.apartment.intercepter.AuthInterceptor" />
 
@@ -40,6 +45,9 @@
 		class="all.about.apartment.intercepter.testInterceptor" />
 
 
+	<beans:bean id = "loginTestInteceptor"
+		class="all.about.apartment.intercepter.LoginTestInteceptor"/>
+		
 
 	<interceptors>
 		<interceptor>
@@ -51,7 +59,7 @@
 			<mapping path="/bill/full-width" />
 			<beans:ref bean="authInterceptor" />
 		</interceptor>
-		
+
 		<interceptor>
 			<mapping path="/facility/reserveFacility" />
 			<beans:ref bean="authInterceptor" />
@@ -83,11 +91,17 @@
 		</interceptor>
 
 
+    <interceptor>
+			<mapping path="/user/login"/>
+			<beans:ref bean="loginTestInteceptor"/>
+		</interceptor>
+
 	</interceptors>
 	<context:component-scan base-package="all.about.apartment" />
 
 
 	<!-- 인터셉터 -->
+
 	<beans:bean id="FacilityInterceptor" class="all.about.apartment.intercepter.FacilityInterceptor"/>
 	<interceptors>
 		<interceptor>
@@ -97,4 +111,15 @@
 	</interceptors>
 
 
+	      <beans:bean id="Interceptor" class="all.about.apartment.intercepter.Interceptor"></beans:bean>
+            <interceptors>
+                  <interceptor>
+                        <mapping path="/facility/getSpot/{fr_id}"/> 
+                        <beans:ref bean="Interceptor"/>
+                  </interceptor>
+            </interceptors>
+	
+
+	<task:annotation-driven/>
+	
 </beans:beans>

@@ -1,4 +1,4 @@
-package all.about.apartment.bill.persistence;
+package all.about.apartment.bill.service;
 
 import java.util.List;
 
@@ -9,7 +9,10 @@ import org.springframework.stereotype.Service;
 import all.about.apartment.bill.domain.EnergyVO;
 import all.about.apartment.bill.domain.Personal_mgmt_exVO;
 import all.about.apartment.bill.domain.SaleBillVO;
+import all.about.apartment.bill.domain.ScorePMEVO;
+import all.about.apartment.bill.domain.SetEnergyAVG;
 import all.about.apartment.bill.domain.SetMonthBill;
+import all.about.apartment.bill.persistence.BillDAO;
 
 @Service
 public class BillServiceImpl implements BillService {
@@ -47,6 +50,37 @@ public class BillServiceImpl implements BillService {
 		
 		
 		return dao.getSelectDetail(new SetMonthBill(u_id, year+"-"+month));
+	}
+	@Override
+	public List<EnergyVO> getYearEnergy(String u_id, String p_month) throws Exception {
+		
+		return dao.getYearEnergy(new SetMonthBill(u_id, p_month));
+	}
+	@Override
+	public int getElecAVG(String energyName, String p_month, int width) throws Exception {
+		
+		return dao.getElecAVG(new SetEnergyAVG(energyName,p_month, width));
+	}
+	@Override
+	public List<ScorePMEVO> getElecList() throws Exception {
+		
+		return dao.getElecList();
+	}
+	@Override
+	public List<ScorePMEVO> getHeatList() throws Exception {
+		// TODO Auto-generated method stub
+		return dao.getHeatList();
+	}
+	@Override
+	public int getScoreNum(String energyName) throws Exception {
+		String viewName = "score_"+ energyName + "_personal_mgmt_ex";
+		
+		return dao.getScoreNum(viewName);
+	}
+	@Override
+	public List<ScorePMEVO> getSelectEnergyList(String energyName) throws Exception {
+		String viewName = "score_"+ energyName + "_personal_mgmt_ex";
+		return dao.getSelectEnergyList(viewName);
 	}
 
 

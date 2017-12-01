@@ -16,6 +16,8 @@ public interface VisitDAO {
 	public List<ApplicationVO> applicationList(String r_id);
 	public List<ApplicationVO> applicationListPage(String r_id, int page);
 	public List<ApplicationVO> listCriteria(Criteria cri);
+	public void updateState(HashMap<String, Object> map);
 	public void updateCheck(HashMap<String, Object> map);
-	public List<ApplicationVO> adminListPage();
+	public List<ApplicationVO> adminListPage(String selectedDate);
+	//public List<ApplicationVO> searchApplication(String selectedDate);
 }

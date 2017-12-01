@@ -35,7 +35,16 @@
 	<!-- 아파트 List -->
 	<select id="getAptList" resultType="ApartmentVO">
 		select * from apartment
+		where convert = 'false'
 	</select>
+	
+	<!-- xy -> 위도, 경도 -->
+	<update id="updataLocation" parameterType="ApartmentVO">
+		update apartment
+		set lat = #{lat} , lon = #{lon}, convert = 'true'
+		where KAPTCODE = #{kaptCode}
+		and convert = 'false'
+	</update>
 </mapper>  
 
 

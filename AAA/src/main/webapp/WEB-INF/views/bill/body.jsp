@@ -62,9 +62,10 @@ Licence URI: http://www.os-templates.com/template-terms
 
 			<div id="select_month">
 				<p id="select_month_content">${billMonth.p_month}</p>
-				<a data-rno="${billMonth.p_month}" id="select_month_btn" href=""><img
-					src="/resources/images/bill/img/arw_select.png"> </a>
-				<div id="month_list"></div>
+				<a data-rno="${billMonth.p_month}" id="select_month_btn" href="">
+				<img src="/resources/images/bill/img/arw_select.png"> </a>
+				<div id="month_list">
+				</div>
 			</div>
 
 			<div id="header_article">
@@ -96,15 +97,16 @@ Licence URI: http://www.os-templates.com/template-terms
 			</div>
 
 			<h1> 관리비 항목 상세 </h1>
-			<div id="payment_details">
+			<div id="payment_details" class = "scrollable">
 				<table id="payment_details_table">
-					<tr class = 'table_title'>
-						<td>항목</td>
-						<td>당월</td>
-						<td>전월</td>
-						<td>증감</td>
+				<thead>
+					<tr>
+						<th>항목</th>
+						<th>당월</th>
+						<th>전월</th>
+						<th>증감</th>
 					</tr>
-					
+				</thead>
 					<c:forEach var="bill" items="${billSerise }">
 					<tr>
 						<td><a href="" class="selectDetail" data-rno1 = "${billMonth.p_month }" data-rno="${bill.listName }"> ${bill.listName }</a></td>
@@ -133,6 +135,7 @@ Licence URI: http://www.os-templates.com/template-terms
       <p>You can use and modify the template for both personal and commercial use. You must keep all copyright information and credit links in the template and associated files. For more website templates visit our <a href="http://www.os-templates.com/">free website templates</a> section.</p>
       <p>Portortornec condimenterdum eget consectetuer condis consequam pretium pellus sed mauris enim. Puruselit mauris nulla hendimentesque elit semper nam a sapien urna sempus.</p>
       <h1>Table(s)</h1>
+      
       <div class="scrollable">
         <table>
           <thead>

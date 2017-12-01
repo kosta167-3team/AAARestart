@@ -49,17 +49,26 @@
         where r_id = #{r_id} and v_state='미확인'
     </select>
     
-    <update id="updateCheck" parameterType="Map">
+    <update id="updateState" parameterType="Map">
     	update visit_reservation set v_state = #{state}
     	where vr_id = #{vr_id}
     </update>
+    <update id="updateCheck" parameterType="Map">
+    	update visit_reservation set v_check = #{check}
+    	where vr_id = #{vr_id}
+    </update>
     
-    <select id="adminListPage" resultType="ApplicationVO">
+    <select id="adminListPage" parameterType="String" resultType="ApplicationVO">
             <![CDATA[
                    select * from visit_reservation                 
-                   where v_state in ('미확인', '승인')
+                   where v_state in ('미확인', '승인', '거부') and v_date = #{selectedDate}
                    order by v_date desc
             ]]>
+	</select>
+	
+	<select id="searchApplication" parameterType="String" resultType="ApplicationVO">
+		select * from visit_reservation
+		where v_date = #{selectedDate}
 	</select>
 </mapper>  
 

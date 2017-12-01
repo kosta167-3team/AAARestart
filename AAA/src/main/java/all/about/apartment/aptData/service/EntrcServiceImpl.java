@@ -293,4 +293,9 @@ public class EntrcServiceImpl implements EntrcService {
 	public List<ApartmentVO> aptList() throws Exception {
 		return dao.aptList();
 	}
+
+	@Override
+	public void updataLocation(ApartmentVO vo) throws Exception {
+		dao.updataLocation(vo);
+	}
 }
