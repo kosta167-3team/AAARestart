@@ -102,7 +102,8 @@
 
 	<!-- 인터셉터 -->
 
-	<beans:bean id="FacilityInterceptor" class="all.about.apartment.intercepter.FacilityInterceptor"/>
+	<beans:bean id="FacilityInterceptor"
+	class="all.about.apartment.intercepter.FacilityInterceptor" />
 	<interceptors>
 		<interceptor>
 			<mapping path="/facility/getSpot/{fr_id}" />
@@ -111,15 +112,6 @@
 	</interceptors>
 
 
-	      <beans:bean id="Interceptor" class="all.about.apartment.intercepter.Interceptor"></beans:bean>
-            <interceptors>
-                  <interceptor>
-                        <mapping path="/facility/getSpot/{fr_id}"/> 
-                        <beans:ref bean="Interceptor"/>
-                  </interceptor>
-            </interceptors>
-	
-
-	<task:annotation-driven/>
+	<task:annotation-driven />
 	
 </beans:beans>
