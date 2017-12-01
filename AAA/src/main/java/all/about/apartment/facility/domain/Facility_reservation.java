@@ -1,12 +1,12 @@
 package all.about.apartment.facility.domain;
-
+ 
 import java.io.Serializable;
 import java.sql.Timestamp;
 
-import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Component;
 
-@Repository
-public class Facility_reservation implements Serializable {
+@Component
+public class Facility_reservation implements Serializable{
 
 	private int fr_id;
 	private int f_id;
@@ -15,6 +15,20 @@ public class Facility_reservation implements Serializable {
 	private int fr_cnt;
 	private Timestamp fr_date;
 	private String fr_qr;
+
+	public Facility_reservation (){}
+	
+	public Facility_reservation(int fr_id, int f_id, int t_id, String r_id, int fr_cnt, Timestamp fr_date,
+			String fr_qr) {
+		super();
+		this.fr_id = fr_id;
+		this.f_id = f_id;
+		this.t_id = t_id;
+		this.r_id = r_id;
+		this.fr_cnt = fr_cnt;
+		this.fr_date = fr_date;
+		this.fr_qr = fr_qr;
+	}
 
 	public int getFr_id() {
 		return fr_id;

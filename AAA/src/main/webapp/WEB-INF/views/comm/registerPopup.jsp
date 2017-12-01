@@ -11,45 +11,36 @@
 	text-align: center;
 }
 </style>
+<!-- <script src="/resources/layout/scripts/facility/changePopup.js"></script> -->
+<script src="/resources/layout/scripts/facility/date.js"></script>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <title>Insert title here</title>
 </head>
 <body>
 
 	<div id="popup">
-		<h3>${r_f_name }</h3>
-		<p>인원: ${r_fr_cnt}</p>
-		<p>시간: ${r_time.t_start} ~ ${r_time.t_end }</p>
-		<button id="cancle" value="${fr_id }">예약 취소</button>
-		<button id="close">확인</button>
+		<h4>가입이 완료되었습니다.</h4>
+		<br>
+		<br>
+		<button id="write">피드로 가기</button>
+		<button id="main">메인으로 가기</button>
+
 	</div>
 
-
 	<script type="text/javascript">
- 
-  $("#cancle").on("click", function () {
-	
-	 var fr_id = $(this).val();
-	  
-	 $.ajax({
-			url: "/facility/cancleReservation/"+fr_id,
-			success: function(data){
-				
-				$(opener.document).find("a[val=" + fr_id + "]").remove();
-				window.close();
-			}
-	 
-	 });
-		
-	 
-}); 
- 
- $("#close").on("click", function() {
- 
-	 window.close();
- });
- 
- </script>
+		$(function() {
 
+			$('#write').on("click", function() {
+				opener.document.location.href="/comm/checkFeed";
+				window.close();
+			});
+
+			$('#main').on("click", function() {
+				opener.document.location.href="/";
+				window.close();
+			});
+
+		});
+	</script>
 </body>
 </html>

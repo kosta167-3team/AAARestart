@@ -5,26 +5,18 @@
 
 
 <!DOCTYPE html>
-<!--
-Template Name: Viral
-Author: <a href="http://www.os-templates.com/">OS Templates</a>
-Author URI: http://www.os-templates.com/
-Licence: Free to use under our free template licence terms
-Licence URI: http://www.os-templates.com/template-terms
--->
 <html>
 <head>
 
+<!-- <script src="/resources/layout/scripts/facility/checkReservation.js"></script> -->
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <title>Viral | Pages | Full Width</title>
-
-
-
 
 <style type="text/css">
 .scrollable table a {
 	text-align: center;
 }
+
 </style>
 
 <style type="text/css">
@@ -80,18 +72,9 @@ Licence URI: http://www.os-templates.com/template-terms
 </style>
 
 
-<!-- <style type="text/css">
-@import url("http://fonts.googleapis.com/earlyaccess/nanumgothic.css"); 
-h1 { font-family:"Nanum Gothic" !important; 
-	 font-weight:bold;
-}
-
-</style> -->
-
 <script src="/resources/layout/scripts/jquery.min.js"></script>
 <script src="/resources/layout/scripts/jquery.backtotop.js"></script>
-<script src="/resources/layout/scripts/jquery.mobilemenu.js"></script>
-<script src="/resources/layout/scripts/checkReservation.js"></script>
+<script src="/resources/layout/scripts/jquery.mobilemenu.js"></script> 
 <meta charset="utf-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -99,84 +82,6 @@ h1 { font-family:"Nanum Gothic" !important;
 	type="text/css" media="all">
 </head>
 <body id="top">
-	<!-- ################################################################################################ -->
-	<!-- ################################################################################################ -->
-	<!-- ################################################################################################ -->
-	<div class="wrapper row0">
-		<div id="topbar" class="clear">
-			<!-- ################################################################################################ -->
-			<div class="fl_left">
-				<ul class="nospace inline">
-					<li><i class="fa fa-phone"></i> +00 (123) 456 7890</li>
-					<li><i class="fa fa-envelope-o"></i> info@domain.com</li>
-				</ul>
-			</div>
-			<div class="fl_right">
-				<ul class="faico clear">
-					<li><a class="faicon-facebook" href="#"><i
-							class="fa fa-facebook"></i></a></li>
-					<li><a class="faicon-pinterest" href="#"><i
-							class="fa fa-pinterest"></i></a></li>
-					<li><a class="faicon-twitter" href="#"><i
-							class="fa fa-twitter"></i></a></li>
-					<li><a class="faicon-dribble" href="#"><i
-							class="fa fa-dribbble"></i></a></li>
-					<li><a class="faicon-linkedin" href="#"><i
-							class="fa fa-linkedin"></i></a></li>
-					<li><a class="faicon-google-plus" href="#"><i
-							class="fa fa-google-plus"></i></a></li>
-					<li><a class="faicon-rss" href="#"><i class="fa fa-rss"></i></a></li>
-				</ul>
-			</div>
-			<!-- ################################################################################################ -->
-		</div>
-	</div>
-	<!-- ################################################################################################ -->
-	<!-- ################################################################################################ -->
-	<!-- ################################################################################################ -->
-	<div class="wrapper row1">
-		<header id="header" class="clear">
-			<!-- ################################################################################################ -->
-			<div id="logo" class="fl_left">
-				<h1>
-					<a href="/"><img src="/resources/images/main/main_log_mini.png"
-						alt="" class="main_log_img"></a>
-				</h1>
-			</div>
-			<nav id="mainav" class="fl_right">
-				<ul class="clear">
-					<li><a href="resourcesindex.html">Home</a></li>
-					<li class="active"><a class="drop" href="#">Pages</a>
-						<ul>
-							<li><a href="gallery.html">Gallery</a></li>
-							<li class="active"><a href="full-width.html">Full Width</a></li>
-							<li><a href="sidebar-left.html">Sidebar Left</a></li>
-							<li><a href="sidebar-right.html">Sidebar Right</a></li>
-							<li><a href="basic-grid.html">Basic Grid</a></li>
-						</ul></li>
-					<li><a class="drop" href="#">Dropdown</a>
-						<ul>
-							<li><a href="#">Level 2</a></li>
-							<li><a class="drop" href="#">Level 2 + Drop</a>
-								<ul>
-									<li><a href="#">Level 3</a></li>
-									<li><a href="#">Level 3</a></li>
-								</ul></li>
-						</ul></li>
-					<li><a href="#">Link Text</a></li>
-					<li><a href="#">Link Text</a></li>
-				</ul>
-			</nav>
-			<!-- ################################################################################################ -->
-		</header>
-	</div>
-	<!-- ################################################################################################ -->
-	<!-- ################################################################################################ -->
-	<!-- ################################################################################################ -->
-
-	<!-- 	<div class="wrapper row2 bgded"
-		style="background-image: url('resourcesimages/main/backgrounds/01.png');">
- -->
 
 	<div class="wrapper row2 bgded">
 
@@ -210,51 +115,104 @@ h1 { font-family:"Nanum Gothic" !important;
 				<div class="accordion">
 
 					<h1>오늘의 예약</h1>
-					<c:forEach var="i" items="${latestList}" varStatus="status">
-						<c:choose>
-							<c:when test="${i==null }">
-								<h4 class="accordion-toggle">- 내역이 없습니다 -</h4>
-							</c:when>
+					<c:choose>
 
-							<c:when test="${status.index == 0 }">
-								<c:forEach var="f" items="${facility }">
-									<c:if test="${i.f_id == f.f_id}">
-										<c:forEach var="t" items="${timeList}">
-											<c:if test="${t.t_id == i.t_id }">
+						<c:when test="${empty latestList}">
+							<p>- 내역이 없습니다 -
+							<p>
+						</c:when>
 
-												<h4 class="accordion-toggle">${f.f_name}</h4>
-												<div id="now">
-													<p>시간: ${t.t_start }~${t.t_end }</p>
-													<p>인원: ${i.fr_cnt }명</p>
-												</div>
+						<c:when test="${latestList != null}">
+							<c:forEach var="i" items="${latestList}" varStatus="status">
+								<c:choose>
+									<c:when test="${status.index==0}">
+										<c:forEach var="f" items="${facility }">
+											<c:if test="${i.f_id == f.f_id}">
+												<c:forEach var="t" items="${timeList}">
+													<c:if test="${t.t_id == i.t_id }">
 
+														<h4 class="accordion-toggle">${f.f_name}</h4>
+														<div id="now">
+															<p>시간: ${t.t_start }~${t.t_end }</p>
+															<p>인원: ${i.fr_cnt }명</p>
+															<img src="/facility/getQRimg/${i.fr_id }">
+														</div>
+
+													</c:if>
+												</c:forEach>
 											</c:if>
 										</c:forEach>
-									</c:if>
-								</c:forEach>
-							</c:when>
-							<c:otherwise>
-								<c:forEach var="f" items="${facility }">
-									<c:if test="${i.f_id == f.f_id}">
-										<c:forEach var="t" items="${timeList}">
-											<c:if test="${t.t_id == i.t_id }">
+									</c:when>
+									<c:otherwise>
+										<c:forEach var="f" items="${facility }">
+											<c:if test="${i.f_id == f.f_id}">
+												<c:forEach var="t" items="${timeList}">
+													<c:if test="${t.t_id == i.t_id }">
 
-												<h4 class="accordion-toggle">${f.f_name}</h4>
-												<div class="accordion-content">
-													<p>시간: ${t.t_start }~${t.t_end }</p>
-													<p>인원: ${i.fr_cnt }명</p>
-												</div>
+														<h4 class="accordion-toggle" val="${i.fr_id}">${f.f_name}</h4>
+														<div class="accordion-content" val="${i.fr_id }">
+															<p>시간: ${t.t_start }~${t.t_end }</p>
+															<p>인원: ${i.fr_cnt }명</p>
+															<button class="cancel" value="${i.fr_id}">예약 취소</button>
+														</div>
+													</c:if>
+												</c:forEach>
 											</c:if>
 										</c:forEach>
-									</c:if>
-								</c:forEach>
+									</c:otherwise>
+								</c:choose>
+							</c:forEach>
+						</c:when>
+					</c:choose>
 
-
-							</c:otherwise>
-
-						</c:choose>
-					</c:forEach>
 				</div>
+
+
+<script type="text/javascript">
+$(document).ready(function() {
+	$('.accordion').find('.accordion-toggle').click(function() {
+		$(this).next().slideToggle('600');
+		$(".accordion-content").not($(this).next()).slideUp('600');
+	});
+	$('.accordion-toggle').on('click', function() {
+		$(this).toggleClass('active').siblings().removeClass('active');
+	});
+});
+</script>
+
+
+
+
+
+  				<script type="text/javascript">
+
+$(".cancel").on("click", function () {
+	
+	if(confirm("예약을 취소하시겠습니까?")){
+
+		 var fr_id = $(this).val();
+		 
+		 $.ajax({
+				url: "/facility/cancleReservation/"+fr_id,
+				success: function(){
+						 					
+ 					$(document).find("div[val=" + fr_id + "]").remove();
+					$(document).find("h4[val=" + fr_id + "]").remove();  
+					
+					alert("예약이 취소되었습니다.");
+				}
+		 
+		 });
+		
+	}else{
+		
+		alert("ㅇ");
+	}
+	 
+}); 
+
+</script>  
+
 
 
 
@@ -276,8 +234,8 @@ h1 { font-family:"Nanum Gothic" !important;
 
 								<tr val="${t.t_id}">
 									<td>${t.t_start }~${t.t_end }</td>
-									<c:forEach var="reservation" items="${reservationList }" >
-										<td ><c:forEach var="r" items="${reservation}">
+									<c:forEach var="reservation" items="${reservationList }">
+										<td><c:forEach var="r" items="${reservation}">
 												<c:choose>
 													<c:when test="${r.t_id == t.t_id}">
 														<c:forEach var="facility" items="${facility }">
@@ -297,15 +255,19 @@ h1 { font-family:"Nanum Gothic" !important;
 						</tbody>
 					</table>
 				</div>
+			</div>
+		</div>
+		</main>
+	</div>
 
-				<script type="text/javascript">
+  	<script type="text/javascript">
 					$('.reservation').on("click", function() {
 
 										event.preventDefault();
 
 										var fr_id = $(this).attr("val");
 
-										getReservationDetail("/facility/ReservationDetail/"
+										getReservationDetail("/facility/detailPopup/"
 												+ fr_id);
 
 									});
@@ -314,11 +276,12 @@ h1 { font-family:"Nanum Gothic" !important;
 
 					function getReservationDetail(f_info) {
 						
-						var popupX = (window.screen.width/2) - (300 / 2);
-						var popupY= (window.screen.height/2) - (200 / 2);
+						var popupX = (window.screen.width/2) - (300/2);
+						var popupY= (window.screen.height/2) - (200/2);
 						
 						window.open(f_info,'childWindow', 'status=no, height=200, width=300, left='+ popupX + ', top='+ popupY + ', screenX='+ popupX + ', screenY= '+ popupY);
 					}
-				</script>
+					
+				</script>  
 </body>
 </html>

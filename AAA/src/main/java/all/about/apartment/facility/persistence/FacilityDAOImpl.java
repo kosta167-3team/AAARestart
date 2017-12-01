@@ -1,5 +1,6 @@
 package all.about.apartment.facility.persistence;
 
+import java.sql.Timestamp;
 import java.util.List;
 import java.util.Map;
 
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Repository;
 
 import all.about.apartment.facility.domain.Facility;
 import all.about.apartment.facility.domain.Facility_reservation;
+import all.about.apartment.facility.domain.Facility_state;
 import all.about.apartment.facility.domain.Facility_time;
 
 @Repository
@@ -30,6 +32,12 @@ public class FacilityDAOImpl implements FacilityDAO {
 	public Facility getDetail(int f_id) throws Exception {
 
 		return session.selectOne(namespace + ".getDetail", f_id);
+	}
+
+	@Override
+	public int checkState(Map<String, Object> map) throws Exception {
+		
+		return session.selectOne(namespace + ".checkState", map);
 	}
 
 	@Override
@@ -70,8 +78,34 @@ public class FacilityDAOImpl implements FacilityDAO {
 
 	@Override
 	public List<Facility_reservation> getReservationList(Map<String, Object> map) throws Exception {
-		
-		return session.selectList(namespace+".getReservationList", map);
+
+		return session.selectList(namespace + ".getReservationList", map);
 	}
 
+	@Override
+	public List<String> getCancelmsgList(Map<String, Object> map) throws Exception {
+
+		return session.selectList(namespace + ".getCancelmsgList", map);
+	}
+
+	@Override
+	public int cancelAllReservation(Map<String, Object> map) throws Exception {
+
+		return session.delete(namespace + ".cancelAllReservation", map);
+	}
+
+	@Override
+	public void alterState(int f_id) throws Exception {
+
+		session.update(namespace + ".alterState", f_id);
+
+	}
+
+	@Override
+	public void insertState(Facility_state state) throws Exception {
+	
+		session.insert(namespace + ".insertState", state);
+	}
+
+ 
 }
