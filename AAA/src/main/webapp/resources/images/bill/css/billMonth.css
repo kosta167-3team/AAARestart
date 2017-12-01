@@ -46,11 +46,11 @@
 	font-size: 20px;
 }
 #table_payment{
-	width: 40%;
 	color: black;
 }
 .table_title{
-	background-color: #e0f8f1;
+	color: white;
+	background-color: #2898c4;
 }
 #detail_content_select{
 	display: none;
@@ -58,4 +58,24 @@
 #payment_details_table img{
 	width: 14px;
 	margin-right: 5px;
+}
+
+#selectDetailTableOther{
+	border:solid 5px;
+}
+
+#selectDetailDiv{
+	
+	position: absolute;
+	width: 20%;
+	
+}
+#selectDetailDiv > table{
+	border:solid;
+	border-color: black;
+}
+
+#selectDetailTable{
+	
+	
 }
