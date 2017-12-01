@@ -25,7 +25,13 @@ Licence URI: http://www.os-templates.com/template-terms
 <script src="/resources/layout/scripts/jquery.min.js"></script>
 <script src="/resources/images/billScore/js/billScoreBodyJS.js"></script>
 
-
+<style type="text/css">
+	#spanTH{
+		text-align: center;
+		vertical-align: middle;
+		
+	}
+</style>
 
 
 </head>
@@ -56,7 +62,6 @@ Licence URI: http://www.os-templates.com/template-terms
 		<main class="container clear"> <!-- main body --> <!-- ################################################################################################ -->
 		<div class="content">
 			<!-- ################################################################################################ -->
-
 
 
 			<h1>${pme.p_month} 월 관리비 성적표</h1>
@@ -176,7 +181,7 @@ Licence URI: http://www.os-templates.com/template-terms
 				<table>
 					<thead>
 						<tr>
-							<th colspan="3" rowspan="3">날짜</th>
+							<th id="spanTH" colspan="3" rowspan="3">날짜</th>
 						</tr>
 						<tr>
 

@@ -14,9 +14,36 @@ Licence URI: http://www.os-templates.com/template-terms
 <html>
 <head>
 <style type="text/css">
-#month_list ul li a{
-	color: gray;
+#month_list{
+	display: none;
 }
+#save_tile_one{
+border-radius: 10px;
+display: inline-block;
+padding : 10px;
+	background-color: #00CCFF;
+}
+#save_tile_one > p{
+	font-size:20px;
+	color: black;
+	display: inline;
+}
+
+#header_article{
+	border-radius: 10px;
+	background-color: #CCCCCC;
+}
+#payment_content{
+border-radius: 10px;
+	background-color: white;
+	display: inline-block;
+	color : black;
+}
+#payment_p{
+display: inline-block;
+}
+
+
 
 </style>
 
@@ -70,30 +97,25 @@ Licence URI: http://www.os-templates.com/template-terms
 
 			<div id="header_article">
 				<div id="save_tile">
-					<p>${paymentDate }</p>
-					<p>납기내</p>
+					<div id = "save_tile_one">
+						<p>D - ${paymentDate }</p>
+						<p>납기내</p>
+					</div>
+					
+					
 				</div>
 				<div id="payment_endDate">
 					<p>납부 마감일</p>
 					<p id="p_year" data-rno="${dateMap.year }">${dateMap.year }년</p> <p id="p_month" data-rno="${dateMap.month }">${dateMap.month } 월</p><p id="p_date" data-rno="${dateMap.date }"> ${dateMap.date }일</p>
 				</div>
 				<div id="payment_content">
-					<p id = "content_month">${dateMap.month }월 부과금액 </p> <p id="content_monthP"> ${allBill }</p>
-					<p>${dateMap.year }년 ${dateMap.month } 월 ${dateMap.date }일</p>
+					<p id = "content_month">${dateMap.month }월 부과금액 </p> <p id="content_monthP"> ${allBill } 원</p>
+					<p id="payment_p">${dateMap.year }년  ${dateMap.month } 월 ${dateMap.date }일</p>
 					<button id="payment_detail" data-rno = "${billMonth.u_id }" value = "${billMonth.p_month }">상세보기</button>
-				</div>
-				
-				
-				
-				
+				</div>				
 				<div id="detail_content">
-					<select id="detail_content_select">
-						<option>sdf</option>
-					</select>
 				
 				</div>
-
-
 			</div>
 
 			<h1> 관리비 항목 상세 </h1>
