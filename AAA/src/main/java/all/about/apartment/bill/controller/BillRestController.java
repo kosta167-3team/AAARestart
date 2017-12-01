@@ -1,10 +1,9 @@
 package all.about.apartment.bill.controller;
 
-import java.util.ArrayList;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.StringTokenizer;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
@@ -38,8 +37,7 @@ public class BillRestController {
 		int count = 0;
 		Map<String, String> map = new HashMap<String,String>();
 		ResponseEntity<Map<String, String>> entity = null;
-		
-		System.out.println(tokens[0] + ":::" + tokens[1] );
+
 		
 		int year = Integer.parseInt(tokens[0]);
 		int month = Integer.parseInt(tokens[1]);
@@ -52,7 +50,7 @@ public class BillRestController {
 				month = 12;
 				year -=1;
 			}		
-			System.out.println(year + "-" + month);
+
 			map.put("select"+i, new String(year + "-" + month));
 			count++;
 		}
@@ -70,9 +68,9 @@ public class BillRestController {
 	public Map<String,String> monthDetail(@PathVariable String u_id, @PathVariable String p_month) throws Exception{
 		
 		Personal_mgmt_exVO bill = service.getMonthBill(u_id, p_month);
-		System.out.println(bill.getInput_num());
+
 		List<SaleBillVO> saleBillList = service.getSaleBill(bill.getInput_num());
-		System.out.println("saleBillList :"+saleBillList);
+
 		Map<String,String> map = new HashMap<String,String>();
 		
 		int saleSum = 0;
@@ -111,9 +109,8 @@ public class BillRestController {
 				detailListNum = i;
 			}
 		}
-		String engDetailList = Personal_mgmt_exVO.getEngList()[detailListNum];
 		
-		System.out.println(engDetailList);
+
 		
 		List<Personal_mgmt_exVO> list = service.getSelectDetail(u_id, select_p_month);	
 		

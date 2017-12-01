@@ -46,7 +46,7 @@ public class BillController {
 			day = 28 + (-day);
 		}
 		paymentDate = day+"";
-		System.out.println(paymentDate);
+
 		model.addAttribute("paymentDate", paymentDate);
 		/* date 설정 년/월/일 */
 		date.put("year", cal.get(Calendar.YEAR)+"");
@@ -74,13 +74,13 @@ public class BillController {
 		if( resident != null){
 			u_id = resident.getR_id();
 			billMonth = service.getMonthBill(u_id, p_month);
-			System.out.println(billMonth);
+
 			model.addAttribute("billMonth", billMonth);
 		}
 		else{
 			u_id = "alstlr123";
 			billMonth = service.getMonthBill(u_id, p_month);
-			System.out.println(billMonth);
+	
 			model.addAttribute("billMonth", billMonth);
 		}
 		/////
@@ -148,7 +148,7 @@ public class BillController {
 			day = 28 + (-day);
 		}
 		paymentDate = day+"";
-		System.out.println(paymentDate);
+
 		model.addAttribute("paymentDate", paymentDate);
 		/* date 설정 년/월/일 */
 		date.put("year", cal.get(Calendar.YEAR)+"");
@@ -177,13 +177,13 @@ public class BillController {
 		if( resident != null){
 			u_id = resident.getR_id();
 			billMonth = service.getMonthBill(u_id, p_month);
-			System.out.println(billMonth);
+
 			model.addAttribute("billMonth", billMonth);
 		}
 		else{
 			u_id = "alstlr123";
 			billMonth = service.getMonthBill(u_id, p_month);
-			System.out.println(billMonth);
+
 			model.addAttribute("billMonth", billMonth);
 		}
 		/////
