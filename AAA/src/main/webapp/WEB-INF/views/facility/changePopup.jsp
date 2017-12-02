@@ -57,9 +57,7 @@
 			
 			var fs_start = Date.parse(s_string).getTime();
 			var fs_end = Date.parse(e_string).getTime();
-
-			alert(s_string);
-			alert(fs_start);
+ 
 
 			var data = {
 				f_id : opener.$('#f_id option:selected').val(),

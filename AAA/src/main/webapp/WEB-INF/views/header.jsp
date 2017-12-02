@@ -20,12 +20,23 @@ Licence URI: http://www.os-templates.com/template-terms
 <title>Viral | Pages | Full Width</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<!-- CSS -->
+
+<link href="/resources/layout/styles/message/message.css"
+   rel="stylesheet" type="text/css" media="all">
+<link rel="stylesheet"
+   href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+<link rel="stylesheet"
+   href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+
 <link href="/resources/layout/styles/layout.css" rel="stylesheet" type="text/css" media="all">
 
 <!-- JAVASCRIPTS -->
 <script src="/resources/layout/scripts/jquery.min.js"></script>
 <script src="/resources/layout/scripts/jquery.backtotop.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 <script src="/resources/layout/scripts/jquery.mobilemenu.js"></script>
+<script type="text/javascript" src="/resources/layout/scripts//message/messageChk.js"></script>
 <script type="text/javascript">
 $(function () {
 	var loginID= "<%=vo%>";

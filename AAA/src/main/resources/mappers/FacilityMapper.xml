@@ -21,7 +21,8 @@
 	<!-- 1. 시간 확인 -->
 
 	<select resultType="Facility_time" id="getTimetable">
-		select * from facility_time
+		select * from
+		facility_time
 	</select>
 
 	<!-- 2. 날짜별 상태 확인 -->
@@ -48,7 +49,7 @@
 	</select>
 
 
-	<!-- 4. 중복 예약 확인  -->
+	<!-- 4. 중복 예약 확인 -->
 
 	<select resultType="Integer" id="checkDoubleBook" parameterType="java.util.Map">
 		select fr_id from facility_reservation
@@ -88,7 +89,7 @@
 	</select>
 
 
-	<!-- 예약 취소-->
+	<!-- 예약 취소 -->
 
 	<!-- 1.예약 1건 취소 -->
 	<delete id="cancelReservation" parameterType="int">
@@ -99,7 +100,7 @@
 
 
 	<!-- 시설 관리 -->
-	
+
 	<!-- 1.관리 내역 삽입 -->
 	<insert id="insertState" parameterType="Facility_state">
 		insert into
@@ -131,10 +132,18 @@
 	</delete>
 
 	<!-- 4.시설 상태 변경 -->
-	<update id="alterState" parameterType="int">
-		update facility set
-		f_state = '사용불가'
-		where f_id = #{f_id};
+	<update id="alterState_bad">
+		update facility set f_state = '사용불가'
+			where f_id in(
+				select f_id from facility_state
+					where sysdate between TRUNC(fs_start) and TRUNC(fs_end))
+	</update>
+
+	<update id="alterState_ok">
+		update facility set f_state = '사용가능'
+			where f_id not in(
+				select f_id from facility_state
+					where sysdate between TRUNC(fs_start) and TRUNC(fs_end)) 
 	</update>
 
 </mapper>  

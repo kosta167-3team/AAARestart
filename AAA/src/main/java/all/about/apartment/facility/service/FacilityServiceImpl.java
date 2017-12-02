@@ -11,6 +11,7 @@ import java.util.Map;
 import javax.imageio.ImageIO;
 import javax.inject.Inject;
 
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -171,17 +172,30 @@ public class FacilityServiceImpl implements FacilityService {
 		return imgPath;
 	}
 
+	// 초 분 시 일 월 요일 년
+	@Scheduled(cron = "50 8 14 * * * ")
 	@Override
 	public void deleteQR() throws Exception {
+
+		System.out.println("스케쥴러 - qr 삭제");
 		
 		File file = null;
 		String imgpath = "/C:/Users/conve/git/AAA/AAA/src/main/webapp/resources/images/facility_qr";
 
 		file = new File(imgpath);
-		
-		file.delete();		
+
+		// 파일을 배열로 받기
+		File[] fileArr = file.listFiles();
+
+		if (fileArr.length > 0) {
+
+			for (int i = 0; i < fileArr.length; i++) {
+
+				fileArr[i].delete();
+			}
+		}
 	}
-	
+
 	@Override
 	public List<String> getCancelmsgList(Map<String, Object> map) throws Exception {
 
@@ -194,10 +208,14 @@ public class FacilityServiceImpl implements FacilityService {
 		facilityDao.cancelAllReservation(map);
 	}
 
+	@Scheduled(cron = "0 25 15 * * *")
 	@Override
-	public void alterState(int f_id) throws Exception {
+	public void alterFacilityState() throws Exception {
 
-		facilityDao.alterState(f_id);
+		System.out.println("스케쥴러 - 시설 상태 변경");
+		
+		facilityDao.alterState_bad();
+		facilityDao.alterState_ok();
 	}
 
 	@Override
@@ -244,9 +262,8 @@ public class FacilityServiceImpl implements FacilityService {
 		cancelMap.put("fs_start", state.getFs_start());
 		cancelMap.put("fs_end", state.getFs_end());
 
-		
-		System.out.println("map에서 찾기"+cancelMap.get("f_id"));
-		
+		System.out.println("map에서 찾기" + cancelMap.get("f_id"));
+
 		if (facilityDao.getCancelmsgList(cancelMap) != null) {
 
 			// 1.취소하기
@@ -255,12 +272,11 @@ public class FacilityServiceImpl implements FacilityService {
 				// 2.쪽지 보내기
 				// cancelMap에 1.쪽지 유형 넣기 2.사유 넣기 3.받는 사람 목록(List<String>) 있음
 
-				//쪽지에 set하기
-				
-				//쪽지 받는 사람 목록				
+				// 쪽지에 set하기
+
+				// 쪽지 받는 사람 목록
 				facilityDao.getCancelmsgList(cancelMap);
-				
-				
+
 			}
 			throw new Exception("쪽지 발송 실패;대상 없음");
 

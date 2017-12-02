@@ -37,6 +37,8 @@ public interface FacilityDAO {
 	
 	public int cancelAllReservation (Map<String, Object> map) throws Exception;
 	
-	public void alterState (int f_id) throws Exception;
+	public void alterState_bad () throws Exception;
+
+	public void alterState_ok () throws Exception;
 
 }

@@ -34,20 +34,28 @@
 
 
 
-	<beans:bean id ="loginInteceptor"
+	<beans:bean id="loginInteceptor"
 
-		class="all.about.apartment.intercepter.LoginInteceptor"/>
-		
+		class="all.about.apartment.intercepter.LoginInteceptor" />
+
 	<beans:bean id="authInterceptor"
 		class="all.about.apartment.intercepter.AuthInterceptor" />
 
 	<beans:bean id="testInterceptor"
 		class="all.about.apartment.intercepter.testInterceptor" />
 
+	<beans:bean id="loginTestInteceptor"
+		class="all.about.apartment.intercepter.LoginTestInteceptor" />
 
-	<beans:bean id = "loginTestInteceptor"
-		class="all.about.apartment.intercepter.LoginTestInteceptor"/>
-		
+	<beans:bean id="Comm_reg_Inteceptor"
+		class="all.about.apartment.intercepter.Comm_reg_Inteceptor" />
+
+	<beans:bean id="Comm_feed_Inteceptor"
+		class="all.about.apartment.intercepter.Comm_feed_Inteceptor" />
+
+	<beans:bean id="FacilityInterceptor"
+		class="all.about.apartment.intercepter.FacilityInterceptor" />
+
 
 	<interceptors>
 		<interceptor>
@@ -64,7 +72,7 @@
 			<mapping path="/facility/reserveFacility" />
 			<beans:ref bean="authInterceptor" />
 		</interceptor>
-		
+
 		<interceptor>
 			<mapping path="/facility/checkReservation" />
 			<beans:ref bean="authInterceptor" />
@@ -91,18 +99,16 @@
 		</interceptor>
 
 
-    <interceptor>
-			<mapping path="/user/login"/>
-			<beans:ref bean="loginTestInteceptor"/>
+		<interceptor>
+			<mapping path="/user/login" />
+			<beans:ref bean="loginTestInteceptor" />
 		</interceptor>
 
 	</interceptors>
 	<context:component-scan base-package="all.about.apartment" />
 
 
-	<!-- 인터셉터 -->
-
-	<beans:bean id="FacilityInterceptor" class="all.about.apartment.intercepter.FacilityInterceptor"/>
+	<!-- 시설 -->
 	<interceptors>
 		<interceptor>
 			<mapping path="/facility/getSpot/{fr_id}" />
@@ -110,16 +116,23 @@
 		</interceptor>
 	</interceptors>
 
+	<!-- 커뮤니티 -->
+		<!-- 1.피드 보러가기 전에 커뮤니티 이용 등록 -->
+	<interceptors>
+		<interceptor>
+			<mapping path="/comm/checkFeed" />
+			<beans:ref bean="Comm_feed_Inteceptor" />
+		</interceptor>
+	</interceptors>
 
-	      <beans:bean id="Interceptor" class="all.about.apartment.intercepter.Interceptor"></beans:bean>
-            <interceptors>
-                  <interceptor>
-                        <mapping path="/facility/getSpot/{fr_id}"/> 
-                        <beans:ref bean="Interceptor"/>
-                  </interceptor>
-            </interceptors>
-	
+	<!-- 2.이미 등록된 경우 피드로 이동 -->
+	<interceptors>
+		<interceptor>
+			<mapping path="/comm/registerComm" />
+			<beans:ref bean="Comm_reg_Inteceptor" />
+		</interceptor>
+	</interceptors>
 
-	<task:annotation-driven/>
-	
+	<task:annotation-driven />
+
 </beans:beans>

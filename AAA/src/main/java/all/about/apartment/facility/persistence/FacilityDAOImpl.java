@@ -95,9 +95,16 @@ public class FacilityDAOImpl implements FacilityDAO {
 	}
 
 	@Override
-	public void alterState(int f_id) throws Exception {
+	public void alterState_ok () throws Exception {
 
-		session.update(namespace + ".alterState", f_id);
+		session.update(namespace + ".alterState_ok");
+
+	}
+	
+	@Override
+	public void alterState_bad () throws Exception {
+
+		session.update(namespace + ".alterState_bad");
 
 	}
 

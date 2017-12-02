@@ -244,11 +244,10 @@ public class FacilityRestController {
 			//두가지 작업을 트랜젝션으로 처리
 			//1.기간 내 예약을 취소
 			//2.취소자에 쪽지 발송
-
-			//3.시설 상태 변경 (예약)
-						
-			map.put("cancel_cnt", 12); 
+					
 			
+			//3.시설 상태 변경 (예약) ← 완료
+ 
 			entity = new ResponseEntity<Map<String, Object>>(map, HttpStatus.OK);
 			
 		} catch (Exception e) {

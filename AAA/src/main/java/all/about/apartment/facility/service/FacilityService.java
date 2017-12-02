@@ -46,7 +46,7 @@ public interface FacilityService {
 	public void cancelAllReservation (Map<String, Object> map) throws Exception;
 	
 	//스케쥴러
-	public void alterState (int f_id) throws Exception;
+	public void alterFacilityState () throws Exception;
 	
 	
 }

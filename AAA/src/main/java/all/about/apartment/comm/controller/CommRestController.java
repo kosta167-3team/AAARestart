@@ -10,6 +10,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -57,7 +58,7 @@ public class CommRestController {
 		System.out.println("레스트 컨트롤러 도착");
 		System.out.println(board.getCb_contents());
 		System.out.println(board.getCb_interest());
-		
+
 		ResponseEntity<Map<String, Object>> entity = null;
 
 		Map<String, Object> map = new HashMap<>();
@@ -70,12 +71,32 @@ public class CommRestController {
 		try {
 			service.insertCommBoard(board);
 
+			int cb_no = service.maxBoardNum();
+			board.setCb_no(cb_no);
 			map.put("board", board);
+
 			entity = new ResponseEntity<Map<String, Object>>(map, HttpStatus.OK);
 
 		} catch (Exception e) {
 			e.printStackTrace();
 			entity = new ResponseEntity<Map<String, Object>>(HttpStatus.BAD_REQUEST);
+		}
+
+		return entity;
+	}
+
+	@RequestMapping(value = "/deleteBoard/{cb_no}", method = RequestMethod.GET)
+	public ResponseEntity<String> deleteBoard(@PathVariable("cb_no") int cb_no) {
+
+		ResponseEntity<String> entity = null;
+
+		try {
+			service.deleteBoard(cb_no);
+			entity = new ResponseEntity<String>("success", HttpStatus.OK);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			entity = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
 
 		return entity;

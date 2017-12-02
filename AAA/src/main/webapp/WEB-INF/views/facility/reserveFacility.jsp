@@ -8,6 +8,20 @@
 <html>
 <head>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<style type="text/css">
+#f_date{
+margin-left: 17px;
+}
+
+#f_date a{
+font-weight: bold;
+}
+
+#f_date ul li p{
+font-weight: bold;
+font-size: 14px;
+}
+</style>
 <title>Viral | Pages | Sidebar Left</title>
 <meta charset="utf-8">
 <meta name="viewport"
