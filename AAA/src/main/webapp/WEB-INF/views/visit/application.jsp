@@ -123,26 +123,15 @@ Licence URI: http://www.os-templates.com/template-terms
 						<label for="url">방문 예정일</label> <input type="date" name="v_date"
 							id="" value="" size="15">
 					</div>
-					<div class="one_third">
+					<div class="one_third first">
 						<!-- 동 -->
-						<select name="dong" id="dong" class="dong">
-							<option value="#">--동--</option>
-							<option value="101">101</option>
-							<option value="102">102</option>
-							<option value="103">103</option>
-							<option value="104">104</option>
-							<option value="105">105</option>
-						</select>
-						<!-- 호 -->
-						<select name="ho" id="ho" class="ho">
-							<option value="#">--호--</option>
-							<option value="101">101</option>
-							<option value="102">102</option>
-							<option value="103">103</option>
-							<option value="104">104</option>
-							<option value="105">105</option>
-							<option value="202">202</option>
-						</select>
+						<label for="url">입주민 주소</label> 
+						<input type="text" name="dong" placeholder="동을 입력하세요" size="15">
+						
+					</div>
+					<div class="one_third">
+						<label for="url">&nbsp;</label> 
+						<input type="text" name="ho" placeholder="호수를 입력하세요" size="15">	
 					</div>
 					<div class="block clear">
 						<label for="comment"> 방문 사유 </label>

@@ -179,7 +179,7 @@ Licence URI: http://www.os-templates.com/template-terms
             <%--  <a href='/bid/bidmodify?bid_id=${BidProductVO.bid_id }'>수정
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a> 
              <a href='/bid/bidremove?bid_id=${BidProductVO.bid_id }'>삭제</a> --%>
-          	
+
           	</li>
      		  </c:forEach> 
           </ul>

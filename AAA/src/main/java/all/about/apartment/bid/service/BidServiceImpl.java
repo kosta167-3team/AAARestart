@@ -11,14 +11,14 @@ import org.springframework.transaction.annotation.Transactional;
 import all.about.apartment.bid.domain.BidProductVO;
 import all.about.apartment.bid.domain.FileVO;
 import all.about.apartment.bid.persistence.BidDAO;
+import all.about.apartment.bid.persistence.BiddDAO;
 
 @Service
-public class BidServiceImpl implements BidService {
+public class BidServiceImpl implements BiddService {
 	
 	@Inject
-	private BidDAO dao;
+	private BiddDAO dao;
 
-	@Transactional
 	@Override
 	public void regist(BidProductVO bid) throws Exception {
 		dao.create(bid);
@@ -60,10 +60,10 @@ public class BidServiceImpl implements BidService {
 	public void readInsert(HashMap<String, String> bid_id) throws Exception {
 		// TODO Auto-generated method stub
 		dao.readInsert(bid_id);
+
 		
 	}
 
-	
 	@Override
 	public void modify(BidProductVO bid_id) throws Exception {
 		dao.update(bid_id);

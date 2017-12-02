@@ -7,9 +7,9 @@ import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
 
+import all.about.apartment.publicDomain.Criteria;
 import all.about.apartment.publicDomain.ResidentVO;
 import all.about.apartment.visit.domain.ApplicationVO;
-import all.about.apartment.visit.domain.Criteria;
 import all.about.apartment.visit.dto.ApplicationDTO;
 import all.about.apartment.visit.persistence.VisitDAO;
 
@@ -59,7 +59,12 @@ public class VisitServiceImpl implements VisitService {
 	}
 
 	@Override
-	public List<ApplicationVO> adminApplicationList() {
-		return dao.adminListPage();
+	public List<ApplicationVO> adminApplicationList(String selectedDate) {
+		return dao.adminListPage(selectedDate);
 	}
+
+	/*@Override
+	public List<ApplicationVO> searchApplication(String selectedDate) {
+		return dao.searchApplication(selectedDate);
+	}*/
 }

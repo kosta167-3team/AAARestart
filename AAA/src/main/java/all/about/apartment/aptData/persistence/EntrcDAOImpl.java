@@ -41,6 +41,12 @@ public class EntrcDAOImpl implements EntrcDAO {
 	public List<ApartmentVO> aptList() throws Exception {
 		return session.selectList(namespace+".getAptList");
 	}
+
+	@Override
+	public void updataLocation(ApartmentVO vo) throws Exception {
+		session.update(namespace+".updataLocation", vo);
+		
+	}
 	
 
 }
