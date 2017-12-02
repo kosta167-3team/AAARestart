@@ -93,7 +93,6 @@
 			<mapping path="/" />
 			<beans:ref bean="testInterceptor" />
 		</interceptor>
-
 	</interceptors>
 
 	<context:component-scan base-package="all.about.apartment" />
