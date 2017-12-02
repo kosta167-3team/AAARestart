@@ -160,6 +160,7 @@ Licence URI: http://www.os-templates.com/template-terms
           <ul class="nospace_clear">
             <c:forEach var="BidProductVO" items="${listAll }">                     
       		
+
             <li class="one_quarter" name="imageList"><a href="#">
             <img src="/bid/displayFile?fileName=${BidProductVO.bid_filename }" 
             id="bid_filename"  alt="" width="800" height="800"></a>
@@ -179,6 +180,7 @@ Licence URI: http://www.os-templates.com/template-terms
             <%--  <a href='/bid/bidmodify?bid_id=${BidProductVO.bid_id }'>수정
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a> 
              <a href='/bid/bidremove?bid_id=${BidProductVO.bid_id }'>삭제</a> --%>
+
 
           	</li>
      		  </c:forEach> 

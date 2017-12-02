@@ -23,7 +23,6 @@
 	<definition name="/main" extends="base_layout">
 		<put-attribute name="body" value="/WEB-INF/views/main_body.jsp"/>
 	</definition>
-	
 
 	<definition name="/visit/application" extends="base_layout">
 		<put-attribute name="body" value="/WEB-INF/views/visit/application.jsp"/>

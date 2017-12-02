@@ -20,6 +20,11 @@ public class BidServiceImpl implements BiddService {
 	private BiddDAO dao;
 
 	@Override
+
+	public BidProductVO bidDetail(String bid_id) throws Exception{
+		return dao.bidDetail(bid_id);
+}
+
 	public void regist(BidProductVO bid) throws Exception {
 		dao.create(bid);
 		
@@ -93,4 +98,5 @@ public class BidServiceImpl implements BiddService {
 		return dao.read2(sort);
 	}
 
+	
 }

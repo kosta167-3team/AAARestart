@@ -10,6 +10,7 @@ Author URI: http://www.os-templates.com/
 Licence: Free to use under our free template licence terms
 Licence URI: http://www.os-templates.com/template-terms
 -->
+
 <style>
 	li {
 		font-size: 18px;
@@ -149,7 +150,83 @@ $(function () {
   </header>
 </div>
 
-
+<div class="wrapper row0">
+  <div id="topbar" class="clear"> 
+    <!-- ################################################################################################ -->
+    <div class="fl_left">
+      <ul class="nospace inline">
+<!--         <li><i class="fa fa-phone"></i> +00 (123) 456 7890</li>
+        <li><i class="fa fa-envelope-o"></i> info@domain.com</li> -->
+      </ul>
+    </div>
+   <div class="fl_right">
+      <ul class="faico clear">
+        <li><a  href="#" id="login"></a></li>
+        <li><a  href="#">마이페이지</a></li>
+        <li><a  href="#" id ="msg"></a></li>
+      </ul>
+    </div>
+    <!-- ################################################################################################ -->
+  </div>
+</div>
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<div class="wrapper row1">
+  <header id="header" class="clear"> 
+    <!-- ################################################################################################ -->
+    <div id="logo" class="fl_left">
+      <h1><a href="/"><img src="/resources/images/main/main_log_mini.png" alt="" class="main_log_img"></a></h1>
+    </div>
+    <nav id="mainav" class="fl_right">
+      <ul class="clear">
+        <li><a href="/">홈</a></li>
+        
+        <li class="active"><a class="drop" href="#">관리비</a>
+          <ul>
+            <li><a href="/">Gallery</a></li>
+            <li class="active"><a class="drop" href="/bill/full-width">관리비 조회</a>
+            	<ul>
+            		<li> <a href="/billScore/billScoreBody">관리비 성적표</a></li>
+            	</ul>
+            </li>
+            <li><a href="/">관리비 1</a></li>
+            <li><a href="/">관리비 2</a></li>
+            <li><a href="/">관리비 3</a></li>
+          </ul>
+        </li>
+         <li class="active"><a class="drop" href="#">방문객</a>
+          <ul>
+            <li><a href="/visit/application">방문 신청</a></li>
+            <li><a href="/visit/applicationList">방문 예약 내역 조회</a></li>
+            <li><a href="/visit/visitManagement">방문 예약 내역</a></li>
+          </ul>
+        </li>
+         <li class="active"><a class="drop" href="#">시설</a>
+          <ul>
+            <li><a href="/">시설 예약</a></li>
+            <li><a href="/">시설 예약 조회</a></li>
+          </ul>
+        </li>
+        <li><a class="drop" href="#">항의</a>
+          <ul>
+            <li><a href="/">항의하기</a></li>
+            <li><a href="/">항의..</a></li>
+          </ul>
+        </li>
+        <li><a href="#">커뮤니티</a></li>
+        <li><a href="#">부동산</a></li>
+        <li><a class="drop" href="#">경매</a>
+          <ul>
+            <li><a href="/bidd/bidDetail">경매 물품보기</a></li>
+            <li><a href="/">내 입찰 내역 조회</a></li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+    <!-- ################################################################################################ -->
+  </header>
+</div>
 	<div class="wrapper row0">
 		<div id="topbar" class="clear">
 			<!-- ################################################################################################ -->
@@ -173,7 +250,8 @@ $(function () {
 	<!-- ################################################################################################ -->
 	<!-- ################################################################################################ -->
 	<!-- ################################################################################################ -->
-	
+
+
 	<!-- ##################################################################################################### -->
 	<!-- Modal  -->
 	<div class="modal fade messageListmodal" tabindex="-1" role="dialog"
