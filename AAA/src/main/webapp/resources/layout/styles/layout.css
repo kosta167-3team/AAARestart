@@ -60,7 +60,7 @@ File: Layout CSS
 
 /* Comments */
 #comments ul{margin:0 0 40px 0; padding:0; list-style:none;}
-#comments li{margin:0 0 10px 0; padding:15px;}
+#comments li{margin:1 0 10px 0; }
 #comments .avatar{float:right; margin:0 0 10px 10px; padding:3px; border:1px solid;}
 #comments address{font-weight:bold;}
 #comments time{font-size:smaller;}
