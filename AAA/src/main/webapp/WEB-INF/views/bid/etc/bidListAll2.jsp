@@ -1,13 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%-- <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
-     <%@page import="java.util.List"%>
-     <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-     
-     <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%> 
 
- 
 <!DOCTYPE html>
 <!--
 Template Name: Viral
@@ -17,25 +10,6 @@ Licence: Free to use under our free template licence terms
 Licence URI: http://www.os-templates.com/template-terms
 -->
 <html>
-
-	<style>
-.fileDrop {
-  width: 80%;
-  height: 100px;
-  border: 1px dotted gray;
-  background-color: lightslategrey;
-  margin: auto;
-  
-  
- 
-}
-
-.error{
-      color: #ff0000;
-   }
-</style>
-
-
 <head>
 <title>Viral | Pages | Sidebar Left</title>
 <meta charset="utf-8">
@@ -134,68 +108,34 @@ Licence URI: http://www.os-templates.com/template-terms
     <!-- ################################################################################################ -->
     <div class="sidebar one_quarter first"> 
       <!-- ################################################################################################ -->
-      <h6>경매</h6>
-       <nav class="sdb_holder">
+      <h6>Lorem ipsum dolor</h6>
+      <nav class="sdb_holder">
         <ul>
-          <li><a href="/bid/bidListAll">경매 리스트</a></li>
-          <li><a href="/bid/bidRegister">경매 등록</a></li>
+          <li><a href="#">Navigation - Level 1</a></li>
+          <li><a href="#">Navigation - Level 1</a>
             
-         
-          <li><a href="/bid/bidRead">경매 조회</a></li>
+          <li><a href="#">Navigation - Level 1</a></li>
         </ul>
       </nav>
-     
       
+     
       <!-- ################################################################################################ -->
     </div>
     <!-- ################################################################################################ -->
     <!-- ################################################################################################ -->
     <div class="content three_quarter"> 
       <!-- ################################################################################################ -->
-		
-
-	
-      <div id="comments">
-
-        <h2>경매 등록</h2>
-        <form:form commandName="BidProductVO" action="bidRegister" method="post" enctype="multipart/form-data">
-			 <div class="form-group">
-			 	<input type='file' name='file'>
-			</div> 
-
-         <%--  <div class="one_third first">
-            <label for="name">판매자 <span>*</span></label>
-            <form:input type="text" path="bid_seller" name="bid_seller" id="name" value="" size="22"/>
-          	<form:errors path="bid_seller" cssClass="error"/>
-          </div> --%>
-          <div class="one_third first">
-            <label for="email">상품이름 </label>
-            <form:input type="text" path="bid_name" name="bid_name" id="email" value="" size="22"/>
-            <form:errors path="bid_name" cssClass="error"/>
-          </div>
-          <div class="one_third">
-            <label for="url">입찰 시작가</label>
-            <input type="text" name="bid_start" id="url" value="" size="22"/>
-            
-          </div>
-          <div class="one_third">
-            <label for="url">경매 시간</label>
-            <input type="text" name="bid_time" id="url" value="" size="22"/>
-            
-          </div>
-          
-           
-          <div class="block clear">
-            <label for="comment">내용</label>
-            <form:textarea name="bid_content" path="bid_content" id="comment" cols="25" rows="10"/></textarea>
-            <form:errors path="bid_content" cssClass="error"/>
-          </div> 
-         
-          <button type="submit" class="btn btn-primary">등록</button>
-        </form:form>
-      </div>
+      <h1>&lt;h1&gt; to &lt;h6&gt; - Headline Colour and Size Are All The Same</h1>
+    
       
-       
+      
+      <img class="imgl borderedbox inspace-5" src="/resources/images/main/imgl.gif" alt="">
+      <p>This is a W3C compliant free website template from <a href="http://www.os-templates.com/" title="Free Website Templates">OS Templates</a>. For full terms of use of this template please read our <a href="http://www.os-templates.com/template-terms">website template licence</a>.</p>
+      <p>You can use and modify the template for both personal and commercial use. You must keep all copyright information and credit links in the template and associated files. For more website templates visit our <a href="http://www.os-templates.com/">free website templates</a> section.</p>
+     
+     
+      
+      
       <!-- ################################################################################################ -->
     </div>
     <!-- ################################################################################################ -->
@@ -273,11 +213,5 @@ Licence URI: http://www.os-templates.com/template-terms
 <script src="/resources/layout/scripts/jquery.min.js"></script>
 <script src="/resources/layout/scripts/jquery.backtotop.js"></script>
 <script src="/resources/layout/scripts/jquery.mobilemenu.js"></script>
-
- 
-
-
-
-</script>
 </body>
-</html>
+</html> --%>

@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import all.about.apartment.bill.domain.BillGradeSeletor;
 import all.about.apartment.bill.domain.EnergyVO;
 import all.about.apartment.bill.domain.Personal_mgmt_exVO;
 import all.about.apartment.bill.service.BillService;
@@ -92,6 +93,16 @@ public class BillScoreController {
 				month = 1;
 			}					
 		}
+		
+		BillGradeSeletor elecGrade = new BillGradeSeletor(service);
+		BillGradeSeletor heatGrade = new BillGradeSeletor(service);
+		elecGrade.setEnergyName("elec");
+		heatGrade.setEnergyName("heat");
+		
+		System.out.println(elecGrade.getC() + " : " + elecGrade.getA());
+		model.addAttribute("elecGradeTable", elecGrade);
+		model.addAttribute("heatGradeTable", heatGrade);
+		
 		model.addAttribute("monthMap", monthMap);
 		model.addAttribute("oneYearEnergyList", oneYearEnergyList);
 		
@@ -172,9 +183,27 @@ public class BillScoreController {
 			}					
 		}
 		System.out.println(monthMap);
+		
+		
+		
+		
 		model.addAttribute("monthMap", monthMap);
 		model.addAttribute("oneYearEnergyList", oneYearEnergyList);
 		
+		
+		
+		
+		BillGradeSeletor elecGrade = new BillGradeSeletor(service);
+		BillGradeSeletor heatGrade = new BillGradeSeletor(service);
+		elecGrade.setEnergyName("elec");
+		heatGrade.setEnergyName("heat");
+		
+		System.out.println(elecGrade.getC() + " : " + elecGrade.getA());
+		
+		
+		
+		model.addAttribute("elecGradeTable", elecGrade);
+		model.addAttribute("heatGradeTable", heatGrade);
 		
 		return "/billScore/billScoreBody";
 	}

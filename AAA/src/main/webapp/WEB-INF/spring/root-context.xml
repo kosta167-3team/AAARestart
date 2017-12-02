@@ -17,6 +17,8 @@
 	</bean>
 	
 
+	
+
 	<!-- Root Context: defines shared resources visible to all other web components -->
 
 	<bean id="dataSource"
@@ -70,4 +72,8 @@
 		<property name="suffix" value=".jsp" />
 		<property name="order" value="2" />
 	</bean>
+	
+	
+	
+	
 </beans>

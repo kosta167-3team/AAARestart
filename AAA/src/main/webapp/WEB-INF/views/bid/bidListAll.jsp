@@ -125,40 +125,63 @@ Licence URI: http://www.os-templates.com/template-terms
   <main class="container clear"> 
     <!-- main body -->
     <!-- ################################################################################################ -->
-    <div class="sidebar one_quarter first"> 
-      <!-- ################################################################################################ -->
+     <div class="sidebar one_quarter first"> 
+     
       <h6> 경매 </h6>
       <nav class="sdb_holder">
         <ul>
           <li><a href="/bid/bidListAll">경매 리스트</a></li>
           <li><a href="/bid/bidRegister">경매 등록</a></li>
-            
-          <li><a href="#">경매수정</a></li>
           <li><a href="/bid/bidRead">경매 조회</a></li>
         </ul>
       </nav>
       
      
-      <!-- ################################################################################################ -->
-    </div>
+     
+    </div> 
     <!-- ################################################################################################ -->
      <div class="content three_quarter">
       <!-- ################################################################################################ -->
       <div id="gallery">
         <figure>
           <header class="heading">경매 리스트</header>
-          <!--    <ul class="mailbox-attachments clearfix uploadedList">
-    </ul>   -->
-    
-   
-          <ul class="nospace clear">
+        	<!-- <select id="select" size="1" onChange="setValues();">
+        		<option value="1">낮은가격순</option>
+        		<option value="2">날짜 순</option>
+        	</select><br><br> -->
+        	
+        	<!-- <input id="orderprice" type="button" value="낮은가격 순"> -->
+        	<a href='#' class="sort" >가격 순</a>
+        	<a href='#' class="sort" >날짜 순</a>
+        
+         <!-- onclick="return price()" -->
+         <br><br>
+         
+          <ul class="nospace_clear">
             <c:forEach var="BidProductVO" items="${listAll }">                     
       		
-            <li class="one_quarter"><a href="#">
-            <input type="hidden" value="${BidProductVO.bid_id }">
-            <img src="/bid/displayFile?fileName=${BidProductVO.bid_filename }" alt="" width="800" height="400"></a>
-            <p>판매자 : ${BidProductVO.bid_seller }</p>
-            <p>상품 이름 : ${BidProductVO.bid_name }
+
+            <li class="one_quarter" name="imageList"><a href="#">
+            <img src="/bid/displayFile?fileName=${BidProductVO.bid_filename }" 
+            id="bid_filename"  alt="" width="800" height="800"></a>
+            <p id="bid_seller">판매자 : ${BidProductVO.bid_seller }</p>
+            <p id="bid_name">상품 이름 : ${BidProductVO.bid_name }</p>
+            <p id="bid_start" >가격 : ${BidProductVO.bid_start }</p>            
+            
+            <input type="button" value="수정" class="button"
+            onClick="location.href='/bid/bidmodify?bid_id=${BidProductVO.bid_id }'">
+            
+            &nbsp;&nbsp;&nbsp;
+            
+            <input type="button" value="삭제" class="button"
+            onClick="location.href='/bid/bidremove?bid_id=${BidProductVO.bid_id }'">
+
+
+            <%--  <a href='/bid/bidmodify?bid_id=${BidProductVO.bid_id }'>수정
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a> 
+             <a href='/bid/bidremove?bid_id=${BidProductVO.bid_id }'>삭제</a> --%>
+
+
           	</li>
      		  </c:forEach> 
           </ul>
@@ -265,8 +288,108 @@ Licence URI: http://www.os-templates.com/template-terms
        max-height: 800px; 
        overflow: auto;       
      } 
+     .button{
+  background:#FF8000;
+  color:#fff;
+  border:none;
+  position:relative;
+  height:20px;
+  font-size:1em;
+  padding:0 1em;
+  cursor:pointer;
+  transition:800ms ease all;
+  outline:none;
+  display:inline;
+}
+.button:hover{
+  background:#fff;
+  color:#FF8000;
+}
+.button:before,button:after{
+  content:'';
+  position:absolute;
+  top:0;
+  right:0;
+  height:2px;
+  width:0;
+  background: #1AAB8A;
+  transition:400ms ease all;
+}
+.button:after{
+  right:inherit;
+  top:inherit;
+  left:0;
+  bottom:0;
+}
+.button:hover:before,button:hover:after{
+  width:40%;
+  transition:800ms ease all;
+}
+  	
+  	li.one_quarter{
+  		border-bottom:1px solid #c8c8c8;
+  		border-top:1px solid #c8c8c8;
+  		border-left:1px solid #c8c8c8;
+  		border-right:1px solid #c8c8c8;
+  		padding: 7px;
+  	}
+  	
+ #bid_filename{
+ 	width:200px;
+ 	height:150px;
+ }
   	
     </style>
+    
+    <script>
+    $(".sort").on("click",function(){
+    	var sort= $(this).html();
+    	var obj = new Object();
+    	obj.sort = $(this).html();
+    	alert(sort);
+    	$.ajax({
+    		type:"post",
+    		url:"/bid/bidread2",
+    		dataType:"json",
+    		data: obj,
+    		
+    		success:function(data){
+    			var html="";
+    			$("li[name=imageList]").remove();
+    			$(data).each(function(index,item){
+    				html+='<li class = "one_quarter" name="imageList">';
+    				html+='<a> <img src="/bid/displayFile?fileName='+item.bid_filename+
+    						'" id="bid_filename" alt="" width="800" height="400"></a>';
+    				html+='<p> 판매자 : ' + item.bid_seller  + '</p>';
+    				html+='<p> 상품이름 : ' + item.bid_name  + '</p>';
+    				html+='<p> 상품가격 : ' + item.bid_start + '</p>';
+    				html+='<input type="button" value="수정" class="button" id="gg">';
+    				html+='&nbsp;&nbsp;&nbsp;&nbsp'
+    				html+='<input type="button" value="삭제" class="button" ></li>';
+    			});
+    			$('.nospace_clear').append(html);
+    		}
+    	});   		
+    });
+    
+    
+    
+    $(".nospace_clear").on("click",'#gg',function(){
+    	console.log("gg11");
+    	location.href('/bid/bidmodify?bid_id=${BidProductVO.bid_id}');
+    });
+    
+  	/* function link(){
+  		
+  		location.replace('/bid/bidmodify?bid_id=${BidProductVO.bid_id}');
+    	 location.href='/bid/bidmodify?bid_id=${BidProductVO.bid_id}
+    	 
+    }  */
+
+      
+    </script>
+    
+ 
     
 <!--
 <script id="templateAttach" type="text/x-handlebars-template">

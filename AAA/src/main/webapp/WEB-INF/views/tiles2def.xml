@@ -23,7 +23,7 @@
 	<definition name="/main" extends="base_layout">
 		<put-attribute name="body" value="/WEB-INF/views/main_body.jsp"/>
 	</definition>
-	
+
 	<definition name="/visit/application" extends="base_layout">
 		<put-attribute name="body" value="/WEB-INF/views/visit/application.jsp"/>
 	</definition>
@@ -39,8 +39,9 @@
 	<definition name="/visit/visitManagement" extends="base_layout">
 		<put-attribute name="body" value="/WEB-INF/views/visit/admin/visitManagement.jsp"/>
 	</definition>
-	
+
 	<definition name="/real_estate" extends="base_layout">
+
 		<put-attribute name="body" value="/WEB-INF/views/real_estate/res_body.jsp"/>
 	</definition>
 

@@ -126,7 +126,7 @@ Licence URI: http://www.os-templates.com/template-terms
           <li><a href="/bid/bidListAll">경매 리스트</a></li>
           <li><a href="/bid/bidRegister">경매 등록</a></li>
             
-          <li><a href="#">경매수정</a></li>
+       
           <li><a href="/bid/bidRead">경매 조회</a></li>
         </ul>
       </nav>
@@ -155,14 +155,14 @@ Licence URI: http://www.os-templates.com/template-terms
 					</thead>
 					<tbody>
 						<c:forEach var="BidProductVO" items="${list }">
-							<tr>
+							<tr id="${BidProductVO.bid_id }">
 
 								<td>${BidProductVO.bid_seller }</td>
 								<td>${BidProductVO.bid_name }</td>
 								<td>${BidProductVO.bid_start }</td>
 								<td>${BidProductVO.bid_date }</td>
-								<td>${BidProductVO.bid_time }</td>
-								<td>
+								<td >${BidProductVO.bid_time }</td>
+								<td >
 									<c:set var="data" value="${BidProductVO.bid_evaluation }" /> <c:choose>
 										<c:when test="${data != null}">
             								${BidProductVO.bid_evaluation }

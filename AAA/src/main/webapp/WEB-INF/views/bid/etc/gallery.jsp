@@ -1,13 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
-     <%@page import="java.util.List"%>
-     <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-     
-     <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%> 
+     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>  
 
- 
+
+    
+
 <!DOCTYPE html>
 <!--
 Template Name: Viral
@@ -17,27 +16,8 @@ Licence: Free to use under our free template licence terms
 Licence URI: http://www.os-templates.com/template-terms
 -->
 <html>
-
-	<style>
-.fileDrop {
-  width: 80%;
-  height: 100px;
-  border: 1px dotted gray;
-  background-color: lightslategrey;
-  margin: auto;
-  
-  
- 
-}
-
-.error{
-      color: #ff0000;
-   }
-</style>
-
-
 <head>
-<title>Viral | Pages | Sidebar Left</title>
+<title>Viral | Pages | Gallery</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <link href="/resources/layout/styles/layout.css" rel="stylesheet" type="text/css" media="all">
@@ -76,16 +56,16 @@ Licence URI: http://www.os-templates.com/template-terms
   <header id="header" class="clear"> 
     <!-- ################################################################################################ -->
     <div id="logo" class="fl_left">
-     <h1><a href="/"><img src="/resources/images/main/main_log_mini.png" alt="" class="main_log_img"></a></h1>
+      <h1><a href="/"><img src="/resources/images/main/main_log_mini.png" alt="" class="main_log_img"></a></h1>
     </div>
     <nav id="mainav" class="fl_right">
       <ul class="clear">
         <li><a href="/resources/index.html">Home</a></li>
         <li class="active"><a class="drop" href="#">Pages</a>
           <ul>
-            <li><a href="gallery.html">Gallery</a></li>
+            <li class="active"><a href="gallery.html">Gallery</a></li>
             <li><a href="full-width.html">Full Width</a></li>
-            <li class="active"><a href="sidebar-left.html">Sidebar Left</a></li>
+            <li><a href="sidebar-left.html">Sidebar Left</a></li>
             <li><a href="sidebar-right.html">Sidebar Right</a></li>
             <li><a href="basic-grid.html">Basic Grid</a></li>
           </ul>
@@ -119,7 +99,7 @@ Licence URI: http://www.os-templates.com/template-terms
         <li><a href="#">Home</a></li>
         <li><a href="#">Lorem</a></li>
         <li><a href="#">Ipsum</a></li>
-        <li><a href="#">Sidebar Left</a></li>
+        <li><a href="#">Gallery</a></li>
       </ul>
       <!-- ################################################################################################ -->
     </div>
@@ -132,72 +112,51 @@ Licence URI: http://www.os-templates.com/template-terms
   <main class="container clear"> 
     <!-- main body -->
     <!-- ################################################################################################ -->
-    <div class="sidebar one_quarter first"> 
+    <div class="content"> 
       <!-- ################################################################################################ -->
-      <h6>경매</h6>
-       <nav class="sdb_holder">
-        <ul>
-          <li><a href="/bid/bidListAll">경매 리스트</a></li>
-          <li><a href="/bid/bidRegister">경매 등록</a></li>
+      <div id="gallery">
+        <figure>
+          <header class="heading">Gallery Title Goes Here</header>
+          <ul class="nospace clear">
+            <c:forEach var="BidProductVO" items="${listAll }">                     
+      		
+            <li class="one_quarter" name="imageList"><a href="#">
+            <img src="/bid/displayFile?fileName=${BidProductVO.bid_filename }" 
+            id="bid_filename"  ></a>
+            <p id="bid_seller">판매자 : ${BidProductVO.bid_seller }</p>
+            <p id="bid_name">상품 이름 : ${BidProductVO.bid_name }</p>
+            <p id="bid_start" >가격 : ${BidProductVO.bid_start }</p>            
             
-         
-          <li><a href="/bid/bidRead">경매 조회</a></li>
-        </ul>
-      </nav>
-     
-      
-      <!-- ################################################################################################ -->
-    </div>
-    <!-- ################################################################################################ -->
-    <!-- ################################################################################################ -->
-    <div class="content three_quarter"> 
-      <!-- ################################################################################################ -->
-		
-
-	
-      <div id="comments">
-
-        <h2>경매 등록</h2>
-        <form:form commandName="BidProductVO" action="bidRegister" method="post" enctype="multipart/form-data">
-			 <div class="form-group">
-			 	<input type='file' name='file'>
-			</div> 
-
-         <%--  <div class="one_third first">
-            <label for="name">판매자 <span>*</span></label>
-            <form:input type="text" path="bid_seller" name="bid_seller" id="name" value="" size="22"/>
-          	<form:errors path="bid_seller" cssClass="error"/>
-          </div> --%>
-          <div class="one_third first">
-            <label for="email">상품이름 </label>
-            <form:input type="text" path="bid_name" name="bid_name" id="email" value="" size="22"/>
-            <form:errors path="bid_name" cssClass="error"/>
-          </div>
-          <div class="one_third">
-            <label for="url">입찰 시작가</label>
-            <input type="text" name="bid_start" id="url" value="" size="22"/>
+            <input type="button" value="수정" class="button"
+            onClick="location.href='/bid/bidmodify?bid_id=${BidProductVO.bid_id }'">
             
-          </div>
-          <div class="one_third">
-            <label for="url">경매 시간</label>
-            <input type="text" name="bid_time" id="url" value="" size="22"/>
+            &nbsp;&nbsp;&nbsp;
             
-          </div>
-          
-           
-          <div class="block clear">
-            <label for="comment">내용</label>
-            <form:textarea name="bid_content" path="bid_content" id="comment" cols="25" rows="10"/></textarea>
-            <form:errors path="bid_content" cssClass="error"/>
-          </div> 
-         
-          <button type="submit" class="btn btn-primary">등록</button>
-        </form:form>
+            <input type="button" value="삭제" class="button"
+            onClick="location.href='/bid/bidremove?bid_id=${BidProductVO.bid_id }'">
+
+
+            <%--  <a href='/bid/bidmodify?bid_id=${BidProductVO.bid_id }'>수정
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a> 
+             <a href='/bid/bidremove?bid_id=${BidProductVO.bid_id }'>삭제</a> --%>
+          	
+          	</li>
+     		  </c:forEach> 
+            
+            
+            
+            
+            
+            
+          </ul>
+          <figcaption>Gallery Description Goes Here</figcaption>
+        </figure>
       </div>
-      
-       
       <!-- ################################################################################################ -->
-    </div>
+      <!-- ################################################################################################ -->
+      
+      <!-- ################################################################################################ -->
+    </div>mai
     <!-- ################################################################################################ -->
     <!-- / main body -->
     <div class="clear"></div>
@@ -274,10 +233,13 @@ Licence URI: http://www.os-templates.com/template-terms
 <script src="/resources/layout/scripts/jquery.backtotop.js"></script>
 <script src="/resources/layout/scripts/jquery.mobilemenu.js"></script>
 
+<style>
+
+#bid_filename{
+ 	width:150px;
+ 	height:100px;
+ }
  
-
-
-
-</script>
+</style>
 </body>
 </html>
