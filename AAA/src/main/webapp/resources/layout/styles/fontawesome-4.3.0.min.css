@@ -2065,7 +2065,7 @@ keyframes fa-spin { 0%{
 }
 
 .fa-area-chart:before {
-	content: "\f1fe"
+	content: url("/resource/images/main/bill.png")
 }
 
 .fa-pie-chart:before {

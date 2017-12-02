@@ -155,6 +155,7 @@ Licence URI: http://www.os-templates.com/template-terms
             <c:forEach var="BidProductVO" items="${listAll }">                     
       		
             <li class="one_quarter"><a href="#">
+            <input type="hidden" value="${BidProductVO.bid_id }">
             <img src="/bid/displayFile?fileName=${BidProductVO.bid_filename }" alt="" width="800" height="400"></a>
             <p>판매자 : ${BidProductVO.bid_seller }</p>
             <p>상품 이름 : ${BidProductVO.bid_name }

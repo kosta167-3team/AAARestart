@@ -61,14 +61,14 @@
     <select id="adminListPage" parameterType="String" resultType="ApplicationVO">
             <![CDATA[
                    select * from visit_reservation                 
-                   where v_state in ('미확인', '승인', '거부') and v_date = #{selectedDate}
+                   where v_state in ('미확인', '승인') and v_date = #{selectedDate} and v_check='X'
                    order by v_date desc
             ]]>
 	</select>
 	
 	<select id="searchApplication" parameterType="String" resultType="ApplicationVO">
 		select * from visit_reservation
-		where v_date = #{selectedDate}
+		where v_date = #{selectedDate} and v_check = 'X'
 	</select>
 </mapper>  
 

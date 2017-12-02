@@ -7,9 +7,9 @@ import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
 
+import all.about.apartment.publicDomain.Criteria;
 import all.about.apartment.publicDomain.ResidentVO;
 import all.about.apartment.visit.domain.ApplicationVO;
-import all.about.apartment.visit.domain.Criteria;
 import all.about.apartment.visit.dto.ApplicationDTO;
 import all.about.apartment.visit.persistence.VisitDAO;
 
