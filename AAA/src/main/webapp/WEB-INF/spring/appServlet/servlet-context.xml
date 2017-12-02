@@ -9,8 +9,9 @@
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
-	<!-- DispatcherServlet Context: defines this servlet's request-processing 
-		infrastructure -->
+
+	<!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure -->
+
 
 	<!-- Enables the Spring MVC @Controller programming model -->
 	<annotation-driven />
@@ -33,9 +34,7 @@
 	<context:component-scan base-package="all.about.apartment" />
 
 
-
 	<beans:bean id="loginInteceptor"
-
 		class="all.about.apartment.intercepter.LoginInteceptor" />
 
 	<beans:bean id="authInterceptor"
@@ -94,9 +93,8 @@
 			<mapping path="/" />
 			<beans:ref bean="testInterceptor" />
 		</interceptor>
-
-
 	</interceptors>
+
 	<context:component-scan base-package="all.about.apartment" />
 
 	<interceptors>

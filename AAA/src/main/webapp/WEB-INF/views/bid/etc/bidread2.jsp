@@ -1,6 +1,10 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-
+<%-- <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+     <%@page import="java.util.List"%>
+     <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+ 
 <!DOCTYPE html>
 <!--
 Template Name: Viral
@@ -10,12 +14,24 @@ Licence: Free to use under our free template licence terms
 Licence URI: http://www.os-templates.com/template-terms
 -->
 <html>
+
+	<style>
+.fileDrop {
+  width: 80%;
+  height: 100px;
+  border: 1px dotted gray;
+  background-color: lightslategrey;
+  margin: auto;
+  
+}
+</style>
+
+
 <head>
-<title>AAA</title>
+<title>Viral | Pages | Sidebar Left</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-
-<link href="/resources/layout/styles/layout.css" rel="stylesheet" >
+<link href="/resources/layout/styles/layout.css" rel="stylesheet" type="text/css" media="all">
 </head>
 <body id="top">
 <!-- ################################################################################################ -->
@@ -32,10 +48,13 @@ Licence URI: http://www.os-templates.com/template-terms
     </div>
     <div class="fl_right">
       <ul class="faico clear">
-
-        <li><a  href="/user/login">로그인</a></li>
-        <li><a  href="#">마이페이지</a></li>
-        <li><a  href="#"></a></li>
+        <li><a class="faicon-facebook" href="#"><i class="fa fa-facebook"></i></a></li>
+        <li><a class="faicon-pinterest" href="#"><i class="fa fa-pinterest"></i></a></li>
+        <li><a class="faicon-twitter" href="#"><i class="fa fa-twitter"></i></a></li>
+        <li><a class="faicon-dribble" href="#"><i class="fa fa-dribbble"></i></a></li>
+        <li><a class="faicon-linkedin" href="#"><i class="fa fa-linkedin"></i></a></li>
+        <li><a class="faicon-google-plus" href="#"><i class="fa fa-google-plus"></i></a></li>
+        <li><a class="faicon-rss" href="#"><i class="fa fa-rss"></i></a></li>
       </ul>
     </div>
     <!-- ################################################################################################ -->
@@ -48,21 +67,18 @@ Licence URI: http://www.os-templates.com/template-terms
   <header id="header" class="clear"> 
     <!-- ################################################################################################ -->
     <div id="logo" class="fl_left">
-      <h1><a href="/"><img src="/resources/images/main/main_log_mini.png" alt="" class="main_log_img"></a></h1>
+     <h1><a href="/"><img src="/resources/images/main/main_log_mini.png" alt="" class="main_log_img"></a></h1>
     </div>
     <nav id="mainav" class="fl_right">
       <ul class="clear">
-        <li class="active"><a href="index.html">Home</a></li>
-        <li><a class="drop" href="#">Pages</a>
+        <li><a href="/resources/index.html">Home</a></li>
+        <li class="active"><a class="drop" href="#">Pages</a>
           <ul>
-            <li><a href="/pages/gallery">Gallery</a></li>
-
-
-            <li><a href="/bill/full-width">Full Width</a></li>
-
-            <li><a href="/pages/sidebar-left">Sidebar Left</a></li>
-            <li><a href="/pages/sidebar-right">Sidebar Right</a></li>
-            <li><a href="/pages/basic-grid">Basic Grid</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+            <li><a href="full-width.html">Full Width</a></li>
+            <li class="active"><a href="sidebar-left.html">Sidebar Left</a></li>
+            <li><a href="sidebar-right.html">Sidebar Right</a></li>
+            <li><a href="basic-grid.html">Basic Grid</a></li>
           </ul>
         </li>
         <li><a class="drop" href="#">Dropdown</a>
@@ -88,37 +104,16 @@ Licence URI: http://www.os-templates.com/template-terms
 <!-- ################################################################################################ -->
 <div class="wrapper row2 bgded" style="background-image:url('/resources/images/main/backgrounds/01.png');">
   <div class="overlay">
-    <section id="pageintro" class="clear"> 
+    <div id="breadcrumb" class="clear"> 
       <!-- ################################################################################################ -->
-      <div class="center btmspace-80">
-        <h2 class="heading xxl uppercase btmspace-30">Ultricies convallis</h2>
-        <p class="xl nospace capitalise">Aenean et cursus adipiscing</p>
-      </div>
-      <ul class="nospace group services">
-        <li class="one_third first">
-          <article class="overlay"><a href="#"><i class="fa fa-legal"></i></a>
-            <h6 class="heading">Dui leo egestas augue</h6>
-            <p>Maecenas libero nunc, volutpat eu erat sed, blandit elementum mi etiam scelerisque&hellip;</p>
-            <footer><a href="#">Read More &raquo;</a></footer>
-          </article>
-        </li>
-        <li class="one_third">
-          <article class="overlay"><a href="#"><i class="fa fa-line-chart"></i></a>
-            <h6 class="heading">Eget molestie augue diam</h6>
-            <p>Donec facilisis volutpat ligula nec egestas aliquam malesuada, lectus sed sollicitudin&hellip;</p>
-            <footer><a href="#">Read More &raquo;</a></footer>
-          </article>
-        </li>
-        <li class="one_third">
-          <article class="overlay"><a href="#"><i class="fa fa-archive"></i></a>
-            <h6 class="heading">Fusce quis feugiat urna</h6>
-            <p>Aenean semper elementum tellus, ut placerat leo. Quisque vehicula, urna sit amet&hellip;</p>
-            <footer><a href="#">Read More &raquo;</a></footer>
-          </article>
-        </li>
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Lorem</a></li>
+        <li><a href="#">Ipsum</a></li>
+        <li><a href="#">Sidebar Left</a></li>
       </ul>
       <!-- ################################################################################################ -->
-    </section>
+    </div>
   </div>
 </div>
 <!-- ################################################################################################ -->
@@ -128,27 +123,73 @@ Licence URI: http://www.os-templates.com/template-terms
   <main class="container clear"> 
     <!-- main body -->
     <!-- ################################################################################################ -->
-    <div class="group">
-      <div class="one_third first"><img src="/resources/images/main/460x700.png" alt=""></div>
-      <div class="two_third">
-        <h2 class="heading">Etiam finibus tempus felis eget ullamcorper</h2>
-        <p>Cras pellentesque neque, consectetur adipiscing elit. Fusce venenatis elit ac ligula euismod varius. Maecenas feugiat purus quam, vel aliquet tellus sodales eu. Integer vitae vestibulum turpis, in sollicitudin quam. Aliquam vulputate non felis non luctus. Vestibulum eget augue nulla. Aliquam dignissim nibh mi, ut bibendum quam dapibus eget. Nam nec nisi vel sapien pulvinar ultrices. Curabitur rutrum nisl sagittis, pretium velit eget, convallis lacus. Nulla fermentum nulla ut lacus maximus, ut porttitor neque varius. Nullam sed vulputate sem. Sed bibendum porttitor metus.</p>
-        <p class="btmspace-80">Donec lacinia lacus eros, nec luctus odio bibendum dictum. Vivamus nec egestas libero, non faucibus mauris. In in efficitur felis. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nunc porttitor turpis in ex porttitor, nec sagittis diam ultrices.</p>
-        <ul class="nospace group">
-          <li class="one_third first">
-            <h6 class="nospace btmspace-10"><a href="#"><i class="fa fa-location-arrow"></i> Praesent neque</a></h6>
-            <p class="nospace">Mauris consectetur vel tellus quis consectetur&hellip;</p>
-          </li>
-          <li class="one_third">
-            <h6 class="nospace btmspace-10"><a href="#"><i class="fa fa-lock"></i> Integer tinciduntt</a></h6>
-            <p class="nospace">Mauris consectetur vel tellus quis consectetur&hellip;</p>
-          </li>
-          <li class="one_third last">
-            <h6 class="nospace btmspace-10"><a href="#"><i class="fa fa-map-marker"></i> Aliquam mauris</a></h6>
-            <p class="nospace">Mauris consectetur vel tellus quis consectetur&hellip;</p>
-          </li>
+    <div class="sidebar one_quarter first"> 
+      <!-- ################################################################################################ -->
+      <h6>경매</h6>
+       <nav class="sdb_holder">
+        <ul>
+          <li><a href="/bid/bidListAll">경매 리스트</a></li>
+          <li><a href="/bid/bidRegister">경매 등록</a></li>
+            
+          <li><a href="#">경매수정</a></li>
+          <li><a href="/bid/bidRead">경매 조회</a></li>
         </ul>
+      </nav>
+     
+      
+      <!-- ################################################################################################ -->
+    </div>
+    <!-- ################################################################################################ -->
+    <!-- ################################################################################################ -->
+    <div class="content three_quarter"> 
+      <!-- ################################################################################################ -->
+		
+
+	
+      <div id="comments">
+      
+      <form role="form" method="post">
+
+	<input type='hidden' name='bid_id' value="${BidProductVO.bid_id}">
+
+</form>
+
+        <h2>경매 수정</h2>
+      
+			 <div class="form-group">
+			 	<input type='file' name='file'>
+			</div> 
+
+          <div class="one_third first">
+            <label for="name">판매자 <span>*</span></label>
+            <input type="text" name="bid_seller" id="name" value="${BidProductVO.bid_seller }" size="22">
+          </div>
+          <div class="one_third">
+            <label for="email">상품이름 <span>*</span></label>
+            <input type="text" name="bid_name" id="email" value="${BidProductVO.bid_name }" size="22">
+          </div>
+          <div class="one_third">
+            <label for="url">입찰 시작가</label>
+            <input type="text" name="bid_start" id="url" value="${BidProductVO.bid_start }" size="22">
+          </div>
+           <div class="one_third">
+            <label for="url">경매 시간</label>
+            <input type="text" name="bid_time" id="url" value="${BidProductVO.bid_time }" size="22">
+          </div>
+          
+           
+          <div class="block clear">
+            <label for="comment">내용</label>
+            <textarea name="bid_content" id="comment" value="${BidProductVO.bid_content }" cols="25" rows="10"></textarea>
+          </div> 
+         <button type="submit" class="btn btn-warning">Modify</button>
+         <button type="submit" class="btn btn-danger">REMOVE</button>
+          <button type="submit" class="btn btn-primary">LIST ALL</button>
+       
       </div>
+      
+       
+      <!-- ################################################################################################ -->
     </div>
     <!-- ################################################################################################ -->
     <!-- / main body -->
@@ -158,49 +199,6 @@ Licence URI: http://www.os-templates.com/template-terms
 <!-- ################################################################################################ -->
 <!-- ################################################################################################ -->
 <!-- ################################################################################################ -->
-<div class="wrapper row4">
-  <section id="info" class="clear"> 
-    <!-- ################################################################################################ -->
-    <div class="center btmspace-80">
-      <h2 class="heading uppercase btmspace-30">Curabitur eget elit sit amet purus congue</h2>
-      <p class="lrspace">Aenean semper elementum tellus, ut placerat leo. Quisque vehicula, urna sit amet pulvinar dapibus, dui leo egestas augue, eget molestie augue diam nec ante. Fusce quis feugiat urna. Curabitur a sapien tincidunt, ullamcorper mauris sit amet, ornare augue. Suspendisse potenti. Sed eget ultricies sem. Proin quis lacus egestas, adipiscing nunc ornare, gravida diam. Donec luctus convallis rhoncus.</p>
-    </div>
-    <div class="group">
-      <div class="one_half first"><img src="/resources/images/main/600x700.png" alt=""></div>
-      <div class="one_half">
-        <ul class="nospace group services">
-          <li>
-            <article><a href="#"><i class="fa fa-asterisk"></i></a>
-              <h6 class="heading">Ut pharetra nisi eu massa</h6>
-              <p>Nunc nec tincidunt turpis sed feugiat dui vestibulum euismod nunc sed vestibulum interdum&hellip;</p>
-              <footer><a href="#">Read More &raquo;</a></footer>
-            </article>
-          </li>
-          <li>
-            <article><a href="#"><i class="fa fa-bar-chart"></i></a>
-              <h6 class="heading">Pellentesque neque porttitor</h6>
-              <p>Maecenas luctus sed nulla ac faucibus cras pellent esque neque vitae tincidunt tempus&hellip;</p>
-              <footer><a href="#">Read More &raquo;</a></footer>
-            </article>
-          </li>
-          <li>
-            <article><a href="#"><i class="fa fa-paper-plane-o"></i></a>
-              <h6 class="heading">Nulla lobortis ultrices nibh</h6>
-              <p>Quisque sit amet tellus nunc praesent nunc augue, eleifend ac consequat sed egestas eu nunc&hellip;</p>
-              <footer><a href="#">Read More &raquo;</a></footer>
-            </article>
-          </li>
-        </ul>
-      </div>
-    </div>
-    <!-- ################################################################################################ -->
-    <div class="clear"></div>
-  </section>
-</div>
-<!-- ################################################################################################ -->
-<!-- ################################################################################################ -->
-<!-- ################################################################################################ -->
-
 <div class="wrapper row5">
   <footer id="footer" class="clear"> 
     <!-- ################################################################################################ -->
@@ -268,5 +266,36 @@ Licence URI: http://www.os-templates.com/template-terms
 <script src="/resources/layout/scripts/jquery.min.js"></script>
 <script src="/resources/layout/scripts/jquery.backtotop.js"></script>
 <script src="/resources/layout/scripts/jquery.mobilemenu.js"></script>
+
+
+
+<script>
+$(document).ready(function(){
+	var formObj = $("form[role='form']");
+	
+	console.log(formObj);
+	
+	$(".btn-warning").on("click",function(){
+		formObj.attr("action","/bid/bidmodify");
+		formObj.attr("method","get");
+		formObj.submit();
+	});
+	
+	$(".btn-danger").on("click",function(){
+		formObj.attr("action","/bid/bidremove");
+		formObj.submit();
+	});
+	
+	$(".btn-primary").on("click",function(){
+		self.location = "/bid/bidListAll";
+		
+	});
+
+});
+
+
+
+
+</script>
 </body>
-</html>
+</html> --%>

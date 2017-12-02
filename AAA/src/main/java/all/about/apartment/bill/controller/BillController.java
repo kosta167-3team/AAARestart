@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-
+import all.about.apartment.bill.domain.BillGradeSeletor;
 import all.about.apartment.bill.domain.EnergyVO;
 import all.about.apartment.bill.domain.Personal_mgmt_exVO;
 import all.about.apartment.bill.domain.SetBillSeries;
@@ -38,6 +38,7 @@ public class BillController {
 		Personal_mgmt_exVO billMonth;
 		String paymentDate = "";
 		Map<String,String> date = new HashMap<String,String>();
+		
 		
 		/* 남은 기간 계산 매월 28일 납부 */
 		int day = 28-cal.get(Calendar.DATE);
@@ -127,6 +128,8 @@ public class BillController {
 		model.addAttribute("billSerise", billList);
 
 		model.addAttribute("allBill", billMonth.allBill());
+		
+
 		
 		
 		return "/bill/full-width";

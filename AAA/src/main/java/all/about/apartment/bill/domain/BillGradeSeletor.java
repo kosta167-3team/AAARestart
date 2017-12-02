@@ -6,34 +6,53 @@ import all.about.apartment.bill.service.BillService;
 
 public class BillGradeSeletor {
 	
-	int aPlus,a,bPlus,b,cPlus,c,dPlus,d;
-	String energyName;
+	private int aPlus,a,bPlus,b,cPlus,c,dPlus,d;
+	List<ScorePMEVO> list = null;
+	private String[] gradeStringList = { "aPlus","a","bPlus","b","cPlus","c","dPlus","d"};
 	
-	int allScoreNum;
+	
+	private String energyName;
+	
+	private int allScoreNum;
 	
 	BillService service;	
 	
 	public BillGradeSeletor() {
 	}
 	
+	public int getGradeBill(String grade){
+		
+		for(int i = 0; i < gradeStringList.length; i++){
+			if( grade.equals(gradeStringList[i])){
+				
+			}
+		}
+		return 0;
+		
+	}
+	
+	
 	public BillGradeSeletor(BillService service) {
 		this.service = service;
+	}
+	public int getRankBill(int rank){
+		return list.get(rank).getAllUsed();
 	}
 
 	public String setEnergyName(String energyName){
 		this.energyName = energyName;
-		setScoreScope();
+		
+		try {
+			list = service.getSelectEnergyList(energyName);
+			allScoreNum = service.getScoreNum(energyName);
+			setScoreScope();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		return this.energyName;
 	}
 	public String getGrade(int input_num) throws Exception{
-		List<ScorePMEVO> list = null;
-		try {
-			list = service.getSelectEnergyList(energyName);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
+
 		for( int i = 0 ; i < list.size(); i++){
 			ScorePMEVO person = list.get(i);
 			if( person.getInput_num() == input_num){
@@ -76,8 +95,7 @@ public class BillGradeSeletor {
 	
 	private void setScoreScope(){		
 		try 
-		{
-			allScoreNum = service.getScoreNum(energyName);
+		{			
 			
 			aPlus = (int)(allScoreNum * 0.04);
 			a = (int)(allScoreNum * 0.11);
@@ -177,7 +195,17 @@ public class BillGradeSeletor {
 	public String getEnergyName() {
 		return energyName;
 	}
-	
-	
+
+	public List<ScorePMEVO> getList() {
+		return list;
+	}
+
+	public void setList(List<ScorePMEVO> list) {
+		this.list = list;
+	}
+
+	public String[] getGradeStringList() {
+		return gradeStringList;
+	}
 
 }
