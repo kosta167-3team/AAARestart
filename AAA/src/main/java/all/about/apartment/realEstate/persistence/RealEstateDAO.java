@@ -39,6 +39,11 @@ public interface RealEstateDAO {
 	public List<AnnualMinMaxVO> annualTrade(int area) throws Exception;
 	
 	public List<AnnualMinMaxVO>annualRentTrade(int area) throws Exception;
+
+	//가장 오래된 달의 데이터 지우기
+	public void deleteRentOldest() throws Exception;
+	public void deleteTradeOldest() throws Exception;
+	
 	
 }
 

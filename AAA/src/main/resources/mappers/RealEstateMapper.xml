@@ -146,6 +146,29 @@
     	  )b
      	 ON a.RENT_MONTH = b.TRADE_MONTH
 	</select>
+	
+	<!-- 가장 오래된 데이터 지우기 (전세) -->
+	<delete id="deleteRentOldest">
+		DELETE FROM apt_rent
+			WHERE (rent_year,rent_month)IN(
+				SELECT A.rent_year, A.rent_month  FROM(
+					SELECT rent_year,rent_month FROM apt_rent
+					GROUP BY rent_year, rent_month
+					ORDER BY rent_year, rent_month)a
+				WHERE ROWNUM = 1
+		)
+	</delete>
+	
+	<delete id="deleteTradeOldest">
+	    DELETE FROM apt_trade
+	      WHERE (trade_year,trade_month)IN(
+		      SELECT A.trade_year, A.trade_month  FROM(
+	    	  SELECT trade_year,trade_month FROM apt_trade
+	      		GROUP BY trade_year,trade_month
+	      		ORDER BY trade_year,trade_month)a
+	      WHERE ROWNUM = 1
+      	)
+	</delete>
 </mapper>
 
 

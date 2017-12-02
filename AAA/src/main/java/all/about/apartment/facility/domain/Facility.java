@@ -7,10 +7,15 @@ import java.util.ArrayList;
 import java.util.Calendar; 
 import java.util.List;
 
-import org.springframework.stereotype.Component; 
+
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Component
-public class Facility implements Serializable{
+public class Facility implements Serializable {
+
 
 	private int f_id;
 	private String f_name;

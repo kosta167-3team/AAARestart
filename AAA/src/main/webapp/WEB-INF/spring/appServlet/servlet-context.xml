@@ -45,9 +45,7 @@
 		class="all.about.apartment.intercepter.testInterceptor" />
 
 
-	<beans:bean id = "loginTestInteceptor"
-		class="all.about.apartment.intercepter.LoginTestInteceptor"/>
-		
+	
 
 	<interceptors>
 		<interceptor>
@@ -74,6 +72,7 @@
 			<mapping path="/comm/registerComm" />
 			<beans:ref bean="authInterceptor" />
 		</interceptor>
+
 
 		<interceptor>
 			<mapping path="/comm/checkFeed" />

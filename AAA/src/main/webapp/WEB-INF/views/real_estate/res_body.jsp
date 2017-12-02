@@ -15,17 +15,8 @@
 <link href="/resources/layout/styles/real_estate/real_layout.css"
 	rel="stylesheet" type="text/css" media="all">
 
-
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
-
 <!-- scripts -->
 
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-<script src="/resources/layout/scripts/jquery.min.js"></script>
 
 <script type="text/javascript"
 	src="/resources/layout/scripts/real_estate/real_estate.js"></script>
@@ -116,8 +107,7 @@
 						</div>
 						<div class="tab-pane fade" id="tab2primary">
 							<div class="btn-group">
-								<button type="button" class="btn btn-default dropdown-toggle"
-									data-toggle="dropdown">
+								<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
 									면적 선택 <span class="caret"></span>
 								</button>
 								<ul class="dropdown-menu" role="menu">
