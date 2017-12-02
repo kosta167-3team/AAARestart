@@ -14,16 +14,12 @@ import all.about.apartment.bid.persistence.BidDAO;
 import all.about.apartment.bid.persistence.BiddDAO;
 
 @Service
-public class BidServiceImpl implements BiddService {
+public class BidServiceImpl implements BidService {
 	
 	@Inject
-	private BiddDAO dao;
+	private BidDAO dao;
 
-	@Override
-
-	public BidProductVO bidDetail(String bid_id) throws Exception{
-		return dao.bidDetail(bid_id);
-}
+	
 
 	public void regist(BidProductVO bid) throws Exception {
 		dao.create(bid);
@@ -96,6 +92,12 @@ public class BidServiceImpl implements BiddService {
 	public List<BidProductVO> read2(String sort) throws Exception {
 		// TODO Auto-generated method stub
 		return dao.read2(sort);
+	}
+
+	@Override
+	public BidProductVO bidDetail(String bid_id) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	

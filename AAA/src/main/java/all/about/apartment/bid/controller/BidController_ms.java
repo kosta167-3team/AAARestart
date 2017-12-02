@@ -7,14 +7,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import all.about.apartment.bid.service.BiddService;
+import all.about.apartment.bid.service.BidderService;
 
 @Controller
 @RequestMapping("/bidd/*")
 public class BidController_ms {
 	
 	@Inject
-	private BiddService service;
+	private BidderService service;
 	
 	@RequestMapping(value="/bidDetail", method=RequestMethod.GET)
 	//public void bidDetail(@RequestParam("bid_id")String bid_id)throws Exception{
