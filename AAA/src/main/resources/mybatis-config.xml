@@ -21,6 +21,8 @@
 		<package name="all.about.apartment.publicDomain"/>
 		<package name="all.about.apartment.realEstate.domain"/>
 		
+		<package name="all.about.apartment.message.domain"/>
+		
 	</typeAliases>
 	
 	

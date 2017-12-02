@@ -93,6 +93,15 @@ public class RealEstateDAOImpl implements RealEstateDAO {
 	public List<AnnualMinMaxVO> annualRentTrade(int area) throws Exception {
 		return session.selectList(namespace+".annualRentTrade", area);
 	}
+	@Override
+	public void deleteRentOldest() throws Exception {
+		session.delete(namespace+".deleteRentOldest");
+		
+	}
+	@Override
+	public void deleteTradeOldest() throws Exception {
+		session.delete(namespace+".deleteTradeOldest");
+	}
 	
 	
 }

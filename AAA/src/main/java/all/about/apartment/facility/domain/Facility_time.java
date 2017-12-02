@@ -2,9 +2,10 @@ package all.about.apartment.facility.domain;
 
 import java.io.Serializable;
 
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
-@Repository
+@Component
 public class Facility_time implements Serializable{
 
 	private int t_id;

@@ -38,9 +38,7 @@
 	<beans:bean id="authInterceptor"
 		class="all.about.apartment.intercepter.AuthInterceptor"/>
 
-	<beans:bean id = "loginTestInteceptor"
-		class="all.about.apartment.intercepter.LoginTestInteceptor"/>
-		
+	
 
 	<interceptors>
 		<interceptor>
@@ -53,10 +51,6 @@
 			<beans:ref bean="authInterceptor"/>
 		</interceptor>
 
-		<interceptor>
-			<mapping path="/user/login"/>
-			<beans:ref bean="loginTestInteceptor"/>
-		</interceptor>
 		
 	</interceptors>
 	<context:component-scan base-package="all.about.apartment" />

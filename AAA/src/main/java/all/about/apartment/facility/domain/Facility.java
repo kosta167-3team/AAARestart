@@ -8,11 +8,12 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
-@Repository
+@Component
 public class Facility implements Serializable {
 
 	private int f_id;

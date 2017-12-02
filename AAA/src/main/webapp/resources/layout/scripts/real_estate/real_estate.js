@@ -49,6 +49,7 @@ $(function() {
 		event.preventDefault();
 		area = $(this).attr('href');
 		
+		alert('ddd');
 		var html = $(this).text() + '<span class="caret"></span>';
 		$(this).parent().parent().prev().html(html);
 		
@@ -60,6 +61,7 @@ $(function() {
 
 
 function getarea() {
+	console.log('ddddd');
 	var div = $('.in').find('.dropdown-menu');
 	div.empty();
 	$.ajax({
@@ -315,8 +317,8 @@ function drawAnnualRentChart(chart_tartget){
 					width : width,
 					height : 300,
 					 series: {
-			            0: { color: '#a561bd' },
-			            1: { color: '#c784de' }
+			            0: { color: '#e13592' },
+			            1: { color: '#6276ec' }
 			           
 				       },
 				       vAxis: { gridlines: { count: 4 } }

@@ -3,9 +3,10 @@ package all.about.apartment.facility.domain;
 import java.io.Serializable;
 import java.sql.Timestamp;
 
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
-@Repository
+@Component
 public class Facility_reservation implements Serializable {
 
 	private int fr_id;
