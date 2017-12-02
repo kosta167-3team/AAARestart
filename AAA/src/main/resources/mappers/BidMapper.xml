@@ -6,22 +6,38 @@
 
 <mapper namespace="all.about.apartment.mappers.BidMapper">
 
+	<!-- 등록 -->
 	<insert id="create" parameterType="BidProductVO">
-		insert into bidproduct(bid_id,bid_seller,bid_name,bid_start,
-		bid_date,bid_time,bid_content,bid_filename)
-		values(bid_seq.nextval,#{bid_seller},#{bid_name},#{bid_start},
-		sysdate,#{bid_time},#{bid_content},#{bid_filename})
+		insert into bidproduct(bid_id,bid_name,bid_start,
+		bid_date,bid_time,bid_nowprice,bid_content,bid_filename)
+		values(bid_seq.nextval,#{bid_name},#{bid_start},
+		sysdate,#{bid_time},#{bid_start},#{bid_content},#{bid_filename})
 	</insert>
 	
+	<!-- 수정 -->
+	<update id="update" parameterType="BidProductVO">
+		update bidproduct
+		 
+		set bid_name=#{bid_name},bid_filename=#{bid_filename},
+		bid_start=#{bid_start},bid_time=#{bid_time},bid_content=#{bid_content}
+		
+		where bid_id=#{bid_id} 
 	
-	<update id="readInsert" parameterType="BidProductVO">
+	</update>
+	
+	<delete id="delete">
+		delete from bidproduct where bid_id=#{bid_id}
+	</delete>
+	
+	<!-- 상품평 -->
+	<update id="readInsert" parameterType="HashMap">
 		update bidproduct
 		set bid_evaluation = #{bid_evaluation}
 		where bid_id=#{bid_id}
 		
-		
 	</update>
 	
+	<!-- 전체 페이지 -->
 	<select id="read" resultType="BidProductVO">
 		select
 			*
@@ -30,13 +46,25 @@
 		where bid_id>0
 	</select>
 	
+	<select id="read2" parameterType="String" resultType="BidProductVO">
+		select *
+		from bidproduct
+		
+		order by ${value} desc
+	</select>
+
+	<!-- 상세 조회 -->
 	<select id="readDetail" resultType="BidProductVO">
 		select
-			bid_id,bid_seller,bid_name
+			*
 		from
 			bidproduct
 		where bid_id = #{bid_id}
+
 	</select>
+	
+
+	
 	
 	
 	
@@ -56,4 +84,17 @@
    <select id="getAttach" resultType="string">
    	select content_filename from bidcontent where bid_id>0
    </select>
+   
+   
+   
+   
+  <!--  
+   <delete id="deleteAttach">
+   	delete from bidproduct where bid_id = #{bid_id}
+   </delete>
+   
+   <insert id="replaceAttach">
+   	insert into bidproduct(fullname,bid_id) values (#{fullName},#{bid_id})
+   </insert> -->
+   
 </mapper>

@@ -2,19 +2,33 @@ package all.about.apartment.bid.domain;
 
 import java.util.Arrays;
 
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.NotEmpty;
+
 public class BidProductVO {
 	private int bid_id;
+
 	private String bid_seller;
+	
+	@NotEmpty(message="입력하세요")
 	private String bid_name;
+
 	private int bid_start;
 	private String bid_date;
 	private int bid_time;
 	private int bid_nowprice;
 	private String bid_bidder; //입찰자
+	
+	@Size(min=10,message="10자 이상 입력하세요")
 	private String bid_content;
+	
 	private String bid_evaluation;
 	private String bid_filename;
-
+	
+	
+	
 	public BidProductVO(int bid_id, String bid_seller, String bid_name, int bid_start, String bid_date, int bid_time,
 			int bid_nowprice, String bid_bidder, String bid_content, String bid_evaluation, String bid_filename,
 			String[] files) {
