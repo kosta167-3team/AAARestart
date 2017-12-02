@@ -3,9 +3,9 @@ package all.about.apartment.visit.persistence;
 import java.util.HashMap;
 import java.util.List;
 
+import all.about.apartment.publicDomain.Criteria;
 import all.about.apartment.publicDomain.ResidentVO;
 import all.about.apartment.visit.domain.ApplicationVO;
-import all.about.apartment.visit.domain.Criteria;
 import all.about.apartment.visit.dto.ApplicationDTO;
 
 public interface VisitDAO {

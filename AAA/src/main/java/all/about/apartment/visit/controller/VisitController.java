@@ -24,9 +24,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import all.about.apartment.publicDomain.Criteria;
+import all.about.apartment.publicDomain.PageMaker;
 import all.about.apartment.publicDomain.ResidentVO;
-import all.about.apartment.visit.domain.Criteria;
-import all.about.apartment.visit.domain.PageMaker;
 import all.about.apartment.visit.domain.ApplicationVO;
 import all.about.apartment.visit.dto.ApplicationDTO;
 import all.about.apartment.visit.service.VisitService;

@@ -1,4 +1,4 @@
-package all.about.apartment.visit.domain;
+package all.about.apartment.publicDomain;
 
 import org.springframework.web.util.UriComponents;
 import org.springframework.web.util.UriComponentsBuilder;

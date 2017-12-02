@@ -1,4 +1,4 @@
-package all.about.apartment.visit.domain;
+package all.about.apartment.publicDomain;
 
 public class SearchCriteria extends Criteria{
 
