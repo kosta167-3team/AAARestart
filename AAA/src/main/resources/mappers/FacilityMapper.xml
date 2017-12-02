@@ -7,75 +7,144 @@
 
 	<!-- 시설 조회 -->
 
-
-	<select resultType="Facility" id="getFacilityList"> 
+	<select resultType="Facility" id="getFacilityList">
 		select * from facility
 	</select>
 
 	<select resultType="Facility" id="getDetail" parameterType="int">
 		select * from facility where f_id = #{f_id}
 	</select>
-	
-
-	<!-- GetOptions; 예약 가능한 옵션 확인 -->
 
 
-	<!-- 1. 시간 확인; GetTime -->
+	<!-- 예약 가능한 옵션 확인 -->
 
-	<select resultType="Facility_time" id="getTimetable"> 
-		select * from facility_time
+	<!-- 1. 시간 확인 -->
+
+	<select resultType="Facility_time" id="getTimetable">
+		select * from
+		facility_time
+	</select>
+
+	<!-- 2. 날짜별 상태 확인 -->
+
+	<select id="checkState" parameterType="java.util.Map"
+		resultType="int">
+		select count(*) from facility_state
+		where f_id = #{f_id}
+		and
+		TRUNC(#{date})
+		between TRUNC(fs_start) and TRUNC(fs_end)
 	</select>
 
 
-	<!-- 2. 남은 자리 확인; GetSpot -->
+	<!-- 3. 남은 자리 확인 -->
 
-	<select resultType="Integer" id="getSpot" parameterType="java.util.Map"> 
-		select sum(fr_cnt) from facility_reservation 
-			where f_id =#{f_id}
-			and TRUNC(fr_date) LIKE TRUNC(#{fr_date}) 
-			and t_id = #{t_id}
+	<select resultType="Integer" id="getSpot" parameterType="java.util.Map">
+		select
+		sum(fr_cnt) from facility_reservation
+		where f_id =#{f_id}
+		and
+		TRUNC(fr_date) LIKE TRUNC(#{fr_date})
+		and t_id = #{t_id}
 	</select>
 
 
-	<!-- 3. 중복 예약 확인; CheckDoubleBook -->
- 
+	<!-- 4. 중복 예약 확인 -->
+
 	<select resultType="Integer" id="checkDoubleBook" parameterType="java.util.Map">
-		select fr_id from facility_reservation 
-			where TRUNC(fr_date) LIKE TRUNC(#{fr_date}) 
-			and t_id = #{t_id} 
-			and r_id = #{r_id}
+		select fr_id from facility_reservation
+		where TRUNC(fr_date) LIKE
+		TRUNC(#{fr_date})
+		and t_id = #{t_id}
+		and r_id = #{r_id}
 	</select>
 
 
-	<!-- Reserve; 예약하기 -->
+	<!-- 예약 -->
 
-	<insert id="insertReservation" parameterType="java.util.Map"> 
-	insert into facility_reservation (fr_id, f_id, t_id, r_id,
-		fr_cnt, fr_date) values(fr_seq.nextval, #{f_id}, #{t_id}, #{r_id},
-		#{fr_cnt}, #{fr_date} )
+	<insert id="insertReservation" parameterType="java.util.Map">
+		insert into
+		facility_reservation (fr_id, f_id, t_id, r_id, fr_cnt, fr_date)
+		values(fr_seq.nextval, #{f_id}, #{t_id}, #{r_id}, #{fr_cnt},
+		#{fr_date})
 	</insert>
 
-	<!-- 예약 조회하기 -->
-	<select id="getReservationList" parameterType="java.util.Map" resultType="facility_reservation"> 
-		select * from facility_reservation 
-			where r_id =#{r_id}
-			and TRUNC(fr_date) LIKE TRUNC(#{fr_date}) 
-			order by t_id
-			
+
+	<!-- 예약 조회 -->
+
+	<select id="getReservationList" parameterType="java.util.Map"
+		resultType="facility_reservation">
+		select * from facility_reservation
+		where r_id =#{r_id}
+		and
+		TRUNC(fr_date) LIKE TRUNC(#{fr_date})
+		order by t_id
+
 	</select>
 
-	<select resultType="Facility_reservation" id="getOneReservation" parameterType="int"> 
-		select * from facility_reservation 
-			where fr_id =#{fr_id}
+	<select resultType="Facility_reservation" id="getOneReservation"
+		parameterType="int">
+		select * from facility_reservation
+		where fr_id =#{fr_id}
 	</select>
 
-	<!-- Cancel; 예약 취소하기 -->
-	
-	<delete id="cancelReservation" parameterType="int"> 
-		delete from facility_reservation 
-			where fr_id = #{fr_id}
+
+	<!-- 예약 취소 -->
+
+	<!-- 1.예약 1건 취소 -->
+	<delete id="cancelReservation" parameterType="int">
+		delete from
+		facility_reservation
+		where fr_id = #{fr_id}
 	</delete>
-	 
+
+
+	<!-- 시설 관리 -->
+
+	<!-- 1.관리 내역 삽입 -->
+	<insert id="insertState" parameterType="Facility_state">
+		insert into
+		facility_state values
+		(fs_seq.nextval, #{f_id}, #{fs_start}, #{fs_end},
+		#{fs_reason}, SYSDATE)
+	</insert>
+
+	<!-- 2.예약 취소자 명단 -->
+	<select id="getCancelmsgList" parameterType="java.util.Map"
+		resultType="String">
+	<![CDATA[ 
+	select r_id from facility_reservation  
+ 		where f_id = #{f_id}
+  		and TRUNC(fr_date) >= TRUNC(#{fs_start})
+  		and TRUNC(fr_date) <= TRUNC(#{fs_end})
+  		group by r_id
+]]>
+	</select>
+
+	<!-- 3.기간 내 예약 일괄 취소 -->
+	<delete id="cancelAllReservation" parameterType="java.util.Map">
+	<![CDATA[ 
+	delete from facility_reservation	
+		where f_id = #{f_id}
+  		and TRUNC(fr_date) >= TRUNC(#{fs_start})
+  		and TRUNC(fr_date) <= TRUNC(#{fs_end})
+  		    ]]>
+	</delete>
+
+	<!-- 4.시설 상태 변경 -->
+	<update id="alterState_bad">
+		update facility set f_state = '사용불가'
+			where f_id in(
+				select f_id from facility_state
+					where sysdate between TRUNC(fs_start) and TRUNC(fs_end))
+	</update>
+
+	<update id="alterState_ok">
+		update facility set f_state = '사용가능'
+			where f_id not in(
+				select f_id from facility_state
+					where sysdate between TRUNC(fs_start) and TRUNC(fs_end)) 
+	</update>
 
 </mapper>  
 

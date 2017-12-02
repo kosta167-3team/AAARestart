@@ -23,6 +23,16 @@ Licence URI: http://www.os-templates.com/template-terms
 	type="text/css" media="all">
 
 <script src="/resources/layout/scripts/jquery.min.js"></script>
+<script src="/resources/images/billScore/js/billScoreBodyJS.js"></script>
+
+<style type="text/css">
+	#spanTH{
+		text-align: center;
+		vertical-align: middle;
+		
+	}
+</style>
+
 
 </head>
 <body id="top">
@@ -54,11 +64,11 @@ Licence URI: http://www.os-templates.com/template-terms
 			<!-- ################################################################################################ -->
 
 
-
-
+			<h1>${pme.p_month} 월 관리비 성적표</h1>
 			<div class="scrollable">
 				<p>사용자 정보</p>
-				<table>
+				<input id="pme_input_num" type="hidden" value = "${pme.input_num }">
+				<table >
 					<thead>
 						<tr>
 							<th>사용자 이름</th>
@@ -86,7 +96,8 @@ Licence URI: http://www.os-templates.com/template-terms
 				</table>
 
 				<p>전기 에너지</p>
-				<table>
+				<input id="hiddenElec" type="hidden" data-rno="elec">
+				<table >
 					<thead>
 						<tr>
 							<th>년/월</th>
@@ -106,6 +117,7 @@ Licence URI: http://www.os-templates.com/template-terms
 					</thead>
 					<tbody>
 						<tr>
+							
 							<td>${pme.p_month }</td>
 							<td>${pme.personal_elec }</td>
 							<td>${pme.public_elec }</td>
@@ -118,12 +130,13 @@ Licence URI: http://www.os-templates.com/template-terms
 							<td>${energy.elec }</td>
 							<td>${pme.allElec() }</td>
 
-							<td>0</td>
+							<td id="elecTableTD">0</td>
 						</tr>
 					</tbody>
 				</table>
 
 				<p>열 에너지</p>
+				<input id="hiddenHeat" type="hidden" data-rno="heat">
 				<table>
 					<thead>
 						<tr>
@@ -158,7 +171,7 @@ Licence URI: http://www.os-templates.com/template-terms
 							<td>${pme.allHeat() }</td>
 
 							<td>${energy.heat }</td>
-							<td>0</td>
+							<td id="heatTableTD">0</td>
 
 						</tr>
 					</tbody>
@@ -168,32 +181,52 @@ Licence URI: http://www.os-templates.com/template-terms
 				<table>
 					<thead>
 						<tr>
-							<th colspan="3" rowspan="3">날짜</th>
+							<th id="spanTH" colspan="3" rowspan="3">날짜</th>
 						</tr>
 						<tr>
-							<c:forEach begin="1" end="5" var="a">
-								<th colspan="3">${a }주</th>
-							</c:forEach>
-						</tr>
-						<tr>
-							<c:forEach begin="1" end="5" var="a">
-								<th>전기</th>
-								<th>물</th>
-								<th>난방</th>
 
+							<th colspan="5">전기(kwh)</th>
+							<th colspan="5">물(ton)</th>
+							<th colspan="5">난방</th>
+
+						</tr>
+						<tr>
+							<c:forEach begin="1" end="3">
+								<c:forEach begin="1" end="5" var="a">
+									<th>${a }</th>
+								</c:forEach>
 							</c:forEach>
+
 						</tr>
 
 					</thead>
-					<tbody>
-						<c:forEach var="secondList" items="${oneYearEnergyList }">
+					<tbody id="energyValueTable">
+						<c:forEach var="secondList" items="${oneYearEnergyList }" varStatus="status">
 							<tr>
-								<td colspan="3">3month</td>
-								<c:forEach var="energyObject" items="${secondList }">
-									<td>${energyObject.elec }</td>
-									<td>${energyObject.water }</td>
-									<td>${energyObject.fever }</td>
+								<td colspan="3"><a href="/billScore//billScoreBody/${monthMap[status.index]}">${monthMap[status.index]}</a>  </td>
+								<c:forEach begin="1" end="5" var="count">
+									<c:forEach var="energyObject" items="${secondList }">
+										<c:if test="${energyObject.week_num == count }">
+										<td>${energyObject.elec }</td>
+										</c:if>
+									</c:forEach>
 								</c:forEach>
+								<c:forEach begin="1" end="5" var="count">
+									<c:forEach var="energyObject" items="${secondList }">
+										<c:if test="${energyObject.week_num == count }">
+										<td>${energyObject.heat }</td>
+										</c:if>
+									</c:forEach>
+								</c:forEach>
+								<c:forEach begin="1" end="5" var="count">
+									<c:forEach var="energyObject" items="${secondList }">
+										<c:if test="${energyObject.week_num == count }">
+										<td>${energyObject.fever }</td>
+										</c:if>
+									</c:forEach>
+								</c:forEach>
+
+
 							</tr>
 						</c:forEach>
 					</tbody>
