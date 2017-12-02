@@ -1,26 +1,20 @@
 package all.about.apartment.intercepter;
 
+import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
-public class CommInterceptor extends HandlerInterceptorAdapter {
+import all.about.apartment.comm.service.CommService;
+import all.about.apartment.publicDomain.ResidentVO;
 
-	@Override
-	public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex)
-			throws Exception {
-		// TODO Auto-generated method stub
-		super.afterCompletion(request, response, handler, ex);
-	}
+public class Comm_reg_Inteceptor extends HandlerInterceptorAdapter {
 
-	@Override
-	public void afterConcurrentHandlingStarted(HttpServletRequest request, HttpServletResponse response, Object handler)
-			throws Exception {
-		// TODO Auto-generated method stub
-		super.afterConcurrentHandlingStarted(request, response, handler);
-	}
+	@Inject
+	CommService service;
 
 	@Override
 	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
@@ -32,8 +26,16 @@ public class CommInterceptor extends HandlerInterceptorAdapter {
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
-		// TODO Auto-generated method stub
-		return super.preHandle(request, response, handler);
+
+		HttpSession session = request.getSession();
+		String r_id = ((ResidentVO)session.getAttribute("login")).getR_id();
+		
+ 	if (service.getUser(r_id) != null){
+			
+ 			response.sendRedirect("/comm/checkFeed");
+		}
+ 
+		return true;
 	}
 
 }

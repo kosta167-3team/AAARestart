@@ -4,18 +4,34 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="all.about.apartment.mappers.CommMapper">
- <cache/>
- 
- <insert id="insertUser" parameterType="Comm_user">
- 	insert into comm_user values
- 		(#{r_id}, #{cu_size}, #{cu_interest}, #{cu_type})
- </insert>
- 
- <insert id="insertCommBoard" parameterType="Comm_board">
- 	insert into comm_board values
- 		(cb_seq.nextval, #{cb_interest}, #{cb_contents}, #{r_id}, sysdate)
- </insert>
- 
+	<cache />
+
+	<insert id="insertUser" parameterType="Comm_user">
+		insert into comm_user values
+		(#{r_id}, #{cu_size}, #{cu_interest}, #{cu_type})
+	</insert>
+
+	<insert id="insertCommBoard" parameterType="Comm_board">
+		insert into comm_board values
+		(cb_seq.nextval, #{cb_interest}, #{cb_contents}, #{r_id}, sysdate)
+	</insert>
+
+	<select id="maxBoardNum" resultType="int">
+		select MAX(cb_no) from comm_board
+	</select>
+
+	<select id="getUser" parameterType="String" resultType="Comm_user">
+		select * from comm_user
+		where r_id = #{r_id}
+	</select>
+
+	<delete id="deleteBoard" parameterType="int">
+		delete from comm_board
+		where cb_no = #{cb_no}
+	</delete>
+
+
+
 </mapper>  
 
 

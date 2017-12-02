@@ -15,6 +15,7 @@ Licence URI: http://www.os-templates.com/template-terms
 <head>
 <title>Viral | Pages | Full Width</title>
 <meta charset="utf-8">
+
 <meta name="viewport"
 	content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
@@ -33,10 +34,10 @@ Licence URI: http://www.os-templates.com/template-terms
 <!-- JAVASCRIPTS -->
 <script src="/resources/layout/scripts/jquery.min.js"></script>
 <script src="/resources/layout/scripts/jquery.backtotop.js"></script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+
+<script	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 <script src="/resources/layout/scripts/jquery.mobilemenu.js"></script>
-<script  src="/resources/layout/scripts/message/messageChk.js"></script>
+<script src="/resources/layout/scripts/message/messageChk.js"></script>
 <script type="text/javascript">
 
 $(function () {

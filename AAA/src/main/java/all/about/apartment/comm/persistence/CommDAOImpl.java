@@ -29,4 +29,22 @@ public class CommDAOImpl implements CommDAO {
 
 	}
 
+	@Override
+	public Comm_user getUser(String r_id) throws Exception {
+		 
+		return session.selectOne(namespace+".getUser", r_id);
+	}
+
+	@Override
+	public void deleteBoard(int cb_no) throws Exception {
+		
+		session.delete(namespace+".deleteBoard", cb_no);
+	}
+
+	@Override
+	public int maxBoardNum() throws Exception {
+		 
+		return session.selectOne(namespace+".maxBoardNum");
+	}
+
 }

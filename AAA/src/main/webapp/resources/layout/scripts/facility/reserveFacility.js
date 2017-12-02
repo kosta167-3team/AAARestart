@@ -183,7 +183,7 @@ function reserve(f_info) {
 			location.href = "/facility/checkReservation";
 		} else {
 
-			location.href = "/facility/reserve";
+			location.href = "/facility/reserveFacility";
 		}
 
 	});
