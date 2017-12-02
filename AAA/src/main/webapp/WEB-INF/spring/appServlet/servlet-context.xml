@@ -44,9 +44,6 @@
 	<beans:bean id="testInterceptor"
 		class="all.about.apartment.intercepter.testInterceptor" />
 
-	<beans:bean id="loginTestInteceptor"
-		class="all.about.apartment.intercepter.LoginTestInteceptor" />
-
 	<beans:bean id="Comm_reg_Inteceptor"
 		class="all.about.apartment.intercepter.Comm_reg_Inteceptor" />
 
@@ -99,16 +96,8 @@
 		</interceptor>
 
 
-		<interceptor>
-			<mapping path="/user/login" />
-			<beans:ref bean="loginTestInteceptor" />
-		</interceptor>
-
 	</interceptors>
 	<context:component-scan base-package="all.about.apartment" />
-
-	<beans:bean id="FacilityInterceptor"
-	class="all.about.apartment.intercepter.FacilityInterceptor" />
 
 	<interceptors>
 		<interceptor>
