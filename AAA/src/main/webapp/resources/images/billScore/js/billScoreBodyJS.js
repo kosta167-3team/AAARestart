@@ -24,6 +24,7 @@ $(function(){
 			},
 			dataType : 'text',
 			success : function(result) {
+				var elecHtml = "";
 				$("#elecTableTD").html(result);
 				
 				// getHeat Grade Ajax
@@ -36,7 +37,9 @@ $(function(){
 					},
 					dataType : 'text',
 					success : function(result) {
-						$("#heatTableTD").html(result);
+						var heatHtml = "";
+						heatHtml += "<a href='/billScoreRest/heat/allGrade'>" + result + "</a>";
+						$("#heatTableTD").html(heatHtml);
 					}
 					/*heat callback function end*/
 				});
