@@ -5,8 +5,11 @@ import java.sql.Timestamp;
 
 import org.springframework.stereotype.Component;
 
+import org.springframework.stereotype.Repository;
+
 @Component
-public class Facility_reservation implements Serializable{
+public class Facility_reservation implements Serializable {
+
 
 	private int fr_id;
 	private int f_id;

@@ -56,7 +56,6 @@
 	<beans:bean id="FacilityInterceptor"
 		class="all.about.apartment.intercepter.FacilityInterceptor" />
 
-
 	<interceptors>
 		<interceptor>
 			<mapping path="/user/loginPost" />
@@ -83,6 +82,7 @@
 			<beans:ref bean="authInterceptor" />
 		</interceptor>
 
+
 		<interceptor>
 			<mapping path="/comm/checkFeed" />
 			<beans:ref bean="authInterceptor" />
@@ -107,8 +107,9 @@
 	</interceptors>
 	<context:component-scan base-package="all.about.apartment" />
 
+	<beans:bean id="FacilityInterceptor"
+	class="all.about.apartment.intercepter.FacilityInterceptor" />
 
-	<!-- 시설 -->
 	<interceptors>
 		<interceptor>
 			<mapping path="/facility/getSpot/{fr_id}" />

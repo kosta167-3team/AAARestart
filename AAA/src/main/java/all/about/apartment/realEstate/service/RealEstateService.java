@@ -14,8 +14,8 @@ public interface RealEstateService {
 	
 	public void inputData() throws Exception;
 	
-	public void inputRentData(List<Map<String, Object>> rent_list) throws Exception;
-	public void inputTradeData(List<Map<String, Object>> trade_list) throws Exception;
+	public void inputRentData(List<Map<String, Object>> rent_list , String day) throws Exception;
+	public void inputTradeData(List<Map<String, Object>> trade_list,String day) throws Exception;
 	
 	public List<Map<String, Object>> getRentData(String deal_ymd) throws Exception;
 	public List<Map<String, Object>> getTradeData(String deal_ymd) throws Exception;
@@ -38,6 +38,9 @@ public interface RealEstateService {
 	
 	
 	public List<AnnualMinMaxVO> annualRentTrade(int area) throws Exception;
+	
+	//가장 오래된 데이터 지우기
+	public void deleteOldest () throws Exception;
 	
 }
 

@@ -20,7 +20,7 @@ var EngList = [ "general_mgmt", "clean", "fumigate", "elevator_maintain", "repai
 	$(function() {		
 		var tableCount = 0;
 		function initTable(){
-			$("#payment_details_table").find("tr").find('td:eq(3)').each(function(){
+			$("#selectDetailTable").find("tr").find('td:eq(3)').each(function(){
 				if(  parseInt($(this).html()) > 0 && tableCount > 0){
 					$(this).html(function(i,orgText){
 						return "<img src = '/resources/images/bill/img/icon_up.png'>" + orgText;
@@ -99,8 +99,9 @@ var EngList = [ "general_mgmt", "clean", "fumigate", "elevator_maintain", "repai
 						htm += "</table>";
 						$("#detail_content").html(htm);
 						$("#detail_content").css('display','block');
-						console.log( point.left + " : " + point.top);
-						$("#detail_content").css('left',(point.left-100)+"px");
+						console.log( point.left + " : " + point.top);						
+						$("#detail_content").css('top',(point.top+29)+"px");
+						$("#detail_content").css('left',(point.left)+"px");
 						detailState = 1;						
 					}
 				});
@@ -120,6 +121,7 @@ var EngList = [ "general_mgmt", "clean", "fumigate", "elevator_maintain", "repai
 			event.preventDefault();
 			var detailName = $(this).attr("data-rno");
 			var choiseNum = 0;
+			var point = $(this).offset();
 			var engDetailName;
 			for( var i = 0; i < list.length; i++){
 				if( list[i] == detailName){
@@ -130,6 +132,7 @@ var EngList = [ "general_mgmt", "clean", "fumigate", "elevator_maintain", "repai
 			}
 			engDetailName = EngList[choiseNum];
 			console.log(engDetailName );
+			if(detailState == 0){
 			$.ajax({
 				type : 'GET',
 				url : "/billRest/SelectDetail/" + $(this).attr("data-rno1") + "/" + $(this).attr("data-rno"),
@@ -139,12 +142,11 @@ var EngList = [ "general_mgmt", "clean", "fumigate", "elevator_maintain", "repai
 				},
 				dataType : 'json',
 				success : function(result) {					
-					var htm = "<p>" +detailName + "</p>";
+					var htm ="";
 					htm += "<table id='selectDetailTable'>";
 					htm += "<tr class = 'table_title'>";
 					htm += "<td>날짜 </td>";
 					htm += "<td>우리집 </td>";
-					htm += "<td>면적 평균 </td>";
 					
 					htm += "</tr>";
 					$.each(result,function(index,data){
@@ -155,16 +157,26 @@ var EngList = [ "general_mgmt", "clean", "fumigate", "elevator_maintain", "repai
 					
 					$("#selectDetailDiv").html(htm);
 					$("#selectDetailDiv").css('display','block');
+					$("#selectDetailDiv").css('top',(point.top+29)+"px");
+					$("#selectDetailDiv").css('left',(point.left)+"px");
 					/*initDetailTable();*/
+					detailState = 1;
 				}
 				
+				
 			});
+			}
+			else{
+				$("#selectDetailDiv").css('display','none');
+				detailState = 0;
+			}
 			
 		});
 		
 		
 		
 		$("#select_month_btn").on("click", function(event) {
+			var detailState = 0;
 			event.preventDefault();
 			var point = $("#select_month_content").offset();
 			if( state == 0 ){

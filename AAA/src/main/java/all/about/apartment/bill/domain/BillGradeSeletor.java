@@ -26,7 +26,13 @@ public class BillGradeSeletor {
 		return this.energyName;
 	}
 	public String getGrade(int input_num) throws Exception{
-		List<ScorePMEVO> list = service.getSelectEnergyList(energyName);
+		List<ScorePMEVO> list = null;
+		try {
+			list = service.getSelectEnergyList(energyName);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		for( int i = 0 ; i < list.size(); i++){
 			ScorePMEVO person = list.get(i);
