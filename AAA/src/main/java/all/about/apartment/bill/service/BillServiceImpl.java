@@ -45,7 +45,7 @@ public class BillServiceImpl implements BillService {
 		
 		String[] a_pMonth = p_month.split("-");
 		/* 20%%-01 와 같은 포멧을 만들기 위해서 */
-		String year = "20%%";// sql 적용을 위한 
+		String year = "201%";// sql 적용을 위한 
 		String month = a_pMonth[1]; // 월 부분 가져오기
 		
 		

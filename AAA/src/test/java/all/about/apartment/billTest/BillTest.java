@@ -20,7 +20,6 @@ import all.about.apartment.bill.service.BillService;
 
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@WebAppConfiguration
 @ContextConfiguration( locations = {"file:src/main/webapp/WEB-INF/spring/**/*.xml"})
 public class BillTest {
 	

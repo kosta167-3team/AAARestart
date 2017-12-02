@@ -1,12 +1,12 @@
 package all.about.apartment.facility.domain;
-
+ 
 import java.io.Serializable;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
+import java.util.Calendar; 
 import java.util.List;
+
 
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
@@ -15,6 +15,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Component
 public class Facility implements Serializable {
+
 
 	private int f_id;
 	private String f_name;
@@ -26,7 +27,19 @@ public class Facility implements Serializable {
 
 	public Facility() {
 	}
-
+ 
+	public Facility(int f_id, String f_name, String f_contents, int f_capa, String f_state, String f_open,
+			String f_close) {
+		super();
+		this.f_id = f_id;
+		this.f_name = f_name;
+		this.f_contents = f_contents;
+		this.f_capa = f_capa;
+		this.f_state = f_state;
+		this.f_open = f_open;
+		this.f_close = f_close;
+	}
+ 
 	public int getF_id() {
 		return f_id;
 	}
@@ -89,7 +102,7 @@ public class Facility implements Serializable {
 				+ ", f_state=" + f_state + ", f_open=" + f_open + ", f_close=" + f_close + "]";
 	}
 
-	public List<String> Set_date() {
+	public static List<String> Set_Stringdate() {
 
 		List<String> dateList = new ArrayList<String>();
 
@@ -109,8 +122,25 @@ public class Facility implements Serializable {
 		return dateList;
 	}
 
+	public static List<Timestamp> Set_date() {
+
+		List<Timestamp> dateList = new ArrayList<>();
+
+		for (int i = 1; i < 8; i++) {
+
+			Timestamp now = new Timestamp(System.currentTimeMillis());
+
+			int today = now.getDate();
+			now.setDate(today + i);
+
+			dateList.add(now);
+		}
+
+		return dateList;
+	}
+
 	// 타임스탬프 →스트링
-	public String TimestampToString(Timestamp timestamp) {
+	public static String TimestampToString(Timestamp timestamp) {
 
 		Calendar cal = Calendar.getInstance();
 

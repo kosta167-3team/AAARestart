@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="all.about.apartment.mappers.CommMapper">
+ <cache/>
+ 
+ <insert id="insertUser" parameterType="Comm_user">
+ 	insert into comm_user values
+ 		(#{r_id}, #{cu_size}, #{cu_interest}, #{cu_type})
+ </insert>
+ 
+ <insert id="insertCommBoard" parameterType="Comm_board">
+ 	insert into comm_board values
+ 		(cb_seq.nextval, #{cb_interest}, #{cb_contents}, #{r_id}, sysdate)
+ </insert>
+ 
+</mapper>  
+
+
+
+
+
+
+
+
+
+
+

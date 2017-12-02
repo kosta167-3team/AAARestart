@@ -3,7 +3,9 @@ package all.about.apartment.facility.domain;
 import java.io.Serializable;
 
 import org.springframework.stereotype.Component;
+
 import org.springframework.stereotype.Repository;
+
 
 @Component
 public class Facility_time implements Serializable{
@@ -11,7 +13,16 @@ public class Facility_time implements Serializable{
 	private int t_id;
 	private String t_start;
 	private String t_end;
-
+	
+	public Facility_time (){} 
+	
+	public Facility_time(int t_id, String t_start, String t_end) {
+		super();
+		this.t_id = t_id;
+		this.t_start = t_start;
+		this.t_end = t_end;
+	} 
+	
 	public int getT_id() {
 		return t_id;
 	}
