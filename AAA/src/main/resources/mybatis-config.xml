@@ -8,6 +8,7 @@
 		<package name="all.about.apartment.bill.domain"/>
 
 		<package name="all.about.apartment.facility.domain"/>
+		<package name="all.about.apartment.comm.domain"/>
 
 
 		<package name="all.about.apartment.facility.domain"/>
@@ -19,10 +20,14 @@
 
 		<package name="all.about.apartment.aptData.domain"/>
 		<package name="all.about.apartment.publicDomain"/>
+
+		<package name="all.about.apartment.realEstate.domain"/>
+		
+		<package name="all.about.apartment.message.domain"/>
+		
 	</typeAliases>
 	
-	
-	
+
 </configuration>
 
 

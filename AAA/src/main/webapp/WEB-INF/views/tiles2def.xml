@@ -24,6 +24,7 @@
 		<put-attribute name="body" value="/WEB-INF/views/main_body.jsp"/>
 	</definition>
 	
+
 	<definition name="/visit/application" extends="base_layout">
 		<put-attribute name="body" value="/WEB-INF/views/visit/application.jsp"/>
 	</definition>
@@ -39,10 +40,36 @@
 	<definition name="/visit/visitManagement" extends="base_layout">
 		<put-attribute name="body" value="/WEB-INF/views/visit/admin/visitManagement.jsp"/>
 	</definition>
-	
-	<definition name="/realEstate" extends="base_layout">
+
+	<definition name="/real_estate" extends="base_layout">
+
 		<put-attribute name="body" value="/WEB-INF/views/real_estate/res_body.jsp"/>
 	</definition>
+
+
+<!-- 시설 -->
+	<definition name="/facility/reserveFacility" extends="base_layout">
+		<put-attribute name="body" value="/WEB-INF/views/facility/reserveFacility.jsp"/>
+	</definition>
+
+	<definition name="/facility/checkReservation" extends="base_layout">
+		<put-attribute name="body" value="/WEB-INF/views/facility/checkReservation.jsp"/>
+	</definition>
+
+	<definition name="/facility/manageFacility" extends="base_layout">
+		<put-attribute name="body" value="/WEB-INF/views/facility/manageFacility.jsp"/>
+	</definition>
+
+<!-- 커뮤니티 -->
+	<definition name="/comm/registerComm" extends="base_layout">
+		<put-attribute name="body" value="/WEB-INF/views/comm/registerComm.jsp"/>
+	</definition>
+
+	<definition name="/comm/checkFeed" extends="base_layout">
+		<put-attribute name="body" value="/WEB-INF/views/comm/checkFeed.jsp"/>
+	</definition>
+
+
 
 	<!-- extends base_layout 를 해주면 자동으로 header,footer를 적용해준다. -->
 	<!-- <definition name="/bill/full-width" template="/WEB-INF/views/bill/template.jsp">

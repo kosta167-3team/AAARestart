@@ -195,17 +195,22 @@ public class AptDataRestController {
 	}
 	
 	@RequestMapping(value ="/updateLocation" , method =RequestMethod.PUT)
-	public void updataLocation(@RequestBody ApartmentVO vo){
+	public ResponseEntity<String> updataLocation(@RequestBody ApartmentVO vo){
 		System.out.println("AptRestController... > updataLocation");
 		
 		System.out.println ((++ccnt )+":" +vo.toString());
-
+		
+		ResponseEntity<String> entity = null;
 		
 		try {
 			service.updataLocation(vo);
+			entity = new ResponseEntity<String> (HttpStatus.OK);
 		} catch (Exception e) {
 			e.printStackTrace();
+			entity = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
+		
+		return entity;
 	}
 	
 

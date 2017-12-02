@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="all.about.apartment.mappers.RealEstateMapper">
+	
+	<select id="getdetailAptCode" resultType="String" parameterType="java.util.HashMap">
+    	 SELECT alias.KAPTCODE
+  			FROM (
+  			  select KAPTCODE from apartment
+  				where dongname = #{dongname}
+  				and kaptname like #{aptname}
+  				ORDER BY KAPTDACNT DESC
+ 			)alias
+		 WHERE ROWNUM = 1
+	</select>
+	
+	<select id="getAptCode" resultType="String" parameterType="String">
+		select kaptcode from apartment
+		where dongname = #{dongname}
+	</select>
+
+	<select id="dongCnt" resultType="Integer" parameterType="String">
+		select count(*) from apartment
+		group by dongname
+		having dongname = #{dongname}
+	</select>
+	
+	
+	<insert id="insertRentData" parameterType="AptRentVO">
+		INSERT INTO APT_RENT 
+			(RENT_ID,APARTCODE,RENT_YEAR,RENT_MONTH,RENT_AREA,RENT_DEPOSIT)
+			VALUES (rent_seq.NEXTVAL , #{apartcode},#{rent_year},#{rent_month},#{rent_area},#{rent_deposit})
+	</insert>
+	
+	<insert id="insertTradeData" parameterType="AptTradeVO">
+		INSERT INTO APT_TRADE
+			(TRADE_ID,APARTCODE,TRADE_AREA,TRADE_YEAR,TRADE_MONTH,TRADE_PRICE) 
+			VALUES (trade_seq.NEXTVAL , #{apartcode},#{trade_area},#{trade_year},#{trade_month},#{trade_price})
+	</insert>
+	
+	
+	<!-- 면적  -->
+	<select id="area_list" resultType="Integer">
+		SELECT RENT_AREA FROM APT_RENT
+		GROUP BY RENT_AREA,APARTCODE
+		HAVING APARTCODE ='A13522007'
+		ORDER BY RENT_AREA 
+	</select>
+	
+	
+	<!-- 전세 정보 -->
+	<select id="getLastRentData" parameterType="int" resultType="int">
+		SELECT a.* 
+  			FROM(
+   			 SELECT  APT_RENT.RENT_DEPOSIT FROM APT_RENT
+  			  WHERE RENT_AREA = #{area}
+    			AND APARTCODE ='A13522007'
+    			ORDER BY RENT_YEAR DESC, RENT_MONTH DESC
+			)a
+		where ROWNUM = 1
+	</select>
+	
+	
+	<!-- 매매 정보 -->
+	<select id="getLastTradeData" parameterType="int" resultType="int">
+		SELECT a.* 
+  		FROM(
+ 		  SELECT  APT_TRADE.TRADE_PRICE FROM APT_TRADE
+   			WHERE TRADE_AREA = #{area}
+   			AND APARTCODE ='A13522007'
+   			ORDER BY TRADE_YEAR DESC, TRADE_MONTH DESC
+		)a
+		where ROWNUM = 1
+	</select>
+	
+	<!-- 아파트 이름  -->
+	<select id="getAptName" resultType="String">
+		SELECT KAPTNAME FROM APARTMENT
+		WHERE KAPTCODE = 'A13522007'
+	</select>
+	
+	<!-- 이번달 평수별 상한가 하한가 출력 -->
+	<select id="monthlyRealEstate" resultType="LastDataListVO">
+	SELECT * FROM(
+              select  rent.RENT_AREA , max(rent."rent_max") "rent_max" , min(rent."rent_min") "rent_min" 
+              from(
+                SELECT RENT_YEAR,RENT_MONTH, RENT_AREA,MAX(RENT_DEPOSIT) "rent_max" ,MIN(RENT_DEPOSIT) "rent_min"FROM APT_RENT
+                GROUP BY APARTCODE , RENT_AREA ,RENT_MONTH ,RENT_YEAR
+                HAVING APARTCODE ='A13522007'
+                AND RENT_MONTH   between TO_NUMBER(TO_CHAR(add_months(SYSDATE,-5),'MM'))AND TO_NUMBER(TO_CHAR(add_months(SYSDATE,0),'MM'))
+                ORDER BY RENT_YEAR DESC ,RENT_MONTH DESC
+              )rent
+              group by rent.RENT_AREA
+              order by rent.RENT_AREA
+      ) rent FULL JOIN (
+        	select trade.trade_area , max(trade."trade_max") "trade_max", max(trade."trade_min") "trade_min" from
+		      (SELECT TRADE_YEAR,TRADE_MONTH, TRADE_AREA,MAX(TRADE_PRICE) "trade_max" ,MIN(TRADE_PRICE) "trade_min"FROM APT_TRADE
+					GROUP BY APARTCODE  ,TRADE_MONTH ,TRADE_YEAR , TRADE_AREA
+					HAVING APARTCODE ='A13522007'
+					AND TRADE_MONTH between TO_NUMBER(TO_CHAR(add_months(SYSDATE,-5),'MM'))AND TO_NUMBER(TO_CHAR(add_months(SYSDATE,0),'MM'))
+					ORDER BY TRADE_YEAR DESC ,TRADE_MONTH DESC)trade
+		      group by trade.trade_area
+		      ORDER BY trade.trade_area
+      
+      )trade
+      ON rent.rent_area = trade.trade_area
+	</select>
+	
+	<!-- 전세 일년치 상한가 하한가 -->
+	<select id="annualRent" parameterType="int" resultType="AnnualMinMaxVO">
+		SELECT  RENT_YEAR ,RENT_MONTH,APARTCODE ,RENT_AREA ,MAX(RENT_DEPOSIT) "rent_max",MIN(RENT_DEPOSIT) "rent_min"  FROM APT_RENT
+		GROUP BY RENT_YEAR,RENT_MONTH ,APARTCODE ,RENT_AREA
+		HAVING APARTCODE ='A13522007'
+		AND RENT_AREA = #{area}
+		ORDER BY RENT_YEAR  ,RENT_MONTH 
+	</select>
+	
+	<!-- 매매 일년치 상한가 하한가 -->
+	<select id="annualTrade" parameterType="int" resultType="AnnualMinMaxVO">
+		SELECT TRADE_YEAR ,TRADE_MONTH ,MAX(TRADE_PRICE)"trade_max" , MIN(TRADE_PRICE) "trade_min" FROM APT_TRADE
+		GROUP BY TRADE_YEAR,TRADE_MONTH,APARTCODE,TRADE_AREA
+		HAVING APARTCODE ='A13522007'
+		AND TRADE_AREA = #{area}
+		ORDER BY TRADE_YEAR,TRADE_MONTH
+	</select>
+	
+	
+	<!-- 전세 / 매매 1년치 -->
+	<select id="annualRentTrade" parameterType="int" resultType="AnnualMinMaxVO">
+	      select a.rent_year, a.rent_month,b.trade_year, b.trade_month, a."rent_max" , a."rent_min", b."trade_max", b."trade_min"
+     	 from (
+         	SELECT RENT_YEAR,RENT_MONTH, RENT_AREA,MAX(RENT_DEPOSIT) "rent_max" ,MIN(RENT_DEPOSIT) "rent_min"FROM APT_RENT
+			GROUP BY APARTCODE  ,RENT_MONTH ,RENT_YEAR , RENT_AREA
+			HAVING APARTCODE ='A13522007'
+     		 AND RENT_AREA = #{area}
+			ORDER BY RENT_YEAR DESC ,RENT_MONTH DESC
+     	 ) a FULL JOIN (
+      		SELECT TRADE_YEAR,TRADE_MONTH, TRADE_AREA,MAX(TRADE_PRICE) "trade_max" ,MIN(TRADE_PRICE) "trade_min"FROM APT_TRADE
+				GROUP BY APARTCODE  ,TRADE_MONTH ,TRADE_YEAR , TRADE_AREA
+				HAVING APARTCODE ='A13522007'
+     			 AND TRADE_AREA = 34
+				ORDER BY TRADE_YEAR DESC ,TRADE_MONTH DESC
+    	  )b
+     	 ON a.RENT_MONTH = b.TRADE_MONTH
+	</select>
+	
+	<!-- 가장 오래된 데이터 지우기 (전세) -->
+	<delete id="deleteRentOldest">
+		DELETE FROM apt_rent
+			WHERE (rent_year,rent_month)IN(
+				SELECT A.rent_year, A.rent_month  FROM(
+					SELECT rent_year,rent_month FROM apt_rent
+					GROUP BY rent_year, rent_month
+					ORDER BY rent_year, rent_month)a
+				WHERE ROWNUM = 1
+		)
+	</delete>
+	
+	<delete id="deleteTradeOldest">
+	    DELETE FROM apt_trade
+	      WHERE (trade_year,trade_month)IN(
+		      SELECT A.trade_year, A.trade_month  FROM(
+	    	  SELECT trade_year,trade_month FROM apt_trade
+	      		GROUP BY trade_year,trade_month
+	      		ORDER BY trade_year,trade_month)a
+	      WHERE ROWNUM = 1
+      	)
+	</delete>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

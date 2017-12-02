@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="all.about.apartment.mappers.MessageMapper">
+	
+	<!-- 메세지 보내기 -->
+	<insert id="sendMessage" parameterType="MessageVO">
+		insert into message
+			(msg_id, msg_content,msg_regdate,sender, receiver, type_id)
+		values
+			(msg_seq.nextval,#{msg_content},sysdate,#{sender},#{receiver},#{type_id})
+	</insert>
+	
+	<!-- 메세지 내역 확인 -->
+	<select id="recieveMessage" parameterType="String" resultType="MessageVO">
+		SELECT sender,msg_regdate,read_check,msg_content 
+		FROM message
+		WHERE receiver =#{reciever}
+		ORDER BY msg_regdate DESC	
+	</select>
+</mapper>

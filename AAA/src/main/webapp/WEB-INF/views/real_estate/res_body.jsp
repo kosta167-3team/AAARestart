@@ -11,30 +11,18 @@
 <meta charset="UTF-8">
 
 <title>Insert title here</title>
-
+<!-- css -->
 <link href="/resources/layout/styles/real_estate/real_layout.css"
 	rel="stylesheet" type="text/css" media="all">
-<!-- 합쳐지고 최소화된 최신 CSS -->
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 
-<!-- 부가적인 테마 -->
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+<!-- scripts -->
 
-<!-- 합쳐지고 최소화된 최신 자바스크립트 -->
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-<script src="/resources/layout/scripts/jquery.min.js"></script>
-<script type="text/javascript">
-	$(function() {
-		$('.tab').on('click', function(event) {
-			$('li').removeClass('active');
-			$(this).parent().addClass('active');
-			event.preventDefault();
-		})
-	})
-</script>
+
+<script type="text/javascript"
+	src="/resources/layout/scripts/real_estate/real_estate.js"></script>
+<script type="text/javascript"
+	src="https://www.gstatic.com/charts/loader.js"></script>
+
 </head>
 
 <body>
@@ -52,16 +40,24 @@
 			</div>
 		</div>
 	</div>
-	<!-- ################################################################################################ -->
-	<!-- ################################################################################################ -->
-	<!-- ################################################################################################ -->
+
 	<div class="wrapper row3">
 		<main class="container clear">
+		<div id="apart_title">
+			<h1>
+				<p></p>
+			</h1>
+		</div>
 
 		<div class="page-header">
-			<h1>
+			<h2>
 				면적별시세 조회<span class="pull-right label label-default">부동산</span>
-			</h1>
+			</h2>
+			<div class="selected-item">
+				<!-- <p>
+					You Selected Country : <span>Empty</span>
+				</p> -->
+			</div>
 		</div>
 		<div class="">
 			<div class="panel with-nav-tabs panel-primary">
@@ -71,24 +67,93 @@
 							data-toggle="tab">면적별시세 조회</a></li>
 						<li><a class="tab" href="#tab2primary" data-toggle="tab">시세변동추이</a></li>
 						<li><a class="tab" href="#tab3primary" data-toggle="tab">주변단지시세조회</a></li>
-						<!-- <li class="dropdown"><a href="#" data-toggle="dropdown">Dropdown
-								<span class="caret"></span>
-						</a>
-							<ul class="dropdown-menu" role="menu">
-								<li><a href="#tab4primary" data-toggle="tab">Primary 4</a></li>
-								<li><a href="#tab5primary" data-toggle="tab">Primary 5</a></li>
-							</ul>
-						</li> -->
 					</ul>
 				</div>
 				<div class="panel-body">
 					<div class="tab-content">
-						<div class="tab-pane fade in active" id="tab1primary">Primary
-							1</div>
-						<div class="tab-pane fade" id="tab2primary">Primary 2</div>
-						<div class="tab-pane fade" id="tab3primary">Primary 3</div>
-						<div class="tab-pane fade" id="tab4primary">Primary 4</div>
-						<div class="tab-pane fade" id="tab5primary">Primary 5</div>
+						<div class="tab-pane fade in active" id="tab1primary">
+							<div class="btn-group">
+								<button type="button" class="btn btn-default dropdown-toggle"
+									data-toggle="dropdown">
+									면적 선택 <span class="caret"></span>
+								</button>
+								<ul class="dropdown-menu" role="menu">
+								</ul>
+							</div>
+							<div class="real_estateData">
+								<div class="chart"></div>
+								<div class="table scrollable">
+									<table class="real_estate_table">
+										<thead>
+											<tr>
+
+												<th scope="col" rowspan="2" class="spanTH">면적(㎡)</th>
+												<th scope="colgroup" colspan="2" class="spanTH">전세(만원)</th>
+												<th scope="colgroup" colspan="2" class="tit_lease spanTH">매매(만원)</th>
+											</tr>
+											<tr>
+												<th scope="col">최대가</th>
+												<th scope="col">최소가</th>
+												<th scope="col">최대가</th>
+												<th scope="col">최소가</th>
+											</tr>
+										</thead>
+										<tbody>
+										</tbody>
+									</table>
+								</div>
+							</div>
+
+						</div>
+						<div class="tab-pane fade" id="tab2primary">
+							<div class="btn-group">
+								<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+									면적 선택 <span class="caret"></span>
+								</button>
+								<ul class="dropdown-menu" role="menu">
+								</ul>
+
+							</div>
+							<div class="apt_type">
+								<a href="rent" class="type_select">전세</a> <a href="trade">매매</a>
+							</div>
+							<div class="real_estateData">
+								<div class="chart"></div>
+								<div class="table scrollable">
+									<table class="real_estate_table">
+										<thead>
+											<tr>
+												<th scope="col" rowspan="2" class="spanTH">년/월</th>
+												<th scope="colgroup" colspan="2" class="spanTH">전세(만원)</th>
+												<th scope="colgroup" colspan="2" class="tit_lease spanTH">매매(만원)</th>
+											</tr>
+											<tr>
+												<th scope="col">최대가</th>
+												<th scope="col">최소가</th>
+												<th scope="col">최대가</th>
+												<th scope="col">최소가</th>
+											</tr>
+										</thead>
+										<tbody>
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+						<div class="tab-pane fade" id="tab3primary">
+							<div class="btn-group">
+								<button type="button" class="btn btn-default dropdown-toggle"
+									data-toggle="dropdown">
+									면적 선택 <span class="caret"></span>
+								</button>
+								<ul class="dropdown-menu" role="menu">
+								</ul>
+
+							</div>
+							<div class="real_estateData">Primary3</div>
+
+						</div>
+						
 					</div>
 				</div>
 			</div>

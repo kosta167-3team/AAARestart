@@ -15,85 +15,83 @@
 <body>
 	<h1>테스트</h1>
 
-	<script type="text/javascript">
-		var i = 0;
-		$(function() {
-			console.log('테스트');
-/* 
-			
-			$.ajax({
-				type:'get',
-				url:'/aptData/rest/dong_list',
-				dataType : "json",
-				async:false,
-				success:function(data){
-					console.log(data);
-					$(data).each(function(index, item) {
-						$.ajax({
-							type:'get',
-							url:'/aptData/rest/aptlist/' + item,
-							dataType : "json",
-							async:false,
-							success:function(data){
-								$(data).each(function(index, item) {
-									console.log(item);
-									detailApt(item);
-								});
-							}
-						});
-					$.getJSON('/aptData/rest/aptlist/' + item, function(data) {
-							$(data).each(function(index, item) {
-								console.log(item);
-								detailApt(item);
-							}); 
+<script type="text/javascript">
+var i = 0;
+$(function() {
+	console.log('테스트');
 
-					});
-				}
-			}); */
-			//location.href = "/aptData/changeXY";
-					//alert('위도경도바꾸기 go')
-					//location.href = "/aptData/changeXY";
-		 	$.getJSON('/aptData/rest/dong_list', function(data) {
-
-				console.log(data);
-				$(data).each(function(index, item) {
-
-					$.getJSON('/aptData/rest/aptlist/' + item, function(data) {
+	$.ajax({
+		type : 'get',
+		url : '/aptData/rest/dong_list',
+		dataType : "json",
+		async : false,
+		success : function(data) {
+			console.log(data);
+			$(data).each(function(index, item) {
+				$.ajax({
+					type : 'get',
+					url : '/aptData/rest/aptlist/' + item,
+					dataType : "json",
+					async : false,
+					success : function(data) {
 						$(data).each(function(index, item) {
 							console.log(item);
 							detailApt(item);
 						});
-						//location.href = "/aptData/changeXY";
-					});
+					}
 				});
-			}); 
-			
+			});
+			chanegeXY();
+		}
+	});
+});
+
+		//location.href = "/aptData/changeXY";
+		/* $.getJSON('/aptData/rest/dong_list', function(data) {
+
+		console.log(data);
+		$(data).each(function(index, item) {
+
+			$.getJSON('/aptData/rest/aptlist/' + item, function(data) {
+				$(data).each(function(index, item) {
+					console.log(item);
+					detailApt(item);
+				});
+				//location.href = "/aptData/changeXY";
+			});
 		});
+		});  */
 
-		function detailApt(data) {
-			var kaptCode = data.kaptCode;
-			var kaptName = data.kaptName;
+function detailApt(data) {
+	var kaptCode = data.kaptCode;
+	var kaptName = data.kaptName;
 
-			console.log((++i)+" : "+kaptCode + " , " + kaptName);
+	console.log((++i) + " : " + kaptCode + " , " + kaptName);
 
-			$.ajax({
-				type : 'post',
-				url : '/aptData/rest/aptdetail',
-				headers : {
-					"Content-type" : "application/json",
-					"X-HTTP-Method-Override" : "POST"
-				},
-				data : JSON.stringify({
-					kaptCode : kaptCode,
-					kaptName : kaptName
-				}),
-				success : function() {
-					//location.href = "/aptData/changeXY";
-				}
-			})
-		};
+	$.ajax({
+		type : 'post',
+		url : '/aptData/rest/aptdetail',
+		headers : {
+			"Content-type" : "application/json",
+			"X-HTTP-Method-Override" : "POST"
+		},
+		async : false,
+		data : JSON.stringify({
+			kaptCode : kaptCode,
+			kaptName : kaptName
+		}),
+		success : function() {
+			//location.href = "/aptData/changeXY";
+		}
+	})
+};
+
+function chanegeXY(){
+	alert('위도경도바꾸기');
+	location.href = "/aptData/changeXY";
+}
 	</script>
 </body>
-	<a href="/aptData/changeXY">좌표변환 ~</a>
+<a href="/aptData/changeXY">좌표변환 ~</a>
 </html>
 
