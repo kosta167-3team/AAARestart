@@ -12,11 +12,11 @@ Licence URI: http://www.os-templates.com/template-terms
 -->
 
 <style>
-	li {
-		font-size: 18px;
-	}
+li {
+	font-size: 18px;
+}
 </style>
-
+ 
 <html>
 <head>
 <title>Viral | Pages | Full Width</title>
@@ -37,60 +37,63 @@ Licence URI: http://www.os-templates.com/template-terms
 <link href="/resources/layout/styles/layout.css" rel="stylesheet"
 	type="text/css" media="all">
 
+<link href="/resources/layout/styles/message/message.css"
+	rel="stylesheet" type="text/css" media="all">
+
 <!-- JAVASCRIPTS -->
 <script src="/resources/layout/scripts/jquery.min.js"></script>
 <script src="/resources/layout/scripts/jquery.backtotop.js"></script>
 
-<script	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 <script src="/resources/layout/scripts/jquery.mobilemenu.js"></script>
 <script src="/resources/layout/scripts/message/messageChk.js"></script>
-<script type="text/javascript">
+<script type="text/javascript"
+	src="/resources/layout/scripts/message/message.js"></script>
 
-$(function () {
-	var id = $('[ name="user_id"]').val();
-	console.log(id);
-	if(id == ''){
-		$('#login').text('로그인');
-		$('#login').attr('href', '/user/login');
-	}else{
-		$('#login').text('로그아웃');
-		$('#login').attr('href', '/user/logout');
-		$('#msg').html('쪽지 [<span>0</span>]');
-	}
-	
-});
+<script type="text/javascript">
+	$(function() {
+		var id = $('[ name="user_id"]').val();
+		console.log(id);
+		if (id == '') {
+			$('#login').text('로그인');
+			$('#login').attr('href', '/user/login');
+		} else {
+			$('#login').text('로그아웃');
+			$('#login').attr('href', '/user/logout');
+			$('#msg').html('쪽지 <span  class="badge"></span>');
+		}
+	});
 </script>
 </head>
 
-<input type="hidden" name="user_id" value="${login.r_id}"> 
+ 
+<input type="hidden" name="user_id" value="${login.r_id}">
+ 
 <body id="top">
-<!-- ################################################################################################ -->
-<!-- ################################################################################################ -->
-<!-- ################################################################################################ -->
+	<!-- ################################################################################################ -->
+	<!-- ################################################################################################ -->
+	<!-- ################################################################################################ -->
 
-<div class="wrapper row0">
-  <div id="topbar" class="clear"> 
-    <!-- ################################################################################################ -->
-    <div class="fl_left">
-      <ul class="nospace inline">
-       <li><i class="fa fa-phone"></i> +00 (123) 456 7890</li>
-        <li><i class="fa fa-envelope-o"></i> info@domain.com</li> 
+	<div class="wrapper row0">
+		<div id="topbar" class="clear">
+			<!-- ################################################################################################ -->
+			<div class="fl_left">
+				<ul class="nospace inline">
+					<!--         <li><i class="fa fa-phone"></i> +00 (123) 456 7890</li>
+        <li><i class="fa fa-envelope-o"></i> info@domain.com</li> -->
       </ul>
     </div>
    <div class="fl_right">
       <ul class="faico clear">
         <li><a  href="#" id="login"></a></li>
         <li><a  href="#">마이페이지</a></li>
-        <li><a  href="#" id ="msg"></a></li>
+        <li><a href="#" id ="msg" data-toggle="modal" data-target="#messageListmodal"></a></li>
       </ul>
     </div>
     <!-- ################################################################################################ -->
   </div>
 </div>
-<!-- ################################################################################################ -->
-<!-- ################################################################################################ -->
-<!-- ################################################################################################ -->
-
 <!-- ################################################################################################ -->
 <!-- ################################################################################################ -->
 <!-- ################################################################################################ -->
@@ -110,6 +113,8 @@ $(function () {
             <li class="active"><a class="drop" href="/bill/full-width">관리비 조회</a>
             	<ul>
             		<li> <a href="/billScore/billScoreBody">관리비 성적표</a></li>
+            		<li><a href="/billPrediction/billPredictionBody">관리비 예측 </a> </li>
+            		
             	</ul>
             </li>
             <li><a href="/">관리비 1</a></li>
@@ -137,7 +142,7 @@ $(function () {
           </ul>
         </li>
         <li><a href="#">커뮤니티</a></li>
-        <li><a href="#">부동산</a></li>
+        <li><a href="/real_estate">부동산</a></li>
         <li><a class="drop" href="#">경매</a>
           <ul>
             <li><a href="/bidd/bidDetail">경매 물품보기</a></li>
@@ -149,7 +154,7 @@ $(function () {
     <!-- ################################################################################################ -->
   </header>
 </div>
-	
+
 	<!-- ################################################################################################ -->
 	<!-- ################################################################################################ -->
 	<!-- ################################################################################################ -->
@@ -157,8 +162,8 @@ $(function () {
 
 	<!-- ##################################################################################################### -->
 	<!-- Modal  -->
-	<div class="modal fade messageListmodal" tabindex="-1" role="dialog"
-		aria-labelledby="myLargeModalLabel" aria-hidden="true">
+	<div class="modal fade " id="messageListmodal" tabindex="-1"
+		role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
 		<div class="modal-dialog modal-lg">
 			<div class="modal-content">
 				<div class="modal-header">
@@ -175,16 +180,77 @@ $(function () {
 						<table class="table table-hover table-striped">
 							<thead>
 								<tr>
-									<th class ="col-md-2">읽음 / 안 읽음</th>
-									<th class ="col-md-2">보낸 사람</th>
-									<th class ="col-md-6">내용</th>
-									<th class ="col-md-2">보낸 시간</th>
+									<th class="col-md-1"><input type="checkbox"
+										id="checkedAll" autocomplete="off" aria-label="..."></th>
+									<th class="col-md-2">읽음 / 안 읽음</th>
+									<th class="col-md-6">제목</th>
+									<th class="col-md-2">보낸 시간</th>
 								</tr>
 							</thead>
 							<tbody>
 							</tbody>
 						</table>
 					</div>
+				</div>
+				<nav class="pagination">
+					<ul>
+						<li><a href="#">&laquo; Previous</a></li>
+						<li><a href="#">1</a></li>
+						<li><a href="#">2</a></li>
+						<li><strong>&hellip;</strong></li>
+						<li><a href="#">6</a></li>
+						<li class="current"><strong>7</strong></li>
+						<li><a href="#">8</a></li>
+						<li><a href="#">9</a></li>
+						<li><strong>&hellip;</strong></li>
+						<li><a href="#">14</a></li>
+						<li><a href="#">15</a></li>
+						<li><a href="#">Next &raquo;</a></li>
+					</ul>
+				</nav>
+			</div>
+		</div>
+	</div>
+	<div class="modal fade" id="messageModal" tabindex="-1" role="dialog"
+		aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title" id="exampleModalLabel">새로운 쪽지</h4>
+				</div>
+				<div class="modal-body">
+
+					<form id="messageForm">
+						<input type="hidden" name="type_id" value="">
+						<div class="form-group">
+							<label for="recipient-name" class="control-label">보내는사람</label>
+							<!-- <input type="text" class="form-control" id="recipient-name"> -->
+							<input type="hidden" class="form-control" name="sender" value="">
+							<p class="form-control-static sender"></p>
+						</div>
+						<div class="form-group">
+							<label for="recipient-name" class="control-label">받는 사람</label> 
+							<input type="hidden" class="form-control" name="receiver" value="">
+							<p class="form-control-static receiver"></p>
+						</div>
+						<div class="form-group">
+							<label for="message-text" class="control-label">메세지 내용:</label>
+							<textarea class="form-control" id="message-text"
+								name="msg_content"></textarea>
+						</div>
+
+						<div class="modal-footer">
+							<button type="button" class="btn btn-primary"
+								data-dismiss="modal" id="sendMessage">메세지 보내기</button>
+							<button type="button" class="btn btn-default"
+								data-dismiss="modal">취소</button>
+						</div>
+					</form>
+
 				</div>
 			</div>
 		</div>

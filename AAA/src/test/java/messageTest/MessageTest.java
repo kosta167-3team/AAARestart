@@ -1,7 +1,5 @@
 package messageTest;
 
-import static org.junit.Assert.*;
-
 import java.util.List;
 
 import javax.inject.Inject;
@@ -38,6 +36,11 @@ public class MessageTest {
 			e.printStackTrace();
 		}
 		
+	}
+	
+	@Test
+	public void test(){
+		System.out.println("dd");
 	}
 
 }

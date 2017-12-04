@@ -31,7 +31,7 @@ public class AptDataController {
 		}
 	}
 	
-	@RequestMapping(value ="/" ,method = RequestMethod.GET)
+	@RequestMapping(value ="" ,method = RequestMethod.GET)
 	public String aptData(){
 		return "/pages/aptdata/aptData";
 	}

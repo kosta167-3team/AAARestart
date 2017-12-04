@@ -42,6 +42,10 @@ public interface RealEstateService {
 	//가장 오래된 데이터 지우기
 	public void deleteOldest () throws Exception;
 	
+	//스케줄러
+	public void firstAutoUpdate();
+	public void autoUpdate();
+	
 }
 
 

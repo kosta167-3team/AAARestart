@@ -40,9 +40,6 @@
 	<beans:bean id="authInterceptor"
 		class="all.about.apartment.intercepter.AuthInterceptor" />
 
-	<beans:bean id="testInterceptor"
-		class="all.about.apartment.intercepter.testInterceptor" />
-
 	<beans:bean id="Comm_reg_Inteceptor"
 		class="all.about.apartment.intercepter.Comm_reg_Inteceptor" />
 
@@ -54,13 +51,16 @@
 
 	<interceptors>
 		<interceptor>
-			<mapping path="/user/loginPost" />
+			<mapping path="/user/loginPost" />			
 			<beans:ref bean="loginInteceptor" />
 		</interceptor>
 
 		<interceptor>
 			<mapping path="/bill/full-width" />
+			<mapping path="/billScore/billScoreBody"/>
+			<mapping path="/billPrediction/billPredictionBody"/>
 			<beans:ref bean="authInterceptor" />
+			
 		</interceptor>
 
 		<interceptor>
@@ -84,15 +84,7 @@
 			<beans:ref bean="authInterceptor" />
 		</interceptor>
 
-		<interceptor>
-			<mapping path="/bill/full-width" />
-			<beans:ref bean="authInterceptor" />
-		</interceptor>
 
-		<interceptor>
-			<mapping path="/" />
-			<beans:ref bean="testInterceptor" />
-		</interceptor>
 	</interceptors>
 
 	<context:component-scan base-package="all.about.apartment" />

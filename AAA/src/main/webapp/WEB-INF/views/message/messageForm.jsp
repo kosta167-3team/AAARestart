@@ -25,11 +25,12 @@
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 <script type="text/javascript"
-	src="/resources/layout/scripts//message/message.js"></script>
+	src="/resources/layout/scripts/message/message.js"></script>
 
 </head>
 
 <body>
+
 	<div class="container">
 
 		<button type="button" class="btn btn-primary" data-toggle="modal"
@@ -49,7 +50,7 @@
 					<div class="modal-body">
 
 						<form id="messageForm">
-							<input type="hidden" name="type_id" value="1">
+							<input type="hidden" name="type_id" value="6">
 							<div class="form-group">
 								<label for="recipient-name" class="control-label ">보내는
 									사람</label>
@@ -82,7 +83,7 @@
 			</div>
 		</div>
 	</div>
-</body>
+</body>,
 <!-- Large modal -->
 <a class="btn" data-toggle="modal"
 	data-target=".messageListmodal">Large modal</a>
