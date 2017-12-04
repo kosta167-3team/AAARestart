@@ -32,4 +32,9 @@ public class MessageServiceImpl implements MessageService {
 		return dao.newMsgCount(reciever);
 	}
 
+	@Override
+	public void update_ck(int msg_id) throws Exception {
+		dao.update_ck(msg_id);
+	}
+
 }

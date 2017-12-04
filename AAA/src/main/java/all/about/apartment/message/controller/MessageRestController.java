@@ -81,6 +81,22 @@ public class MessageRestController{
 		return entity;
 		
 	}
+	
+	@RequestMapping(value="/update_ck")
+	public ResponseEntity<String> update_ck(@RequestBody MessageDTO vo){
+		ResponseEntity<String> entity = null;
+		
+		try {
+			service.update_ck(vo.getMsg_id());
+			entity = new ResponseEntity<String>("success", HttpStatus.OK);
+		} catch (Exception e) {
+			e.printStackTrace();
+			entity = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		}
+		
+		return entity;
+		
+	}
 }
 
 

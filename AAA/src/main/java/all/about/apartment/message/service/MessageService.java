@@ -13,4 +13,7 @@ public interface MessageService {
 	
 	//안읽은 메세지 갯수 
 	public int newMsgCount(String reciever) throws Exception;
+	
+	//읽은 메세지 처리
+	public void update_ck(int msg_id) throws Exception ;
 }

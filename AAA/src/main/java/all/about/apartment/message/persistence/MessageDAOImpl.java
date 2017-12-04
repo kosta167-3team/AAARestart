@@ -32,4 +32,9 @@ public class MessageDAOImpl implements MessageDAO {
 		return session.selectOne(namespace+".newMsgCount", reciever);
 	}
 
+	@Override
+	public void update_ck(int msg_id) throws Exception {
+		session.update(namespace+".update_ck", msg_id);
+	}
+
 }

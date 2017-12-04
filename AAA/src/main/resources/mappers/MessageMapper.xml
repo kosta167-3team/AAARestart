@@ -16,7 +16,7 @@
 	
 	<!-- 메세지 내역 확인 -->
 	<select id="recieveMessage" parameterType="String" resultType="MessageVO">
-		SELECT m.msg_id, m.msg_content, m.msg_regdate , m.read_check, m.sender, r.r_authority
+		SELECT m.receiver,m.msg_id, m.msg_content, m.msg_regdate , m.read_check, m.sender, r.r_authority
 		FROM message m JOIN resident r
 		on m.sender = r.r_id
 		WHERE m.receiver = #{reciever}
@@ -29,6 +29,12 @@
 		WHERE read_check = 'N'
 		and receiver = #{reciever}
 	</select>
+	
+	<!-- 읽음 처리 -->
+	<update id="update_ck" parameterType="int">
+		update message set read_check ='Y'
+		where msg_id = #{msg_id}
+	</update>
 </mapper>
 
 
