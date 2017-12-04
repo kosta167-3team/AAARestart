@@ -113,6 +113,8 @@ $(function () {
             <li class="active"><a class="drop" href="/bill/full-width">관리비 조회</a>
             	<ul>
             		<li> <a href="/billScore/billScoreBody">관리비 성적표</a></li>
+            		<li><a href="/billPrediction/billPredictionBody">관리비 예측 </a> </li>
+            		
             	</ul>
             </li>
             <li><a href="/">관리비 1</a></li>
