@@ -20,6 +20,7 @@ import org.json.XML;
 import org.springframework.aop.ThrowsAdvice;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
+import org.springframework.test.annotation.IfProfileValue;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -46,12 +47,8 @@ public class RealEstateServiceImpl implements RealEstateService {
 
 	// @Scheduled(cron ="0 18 20 ? ? ? ?")
 
-	@Scheduled(cron = "0 30 20 30,31 * *")
-	public void test() {
-		System.out.println("dddd");
-	}
-
-	@Scheduled(cron = "0 0 15 2 * *")
+	@Override
+	@Scheduled(cron = "0 0 15 9 * *")
 	@Transactional
 	public void firstAutoUpdate() {
 		Calendar cal = Calendar.getInstance();
@@ -71,6 +68,7 @@ public class RealEstateServiceImpl implements RealEstateService {
 		}
 	}
 
+	@Override
 	@Scheduled(cron = "0 0 10 12,22 * *")
 	public void autoUpdate() {
 
@@ -178,7 +176,6 @@ public class RealEstateServiceImpl implements RealEstateService {
 		}
 		if (items.get("item") instanceof Map) {
 			Map<String, Object> item = (Map<String, Object>) (items.get("item"));
-			System.out.println("rent" + item);
 			itemList.add(item);
 		} else {
 			itemList = (List<Map<String, Object>>) (items.get("item"));
@@ -246,11 +243,13 @@ public class RealEstateServiceImpl implements RealEstateService {
 			throw new Exception("검색결과 없음", new Throwable("검색결과없음"));
 
 		}
-		System.out.println("trade_"+items);
 		if (items.get("item") instanceof Map) {
+			@SuppressWarnings("unchecked")
 			Map<String, Object> item = (Map<String, Object>) (items.get("item"));
-			System.out.println("ddd" +item);
-			itemList.add(item);
+			System.out.println("trade map >"+item);
+			if(item != null){
+				itemList.add(item);
+			}
 		} else {
 			itemList = (List<Map<String, Object>>) (items.get("item"));
 		}
@@ -288,7 +287,7 @@ public class RealEstateServiceImpl implements RealEstateService {
 
 			strMonth += remonth;
 			String date = reyear + strMonth;
-			// System.out.println(date);
+			 System.out.println(date);
 			inputRentData(getRentData(date), "");
 			inputTradeData(getTradeData(date), "");
 		}
@@ -308,7 +307,7 @@ public class RealEstateServiceImpl implements RealEstateService {
 
 			m = pattern.matcher(dataDay);
 
-//			if (m.find()) {
+			if (m.find()) {
 				int deposit;
 				if (map.get("월세금액") instanceof String) {
 					deposit = Integer.parseInt(((String) map.get("월세금액")).replaceAll("[^0-9]", ""));
@@ -359,11 +358,11 @@ public class RealEstateServiceImpl implements RealEstateService {
 					vo.setRent_month(rent_month);
 					vo.setRent_deposit(rent_deposit);
 
-					 System.out.println(vo.toString());
+					// System.out.println(vo.toString());
 					dao.insertRentData(vo);
 				}
 			}
-		//}
+		}
 
 	}
 
@@ -379,7 +378,7 @@ public class RealEstateServiceImpl implements RealEstateService {
 
 			m = pattern.matcher(dataDay);
 
-//			if (m.find()) {
+			if (m.find()) {
 
 				String dong = (String) map.get("법정동");
 
@@ -426,7 +425,7 @@ public class RealEstateServiceImpl implements RealEstateService {
 				// System.out.println(vo.toString());
 				dao.insertTradeData(vo);
 			}
-	//	}
+		}
 	}
 
 	@Override

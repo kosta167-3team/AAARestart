@@ -1,9 +1,5 @@
 package messageTest;
 
-import static org.junit.Assert.*;
-
-import java.util.List;
-
 import javax.inject.Inject;
 
 import org.junit.Test;
@@ -24,20 +20,25 @@ public class MessageTest {
 	@Inject
 	MessageService service;
 	
+//	@Test
+//	public void recieveTest() {
+//		List<MessageVO> list;
+//		try {
+//			list= service.recieveMessage("dustks123");
+//			
+//			for (MessageVO messageVO : list) {
+//				System.out.println(messageVO);
+//			}
+//			
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//		
+//	}
+	
 	@Test
-	public void recieveTest() {
-		List<MessageVO> list;
-		try {
-			list= service.recieveMessage("dustks123");
-			
-			for (MessageVO messageVO : list) {
-				System.out.println(messageVO);
-			}
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		
+	public void test(){
+		System.out.println("dd");
 	}
 
 }
