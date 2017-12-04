@@ -164,7 +164,7 @@ public class RealEstateServiceImpl implements RealEstateService {
 
 		Map<String, Object> body = (Map<String, Object>) dataResponse.get("body");
 		Map<String, Object> items = null;
-		List<Map<String, Object>> itemList = null;
+		List<Map<String, Object>> itemList = new ArrayList<>();
 
 		// System.out.println(body);
 
@@ -178,6 +178,7 @@ public class RealEstateServiceImpl implements RealEstateService {
 		}
 		if (items.get("item") instanceof Map) {
 			Map<String, Object> item = (Map<String, Object>) (items.get("item"));
+			System.out.println("rent" + item);
 			itemList.add(item);
 		} else {
 			itemList = (List<Map<String, Object>>) (items.get("item"));
@@ -233,7 +234,7 @@ public class RealEstateServiceImpl implements RealEstateService {
 
 		Map<String, Object> body = (Map<String, Object>) dataResponse.get("body");
 		Map<String, Object> items = null;
-		List<Map<String, Object>> itemList = null;
+		List<Map<String, Object>> itemList = new ArrayList<>();
 
 		// System.out.println(body);
 
@@ -245,6 +246,7 @@ public class RealEstateServiceImpl implements RealEstateService {
 			throw new Exception("검색결과 없음", new Throwable("검색결과없음"));
 
 		}
+		System.out.println("trade_"+items);
 		if (items.get("item") instanceof Map) {
 			Map<String, Object> item = (Map<String, Object>) (items.get("item"));
 			System.out.println("ddd" +item);
