@@ -9,9 +9,13 @@ $(function () {
 	msgcnt(id);
 	$('tbody').on('click','.read-ok',function(event){
 		$.ajax({
-			type:'update',
+			type:'put',
 			url:'/message/update_ck',
-			
+			headers : {
+                "Content-Type" : "application/json",
+                "X-HTTP-Method-Override" : "PUT"
+			},
+
 		})
 	})
 });
@@ -39,6 +43,7 @@ $(function() {
 	var id = $('[ name="user_id"]').val();
 	var target = $('.modal-body').find('tbody');
 	$('#msg').on('click', function() {
+		$(target).empty();
 		console.log(id);
 		$.ajax({
 			type : 'post',
@@ -54,6 +59,7 @@ $(function() {
 			success : function(data) {
 				$(data).each(function(index, item){
 					var html='<tr>';
+					html
 					html +='<td><input type="checkbox" autocomplete="off" aria-label="..." ></td>';
 					if(item.read_check =='N'){
 						

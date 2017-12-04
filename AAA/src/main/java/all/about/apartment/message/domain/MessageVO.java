@@ -2,12 +2,6 @@ package all.about.apartment.message.domain;
 
 public class MessageVO {
 	int msg_id;
-	public int getMsg_id() {
-		return msg_id;
-	}
-	public void setMsg_id(int msg_id) {
-		this.msg_id = msg_id;
-	}
 	String msg_content;
 	String msg_regdate;
 	char read_check;
@@ -16,6 +10,12 @@ public class MessageVO {
 	private String r_authority;
 	public String getMsg_content() {
 		return msg_content;
+	}
+	public int getMsg_id() {
+		return msg_id;
+	}
+	public void setMsg_id(int msg_id) {
+		this.msg_id = msg_id;
 	}
 	public void setMsg_content(String msg_content) {
 		this.msg_content = msg_content;
