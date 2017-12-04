@@ -54,13 +54,15 @@
 
 	<interceptors>
 		<interceptor>
-			<mapping path="/user/loginPost" />
+			<mapping path="/user/loginPost" />			
 			<beans:ref bean="loginInteceptor" />
 		</interceptor>
 
 		<interceptor>
 			<mapping path="/bill/full-width" />
+			<mapping path="/billScore/billScoreBody"/>
 			<beans:ref bean="authInterceptor" />
+			
 		</interceptor>
 
 		<interceptor>
