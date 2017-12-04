@@ -161,7 +161,7 @@ Licence URI: http://www.os-templates.com/template-terms
             <c:forEach var="BidProductVO" items="${listAll }">                     
       		
 
-            <li class="one_quarter" name="imageList"><a href="#">
+            <li class="one_quarter" name="imageList"><a href="/bid/bidDetail?bid_id=${BidProductVO.bid_id}">
             <img src="/bid/displayFile?fileName=${BidProductVO.bid_filename }" 
             id="bid_filename"  alt="" width="800" height="800"></a>
             <p id="bid_seller">판매자 : ${BidProductVO.bid_seller }</p>
@@ -379,80 +379,10 @@ Licence URI: http://www.os-templates.com/template-terms
     	location.href('/bid/bidmodify?bid_id=${BidProductVO.bid_id}');
     });
     
-  	/* function link(){
-  		
-  		location.replace('/bid/bidmodify?bid_id=${BidProductVO.bid_id}');
-    	 location.href='/bid/bidmodify?bid_id=${BidProductVO.bid_id}
-    	 
-    }  */
-
-      
-    </script>
+    $(".bid_product").on("click", function() {
+    	console.log("123123");
+    })
     
- 
-    
-<!--
-<script id="templateAttach" type="text/x-handlebars-template">
-
-<li data-src='{{content_filename}}'>
-  <span class="mailbox-attachment-icon has-img"><img src="{{imgsrc}}" alt="Attachment"></span>
-  <div class="mailbox-attachment-info">
-	<a href="{{getLink}}" class="mailbox-attachment-name">{{fileName}}</a>
-	</span>
-  </div>
-</li>       
-
-      
-</script>  
- -->
- 
- 
-<!-- <script>
-
-$(".uploadedList").on("click", ".mailbox-attachment-info a", function(event){
-	
-	var fileLink = $(this).attr("href");
-	
-	if(checkImageType(fileLink)){
-		
-		event.preventDefault();
-				
-		var imgTag = $("#popup_img");
-		imgTag.attr("src", fileLink);
-		
-		console.log(imgTag.attr("src"));
-				
-		$(".popup").show('slow');
-		imgTag.addClass("show");		
-	}	
-});
-
-$("#popup_img").on("click", function(){
-	
-	$(".popup").hide('slow');
-	
-});	
-
-
-/* var bid_id = $
-{
-	BidContentVO.bid_id
-}; */
-
-var template = Handlebars.compile($("#templateAttach").html());
-
-$.getJSON("/bid/bidListAll", function(list) {
-	$(list).each(function() {
-		var fileInfo = getFileInfo(this);
-		var html = template(fileInfo);
-
-		$(".uploadedList").append(html);
-	});
-});
-</script>
-
- 
-  -->
 
 	
 </body>

@@ -31,6 +31,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import all.about.apartment.bid.domain.BidContentVO;
@@ -292,5 +293,15 @@ public class BidController {
 	public void gallery(Integer bid_id, Model model)throws Exception{
 		model.addAttribute("listAll", service.read());
 	}
-
+	
+	@RequestMapping(value="/bidDetail", method=RequestMethod.GET)
+	//public void bidDetail(@RequestParam("bid_id")String bid_id)throws Exception{
+	public ModelAndView bidDetail()throws Exception{	
+		ModelAndView mav = new ModelAndView();
+		String bid_id = "1";
+		System.out.println("qweqweq");
+		mav.setViewName("/bid/bidDetail");
+		mav.addObject("bidProduct", service.bidDetail(bid_id));
+		return mav;
+	}
 }
