@@ -21,11 +21,11 @@ $(function(){
 			if(data == 'Success'){
 				alert('데이터 입력 완료');
 				
+			location.href="/";
 			}
 			
 		}
 	})
-	location.href="/main";
 })
 </script>
 

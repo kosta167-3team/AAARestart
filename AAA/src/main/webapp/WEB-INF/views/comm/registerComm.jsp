@@ -214,7 +214,7 @@
 					url : '/comm/registerComm',
 					data : JSON.stringify(data),
 					success : function() {
-
+						console.log("1212");
 						var popupX = (window.screen.width/2) - (400/2);
 						var popupY= (window.screen.height/2) - (400/2);
 						

@@ -247,6 +247,7 @@ public class RealEstateServiceImpl implements RealEstateService {
 		}
 		if (items.get("item") instanceof Map) {
 			Map<String, Object> item = (Map<String, Object>) (items.get("item"));
+			System.out.println("ddd" +item);
 			itemList.add(item);
 		} else {
 			itemList = (List<Map<String, Object>>) (items.get("item"));
@@ -305,7 +306,7 @@ public class RealEstateServiceImpl implements RealEstateService {
 
 			m = pattern.matcher(dataDay);
 
-			if (m.find()) {
+//			if (m.find()) {
 				int deposit;
 				if (map.get("월세금액") instanceof String) {
 					deposit = Integer.parseInt(((String) map.get("월세금액")).replaceAll("[^0-9]", ""));
@@ -356,11 +357,11 @@ public class RealEstateServiceImpl implements RealEstateService {
 					vo.setRent_month(rent_month);
 					vo.setRent_deposit(rent_deposit);
 
-					// System.out.println(vo.toString());
+					 System.out.println(vo.toString());
 					dao.insertRentData(vo);
 				}
 			}
-		}
+		//}
 
 	}
 
@@ -376,7 +377,7 @@ public class RealEstateServiceImpl implements RealEstateService {
 
 			m = pattern.matcher(dataDay);
 
-			if (m.find()) {
+//			if (m.find()) {
 
 				String dong = (String) map.get("법정동");
 
@@ -423,7 +424,7 @@ public class RealEstateServiceImpl implements RealEstateService {
 				// System.out.println(vo.toString());
 				dao.insertTradeData(vo);
 			}
-		}
+	//	}
 	}
 
 	@Override
