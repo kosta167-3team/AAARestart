@@ -6,6 +6,7 @@ import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
 
+import all.about.apartment.message.domain.MessageDTO;
 import all.about.apartment.message.domain.MessageVO;
 import all.about.apartment.message.persistence.MessageDAO;
 
@@ -17,13 +18,18 @@ public class MessageServiceImpl implements MessageService {
 	
 	//메세지 전송(insert)
 	@Override
-	public void sendMessage(MessageVO vo) throws Exception {
+	public void sendMessage(MessageDTO vo) throws Exception {
 		dao.sendMessage(vo);
 	}
 
 	@Override
 	public List<MessageVO> recieveMessage(String reciever) throws Exception {
 		return dao.recieveMessage(reciever);
+	}
+
+	@Override
+	public int newMsgCount(String reciever) throws Exception {
+		return dao.newMsgCount(reciever);
 	}
 
 }
