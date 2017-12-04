@@ -16,10 +16,7 @@ Licence URI: http://www.os-templates.com/template-terms
 		font-size: 18px;
 	}
 </style>
-<%
-	ResidentVO vo = (ResidentVO)session.getAttribute("login");
-	
-%>
+
 
 <html>
 <head>
@@ -40,6 +37,9 @@ Licence URI: http://www.os-templates.com/template-terms
 
 <link href="/resources/layout/styles/layout.css" rel="stylesheet"
 	type="text/css" media="all">
+	
+<link href="/resources/layout/styles/message/message.css"
+	rel="stylesheet" type="text/css" media="all">
 
 <!-- JAVASCRIPTS -->
 <script src="/resources/layout/scripts/jquery.min.js"></script>
@@ -48,6 +48,8 @@ Licence URI: http://www.os-templates.com/template-terms
 <script	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 <script src="/resources/layout/scripts/jquery.mobilemenu.js"></script>
 <script src="/resources/layout/scripts/message/messageChk.js"></script>
+<script type="text/javascript" src="/resources/layout/scripts/message/message.js"></script>
+
 <script type="text/javascript">
 
 $(function () {
@@ -59,14 +61,15 @@ $(function () {
 	}else{
 		$('#login').text('로그아웃');
 		$('#login').attr('href', '/user/logout');
-		$('#msg').html('쪽지 [<span>0</span>]');
+		$('#msg').html('쪽지 <span  class="badge"></span>');
 	}
-	
 });
+	
 </script>
 </head>
 
- <input type="hidden" name="user_id" value="${login.r_id}"> 
+<input type="hidden" name="user_id" value="${login.r_id}">
+
 <body id="top">
 <!-- ################################################################################################ -->
 <!-- ################################################################################################ -->
@@ -77,24 +80,20 @@ $(function () {
     <!-- ################################################################################################ -->
     <div class="fl_left">
       <ul class="nospace inline">
-       <li><i class="fa fa-phone"></i> +00 (123) 456 7890</li>
-        <li><i class="fa fa-envelope-o"></i> info@domain.com</li> 
+<!--         <li><i class="fa fa-phone"></i> +00 (123) 456 7890</li>
+        <li><i class="fa fa-envelope-o"></i> info@domain.com</li> -->
       </ul>
     </div>
    <div class="fl_right">
       <ul class="faico clear">
         <li><a  href="#" id="login"></a></li>
         <li><a  href="#">마이페이지</a></li>
-        <li><a  href="#" id ="msg"></a></li>
+        <li><a href="#" id ="msg" data-toggle="modal" data-target="#messageListmodal"></a></li>
       </ul>
     </div>
     <!-- ################################################################################################ -->
   </div>
 </div>
-<!-- ################################################################################################ -->
-<!-- ################################################################################################ -->
-<!-- ################################################################################################ -->
-
 <!-- ################################################################################################ -->
 <!-- ################################################################################################ -->
 <!-- ################################################################################################ -->
@@ -141,7 +140,7 @@ $(function () {
           </ul>
         </li>
         <li><a href="#">커뮤니티</a></li>
-        <li><a href="#">부동산</a></li>
+        <li><a href="/real_estate">부동산</a></li>
         <li><a class="drop" href="#">경매</a>
           <ul>
             <li><a href="/bidd/bidDetail">경매 물품보기</a></li>
@@ -153,7 +152,7 @@ $(function () {
     <!-- ################################################################################################ -->
   </header>
 </div>
-	
+
 	<!-- ################################################################################################ -->
 	<!-- ################################################################################################ -->
 	<!-- ################################################################################################ -->
@@ -161,7 +160,7 @@ $(function () {
 
 	<!-- ##################################################################################################### -->
 	<!-- Modal  -->
-	<div class="modal fade messageListmodal" tabindex="-1" role="dialog"
+	<div class="modal fade "  id="messageListmodal" tabindex="-1" role="dialog"
 		aria-labelledby="myLargeModalLabel" aria-hidden="true">
 		<div class="modal-dialog modal-lg">
 			<div class="modal-content">
@@ -179,9 +178,12 @@ $(function () {
 						<table class="table table-hover table-striped">
 							<thead>
 								<tr>
+									<th class ="col-md-1">
+
+										<input type="checkbox" id ="checkedAll"autocomplete="off" aria-label="..." >
+									</th>
 									<th class ="col-md-2">읽음 / 안 읽음</th>
-									<th class ="col-md-2">보낸 사람</th>
-									<th class ="col-md-6">내용</th>
+									<th class ="col-md-6">제목</th>
 									<th class ="col-md-2">보낸 시간</th>
 								</tr>
 							</thead>
@@ -193,5 +195,51 @@ $(function () {
 			</div>
 		</div>
 	</div>
+	<div class="modal fade" id="messageModal" tabindex="-1" role="dialog"
+			aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal"
+							aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+						<h4 class="modal-title" id="exampleModalLabel">새로운 쪽지</h4>
+					</div>
+					<div class="modal-body">
+
+						<form id="messageForm">
+							<input type="hidden" name="type_id" value="1">
+							<div class="form-group">
+								<label for="recipient-name" class="control-label ">보내는
+									사람</label>
+								<!-- <input type="text" class="form-control" id="recipient-name"> -->
+								<p class="form-control-static">보내는 사람 id 들어갈 자리</p>
+								<input type="hidden" name="sender" value="dmsql123">
+							</div>
+							<div class="form-group">
+								<label for="recipient-name" class="control-label">받는 사람</label>
+								<input type="hidden" class="form-control" name="receiver"
+									value="dustks123">
+								<p class="form-control-static">email@example.com</p>
+							</div>
+							<div class="form-group">
+								<label for="message-text" class="control-label">메세지 내용:</label>
+								<textarea class="form-control" id="message-text"
+									name="msg_content"></textarea>
+							</div>
+
+							<div class="modal-footer">
+								<button type="button" class="btn btn-primary"
+									data-dismiss="modal" id="sendMessage">메세지 보내기</button>
+								<button type="button" class="btn btn-default"
+									data-dismiss="modal">취소</button>
+							</div>
+						</form>
+
+					</div>
+				</div>
+			</div>
+		</div>
 </body>
 </html>
