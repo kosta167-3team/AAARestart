@@ -16,10 +16,6 @@ Licence URI: http://www.os-templates.com/template-terms
 		font-size: 18px;
 	}
 </style>
-<%
-	ResidentVO vo = (ResidentVO)session.getAttribute("login");
-	
-%>
 
 <html>
 <head>
@@ -66,7 +62,7 @@ $(function () {
 </script>
 </head>
 
-<%-- <input type="hidden" name="user_id" value="${login.r_id}"> --%>
+<input type="hidden" name="user_id" value="${login.r_id}"> 
 <body id="top">
 <!-- ################################################################################################ -->
 <!-- ################################################################################################ -->
