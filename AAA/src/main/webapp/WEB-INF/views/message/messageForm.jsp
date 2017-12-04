@@ -50,7 +50,7 @@
 					<div class="modal-body">
 
 						<form id="messageForm">
-							<input type="hidden" name="type_id" value="1">
+							<input type="hidden" name="type_id" value="6">
 							<div class="form-group">
 								<label for="recipient-name" class="control-label ">보내는
 									사람</label>
