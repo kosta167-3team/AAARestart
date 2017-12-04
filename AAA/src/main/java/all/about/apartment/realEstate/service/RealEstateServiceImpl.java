@@ -47,6 +47,7 @@ public class RealEstateServiceImpl implements RealEstateService {
 
 	// @Scheduled(cron ="0 18 20 ? ? ? ?")
 
+
 	@Override
 	@Scheduled(cron = "0 0 15 9 * *")
 	@Transactional
