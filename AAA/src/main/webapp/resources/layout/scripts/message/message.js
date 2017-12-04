@@ -4,8 +4,8 @@ $(function() {
 		event.preventDefault();
 	
 		var form = $('#messageForm');
-		var sender = $('[ name="sender"]').val();
-		var receiver=$('[ name="receiver"]').val();
+		var sender = $(form).find('.sender').text();
+		var receiver=$(form).find('.receiver').text();
 		var type_id=$('[ name="type_id"]').val();
 		var msg_content =$('[ name="msg_content"]').val();
 		
