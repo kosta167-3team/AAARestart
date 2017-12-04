@@ -46,12 +46,12 @@ public class RealEstateServiceImpl implements RealEstateService {
 
 	// @Scheduled(cron ="0 18 20 ? ? ? ?")
 
-	@Scheduled(cron = "0 30 20 30,31 * *")
+/*	@Scheduled(cron = "0 30 20 30,31 * *")
 	public void test() {
 		System.out.println("dddd");
 	}
-
-	@Scheduled(cron = "0 0 15 2 * *")
+*/
+	/*@Scheduled(cron = "0 0 15 2 * *")
 	@Transactional
 	public void firstAutoUpdate() {
 		Calendar cal = Calendar.getInstance();
@@ -69,9 +69,9 @@ public class RealEstateServiceImpl implements RealEstateService {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-	}
+	}*/
 
-	@Scheduled(cron = "0 0 10 12,22 * *")
+	/*@Scheduled(cron = "0 0 10 12,22 * *")
 	public void autoUpdate() {
 
 		Calendar cal = Calendar.getInstance();
@@ -90,7 +90,7 @@ public class RealEstateServiceImpl implements RealEstateService {
 			e.printStackTrace();
 		}
 
-	}
+	}*/
 
 	@Override
 	public String getAptCode(String aptName, String dongname, String loadNum) throws Exception {
