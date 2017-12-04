@@ -170,7 +170,7 @@ Licence URI: http://www.os-templates.com/template-terms
 
 										<c:otherwise>
 											<input type="button" value="상품평 쓰기" 
-												onclick="window.open('bidEvaluation?bid_id=${BidProductVO.bid_id}','window','width=500,height=500');">
+												onclick="window.open('bidEvaluation?bid_id=${BidProductVO.bid_id}','window','width=400,height=400');">
 										</c:otherwise>
 									</c:choose></td>
 							</tr>

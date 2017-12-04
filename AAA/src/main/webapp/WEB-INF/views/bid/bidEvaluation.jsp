@@ -4,6 +4,20 @@
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
+
+<style>
+	#comments{
+  position: absolute;
+height: 100px;
+top: 20%;
+
+margin-top: -20px;
+margin-left: 50px; 
+}
+ 
+
+</style>
+
 <head>
 
 <script src="/resources/layout/scripts/jquery.min.js"></script>
@@ -53,7 +67,7 @@
 					data : obj
 					,
 					success : function(data) {
-						alert("success");
+						alert("상품평 등록 완료");
 						$(opener.document).find('#' + bid_id ).children().last().remove();
 
 						$(opener.document).find('#' + bid_id).append("<td>" + evaluation + "</td>");
