@@ -247,5 +247,5 @@ function layer_popup(el){
 		newtime = window.setTimeout("getTime();", 1000);  
 	}
 </script>
-<SCRIPT>getTime()</SCRIPT>
+<SCRIPT>getTime();</SCRIPT>
 </html>
