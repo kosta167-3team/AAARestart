@@ -39,7 +39,11 @@ public interface FacilityService {
 	
 	public int cancelReservation(int fr_id) throws Exception;
 	
-	public void insertState(Facility_state state) throws Exception;
+	public int insertState(Facility_state state) throws Exception;
+	
+	public void deleteState (int fs_id) throws Exception;
+	
+	public List<Facility_state> getStateList () throws Exception;
 	
 	public List<String> getCancelmsgList (Map<String, Object> map) throws Exception;
 	

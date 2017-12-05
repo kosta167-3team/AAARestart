@@ -16,7 +16,8 @@ function getDate(f_info) {
 	$('#f_date').children().remove();
 	$('#f_time').children().remove();
 	$('#f_spot').children().remove();
-	$('#f_reserve p').children().remove();
+	$('#f_reserve').children().remove();
+
 
 	$.getJSON(f_info, function(data) {
 		// 객체 넘어옴

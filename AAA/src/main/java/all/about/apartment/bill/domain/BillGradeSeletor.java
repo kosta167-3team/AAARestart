@@ -1,12 +1,13 @@
 package all.about.apartment.bill.domain;
 
+import java.lang.reflect.Field;
 import java.util.List;
 
 import all.about.apartment.bill.service.BillService;
 
 public class BillGradeSeletor {
 	
-	private int aPlus,a,bPlus,b,cPlus,c,dPlus,d;
+	public int aPlus,a,bPlus,b,cPlus,c,dPlus,d;
 	List<ScorePMEVO> list = null;
 	private String[] gradeStringList = { "aPlus","a","bPlus","b","cPlus","c","dPlus","d"};
 	
@@ -17,18 +18,32 @@ public class BillGradeSeletor {
 	
 	BillService service;	
 	
+	public BillGradeSeletor getInstance(){
+		return this;
+	}
+	
 	public BillGradeSeletor() {
 	}
 	
 	public int getGradeBill(String grade){
-		
-		for(int i = 0; i < gradeStringList.length; i++){
-			if( grade.equals(gradeStringList[i])){
-				
-			}
-		}
-		return 0;
-		
+		int price = 0;
+		try {
+			Object obj = this.getInstance();
+			Field field = obj.getClass().getField(grade);
+			int rank = (int)field.get(obj);
+			price = getRankBill(rank);
+			
+		} catch (NoSuchFieldException | SecurityException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IllegalArgumentException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}		
+		return price;		
 	}
 	
 	
