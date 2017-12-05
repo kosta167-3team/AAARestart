@@ -109,6 +109,25 @@
 		#{fs_reason}, SYSDATE)
 	</insert>
 
+	<!-- 1-1.관리 내역 조회 -->
+	<select id="getStateList" resultType="Facility_state">
+		select *from facility_state
+		where TRUNC(fs_start) >= TRUNC(sysdate)
+		or TRUNC(fs_end) >=
+		TRUNC(sysdate)
+		order by fs_start
+	</select>
+
+	<!-- 1-3.관리 내역 페이징 -->
+	<!-- <select id=""></select> -->
+
+	<!-- 1-2.시설 관리 내역 취소 -->
+	<delete id="deleteState" parameterType="int">
+		delete from
+		facility_state
+		where fs_id = #{fs_id}
+	</delete>
+
 	<!-- 2.예약 취소자 명단 -->
 	<select id="getCancelmsgList" parameterType="java.util.Map"
 		resultType="String">
@@ -134,16 +153,19 @@
 	<!-- 4.시설 상태 변경 -->
 	<update id="alterState_bad">
 		update facility set f_state = '사용불가'
-			where f_id in(
-				select f_id from facility_state
-					where sysdate between TRUNC(fs_start) and TRUNC(fs_end))
+		where f_id in(
+		select f_id from facility_state
+		where sysdate between TRUNC(fs_start)
+		and TRUNC(fs_end))
 	</update>
 
 	<update id="alterState_ok">
 		update facility set f_state = '사용가능'
-			where f_id not in(
-				select f_id from facility_state
-					where sysdate between TRUNC(fs_start) and TRUNC(fs_end)) 
+		where f_id not
+		in(
+		select f_id from facility_state
+		where sysdate between
+		TRUNC(fs_start) and TRUNC(fs_end))
 	</update>
 
 </mapper>  

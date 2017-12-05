@@ -50,7 +50,7 @@ public class FacilityRestController {
 
 		HttpSession session = request.getSession();
 		String r_id = ((ResidentVO) session.getAttribute("login")).getR_id();
- 
+
 		map.put("r_id", r_id);
 		map.put("f_id", f_id);
 
@@ -64,7 +64,7 @@ public class FacilityRestController {
 			map.put("facility", facility);
 			map.put("dateList", dateList);
 			map.put("stringList", stringList);
- 
+
 			entity = new ResponseEntity<Map<String, Object>>(map, HttpStatus.OK);
 
 		} catch (Exception e) {
@@ -203,7 +203,6 @@ public class FacilityRestController {
 		return entity;
 	}
 
-
 	@RequestMapping(value = "/cancleReservation/{fr_id}", method = RequestMethod.GET)
 	public ResponseEntity<String> cancleReservation(@PathVariable("fr_id") int fr_id) {
 
@@ -227,35 +226,42 @@ public class FacilityRestController {
 
 	@RequestMapping(value = "/changeState", method = RequestMethod.POST)
 	public ResponseEntity<Map<String, Object>> changeState(@RequestBody Facility_state state) {
- 
+
 		System.out.println("레스트 컨트롤러");
 		System.out.println(state.getF_id());
 		System.out.println(state.getFs_reason());
 		System.out.println(state.getFs_start());
 		System.out.println(state.getFs_end());
-		
+
 		ResponseEntity<Map<String, Object>> entity = null;
- 
+
 		try {
-	
-			//0.인서트
-			service.insertState(state);
-			
-			//두가지 작업을 트랜젝션으로 처리
-			//1.기간 내 예약을 취소
-			//2.취소자에 쪽지 발송
-					
-			
-			//3.시설 상태 변경 (예약) ← 완료
- 
+
+			// 0.인서트
+			int cancel_cnt = service.insertState(state);
+
+			// 두가지 작업을 트랜젝션으로 처리
+			// 1.기간 내 예약을 취소
+			// 2.취소자에 쪽지 발송
+
+			// 3.시설 상태 변경 (예약) ← 완료
+
+			map.put("cancel_cnt", cancel_cnt);
+
 			entity = new ResponseEntity<Map<String, Object>>(map, HttpStatus.OK);
-			
+
 		} catch (Exception e) {
 			e.printStackTrace();
 			entity = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
 
 		return entity;
+	}
+
+	@RequestMapping(value = "/deleteState/{fs_id}", method = RequestMethod.GET)
+	public void deleteState(@PathVariable("fs_id") int fs_id) throws Exception {
+
+		service.deleteState(fs_id);
 	}
 
 }

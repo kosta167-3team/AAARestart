@@ -33,6 +33,10 @@ public interface FacilityDAO {
 	
 	public void insertState (Facility_state state) throws Exception;
 	
+	public List<Facility_state> getStateList () throws Exception;
+	
+	public void deleteState (int fs_id) throws Exception;
+	
 	public List<String> getCancelmsgList (Map<String, Object> map) throws Exception;
 	
 	public int cancelAllReservation (Map<String, Object> map) throws Exception;
