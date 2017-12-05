@@ -12,13 +12,6 @@ public class MessageVO {
 	private String r_authority;
 	
 	
-	
-	public String getReceiver() {
-		return receiver;
-	}
-	public void setReceiver(String receiver) {
-		this.receiver = receiver;
-	}
 	public String getMsg_content() {
 		return msg_content;
 	}
