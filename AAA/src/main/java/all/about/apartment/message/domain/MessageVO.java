@@ -11,6 +11,10 @@ public class MessageVO {
 
 	private String r_authority;
 	
+<<<<<<< HEAD
+=======
+	
+>>>>>>> branch 'master' of https://github.com/kosta167-3team/AAARestart.git
 	public String getMsg_content() {
 		return msg_content;
 	}
