@@ -2,12 +2,13 @@ package all.about.apartment.message.persistence;
 
 import java.util.List;
 
+import all.about.apartment.message.domain.MessageDTO;
 import all.about.apartment.message.domain.MessageVO;
 import all.about.apartment.publicDomain.Criteria;
 
 public interface MessageDAO {
 	
-	public void sendMessage(MessageVO vo) throws Exception;
+	public void sendMessage(MessageDTO dto) throws Exception;
 	
 
 	//public List<MessageVO> recieveMessage(String reciever) throws Exception; 

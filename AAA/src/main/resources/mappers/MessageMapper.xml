@@ -7,7 +7,7 @@
 <mapper namespace="all.about.apartment.mappers.MessageMapper">
 
 	<!-- 메세지 보내기 -->
-	<insert id="sendMessage" parameterType="MessageVO">
+	<insert id="sendMessage" parameterType="MessageDTO">
 		insert into message
 		(msg_id, msg_content,msg_regdate,sender, receiver, type_id)
 		values
