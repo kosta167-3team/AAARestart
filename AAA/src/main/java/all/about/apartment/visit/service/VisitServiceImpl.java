@@ -54,13 +54,18 @@ public class VisitServiceImpl implements VisitService {
 	}
 
 	@Override
-	public void updateCheck(HashMap<String, Object> map) {
-		dao.updateCheck(map);
+	public void updateState(HashMap<String, Object> map) {
+		dao.updateState(map);
 	}
 
 	@Override
 	public List<ApplicationVO> adminApplicationList(String selectedDate) {
 		return dao.adminListPage(selectedDate);
+	}
+
+	@Override
+	public void updateCheck(HashMap<String, Object> map) {
+		dao.updateCheck(map);
 	}
 
 	/*@Override

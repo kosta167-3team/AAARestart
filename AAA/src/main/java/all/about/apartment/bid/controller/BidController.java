@@ -87,7 +87,8 @@ public class BidController {
 	 * model.addAttribute(service.readDetail(bid_id)); System.out.println("gg");
 	 * }
 	 */
-
+          
+	
 	@RequestMapping(value = "/bidmodify", method = RequestMethod.GET)
 	public void modifyGET(@RequestParam("bid_id") int bid_id, Model model) throws Exception {
 		System.out.println("ggg");
@@ -293,15 +294,14 @@ public class BidController {
 	public void gallery(Integer bid_id, Model model)throws Exception{
 		model.addAttribute("listAll", service.read());
 	}
-	
-	@RequestMapping(value="/bidDetail", method=RequestMethod.GET)
-	//public void bidDetail(@RequestParam("bid_id")String bid_id)throws Exception{
-	public ModelAndView bidDetail()throws Exception{	
+	@RequestMapping(value="/bidDetail/{bid_id}",method=RequestMethod.GET)
+	public ModelAndView bidDetail(@PathVariable String bid_id)throws Exception{	
 		ModelAndView mav = new ModelAndView();
-		String bid_id = "1";
-		System.out.println("qweqweq");
 		mav.setViewName("/bid/bidDetail");
-		mav.addObject("bidProduct", service.bidDetail(bid_id));
-		return mav;
+		System.out.println("bid_id : " + bid_id);
+		
+		mav.addObject("bid_id", bid_id);
+		mav.addObject("bidProduct", service.readDetail(Integer.parseInt(bid_id)));
+		return mav;	
 	}
 }

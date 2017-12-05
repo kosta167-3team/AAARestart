@@ -16,6 +16,7 @@ public interface VisitService {
 	public List<ApplicationVO> applicationList(String r_id);
 	public List<ApplicationVO> listCriteria(Criteria cri);
 	public int totalCount(String r_id);
+	public void updateState(HashMap<String, Object> map);
 	public void updateCheck(HashMap<String, Object> map);
 	public List<ApplicationVO> adminApplicationList(String selectedDate);
 	//public List<ApplicationVO> searchApplication(String selectedDate);

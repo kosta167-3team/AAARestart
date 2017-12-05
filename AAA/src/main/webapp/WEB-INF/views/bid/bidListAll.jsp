@@ -19,6 +19,9 @@ Licence URI: http://www.os-templates.com/template-terms
 <html>
 <head>
 <title>Viral | Pages | Gallery</title>
+   	<script src="/resources/layout/scripts/jquery.min.js"></script>
+	<script src="/resources/layout/scripts/jquery.backtotop.js"></script>
+	<script src="/resources/layout/scripts/jquery.mobilemenu.js"></script>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <link href="/resources/layout/styles/layout.css" rel="stylesheet" type="text/css" media="all">
@@ -161,9 +164,10 @@ Licence URI: http://www.os-templates.com/template-terms
             <c:forEach var="BidProductVO" items="${listAll }">                     
       		
 
-            <li class="one_quarter" name="imageList"><a href="/bid/bidDetail?bid_id=${BidProductVO.bid_id}">
-            <img src="/bid/displayFile?fileName=${BidProductVO.bid_filename }" 
-            id="bid_filename"  alt="" width="800" height="800"></a>
+            <li class="one_quarter" name="imageList">
+            <a>
+            <img src="/bid/displayFile?fileName=${BidProductVO.bid_filename }"
+             etc="${BidProductVO.bid_id }" id="bid_filename"  alt="" width="800" height="800"></a>
             <p id="bid_seller">판매자 : ${BidProductVO.bid_seller }</p>
             <p id="bid_name">상품 이름 : ${BidProductVO.bid_name }</p>
             <p id="bid_start" >가격 : ${BidProductVO.bid_start }</p>            
@@ -341,7 +345,11 @@ Licence URI: http://www.os-templates.com/template-terms
   	
     </style>
     
-    <script>
+    
+
+	
+</body>
+<script>
     $(".sort").on("click",function(){
     	var sort= $(this).html();
     	var obj = new Object();
@@ -373,17 +381,10 @@ Licence URI: http://www.os-templates.com/template-terms
     });
     
     
-    
-    $(".nospace_clear").on("click",'#gg',function(){
-    	console.log("gg11");
-    	location.href('/bid/bidmodify?bid_id=${BidProductVO.bid_id}');
-    });
-    
-    $(".bid_product").on("click", function() {
-    	console.log("123123");
-    })
-    
-
-	
-</body>
+	$('#bid_filename').on('click', function(){
+		//location.href="/bidder/bidDetail?bid_id=" +$(this).attr('etc');
+		var detail=$(this).attr('etc');
+		location.href="/bid/bidDetail/"+detail;
+	})
+    </script>
 </html>
