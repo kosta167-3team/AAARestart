@@ -22,7 +22,7 @@ $(function () {
 		$('#messageModal').find('[name="sender"]').val(sender);
 		console.log(sender);
 		
-		var receiver = $(this).prevAll('a').find('span').attr('value');
+		var receiver = $(this).parent().parent().find('[name="sender"]').attr('value');
 		$('#messageModal').find('.receiver').text(receiver);
 		$('#messageModal').find('[name="receiver"]').val(receiver);
 		console.log(receiver);

@@ -8,6 +8,7 @@ import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
+import all.about.apartment.message.domain.MessageDTO;
 import all.about.apartment.message.domain.MessageVO;
 import all.about.apartment.publicDomain.Criteria;
 
@@ -19,8 +20,8 @@ public class MessageDAOImpl implements MessageDAO {
 	private static String namespace = "all.about.apartment.mappers.MessageMapper";
 	
 	@Override
-	public void sendMessage(MessageVO vo) throws Exception {
-		session.insert(namespace+".sendMessage", vo);
+	public void sendMessage(MessageDTO dto) throws Exception {
+		session.insert(namespace+".sendMessage", dto);
 	}
 
 	/*@Override
