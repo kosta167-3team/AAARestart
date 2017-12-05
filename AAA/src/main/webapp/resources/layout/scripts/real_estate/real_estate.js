@@ -1,16 +1,13 @@
-
-var area;
+var area = 34;
 var chart_tartget;
 var table_target;
 var tab_id;
-var aptName;
+var aptName ;
 
 $(function() {
 	var id = $('.in').attr('id');
-	
-	area = getarea();
+	getarea();
 
-	
 	$('.tab').on('click', function(event) {
 		
 		$('li').removeClass('active');
@@ -51,7 +48,8 @@ $(function() {
 	$('.dropdown-menu').on('click', 'a', function() {
 		event.preventDefault();
 		area = $(this).attr('href');
-
+		
+		alert('ddd');
 		var html = $(this).text() + '<span class="caret"></span>';
 		$(this).parent().parent().prev().html(html);
 		
@@ -63,38 +61,36 @@ $(function() {
 
 
 function getarea() {
-	var getArea ;
-//	var div = $('.in').find('.dropdown-menu');
-//	div.empty();
+	console.log('ddddd');
+	var div = $('.in').find('.dropdown-menu');
+	div.empty();
 	$.ajax({
 		type : 'get',
 		url : '/real_estate/rest/area_list',
 		dataType : 'json',
-		async:false,
 		success : function(data) {
-			getArea = areaList(data);
+			
+			var html = "";
+			
+			$(data).each(
+					function(index, item) {
+						// console.log(item);
+						html += '<li class="area List"><a href="' + item + '">'
+						+ item + " ㎡" + '</a></li>';
+						
+					});
+			
+			div.append(html);
+			
 		}
 	
 	});
-	return getArea;
+	
+	
 }
 
 
-function areaList(data){
-	var div = $('.in').find('.dropdown-menu');
-	div.empty();
-	var html = "";
-	$(data).each(
-			function(index, item) {
-				html += '<li class="area List"><a href="' + item + '">'
-				+ item + " ㎡" + '</a></li>';
-				
-			});
-	
-	div.append(html);
-	
-	return data[0];
-}
+
 function draws(tab_id,area){
 	var url;
 	if(tab_id === 'tab1primary'){
@@ -149,7 +145,7 @@ function showTable(table_target,url){
 			
 			$(data).each(function(index,item){
 				
-				//console.log(item);
+				console.log(item);
 				
 				aptName = item.kaptname;
 				html += '<tr>';
@@ -184,7 +180,7 @@ function showTable(table_target,url){
 				html+= '</tr>';
 			})
 			
-			//console.log(html);
+			console.log(html);
 			$('#apart_title').find('h1').text(aptName);
 			$(table_target).append(html);
 		}
@@ -197,10 +193,10 @@ function drawLastMonth(chart_tartget) {
 
 	var width = $(chart_tartget).parent().parent().css('width');
 	width = parseInt(width);
-//	console.log(width);
+	console.log(width);
 	
 	width = width * 0.8 ;
-//	console.log(width);
+	console.log(width);
 	
 	$.ajax({
 		url : '/real_estate/rest/lastMonth',
@@ -292,7 +288,7 @@ function drawAnnualRentChart(chart_tartget){
 
 	var width = $(chart_tartget).parent().parent().css('width');
 	width = parseInt(width);
-//	console.log(width);
+	console.log(width);
 	$.ajax({
 		url : '/real_estate/rest/annulRent',
 		type : 'post',
@@ -386,8 +382,8 @@ function drawAnnualTradeChart(chart_tartget){
 						width : 'auto',
 						height : 300,
 						series: {
-							  0: { color: '#e13592' },
-					            1: { color: '#6276ec' }
+							0: { color: '#a561bd' },
+							1: { color: '#c784de' }
 							
 						},
 						vAxis: { gridlines: { count: 4 } }

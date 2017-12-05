@@ -99,7 +99,7 @@ public class VisitController {
 			map.put("vr_id", vr_id);
 			map.put("state", "거부");
 		}
-		service.updateCheck(map);
+		service.updateState(map);
 
 		return "/visit/applicationList";
 	}

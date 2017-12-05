@@ -8,6 +8,7 @@ public class MessageVO {
 	String sender;
 	String receiver;
 	int type_id;
+
 	private String r_authority;
 	
 	
@@ -48,22 +49,23 @@ public class MessageVO {
 	public void setSender(String sender) {
 		this.sender = sender;
 	}
+	public String getReceiver() {
+		return receiver;
+	}
+	public void setReceiver(String receiver) {
+		this.receiver = receiver;
+	}
 	public int getType_id() {
 		return type_id;
 	}
 	public void setType_id(int type_id) {
 		this.type_id = type_id;
 	}
-	public String getR_authority() {
-		return r_authority;
-	}
-	public void setR_authority(String r_authority) {
-		this.r_authority = r_authority;
-	}
 	@Override
 	public String toString() {
 		return "MessageVO [msg_id=" + msg_id + ", msg_content=" + msg_content + ", msg_regdate=" + msg_regdate
 				+ ", read_check=" + read_check + ", sender=" + sender + ", receiver=" + receiver + ", type_id="
+
 				+ type_id + ", r_authority=" + r_authority + "]";
 	}
 	

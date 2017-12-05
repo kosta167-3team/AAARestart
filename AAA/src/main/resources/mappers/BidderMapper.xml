@@ -4,7 +4,7 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="all.about.apartment.mappers.BiddMapper">
+<mapper namespace="all.about.apartment.mappers.BidderMapper">
 	<select id="bidDetail" parameterType="String" resultType="BidProductVO">
 		select* from bidproduct
 		where bid_id = #{bid_id}

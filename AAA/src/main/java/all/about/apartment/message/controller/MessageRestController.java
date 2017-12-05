@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import all.about.apartment.message.domain.MessageDTO;
 import all.about.apartment.message.domain.MessageVO;
 import all.about.apartment.message.service.MessageService;
 import all.about.apartment.publicDomain.Criteria;
@@ -33,7 +32,7 @@ public class MessageRestController{
 	MessageService service;
 	
 	@RequestMapping(value="/send" , method = RequestMethod.POST)
-	public ResponseEntity<String> messageSend(@RequestBody MessageDTO vo){
+	public ResponseEntity<String> messageSend(@RequestBody MessageVO vo){
 		System.out.println(vo.toString());
 		
 		ResponseEntity<String> entity = null;
@@ -49,6 +48,7 @@ public class MessageRestController{
 		return entity;
 	}
 	
+
 	/*쪽지 확인*/	
 	@RequestMapping(value="/recieve/{page}" ,method = RequestMethod.POST)
 	public ResponseEntity<Map<String,Object>> recieveGET(@RequestBody ResidentVO vo
@@ -113,6 +113,7 @@ public class MessageRestController{
 			entity = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
 		return entity;
+
 	}*/
 	
 	
@@ -148,7 +149,6 @@ public class MessageRestController{
 		}
 		
 		return entity;
-		
 	}
 }
 

@@ -67,7 +67,6 @@ li {
 </script>
 </head>
 
- 
 <input type="hidden" name="user_id" value="${login.r_id}">
  
 <body id="top">

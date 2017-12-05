@@ -2,14 +2,14 @@ package all.about.apartment.message.persistence;
 
 import java.util.List;
 
-import all.about.apartment.message.domain.MessageDTO;
 import all.about.apartment.message.domain.MessageVO;
 import all.about.apartment.publicDomain.Criteria;
 
 public interface MessageDAO {
 	
-	public void sendMessage(MessageDTO vo) throws Exception;
+	public void sendMessage(MessageVO vo) throws Exception;
 	
+
 	//public List<MessageVO> recieveMessage(String reciever) throws Exception; 
 	public List<MessageVO> recieveMessage(String reciever,Criteria cri) throws Exception; 
 	
@@ -21,5 +21,5 @@ public interface MessageDAO {
 	
 	//메세지 총 갯수
 	public int msgCnt(String receiver) throws Exception;
-	
+
 }

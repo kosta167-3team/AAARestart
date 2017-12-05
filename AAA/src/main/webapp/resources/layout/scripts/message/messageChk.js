@@ -103,8 +103,7 @@ function recieveList(id,page){
 				html += '<input type="hidden" name="msg_id" value ="'+item.msg_id+'">';
 				html +='<input type="hidden" name="receiver" value ="'+item.receiver+'">';
 				html +='<td><input type="checkbox" autocomplete="off" aria-label="..." ></td>';
-				if(item.read_check =='N'){
-					
+				if(item.read_check =='N'){					
 					html += '<td class="read-ck">안읽음</td>';
 				}else{
 					html += '<td class="read-ck">읽음</td>';
