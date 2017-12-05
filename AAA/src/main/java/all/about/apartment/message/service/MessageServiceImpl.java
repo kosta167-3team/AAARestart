@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import all.about.apartment.message.domain.MessageDTO;
 import all.about.apartment.message.domain.MessageVO;
 import all.about.apartment.message.persistence.MessageDAO;
+import all.about.apartment.publicDomain.Criteria;
 
 @Service
 public class MessageServiceImpl implements MessageService {
@@ -22,9 +23,10 @@ public class MessageServiceImpl implements MessageService {
 		dao.sendMessage(vo);
 	}
 
+	//받은 메세지 Criteria 객체 포함
 	@Override
-	public List<MessageVO> recieveMessage(String reciever) throws Exception {
-		return dao.recieveMessage(reciever);
+	public List<MessageVO> recieveMessage(String reciever,Criteria cri) throws Exception {
+		return dao.recieveMessage(reciever,cri);
 	}
 
 	@Override
@@ -35,6 +37,11 @@ public class MessageServiceImpl implements MessageService {
 	@Override
 	public void update_ck(int msg_id) throws Exception {
 		dao.update_ck(msg_id);
+	}
+
+	@Override
+	public int msgCnt(String receiver) throws Exception {
+		return dao.msgCnt(receiver);
 	}
 
 }

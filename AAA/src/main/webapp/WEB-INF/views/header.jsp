@@ -183,7 +183,8 @@ li {
 									<th class="col-md-1"><input type="checkbox"
 										id="checkedAll" autocomplete="off" aria-label="..."></th>
 									<th class="col-md-2">읽음 / 안 읽음</th>
-									<th class="col-md-6">제목</th>
+									<th class="col-md-4">제목</th>
+									<th class="col-md-1"></th>
 									<th class="col-md-2">보낸 시간</th>
 								</tr>
 							</thead>
@@ -194,18 +195,6 @@ li {
 				</div>
 				<nav class="pagination">
 					<ul>
-						<li><a href="#">&laquo; Previous</a></li>
-						<li><a href="#">1</a></li>
-						<li><a href="#">2</a></li>
-						<li><strong>&hellip;</strong></li>
-						<li><a href="#">6</a></li>
-						<li class="current"><strong>7</strong></li>
-						<li><a href="#">8</a></li>
-						<li><a href="#">9</a></li>
-						<li><strong>&hellip;</strong></li>
-						<li><a href="#">14</a></li>
-						<li><a href="#">15</a></li>
-						<li><a href="#">Next &raquo;</a></li>
 					</ul>
 				</nav>
 			</div>
