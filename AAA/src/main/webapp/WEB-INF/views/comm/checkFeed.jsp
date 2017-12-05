@@ -18,10 +18,7 @@
 	font-size: 20pt;
 	font-family: nanumgothic;
 }
-
-#info {
-	
-}
+ 
 </style>
 <meta charset="utf-8">
 <meta name="viewport"
@@ -74,8 +71,7 @@
 										<option value="6">동네 상점 후기</option>
 										<option value="7">기타</option>
 									</select> <br> <br>
-									<textarea id="cb_contents" cols="43" rows="5"
-										onclick="this.value=''">지금 무슨 일이 일어나고 있나요?</textarea>
+									<textarea id="cb_contents" placeholder="지금 무슨 일이 일어나고 있나요?" style="width:100%; height:100px;"></textarea>
 									<footer>
 										<a href="#" class="delete" id="submit">등록</a>
 									</footer>
@@ -97,10 +93,7 @@
 				</div>
 
 				<script type="text/javascript">
-					$('#submit')
-							.on(
-									"click",
-									function() {
+					$('#submit').on("click", function() {
 										event.preventDefault();
 
 										var data = {
@@ -111,8 +104,7 @@
 													.val()
 										}
 
-										$
-												.ajax({
+										$.ajax({
 													datatype : "json",
 													contentType : "application/json; charset=utf-8",
 													type : "POST",
@@ -130,15 +122,17 @@
 														alert("다시 작성해주세요!");
 													}
 												})
-									})
+											})
 
+					
 					//글쓰기 창 초기화
 					function resetTextbox() {
-						$('#cb_contents').val('지금 무슨 일이 일어나고 있나요?');
+						$('#cb_contents').val('');
 						$('select')
 								.append('<option selected="" disabled="" hidden="">키워드</option>');
 					}
 
+					//글 출력하기
 					function printOnFeed(data) {
 
 						//1.방금 쓴 글 피드에 출력
@@ -153,10 +147,21 @@
 						$('.one_half > ul:first-child').append(html);
 
 						//2.글 전체 목록 
+						printAll(data);
 						
-
 					}
 
+					
+					function printAll(data) {
+						
+					/* 					다른 사람들의 글
+					 var html = '<li value="'+cb_no+'"><article><a href="#" class="sendInterest"><i class="glyphicon glyphicon-thumbs-up"></i></a>';
+					 html += '<p>' + cb_contents + '</p>';
+					 html += '<footer><a href="#"><i class="glyphicon glyphicon-ok"></i></a></li>'; */
+
+					}
+					
+					
 					//내 글 삭제하기					
 					$('.one_half').on('click', '.delete', function() {
 
@@ -172,11 +177,36 @@
 						})
 
 					})
-
-					/* 					다른 사람들의 글
-					 var html = '<li value="'+cb_no+'"><article><a href="#"><i class="glyphicon glyphicon-ok"></i></a>';
-					 html += '<p>' + cb_contents + '</p>';
-					 html += '<footer><a href="#"><i class="glyphicon glyphicon-ok"></i></a></li>'; */
+					
+/* 					$('.one_half').on('click', '.sendInterest', function() {
+						
+						event.preventDefault();
+					
+						var cb_no = $(this).attr('value');
+						
+						//쪽지창 띄우기
+						var popupX = (window.screen.width/2) - (400/2);
+						var popupY= (window.screen.height/2) - (400/2);
+						
+						window.open('/comm/sendInterestPopup/'+cb_no,'childWindow', 'status=no, height=200, width=300, left='+ popupX + ', top='+ popupY + ', screenX='+ popupX + ', screenY= '+ popupY);
+	
+						
+					} */
+					
+					/* 
+						
+						var cb_no = $(this).attr('value');
+						
+						$.ajax({
+							url:"/comm/sendInterest/"+cb_no,
+							success: function() {
+								
+								
+								
+							}
+						})
+					})
+ */
 				</script>
 
 				<!-- ################################################################################################ -->

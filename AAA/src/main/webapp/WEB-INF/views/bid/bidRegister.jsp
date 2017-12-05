@@ -187,7 +187,7 @@ Licence URI: http://www.os-templates.com/template-terms
            
           <div class="block clear">
             <label for="comment">내용</label>
-            <form:textarea name="bid_content" path="bid_content" id="comment" cols="25" rows="10"/></textarea>
+            <form:textarea name="bid_content" path="bid_content" placeholder="자세히 작성해주세요 " id="comment" cols="25" rows="10"/></textarea>
             <form:errors path="bid_content" cssClass="error"/>
           </div> 
          

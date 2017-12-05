@@ -17,7 +17,7 @@
 	rel="stylesheet" type="text/css" media="all">
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-<link rel="stylesheet"
+<link rel="stylesheet"]7
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
 
 <!-- Script -->
@@ -50,7 +50,7 @@
 					<div class="modal-body">
 
 						<form id="messageForm">
-							<input type="hidden" name="type_id" value="1">
+							<input type="hidden" name="type_id" value="6">
 							<div class="form-group">
 								<label for="recipient-name" class="control-label ">보내는
 									사람</label>
