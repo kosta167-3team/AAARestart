@@ -21,6 +21,7 @@ import all.about.apartment.message.service.MessageService;
 import all.about.apartment.publicDomain.Criteria;
 import all.about.apartment.publicDomain.PageMaker;
 import all.about.apartment.publicDomain.ResidentVO;
+import all.about.apartment.publicDomain.SearchCriteria;
 import oracle.net.aso.l;
 import oracle.net.aso.s;
 
@@ -51,9 +52,9 @@ public class MessageRestController{
 	
 
 	/*쪽지 확인*/	
-	@RequestMapping(value="/recieve/{page}" ,method = RequestMethod.POST)
+	@RequestMapping(value="/receive" ,method = RequestMethod.POST)
 	public ResponseEntity<Map<String,Object>> recieveGET(@RequestBody ResidentVO vo
-			,@PathVariable("page") Integer page){
+			,@RequestParam("page") Integer page, @RequestParam("keyword") String keyword,@RequestParam("searchType") String searchType){
 		System.out.println(vo);
 		
 		ResponseEntity<Map<String,Object>> entity = null;
@@ -62,20 +63,22 @@ public class MessageRestController{
 		
 		
 		try {
-			Criteria cri = new Criteria();
+			SearchCriteria cri = new SearchCriteria();
 			cri.setPage(page);
+			cri.setKeyword(keyword);
+			cri.setSearchType(searchType);
 			
 			PageMaker pageMaker = new PageMaker();
 			pageMaker.setCri(cri);
 			
 			Map<String, Object> map = new HashMap<String, Object>();
-			list = service.recieveMessage(vo.getR_id(),cri);
+			list = service.recieveMessage(vo.getR_id(),vo.getR_authority(),cri);
 			
 			
 			
 			map.put("list", list);
 			
-			int msgCnt = service.msgCnt(vo.getR_id());
+			int msgCnt = service.msgCnt(vo.getR_id(),vo.getR_authority(),cri);
 			pageMaker.setTotalCount(msgCnt);
 
 			map.put("pageMaker", pageMaker);

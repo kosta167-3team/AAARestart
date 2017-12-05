@@ -1,6 +1,8 @@
 package all.about.apartment.message.persistence;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -11,6 +13,7 @@ import org.springframework.stereotype.Repository;
 import all.about.apartment.message.domain.MessageDTO;
 import all.about.apartment.message.domain.MessageVO;
 import all.about.apartment.publicDomain.Criteria;
+import all.about.apartment.publicDomain.SearchCriteria;
 
 @Repository
 public class MessageDAOImpl implements MessageDAO {
@@ -41,14 +44,29 @@ public class MessageDAOImpl implements MessageDAO {
 	}
 	//페이징 처리해서 글 목록 불러오기
 	@Override
-	public List<MessageVO> recieveMessage(String reciever,Criteria cri) throws Exception {
-		return session.selectList(namespace+".recieveMessage", reciever, new RowBounds(cri.getPageStart(), cri.getPerPageNum()));
+	public List<MessageVO> recieveMessage(String reciever,String r_authority,SearchCriteria cri) throws Exception {
+		
+		
+		System.out.println(cri.toString());
+		
+		Map<String, Object> map = new HashMap<>();
+		map.put("receiver", reciever);
+		map.put("r_authority",  "%"+r_authority+"%");
+		map.put("keyword",cri.getKeyword());
+		map.put("searchType",cri.getSearchType());
+		return session.selectList(namespace+".recieveMessage", map, new RowBounds(cri.getPageStart(), cri.getPerPageNum()));
 	}
 	
 	//총 쪽지 갯수
 	@Override
-	public int msgCnt(String receiver) throws Exception {
-		return session.selectOne(namespace+".msgCnt", receiver);
+	public int msgCnt(String receiver,String r_authority,SearchCriteria cri) throws Exception {
+		
+		Map<String, Object> map = new HashMap<>();
+		map.put("receiver", receiver);
+		map.put("keyword",cri.getKeyword());
+		map.put("searchType",cri.getSearchType());
+		map.put("r_authority", "%"+r_authority+"%");
+		return session.selectOne(namespace+".msgCnt", map);
 	}
 
 }
