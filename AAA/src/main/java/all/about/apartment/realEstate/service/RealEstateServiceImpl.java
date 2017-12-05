@@ -163,7 +163,7 @@ public class RealEstateServiceImpl implements RealEstateService {
 
 		Map<String, Object> body = (Map<String, Object>) dataResponse.get("body");
 		Map<String, Object> items = null;
-		List<Map<String, Object>> itemList = new ArrayList<>();
+		List<Map<String, Object>> itemList = null;
 
 		// System.out.println(body);
 
@@ -232,7 +232,7 @@ public class RealEstateServiceImpl implements RealEstateService {
 
 		Map<String, Object> body = (Map<String, Object>) dataResponse.get("body");
 		Map<String, Object> items = null;
-		List<Map<String, Object>> itemList = new ArrayList<>();
+		List<Map<String, Object>> itemList = null;
 
 		// System.out.println(body);
 

@@ -54,7 +54,7 @@
     	where vr_id = #{vr_id}
     </update>
     <update id="updateCheck" parameterType="Map">
-    	update visit_reservation set v_check = #{check}
+    	update visit_reservation set v_state = #{check}
     	where vr_id = #{vr_id}
     </update>
     

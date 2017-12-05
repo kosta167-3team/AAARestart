@@ -1,11 +1,14 @@
 package all.about.apartment.message.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -15,6 +18,8 @@ import org.springframework.web.bind.annotation.RestController;
 import all.about.apartment.message.domain.MessageDTO;
 import all.about.apartment.message.domain.MessageVO;
 import all.about.apartment.message.service.MessageService;
+import all.about.apartment.publicDomain.Criteria;
+import all.about.apartment.publicDomain.PageMaker;
 import all.about.apartment.publicDomain.ResidentVO;
 import oracle.net.aso.l;
 import oracle.net.aso.s;
@@ -28,7 +33,7 @@ public class MessageRestController{
 	MessageService service;
 	
 	@RequestMapping(value="/send" , method = RequestMethod.POST)
-	public ResponseEntity<String> messageSend(@RequestBody MessageDTO vo){
+	public ResponseEntity<String> messageSend(@RequestBody MessageVO vo){
 		System.out.println(vo.toString());
 		
 		ResponseEntity<String> entity = null;
@@ -44,15 +49,64 @@ public class MessageRestController{
 		return entity;
 	}
 	
+
 	/*쪽지 확인*/	
-	@RequestMapping(value="/recieve" ,method = RequestMethod.POST)
-	public ResponseEntity<List<MessageVO>> recieveGET(@RequestBody ResidentVO vo){
+	@RequestMapping(value="/recieve/{page}" ,method = RequestMethod.POST)
+	public ResponseEntity<Map<String,Object>> recieveGET(@RequestBody ResidentVO vo
+			,@PathVariable("page") Integer page){
+		System.out.println(vo);
+		
+		ResponseEntity<Map<String,Object>> entity = null;
+		List<MessageVO> list= null;
+		
+		
+		
+		try {
+			Criteria cri = new Criteria();
+			cri.setPage(page);
+			cri.setPerPageNum(5);
+			
+			PageMaker pageMaker = new PageMaker();
+			pageMaker.setCri(cri);
+			
+			Map<String, Object> map = new HashMap<String, Object>();
+			list = service.recieveMessage(vo.getR_id(),cri);
+			
+			
+			
+			map.put("list", list);
+			
+			int msgCnt = service.msgCnt(vo.getR_id());
+			pageMaker.setTotalCount(msgCnt);
+
+			map.put("pageMaker", pageMaker);
+			
+			entity = new ResponseEntity<Map<String,Object>>(map, HttpStatus.OK);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			entity = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		}
+		return entity;
+	}
+/*	쪽지 확인	
+	@RequestMapping(value="/recieve/{page}" ,method = RequestMethod.POST)
+	public ResponseEntity<M<MessageVO>> recieveGET(@RequestBody ResidentVO vo
+			,@PathVariable("page") Integer page){
 		System.out.println(vo);
 		
 		ResponseEntity<List<MessageVO>> entity = null;
 		List<MessageVO> list= null;
 		
 		try {
+			Criteria cri = new Criteria();
+			cri.setPage(page);
+			
+			PageMaker pageMaker = new PageMaker();
+			pageMaker.setCri(cri);
+			
+			
+			
 			list = service.recieveMessage(vo.getR_id());
 			entity = new ResponseEntity<List<MessageVO>>(list, HttpStatus.OK);
 		} catch (Exception e) {
@@ -60,7 +114,8 @@ public class MessageRestController{
 			entity = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
 		return entity;
-	}
+
+	}*/
 	
 	
 	@RequestMapping(value ="/msgcnt", method = RequestMethod.POST)
@@ -95,7 +150,6 @@ public class MessageRestController{
 		}
 		
 		return entity;
-		
 	}
 }
 

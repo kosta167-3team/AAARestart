@@ -4,7 +4,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import all.about.apartment.message.domain.MessageDTO;
+import all.about.apartment.message.domain.MessageVO;
 
 @RequestMapping("/message")
 @Controller

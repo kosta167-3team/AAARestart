@@ -245,10 +245,11 @@ Licence URI: http://www.os-templates.com/template-terms
 							<th>순위권</th>
 						</tr>
 					</thead>
+
 					<c:forEach var="grade" items="${elecGradeTable.gradeStringList }">
 						<tr>
 							<td>${grade }</td>
-							<td>${elecGradeTable.getGradeBill( grade )}</td>
+							<td>${elecGradeTable.getGradeBill(grade )}</td>
 						</tr>
 					</c:forEach>
 
@@ -266,7 +267,7 @@ Licence URI: http://www.os-templates.com/template-terms
 					<c:forEach var="grade" items="${heatGradeTable.gradeStringList }">
 						<tr>
 							<td>${grade }</td>
-							<td>${heatGradeTable.getGradeBill( grade )}</td>
+							<td>${heatGradeTable.getGradeBill(grade )}</td>
 						</tr>
 					</c:forEach>
 

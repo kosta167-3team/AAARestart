@@ -11,7 +11,6 @@ import org.springframework.transaction.annotation.Transactional;
 import all.about.apartment.bid.domain.BidProductVO;
 import all.about.apartment.bid.domain.FileVO;
 import all.about.apartment.bid.persistence.BidDAO;
-import all.about.apartment.bid.persistence.BiddDAO;
 
 @Service
 public class BidServiceImpl implements BidService {
@@ -47,19 +46,16 @@ public class BidServiceImpl implements BidService {
 
 	@Override
 	public List<String> getAttach(Integer bid_id) throws Exception {
-		// TODO Auto-generated method stub
 		return dao.getAttach(bid_id);
 	}
 
 	@Override
 	public BidProductVO readDetail(Integer bid_id) throws Exception {
-		// TODO Auto-generated method stub
 		return dao.readDetail(bid_id);
 	}
 
 	@Override
 	public void readInsert(HashMap<String, String> bid_id) throws Exception {
-		// TODO Auto-generated method stub
 		dao.readInsert(bid_id);
 
 		
@@ -84,19 +80,16 @@ public class BidServiceImpl implements BidService {
 
 	@Override
 	public void remove(Integer bid_id) throws Exception {
-		// TODO Auto-generated method stub
 		dao.delete(bid_id);
 	}
 
 	@Override
 	public List<BidProductVO> read2(String sort) throws Exception {
-		// TODO Auto-generated method stub
 		return dao.read2(sort);
 	}
 
 	@Override
 	public BidProductVO bidDetail(String bid_id) throws Exception {
-		// TODO Auto-generated method stub
 		return null;
 	}
 

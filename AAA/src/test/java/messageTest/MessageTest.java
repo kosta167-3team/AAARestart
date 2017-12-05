@@ -11,7 +11,9 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
 import all.about.apartment.message.domain.MessageVO;
+import all.about.apartment.message.persistence.MessageDAO;
 import all.about.apartment.message.service.MessageService;
+import all.about.apartment.publicDomain.Criteria;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebAppConfiguration
@@ -22,7 +24,10 @@ public class MessageTest {
 	@Inject
 	MessageService service;
 	
-	@Test
+	@Inject
+	MessageDAO dao;
+	
+/*	@Test
 	public void recieveTest() {
 		List<MessageVO> list;
 		try {
@@ -41,9 +46,53 @@ public class MessageTest {
 	@Test
 	public void test(){
 		System.out.println("dd");
+	}*/
+	
+	@Test
+	public void testListPage() throws Exception{
+		int page = 3;
+		
+		Criteria cri = new Criteria();
+		cri.setPage(1);
+		cri.setPerPageNum(5);
+		
+		List<MessageVO> list = dao.recieveMessage("dustks123", cri);
+		
+		for(MessageVO vo :list){
+			System.out.println(vo);
+		}
+		
 	}
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
