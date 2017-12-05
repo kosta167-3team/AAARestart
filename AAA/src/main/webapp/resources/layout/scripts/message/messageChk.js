@@ -8,7 +8,7 @@ $(function () {
 	 })
 	msgcnt(id);
 	 $('#msg').on('click', function() {
-		 recieveList(id);
+		 recieveList(id,1);
 	 })
 	 
 	$('tbody').on('click','a',function(event){
@@ -28,6 +28,13 @@ $(function () {
 		console.log(receiver);
 		
 		$('#messageForm').find('[name="type_id"]').val(6);
+	})
+	$('.pagination').on('click','li a', function(event){
+		event.preventDefault();
+		
+		msgPage = $(this).attr('href');
+		
+		recieveList(id,msgPage);
 	})
 });
 function update_ck(id,msg_target){
@@ -73,14 +80,14 @@ function msgcnt(id){
 		}
 	})
 }
-function recieveList(id){
+function recieveList(id,page){
 	
 	var target = $('.modal-body').find('tbody');
 	$(target).empty();
 	console.log(id);
 	$.ajax({
 		type : 'post',
-		url : '/message/recieve',
+		url : '/message/recieve/'+page,
 		headers : {
 			"Content-type" : "application/json",
 			"X-HTTP-Method-Override" : "POST"
@@ -90,7 +97,8 @@ function recieveList(id){
 			r_id : id
 		}),
 		success : function(data) {
-			$(data).each(function(index, item){
+			var list = data.list;
+			$(list).each(function(index, item){
 				var html='<tr>';
 				html += '<input type="hidden" name="msg_id" value ="'+item.msg_id+'">';
 				html +='<input type="hidden" name="receiver" value ="'+item.receiver+'">';
@@ -111,19 +119,49 @@ function recieveList(id){
 					html+='<a tabindex="0" role="button" data-toggle="popover" data-placement="bottom" data-trigger="focus"';
 					html += 'title="'+'from > '+item.sender+'" data-content="'+item.msg_content+'">';
 					html += '<span name ="sender" value ="'+item.sender+'">[ '+item.sender+' ]</span>님께서 보낸 쪽지입니다.'+'</a>';
+					html +='</td>';
+					html += '<td>';
 					html += '<button type="button" class="btn btn-warning send_btn" data-toggle="modal" data-target="#messageModal">';
-					html +='<span class="glyphicon glyphicon-envelope"></span></button>'
-						html +='</td>';
+					html +='<span class="glyphicon glyphicon-envelope"></span></button>';
+					html += '</td>';
 				}
 				html += '<td>'+item.msg_regdate+'</td>'
 				
 				html+='</tr>';
 				
 				$(target).append(html);
+				printPaging(data.pageMaker);
 			})
 		},
 		error : function() {
 			alert('error');
 		}
 	})
+
 }
+function printPaging(pageMaker){
+	var str ="";
+	
+	if(pageMaker.prev){
+		str+="<li><a href='"+(pageMaker.startPage-1)+"'>&laquo; Previous</a></li>";
+	}
+	for(var i = pageMaker.startPage, len = pageMaker.endPage; i<=len ; i++){
+		var strClass = pageMaker.cri.page == i?'class = current':'';
+		str += "<li "+strClass+"><a href ='"+i+"'>"+i+"</a></li>";
+	}
+	
+	if(pageMaker.next){
+		str += "<li><a href='"+(pageMaker.endPage+1)+"'>Next &raquo;</a></li>";
+	}
+	
+	$('.pagination').html(str);
+}
+
+
+
+
+
+
+
+
+
