@@ -239,37 +239,40 @@ Licence URI: http://www.os-templates.com/template-terms
 			<div>
 				<p>전기 등급표</p>
 				<table>
-					<tr>
-						<td>등급</td>
-						<td>순위권</td>
-					</tr>
+					<thead>
+						<tr>
+							<th>등급</th>
+							<th>순위권</th>
+						</tr>
+					</thead>
+
 					<c:forEach var="grade" items="${elecGradeTable.gradeStringList }">
 						<tr>
 							<td>${grade }</td>
-							<td>${elecGradeTable.getRankBill( elecGradeTable.grade )}</td>
+							<td>${elecGradeTable.getGradeBill(grade )}</td>
 						</tr>
 					</c:forEach>
-					
-					<%-- <tr>
-						<td>A+</td>
-						<td>${elecGradeTable.getRankBill( elecGradeTable.aPlus )}</td>				
-						<td>A</td>
-						<td>${elecGradeTable.getRankBill( elecGradeTable.a )}</td>
-						<td>B+</td>
-						<td>${elecGradeTable.getRankBill( elecGradeTable.bPlus )}</td>
-						<td>B</td>
-						<td>${elecGradeTable.getRankBill( elecGradeTable.b )}</td>
-						<td>C+</td>
-						<td>${elecGradeTable.getRankBill( elecGradeTable.cPlus )}</td>
-						<td>C</td>
-						<td>${elecGradeTable.getRankBill( elecGradeTable.c )}</td>
-						<td>D+</td>
-						<td>${elecGradeTable.getRankBill( elecGradeTable.dPlus )}</td>	
-						<td>D</td>
-						<td>${elecGradeTable.getRankBill( elecGradeTable.d )}</td>	
-					</tr> --%>
+
+
 				</table>
 				<p>열 등급표</p>
+				<table>
+					<thead>
+						<tr>
+							<th>등급</th>
+							<th>순위권</th>
+						</tr>
+					</thead>
+
+					<c:forEach var="grade" items="${heatGradeTable.gradeStringList }">
+						<tr>
+							<td>${grade }</td>
+							<td>${heatGradeTable.getGradeBill(grade )}</td>
+						</tr>
+					</c:forEach>
+
+
+				</table>
 			</div>
 
 
