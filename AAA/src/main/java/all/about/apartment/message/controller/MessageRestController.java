@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import all.about.apartment.message.domain.MessageDTO;
 import all.about.apartment.message.domain.MessageVO;
 import all.about.apartment.message.service.MessageService;
 import all.about.apartment.publicDomain.Criteria;
