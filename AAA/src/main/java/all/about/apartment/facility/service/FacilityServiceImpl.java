@@ -288,9 +288,7 @@ public class FacilityServiceImpl implements FacilityService {
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
-
 			}
-
 		}
 		return receiver.size();
 	}
