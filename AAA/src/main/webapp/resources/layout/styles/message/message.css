@@ -5,53 +5,36 @@
 }
 
 .modal-header {
-	padding-bottom: 5px;
+   padding-bottom: 5px;
 }
 
 .modal-footer {
-    	padding: 0;
-	}
+       padding: 0;
+   }
     
 .modal-footer .btn-group button {
-	height:40px;
-	border-top-left-radius : 0;
-	border-top-right-radius : 0;
-	border: none;
-	border-right: 1px solid #ddd;
+   height:40px;
+   border-top-left-radius : 0;
+   border-top-right-radius : 0;
+   border: none;
+   border-right: 1px solid #ddd;
 }
-	
+   
 .modal-footer .btn-group:last-child > button {
-	border-right: 0;
+   border-right: 0;
 }
 .input-group{
-	width:80%;
-	margin-left: 10%;
+   width:80%;
+   margin-left: 10%;
 }
 .sender-group{
-	margin-top: 10px;
-	margin-left: 15px;
+   margin-top: 10px;
+   margin-left: 15px;
 }
 
-.modal {
-        text-align: center;
-}
- 
-@media screen and (min-width: 768px) { 
-        .modal:before {
-                display: inline-block;
-                vertical-align: middle;
-                content: " ";
-                height: 100%;
-        }
-}
- 
-.modal-dialog {
-        display: inline-block;
-        text-align: left;
-        vertical-align: middle;
 .search{
-	margin-top: 15px;
+   margin-top: 15px;
 }
 .send_btn{
-	margin-left: 18%;
+   margin-left: 18%;
 }
