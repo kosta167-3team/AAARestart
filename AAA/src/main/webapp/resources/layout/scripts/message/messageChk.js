@@ -80,7 +80,7 @@ function update_ck(id,msg_target){
 	var msg_id = $(msg_target).val();
 	
 	console.log(msg_id);
-	
+	//commit test
 	$.ajax({
 		type:'put',
 		url:'/message/update_ck',
