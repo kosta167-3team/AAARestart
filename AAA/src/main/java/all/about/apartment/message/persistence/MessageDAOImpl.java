@@ -22,7 +22,7 @@ public class MessageDAOImpl implements MessageDAO {
 	private SqlSession session;
 	private static String namespace = "all.about.apartment.mappers.MessageMapper";
 	
-	@Override
+	
 	public void sendMessage(MessageDTO dto) throws Exception {
 		session.insert(namespace+".sendMessage", dto);
 	}
@@ -68,5 +68,12 @@ public class MessageDAOImpl implements MessageDAO {
 		map.put("r_authority", "%"+r_authority+"%");
 		return session.selectOne(namespace+".msgCnt", map);
 	}
+
+	@Override
+	public List<MessageVO> recieveMessage(String reciever) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 
 }

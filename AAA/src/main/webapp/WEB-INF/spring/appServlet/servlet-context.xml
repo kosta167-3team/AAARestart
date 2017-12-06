@@ -78,7 +78,11 @@
 			<beans:ref bean="authInterceptor" />
 		</interceptor>
 
-
+		<interceptor>
+			<mapping path="/bid/bidListAll" />
+			<beans:ref bean="authInterceptor" />
+		</interceptor>
+		
 		<interceptor>
 			<mapping path="/comm/checkFeed" />
 			<beans:ref bean="authInterceptor" />

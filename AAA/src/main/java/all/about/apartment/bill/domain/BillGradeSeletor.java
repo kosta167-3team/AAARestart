@@ -3,6 +3,7 @@ package all.about.apartment.bill.domain;
 import java.lang.reflect.Field;
 import java.util.List;
 
+
 import all.about.apartment.bill.service.BillService;
 
 public class BillGradeSeletor {
@@ -34,13 +35,10 @@ public class BillGradeSeletor {
 			price = getRankBill(rank);
 			
 		} catch (NoSuchFieldException | SecurityException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IllegalArgumentException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IllegalAccessException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}		
 		return price;		
@@ -101,9 +99,6 @@ public class BillGradeSeletor {
 				
 			}
 		}
-		
-		
-		
 		return "F";
 	}
 	

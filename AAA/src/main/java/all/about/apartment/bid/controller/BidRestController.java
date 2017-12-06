@@ -2,6 +2,7 @@ package all.about.apartment.bid.controller;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
@@ -55,6 +56,23 @@ public class BidRestController {
 		return entity;
 	}
 	
+	@RequestMapping(value="/addBidTime", method=RequestMethod.GET)
+	public ResponseEntity<BidProductVO> addBidTime(@RequestParam("bid_id")String bid_id) {
+		ResponseEntity<BidProductVO> entity = null;
+		HashMap<String, Object> map = new HashMap<>();
+		System.out.println(bid_id);
+		map.put("bid_id", bid_id);
+		System.out.println(map);
+		try {
+			service.addBidTime(map);
+			map.put("BidProductVO", service.bidDetail(bid_id));
+			entity = new ResponseEntity<>(service.readDetail(Integer.parseInt(bid_id)), HttpStatus.OK);
+			System.out.println("success" + service.readDetail(Integer.parseInt(bid_id)).toString());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return entity;
+	}
 	
 	
 	/*@RequestMapping(value="/review/{bid_id}",method=RequestMethod.POST)
