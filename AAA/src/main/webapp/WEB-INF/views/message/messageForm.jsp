@@ -82,7 +82,6 @@
 		</div>
 	</div>
 </body>
-,
 <!-- Large modal -->
 <a class="btn" data-toggle="modal" data-target=".messageListmodal">Large
 	modal</a>
