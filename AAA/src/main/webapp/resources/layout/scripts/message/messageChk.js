@@ -7,8 +7,13 @@ $(function () {
 		 $(this).popover('show');
 	 })
 	msgcnt(id);
+	
+	 var r_authority = $('.type_select').attr('href');
+	console.log(r_authority);
+	 //메세지 목록 조회
 	 $('#msg').on('click', function() {
-		 recieveList(id,1);
+		 var cri= '?page=1&keyword=null&searchType=null';
+		 recieveList(id,cri,r_authority);
 	 })
 	 
 	$('tbody').on('click','a',function(event){
@@ -32,16 +37,50 @@ $(function () {
 	$('.pagination').on('click','li a', function(event){
 		event.preventDefault();
 		
-		msgPage = $(this).attr('href');
+		cri = $(this).attr('href');
 		
-		recieveList(id,msgPage);
+		recieveList(id,cri,r_authority);
 	})
+
+	//검색 유형 선택
+	$('.search-panel .dropdown-menu').find('a').on('click',function(e) {
+		e.preventDefault();
+		$(this).parent().parent().find('a').removeClass('selected');
+		$(this).addClass('selected');
+		var concept = $(this).text();
+		
+		console.log(concept);
+		
+		$('.search-panel span#search_concept').text(concept);
+	});
+	 
+	 //검색
+	 $('#searchBtn').on('click',function(event){
+		 var searchType = 	$('.search-panel .dropdown-menu').find('.selected').attr('href');
+		 var keyword = $('#search_param').val();
+		 
+		 var cri ={
+				"keyword":keyword,
+				"searchType":searchType
+		 }
+		 //makeUrl(1,cri);
+		 recieveList(id,makeUrl(1,cri),r_authority);
+	 });
+	 
+	 //카테고리 선택
+	 $('.sender-group').find('a').on('click',function(e){
+		 e.preventDefault();
+		$(this).parent().find('a').removeClass('type_select');
+		$(this).addClass('type_select');
+		var cri =$('.current').find('a').attr('href');
+		recieveList(id,cri,$(this).attr('href'));
+	 })
 });
 function update_ck(id,msg_target){
 	var msg_id = $(msg_target).val();
 	
 	console.log(msg_id);
-	
+	//commit test
 	$.ajax({
 		type:'put',
 		url:'/message/update_ck',
@@ -80,21 +119,22 @@ function msgcnt(id){
 		}
 	})
 }
-function recieveList(id,page){
+function recieveList(id,cri,r_authority){
 	
 	var target = $('.modal-body').find('tbody');
 	$(target).empty();
 	console.log(id);
 	$.ajax({
 		type : 'post',
-		url : '/message/recieve/'+page,
+		url : '/message/receive'+cri,
 		headers : {
 			"Content-type" : "application/json",
 			"X-HTTP-Method-Override" : "POST"
 		},
 		dataType : 'json',
 		data : JSON.stringify({
-			r_id : id
+			r_id : id,
+			r_authority:r_authority
 		}),
 		success : function(data) {
 			var list = data.list;
@@ -138,25 +178,39 @@ function recieveList(id,page){
 	})
 
 }
-function printPaging(pageMaker){
+function printPaging(pageMaker,cri){
 	var str ="";
 	
+	console.log(pageMaker);
+	var cri = pageMaker.cri;
+	
+	console.log(cri);
+	
 	if(pageMaker.prev){
-		str+="<li><a href='"+(pageMaker.startPage-1)+"'>&laquo; Previous</a></li>";
+		str+="<li><a href='"+(pageMaker.makeSearch(pageMaker.startPage-1))+"'>&laquo; Previous</a></li>";
 	}
 	for(var i = pageMaker.startPage, len = pageMaker.endPage; i<=len ; i++){
 		var strClass = pageMaker.cri.page == i?'class = current':'';
-		str += "<li "+strClass+"><a href ='"+i+"'>"+i+"</a></li>";
+		var keyword = cri.keyword;
+		var searchType = cri.searchType;
+		str += "<li "+strClass+"><a href ='"+makeUrl(i,cri)+"'>"+i+"</a></li>";
 	}
 	
 	if(pageMaker.next){
-		str += "<li><a href='"+(pageMaker.endPage+1)+"'>Next &raquo;</a></li>";
+		str += "<li><a href='"+(pageMaker.makeSearch(pageMaker.endPage+1))+"'>Next &raquo;</a></li>";
 	}
 	
 	$('.pagination').html(str);
 }
 
-
+function makeUrl(page,cri){
+	var location = "?page="+page+"&keyword="+cri.keyword+"&searchType="+cri.searchType;
+	
+	console.log(location);
+	
+	return location;
+	
+}
 
 
 
