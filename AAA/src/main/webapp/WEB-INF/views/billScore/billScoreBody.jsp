@@ -245,18 +245,12 @@ Licence URI: http://www.os-templates.com/template-terms
 							<th>순위권</th>
 						</tr>
 					</thead>
-<<<<<<< HEAD
-=======
 
->>>>>>> branch 'master' of https://github.com/kosta167-3team/AAARestart.git
 					<c:forEach var="grade" items="${elecGradeTable.gradeStringList }">
 						<tr>
 							<td>${grade }</td>
-<<<<<<< HEAD
 							<td>${elecGradeTable.getGradeBill( grade )}</td>
-=======
-							<td>${elecGradeTable.getGradeBill(grade )}</td>
->>>>>>> branch 'master' of https://github.com/kosta167-3team/AAARestart.git
+
 						</tr>
 					</c:forEach>
 
@@ -274,11 +268,8 @@ Licence URI: http://www.os-templates.com/template-terms
 					<c:forEach var="grade" items="${heatGradeTable.gradeStringList }">
 						<tr>
 							<td>${grade }</td>
-<<<<<<< HEAD
-							<td>${heatGradeTable.getGradeBill( grade )}</td>
-=======
+
 							<td>${heatGradeTable.getGradeBill(grade )}</td>
->>>>>>> branch 'master' of https://github.com/kosta167-3team/AAARestart.git
 						</tr>
 					</c:forEach>
 

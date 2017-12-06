@@ -20,4 +20,5 @@ public interface BillService {
 	public List<ScorePMEVO> getHeatList() throws Exception;
 	public int getScoreNum(String energyName) throws Exception;
 	public List<ScorePMEVO> getSelectEnergyList(String energyName) throws Exception;
+	public double getAVGelecMonth(String p_month) throws Exception;
 }

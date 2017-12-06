@@ -87,6 +87,12 @@ public class BillDAOImpl implements BillDAO {
 		return session.selectList(namespace+ ".getSelectEnergyList", viewName);
 	}
 
+	@Override
+	public double getAVGelecMonth(String p_month) throws Exception {
+		
+		return session.selectOne(namespace + ".getAVGelecMonth", p_month);
+	}
+
 
 
 }
