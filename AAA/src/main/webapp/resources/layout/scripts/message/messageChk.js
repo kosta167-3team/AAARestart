@@ -49,10 +49,6 @@ $(function () {
 	 var r_authority = $('.type_select').attr('href');
 	console.log(r_authority);
 	 //메세지 목록 조회
-	 $('#msg').on('click', function() {
-		 var cri= '?page=1&keyword=null&searchType=null';
-		 recieveList(id,cri,r_authority);
-	 })
 	 
 	$('tbody').on('click','a',function(event){
 		var msg_target = $(this).parent().prevAll('[name="msg_id"]');

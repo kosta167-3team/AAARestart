@@ -54,6 +54,7 @@ public class MessageDAOImpl implements MessageDAO {
 		map.put("r_authority",  "%"+r_authority+"%");
 		map.put("keyword",cri.getKeyword());
 		map.put("searchType",cri.getSearchType());
+		
 		return session.selectList(namespace+".recieveMessage", map, new RowBounds(cri.getPageStart(), cri.getPerPageNum()));
 	}
 	

@@ -79,6 +79,7 @@ public class MessageRestController{
 			Map<String, Object> map = new HashMap<String, Object>();
 			list = service.recieveMessage(vo.getR_id(),vo.getR_authority(),cri);
 			
+			System.out.println(list.size());
 			
 			
 			map.put("list", list);
