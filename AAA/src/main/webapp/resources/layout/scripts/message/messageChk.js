@@ -1,4 +1,42 @@
 $(function () {
+   var id = $('[ name="user_id"]').val();
+    $('[data-toggle="popover"]').popover()
+    $('table').on('popover','[data-toggle="popover"]',function(){})
+    $('#messageListmodal').on('click','a',function(){
+      // alert('ddd');
+       $(this).popover('show');
+    })
+   msgcnt(id);
+    $('#msg').on('click', function() {
+    	var cri= '?page=1&keyword=null&searchType=null';
+        recieveList(id,cri,r_authority);
+    })
+    
+   $('tbody').on('click','a',function(event){
+      var msg_target = $(this).parent().prevAll('[name="msg_id"]');
+      update_ck(id,msg_target);
+   })
+   
+   $('table').on('click','.send_btn',function(){
+      var sender = $(this).parent().prevAll('[name="receiver"]').val();
+      $('#messageModal').find('.sender').text(sender);
+      $('#messageModal').find('[name="sender"]').val(sender);
+      console.log(sender);
+      
+      var receiver = $(this).prevAll('a').find('span').attr('value');
+      $('#messageModal').find('.receiver').text(receiver);
+      $('#messageModal').find('[name="receiver"]').val(receiver);
+      console.log(receiver);
+      
+      $('#messageForm').find('[name="type_id"]').val(6);
+   })
+   $('.pagination').on('click','li a', function(event){
+      event.preventDefault();
+      
+      msgPage = $(this).attr('href');
+      
+      recieveList(id,msgPage);
+   })
 	var id = $('[ name="user_id"]').val();
 	 $('[data-toggle="popover"]').popover()
 	 $('table').on('popover','[data-toggle="popover"]',function(){})
@@ -77,6 +115,7 @@ $(function () {
 	 })
 });
 function update_ck(id,msg_target){
+
 	var msg_id = $(msg_target).val();
 	
 	console.log(msg_id);
@@ -87,37 +126,37 @@ function update_ck(id,msg_target){
 		headers : {
             "Content-Type" : "application/json",
             "X-HTTP-Method-Override" : "PUT"
-		},
-		data:JSON.stringify({
-			msg_id:msg_id
-		}),
-		success:function(){
-			msgcnt(id);
-			console.log($(msg_target).nextAll('.read-ck'));
-			$(msg_target).nextAll('.read-ck').text('읽음');
-		}
+      },
+      data:JSON.stringify({
+         msg_id:msg_id
+      }),
+      success:function(){
+         msgcnt(id);
+         console.log($(msg_target).nextAll('.read-ck'));
+         $(msg_target).nextAll('.read-ck').text('읽음');
+      }
 
-	})
+   })
 }
 function msgcnt(id){
-	$.ajax({
-		type : 'post',
-		url : '/message/msgcnt',
-		headers : {
-			"Content-type" : "application/json",
-			"X-HTTP-Method-Override" : "POST"
-		},
-		dataType : 'json',
-		data : JSON.stringify({
-			r_id : id
-		}),
-		success:function(data){
-			$('#msg').find('.badge').text(data);
-		},
-		error:function(){
-			alert('ddd');
-		}
-	})
+   $.ajax({
+      type : 'post',
+      url : '/message/msgcnt',
+      headers : {
+         "Content-type" : "application/json",
+         "X-HTTP-Method-Override" : "POST"
+      },
+      dataType : 'json',
+      data : JSON.stringify({
+         r_id : id
+      }),
+      success:function(data){
+         $('#msg').find('.badge').text(data);
+      },
+      error:function(){
+         alert('ddd');
+      }
+   })
 }
 function recieveList(id,cri,r_authority){
 	
@@ -176,8 +215,8 @@ function recieveList(id,cri,r_authority){
 			alert('error');
 		}
 	})
-
 }
+
 function printPaging(pageMaker,cri){
 	var str ="";
 	

@@ -50,6 +50,11 @@ public class MessageRestController{
 		return entity;
 	}
 	
+	/*쪽지 확인*/	
+	@RequestMapping(value="/recieve" ,method = RequestMethod.POST)
+	public ResponseEntity<List<MessageVO>> recieveGET(@RequestBody ResidentVO vo){
+		return null;
+	}
 
 	/*쪽지 확인*/	
 	@RequestMapping(value="/receive" ,method = RequestMethod.POST)
@@ -95,6 +100,7 @@ public class MessageRestController{
 	@RequestMapping(value="/recieve/{page}" ,method = RequestMethod.POST)
 	public ResponseEntity<M<MessageVO>> recieveGET(@RequestBody ResidentVO vo
 			,@PathVariable("page") Integer page){
+>>>>>>> branch 'master' of https://github.com/kosta167-3team/AAARestart.git
 		System.out.println(vo);
 		
 		ResponseEntity<List<MessageVO>> entity = null;

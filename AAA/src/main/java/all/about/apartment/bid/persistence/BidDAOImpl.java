@@ -96,5 +96,10 @@ public class BidDAOImpl implements BidDAO {
 		session.insert(namespace+".replaceAttach", paramMap);
 	}*/
 
+	@Override
+	public void addBidTime(HashMap<String, Object> map) {
+		session.update(namespace + ".addBidTime", map);
+	}
+
 
 }
