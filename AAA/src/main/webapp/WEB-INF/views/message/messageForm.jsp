@@ -17,12 +17,7 @@
 	rel="stylesheet" type="text/css" media="all">
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-<<<<<<< HEAD
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
-=======
 <link rel="stylesheet" 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
->>>>>>> branch 'master' of https://github.com/kosta167-3team/AAARestart.git
 
 <!-- Script -->
 <script src="/resources/layout/scripts/jquery.min.js"></script>
@@ -87,7 +82,6 @@
 		</div>
 	</div>
 </body>
-,
 <!-- Large modal -->
 <a class="btn" data-toggle="modal" data-target=".messageListmodal">Large
 	modal</a>
