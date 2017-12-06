@@ -144,7 +144,7 @@ li {
         <li><a href="/real_estate">부동산</a></li>
         <li><a class="drop" href="#">경매</a>
           <ul>
-            <li><a href="/bidd/bidDetail">경매 물품보기</a></li>
+            <li><a href="/bid/bidListAll">경매 물품보기</a></li>
             <li><a href="/">내 입찰 내역 조회</a></li>
           </ul>
         </li>

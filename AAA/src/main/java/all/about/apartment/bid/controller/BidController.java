@@ -5,15 +5,15 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.LinkedList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
-
 import javax.annotation.Resource;
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
-
 import org.apache.commons.io.IOUtils;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -33,12 +33,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
-import all.about.apartment.bid.domain.BidContentVO;
 import all.about.apartment.bid.domain.BidProductVO;
 import all.about.apartment.bid.service.BidService;
 import all.about.apartment.bid.util.MediaUtils;
 import all.about.apartment.bid.util.uploadFileUtils;
+import all.about.apartment.publicDomain.ResidentVO;
 
 @Controller
 @RequestMapping("/bid/*")
@@ -295,13 +294,19 @@ public class BidController {
 		model.addAttribute("listAll", service.read());
 	}
 	@RequestMapping(value="/bidDetail/{bid_id}",method=RequestMethod.GET)
-	public ModelAndView bidDetail(@PathVariable String bid_id)throws Exception{	
+	public ModelAndView bidDetail(@PathVariable String bid_id, HttpServletRequest request)throws Exception{	
+		HttpSession session = request.getSession();
+		ResidentVO resident = (ResidentVO)session.getAttribute("login");
+		
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("/bid/bidDetail");
 		System.out.println("bid_id : " + bid_id);
-		
+		System.out.println("로그인한 사람 : " + resident.getR_id());
 		mav.addObject("bid_id", bid_id);
+		mav.addObject("r_id", resident.getR_id());
 		mav.addObject("bidProduct", service.readDetail(Integer.parseInt(bid_id)));
 		return mav;	
 	}
+	
+	
 }

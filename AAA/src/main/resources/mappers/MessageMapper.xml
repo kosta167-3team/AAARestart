@@ -40,15 +40,6 @@
 	</select>
 
 
-
-	<!-- 새로운 메세지 갯수 -->
-	<select id="newMsgCount" parameterType="String" resultType="int">
-		SELECT count(*) from message
-		WHERE read_check = 'N'
-		and receiver =
-		#{reciever}
-	</select>
-
 	<!-- 읽음 처리 -->
 	<update id="update_ck" parameterType="int">
 		update message set
