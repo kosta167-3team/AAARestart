@@ -78,7 +78,7 @@
 					//취소 건
 					var cancel_cnt = data.cancel_cnt;
 
-					html = '<p>' + cancel_cnt + '명에 쪽지를 전송했습니다.</p>';
+					html = '<p>' + cancel_cnt + '건의 예약을 취소하고 쪽지를 전송했습니다.</p>';
 					html += '<button id="confirm">확인</button>'
 
 					$('#popup').children().remove();
@@ -91,6 +91,7 @@
 		});
 
 		$('#popup').on("click", '#confirm', function() {
+			opener.location.href="/facility/manageFacility";
 			window.close();
 		});
 	</script>  

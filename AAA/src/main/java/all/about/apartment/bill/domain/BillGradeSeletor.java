@@ -19,35 +19,31 @@ public class BillGradeSeletor {
 	
 	BillService service;	
 	
-	public BillGradeSeletor() {
-	}
-	
 	public BillGradeSeletor getInstance(){
 		return this;
 	}
 	
+	public BillGradeSeletor() {
+	}
+	
 	public int getGradeBill(String grade){
-		/**/
-		int num =0;
+		int price = 0;
 		try {
-			Object billObject = this.getInstance();
-			Field field = this.getClass().getField(grade);
-			num = getRankBill((int) field.getInt(billObject));
+			Object obj = this.getInstance();
+			Field field = obj.getClass().getField(grade);
+			int rank = (int)field.get(obj);
+			price = getRankBill(rank);
+			
 		} catch (NoSuchFieldException | SecurityException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
-		////
-		catch (IllegalArgumentException e) {
-			// TODO Auto-generated catch block
+		} catch (IllegalArgumentException e) {
 			e.printStackTrace();
 		} catch (IllegalAccessException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
-		return num;
-
+		}		
+		return price;		
 	}
+	
 	
 	public BillGradeSeletor(BillService service) {
 		this.service = service;

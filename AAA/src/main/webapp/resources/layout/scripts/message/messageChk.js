@@ -36,6 +36,43 @@ $(function () {
       
       recieveList(id,msgPage);
    })
+	var id = $('[ name="user_id"]').val();
+	 $('[data-toggle="popover"]').popover()
+	 $('table').on('popover','[data-toggle="popover"]',function(){})
+	 $('#messageListmodal').on('click','a',function(){
+		// alert('ddd');
+		 $(this).popover('show');
+	 })
+	msgcnt(id);
+	 $('#msg').on('click', function() {
+		 recieveList(id,1);
+	 })
+	 
+	$('tbody').on('click','a',function(event){
+		var msg_target = $(this).parent().prevAll('[name="msg_id"]');
+		update_ck(id,msg_target);
+	})
+	
+	$('table').on('click','.send_btn',function(){
+		var sender = $(this).parent().prevAll('[name="receiver"]').val();
+		$('#messageModal').find('.sender').text(sender);
+		$('#messageModal').find('[name="sender"]').val(sender);
+		console.log(sender);
+		
+		var receiver = $(this).parent().parent().find('[name="sender"]').attr('value');
+		$('#messageModal').find('.receiver').text(receiver);
+		$('#messageModal').find('[name="receiver"]').val(receiver);
+		console.log(receiver);
+		
+		$('#messageForm').find('[name="type_id"]').val(6);
+	})
+	$('.pagination').on('click','li a', function(event){
+		event.preventDefault();
+		
+		msgPage = $(this).attr('href');
+		
+		recieveList(id,msgPage);
+	})
 });
 function update_ck(id,msg_target){
    var msg_id = $(msg_target).val();

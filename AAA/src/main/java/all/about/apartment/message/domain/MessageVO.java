@@ -9,14 +9,15 @@ public class MessageVO {
 	String receiver;
 	int type_id;
 	private String r_authority;
+	
+	public String getMsg_content() {
+		return msg_content;
+	}
 	public int getMsg_id() {
 		return msg_id;
 	}
 	public void setMsg_id(int msg_id) {
 		this.msg_id = msg_id;
-	}
-	public String getMsg_content() {
-		return msg_content;
 	}
 	public void setMsg_content(String msg_content) {
 		this.msg_content = msg_content;

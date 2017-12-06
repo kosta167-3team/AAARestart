@@ -19,8 +19,8 @@ public class MessageServiceImpl implements MessageService {
 	
 	//메세지 전송(insert)
 	@Override
-	public void sendMessage(MessageDTO vo) throws Exception {
-		dao.sendMessage(vo);
+	public void sendMessage(MessageDTO dto) throws Exception {
+		dao.sendMessage(dto);
 	}
 
 	//받은 메세지 Criteria 객체 포함

@@ -19,9 +19,9 @@ public class MessageDAOImpl implements MessageDAO {
 	private SqlSession session;
 	private static String namespace = "all.about.apartment.mappers.MessageMapper";
 	
-	@Override
-	public void sendMessage(MessageDTO vo) throws Exception {
-		session.insert(namespace+".sendMessage", vo);
+	
+	public void sendMessage(MessageDTO dto) throws Exception {
+		session.insert(namespace+".sendMessage", dto);
 	}
 
 	/*@Override

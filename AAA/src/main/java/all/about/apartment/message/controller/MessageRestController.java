@@ -33,13 +33,13 @@ public class MessageRestController{
 	MessageService service;
 	
 	@RequestMapping(value="/send" , method = RequestMethod.POST)
-	public ResponseEntity<String> messageSend(@RequestBody MessageDTO vo){
-		System.out.println(vo.toString());
+	public ResponseEntity<String> messageSend(@RequestBody MessageDTO dto){
+		System.out.println(dto.toString());
 		
 		ResponseEntity<String> entity = null;
 		
 		try {
-			service.sendMessage(vo);
+			service.sendMessage(dto);
 			entity = new ResponseEntity<String>("success", HttpStatus.OK);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -69,7 +69,6 @@ public class MessageRestController{
 		try {
 			Criteria cri = new Criteria();
 			cri.setPage(page);
-			cri.setPerPageNum(5);
 			
 			PageMaker pageMaker = new PageMaker();
 			pageMaker.setCri(cri);

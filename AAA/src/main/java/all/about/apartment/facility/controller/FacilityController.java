@@ -180,9 +180,12 @@ public class FacilityController {
 	@RequestMapping(value = "/manageFacility", method = RequestMethod.GET)
 	public String manageFacility(Model model) throws Exception {
 
-		List<Facility> list = service.getFacilityList();
+		List<Facility> facilityList = service.getFacilityList();
 
-		model.addAttribute("facilityList", list);
+		List<Facility_state> stateList = service.getStateList();
+		
+		model.addAttribute("facilityList", facilityList);
+		model.addAttribute("stateList", stateList);
 		
 		return "/facility/manageFacility";
 	}

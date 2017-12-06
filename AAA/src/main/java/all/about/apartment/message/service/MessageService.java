@@ -8,7 +8,7 @@ import all.about.apartment.publicDomain.Criteria;
 
 public interface MessageService {
 	
-	public void sendMessage(MessageDTO vo)throws Exception;
+	public void sendMessage(MessageDTO dto)throws Exception;
 	
 	public List<MessageVO> recieveMessage(String reciever) throws Exception;
 	

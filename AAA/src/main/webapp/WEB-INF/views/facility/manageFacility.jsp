@@ -21,8 +21,8 @@ Licence URI: http://www.os-templates.com/template-terms
 <link rel="stylesheet"
 	href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css"
 	type="text/css" />
-	
-<!-- <script src="/resources/layout/scripts/facility/manageFacility.js"></script> -->	
+
+<!-- <script src="/resources/layout/scripts/facility/manageFacility.js"></script> -->
 <script
 	src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 <script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>
@@ -44,7 +44,7 @@ Licence URI: http://www.os-templates.com/template-terms
 					<li><a href="#">Home</a></li>
 					<li><a href="#">Lorem</a></li>
 					<li><a href="#">Ipsum</a></li>
-					<li><a href="#">Full Width</a></li>
+					<li><a href="#">시설 관리</a></li>
 				</ul>
 				<!-- ################################################################################################ -->
 			</div>
@@ -56,7 +56,7 @@ Licence URI: http://www.os-templates.com/template-terms
 	<div class="wrapper row3">
 		<main class="container clear"> <!-- main body --> <!-- ################################################################################################ -->
 		<div class="content">
-			<h1>시설 상태</h1>
+			<h1>현재 시설 상태</h1>
 			<div class="scrollable">
 				<table>
 					<thead>
@@ -71,20 +71,92 @@ Licence URI: http://www.os-templates.com/template-terms
 							<c:forEach var="facilityList" items="${facilityList}">
 								<td>${facilityList.f_state }</td>
 							</c:forEach>
+						</tr>
 					</tbody>
 				</table>
 			</div>
 
+			<h1>시설 관리 내역</h1>
+			<div class="scrollable" id="state">
+				<select id="f_id" name="f_id" style="width: 100px; height: 30px;">
+					<c:forEach var="facilityList" items="${facilityList}">
+						<option value="${facilityList.f_id }">${facilityList.f_name }</option>
+					</c:forEach>
+				</select> <label for="url">&nbsp;</label>
+				<table>
+					<thead>
+						<tr>
+							<th>기간</th>
+							<th>시설</th>
+							<th>사유</th>
+							<th></th>
+						</tr>
+					</thead>
+					<tbody>
+						<c:forEach var="stateList" items="${stateList}">
+							<tr id="${stateList.fs_id }">
+								<td><fmt:formatDate value="${stateList.fs_start  }"
+										pattern="yy-MM-dd" /> ~ <fmt:formatDate
+										value="${stateList.fs_end }" pattern="yy-MM-dd" /></td>
+								<c:forEach var="facilityList" items="${facilityList }">
+									<c:if test="${stateList.f_id==facilityList.f_id}">
+										<td>${facilityList.f_name}</td>
+									</c:if>
+								</c:forEach>
+								<td>${stateList.fs_reason}</td>
+								<td><button class="cancel" value="${stateList.fs_id }">취소</button></td>
+							</tr>
+						</c:forEach>
+					</tbody>
+				</table>
+			</div>
+			<nav class="pagination">
+				<ul>
+					<li><a href="#">&laquo;</a></li>
+					<li class="current"><a href="#">1</a></li>
+					<li><a href="#">2</a></li>
+					<li><a href="#">3</a></li>
+					<li><a href="#">4</a></li>
+					<li><a href="#">5</a></li>
+					<!--  <li><strong>&hellip;</strong></li>
+          <li><a href="#">6</a></li>
+          <li><strong>7</strong></li>
+          <li><a href="#">8</a></li>
+          <li><a href="#">9</a></li>
+          <li><strong>&hellip;</strong></li>
+          <li><a href="#">14</a></li>
+          <li><a href="#">15</a></li> -->
+					<li><a href="#">&raquo;</a></li>
+				</ul>
+			</nav>
+
+			<script type="text/javascript">
+
+$('#state').on('click', '.cancel', function() {
+	var fs_id = $(this).val();
+	
+	$.ajax({
+		url:"/facility/deleteState/"+fs_id,
+		success:function(){
+			$('tr[id='+fs_id+']').remove();
+			alert("취소되었습니다.");
+		}
+	})
+})
+
+
+</script>
+
+
 
 			<div id="comments">
-				<label for="url">&nbsp;</label> 
-				<label for="url">&nbsp;</label>  
+				<label for="url">&nbsp;</label> <label for="url">&nbsp;</label>
 				<h2>시설 관리</h2>
 				<form action="#" method="post">
 
 					<div class="one_third first">
-						<label for="f_name">시설 <span>*</span></label> 
-							<select id="f_id" name="f_id" style="width:300px;height:40px;">
+						<label for="f_name">시설 <span>*</span></label> <select id="f_id"
+							name="f_id" style="width: 300px; height: 40px;">
 							<c:forEach var="facilityList" items="${facilityList}">
 								<option value="${facilityList.f_id }">${facilityList.f_name }</option>
 							</c:forEach>
@@ -101,7 +173,7 @@ Licence URI: http://www.os-templates.com/template-terms
 					</div>
 					<div class="block clear">
 						<label for="comment">사유 <span>*</span></label>
-						<textarea name="fs_reason" id="fs_reason" cols="25" rows="10"></textarea>
+						<textarea name="fs_reason" id="fs_reason" cols="25" rows="10" placeholder="사용 불가 사유가 쪽지로 전송됩니다."></textarea>
 					</div>
 					<div>
 						<input name="submit" type="submit" value="확인" id="submit" />
@@ -110,16 +182,22 @@ Licence URI: http://www.os-templates.com/template-terms
 				</form>
 			</div>
 
-  			<script type="text/javascript">
+			<script type="text/javascript">
 					$("#fs_start").datepicker({
 						showButtonPanel : false,
 						dateFormat : "yy-mm-dd",
-						altField : '#fs_start'
+						altField : '#fs_start',
+						minDate: 0,
+						onSelect: function(selected) {
+							$("#fs_end").datepicker("option","minDate", selected)
+							}
 					});
 					
 					$("#fs_end").datepicker({
+						showButtonPanel : false,
 						dateFormat : "yy-mm-dd",
-						altField : '#fs_end'
+						altField : '#fs_end',
+						minDate: 0						
 					});
 				
 				$('#submit').on("click", function() {
@@ -133,7 +211,7 @@ Licence URI: http://www.os-templates.com/template-terms
 		});
 								
 			</script>
- 
+
 		</div>
 		<!-- ################################################################################################ -->
 		<!-- / main body -->

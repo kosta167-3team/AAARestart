@@ -1,5 +1,6 @@
 $(function() {
 	$('#sendMessage').on('click', function(event) {
+		alert('dd');
 		
 		event.preventDefault();
 	
