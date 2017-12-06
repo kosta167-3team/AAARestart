@@ -15,6 +15,7 @@
 	</insert>
 
 	<!-- 메세지 내역 확인 -->
+
 	<select id="recieveMessage" resultType="MessageVO">
 		SELECT m.receiver,m.msg_id, m.msg_content, m.msg_regdate , m.read_check, m.sender, r.r_authority
 		FROM message m JOIN resident r
@@ -24,13 +25,15 @@
 		and r.r_authority like #{r_authority}
 		ORDER BY msg_regdate DESC
 	</select>
-
+	
 	<!-- 새로운 메세지 갯수 -->
 	<select id="newMsgCount" resultType="int">
 		SELECT count(*) from message
 		WHERE read_check = 'N'
+
 		and receiver = #{receiver}
 	</select>
+
 
 	<!-- 읽음 처리 -->
 	<update id="update_ck" parameterType="int">

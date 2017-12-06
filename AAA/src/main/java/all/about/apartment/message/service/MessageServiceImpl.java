@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import all.about.apartment.message.domain.MessageDTO;
 import all.about.apartment.message.domain.MessageVO;
 import all.about.apartment.message.persistence.MessageDAO;
+import all.about.apartment.publicDomain.Criteria;
 import all.about.apartment.publicDomain.SearchCriteria;
 
 @Service
@@ -30,11 +31,6 @@ public class MessageServiceImpl implements MessageService {
 	}
 
 	@Override
-	public int newMsgCount(String reciever) throws Exception {
-		return dao.newMsgCount(reciever);
-	}
-
-	@Override
 	public void update_ck(int msg_id) throws Exception {
 		dao.update_ck(msg_id);
 	}
@@ -44,4 +40,8 @@ public class MessageServiceImpl implements MessageService {
 		return dao.msgCnt(receiver,r_authority,cri);
 	}
 
+	@Override
+	public int newMsgCount(String reciever) throws Exception {
+		return dao.newMsgCount(reciever);
+	}
 }

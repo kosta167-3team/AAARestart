@@ -81,6 +81,7 @@ li {
 				<ul class="nospace inline">
 					<!--         <li><i class="fa fa-phone"></i> +00 (123) 456 7890</li>
         <li><i class="fa fa-envelope-o"></i> info@domain.com</li> -->
+
 				</ul>
 			</div>
 			<div class="fl_right">

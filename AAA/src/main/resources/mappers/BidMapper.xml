@@ -9,9 +9,9 @@
 	<!-- 등록 -->
 	<insert id="create" parameterType="BidProductVO">
 		insert into bidproduct(bid_id,bid_name,bid_start,
-		bid_date,bid_time,bid_nowprice,bid_content,bid_filename)
+		bid_date,bid_time,bid_nowprice,bid_content,bid_filename, addtime)
 		values(bid_seq.nextval,#{bid_name},#{bid_start},
-		sysdate,#{bid_time},#{bid_start},#{bid_content},#{bid_filename})
+		sysdate,#{bid_time},#{bid_start},#{bid_content},#{bid_filename}, 0)
 	</insert>
 	
 	<!-- 수정 -->
@@ -55,22 +55,11 @@
 
 	<!-- 상세 조회 -->
 	<select id="readDetail" resultType="BidProductVO">
-		select
-			*
-		from
-			bidproduct
+		select * from bidproduct
 		where bid_id = #{bid_id}
 
 	</select>
 	
-
-	
-	
-	
-	
-	
-	
-
 	 <insert id="addAttach" parameterType="FileVO">
 		insert into bidcontent(content_id,bid_id,content_filename)
 		values (content_id_seq.nextval,#{bid_id},#{content_filename})
@@ -96,5 +85,9 @@
    <insert id="replaceAttach">
    	insert into bidproduct(fullname,bid_id) values (#{fullName},#{bid_id})
    </insert> -->
+   <update id="addBidTime" parameterType="HashMap">
+  		update bidproduct set addTime = addTime + 1
+  		where bid_id = #{bid_id} 
+   </update>
    
 </mapper>

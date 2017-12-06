@@ -18,8 +18,6 @@ public class BidServiceImpl implements BidService {
 	@Inject
 	private BidDAO dao;
 
-	
-
 	public void regist(BidProductVO bid) throws Exception {
 		dao.create(bid);
 		
@@ -91,6 +89,11 @@ public class BidServiceImpl implements BidService {
 	@Override
 	public BidProductVO bidDetail(String bid_id) throws Exception {
 		return null;
+	}
+
+	@Override
+	public void addBidTime(HashMap<String, Object> map) throws Exception {
+		dao.addBidTime(map);
 	}
 
 	

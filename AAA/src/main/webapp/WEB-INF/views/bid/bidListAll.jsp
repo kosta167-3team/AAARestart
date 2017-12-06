@@ -167,7 +167,7 @@ Licence URI: http://www.os-templates.com/template-terms
             <li class="one_quarter" name="imageList">
             <a>
             <img src="/bid/displayFile?fileName=${BidProductVO.bid_filename }"
-             etc="${BidProductVO.bid_id }" id="bid_filename"  alt="" width="800" height="800"></a>
+             etc="${BidProductVO.bid_id }" id="bid_filename" class="bid_filename"  alt="" width="800" height="800"></a>
             <p id="bid_seller">판매자 : ${BidProductVO.bid_seller }</p>
             <p id="bid_name">상품 이름 : ${BidProductVO.bid_name }</p>
             <p id="bid_start" >가격 : ${BidProductVO.bid_start }</p>            
@@ -381,9 +381,10 @@ Licence URI: http://www.os-templates.com/template-terms
     });
     
     
-	$('#bid_filename').on('click', function(){
+	$('.bid_filename').on('click', function(){
 		//location.href="/bidder/bidDetail?bid_id=" +$(this).attr('etc');
 		var detail=$(this).attr('etc');
+		console.log(detail);
 		location.href="/bid/bidDetail/"+detail;
 	})
     </script>
