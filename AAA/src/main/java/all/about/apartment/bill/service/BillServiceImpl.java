@@ -82,6 +82,10 @@ public class BillServiceImpl implements BillService {
 		String viewName = "score_"+ energyName + "_personal_mgmt_ex";
 		return dao.getSelectEnergyList(viewName);
 	}
+	@Override
+	public double getAVGelecMonth(String p_month) throws Exception {
+		return dao.getAVGelecMonth(p_month);
+	}
 
 
 
