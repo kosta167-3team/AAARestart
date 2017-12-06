@@ -10,6 +10,7 @@ import all.about.apartment.message.domain.MessageDTO;
 import all.about.apartment.message.domain.MessageVO;
 import all.about.apartment.message.persistence.MessageDAO;
 import all.about.apartment.publicDomain.Criteria;
+import all.about.apartment.publicDomain.SearchCriteria;
 
 @Service
 public class MessageServiceImpl implements MessageService {
@@ -25,8 +26,8 @@ public class MessageServiceImpl implements MessageService {
 
 	//받은 메세지 Criteria 객체 포함
 	@Override
-	public List<MessageVO> recieveMessage(String reciever,Criteria cri) throws Exception {
-		return dao.recieveMessage(reciever,cri);
+	public List<MessageVO> recieveMessage(String reciever,String r_authority,SearchCriteria cri) throws Exception {
+		return dao.recieveMessage(reciever,r_authority,cri);
 	}
 
 	@Override
@@ -35,19 +36,12 @@ public class MessageServiceImpl implements MessageService {
 	}
 
 	@Override
-	public int msgCnt(String receiver) throws Exception {
-		return dao.msgCnt(receiver);
+	public int msgCnt(String receiver,String r_authority,SearchCriteria cri) throws Exception {
+		return dao.msgCnt(receiver,r_authority,cri);
 	}
 
 	@Override
 	public int newMsgCount(String reciever) throws Exception {
 		return dao.newMsgCount(reciever);
 	}
-
-	@Override
-	public List<MessageVO> recieveMessage(String reciever) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 }

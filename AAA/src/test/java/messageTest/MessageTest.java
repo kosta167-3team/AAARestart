@@ -14,6 +14,7 @@ import all.about.apartment.message.domain.MessageVO;
 import all.about.apartment.message.persistence.MessageDAO;
 import all.about.apartment.message.service.MessageService;
 import all.about.apartment.publicDomain.Criteria;
+import all.about.apartment.publicDomain.SearchCriteria;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebAppConfiguration
@@ -48,22 +49,46 @@ public class MessageTest {
 		System.out.println("dd");
 	}*/
 	
+//	@Test
+//	public void testListPage() throws Exception{
+//		int page = 3;
+//		
+//		Criteria cri = new Criteria();
+//		cri.setPage(1);
+//		cri.setPerPageNum(5);
+//		
+//		List<MessageVO> list = dao.recieveMessage("dustks123", cri);
+//		
+//		for(MessageVO vo :list){
+//			System.out.println(vo);
+//		}
+//		
+//	}
+
+	
 	@Test
-	public void testListPage() throws Exception{
-		int page = 3;
+	public void test() {
 		
-		Criteria cri = new Criteria();
-		cri.setPage(1);
-		cri.setPerPageNum(5);
+		SearchCriteria cri = new SearchCriteria();
+		cri.setSearchType("c");
+		cri.setKeyword("하연산");
 		
-		List<MessageVO> list = dao.recieveMessage("dustks123", cri);
 		
-		for(MessageVO vo :list){
-			System.out.println(vo);
+		List<MessageVO> list;
+		try {
+			list = service.recieveMessage("dustks123","", cri);
+			int msgCnt = service.msgCnt("dustks123","",cri);
+			for(MessageVO vo :list){
+				System.out.println(vo);
+			}
+			
+			System.out.println(msgCnt);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 		
 	}
-
 }
 
 

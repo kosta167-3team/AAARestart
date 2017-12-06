@@ -81,80 +81,7 @@ li {
 				<ul class="nospace inline">
 					<!--         <li><i class="fa fa-phone"></i> +00 (123) 456 7890</li>
         <li><i class="fa fa-envelope-o"></i> info@domain.com</li> -->
-<<<<<<< HEAD
-      </ul>
-    </div>
-   <div class="fl_right">
-      <ul class="faico clear">
-        <li><a  href="#" id="login"></a></li>
-        <li><a  href="#">마이페이지</a></li>
-        <li><a href="#" id ="msg" data-toggle="modal" data-target="#messageListmodal"></a></li>
-      </ul>
-    </div>
-    <!-- ################################################################################################ -->
-  </div>
-</div>
-<!-- ################################################################################################ -->
-<!-- ################################################################################################ -->
-<!-- ################################################################################################ -->
-<div class="wrapper row1">
-  <header id="header" class="clear"> 
-    <!-- ################################################################################################ -->
-    <div id="logo" class="fl_left">
-      <h1><a href="/"><img src="/resources/images/main/main_log_mini.png" alt="" class="main_log_img"></a></h1>
-    </div>
-    <nav id="mainav" class="fl_right">
-      <ul class="clear">
-        <li><a href="/">홈</a></li>
-        
-        <li class="active"><a class="drop" href="#">관리비</a>
-          <ul>
-            <li><a href="/">Gallery</a></li>
-            <li class="active"><a class="drop" href="/bill/full-width">관리비 조회</a>
-            	<ul>
-            		<li> <a href="/billScore/billScoreBody">관리비 성적표</a></li>
-            		<li><a href="/billPrediction/billPredictionBody">관리비 예측 </a> </li>
-            		
-            	</ul>
-            </li>
-            <li><a href="/">관리비 1</a></li>
-            <li><a href="/">관리비 2</a></li>
-            <li><a href="/">관리비 3</a></li>
-          </ul>
-        </li>
-         <li class="active"><a class="drop" href="#">방문객</a>
-          <ul>
-            <li><a href="/visit/application">방문 신청</a></li>
-            <li><a href="/visit/applicationList">방문 예약 내역 조회</a></li>
-            <li><a href="/visit/visitManagement">방문 예약 내역</a></li>
-          </ul>
-        </li>
-         <li class="active"><a class="drop" href="#">시설</a>
-          <ul>
-            <li><a href="/">시설 예약</a></li>
-            <li><a href="/">시설 예약 조회</a></li>
-          </ul>
-        </li>
-        <li><a class="drop" href="#">항의</a>
-          <ul>
-            <li><a href="/">항의하기</a></li>
-            <li><a href="/">항의..</a></li>
-          </ul>
-        </li>
-        <li><a href="#">커뮤니티</a></li>
-        <li><a href="/real_estate">부동산</a></li>
-        <li><a class="drop" href="#">경매</a>
-          <ul>
-            <li><a href="/bid/bidListAll">경매 물품보기</a></li>
-            <li><a href="/">내 입찰 내역 조회</a></li>
-          </ul>
-        </li>
-      </ul>
-    </nav>
-    <!-- ################################################################################################ -->
-  </header>
-</div>
-=======
+
 				</ul>
 			</div>
 			<div class="fl_right">
@@ -227,7 +154,6 @@ li {
 			<!-- ################################################################################################ -->
 		</header>
 	</div>
->>>>>>> branch 'master' of https://github.com/kosta167-3team/AAARestart.git
 
 	<!-- ################################################################################################ -->
 	<!-- ################################################################################################ -->
@@ -249,38 +175,38 @@ li {
 						<span class="glyphicon glyphicon-envelope"></span>
 					</h4>
 				</div>
+				<div class="search">
+					<div class="row">
+						<div class="input-group">
+							<div class="input-group-btn search-panel">
+								<button type="button" class="btn btn-default dropdown-toggle"
+									data-toggle="dropdown">
+									<span id="search_concept">검색 유형</span> <span class="caret"></span>
+								</button>
+								<ul class="dropdown-menu" role="menu">
+									<li><a href="n">--</a></li>
+									<li><a href="c">내용</a></li>
+									<li><a href="s">발신자</a></li>
+									<li><a href="cs">내용 or 발신자</a></li>
+									<li><a href=""></a></li>
+								</ul>
+							</div>
+							<!-- <input type="hidden" name="keyword" value="all" id="search_param">  -->
+							<input type="text" class="form-control"  name="keyword" id="search_param" placeholder="검색할 내용을 입력하세요...">
+							<span class="input-group-btn">
+								<button id ="searchBtn" class="btn btn-default" type="button">
+									<span class="glyphicon glyphicon-search"></span>
+								</button>
+							</span>
+						</div>
+					</div>
+					<div class="sender-group">
+						<a href="" class="type_select" >전체</a> <a href="관리소">관리소</a>
+						<a href="입주민">커뮤니티</a>
+					</div>
+				</div>
 				<div class="modal-body">
 					<div class="scrollable">
-						<div class="row">
-							<div class="col-xs-8 col-xs-offset-2">
-								<div class="input-group">
-									<div class="input-group-btn search-panel">
-										<a href="admin" class="type_select">관리소</a> <a href="resident">입주민</a>
-										<button type="button" class="btn btn-default dropdown-toggle"
-											data-toggle="dropdown">
-											<span id="search_concept">검색 유형</span> <span
-												class="caret"></span>
-										</button>
-										<ul class="dropdown-menu" role="menu">
-											<li><a href="n">---</a></li>
-											<li><a href="t">제목</a></li>
-											<li><a href="c">내용</a></li>
-											<li><a href="s">보낸사람</a></li>
-											<li><a href="tc">제목 or 내용</a></li>
-											<li><a href="cs">내용 or 보낸사람</a></li>
-											<li><a href="cs">제목 or 내용 or 보낸사람</a></li>
-										</ul>
-									</div>
-									<input type="hidden" name="search_param" value="all" id="search_param"> 
-									<input type="text" class="form-control" name="x" placeholder="Search term...">
-									<span class="input-group-btn">
-										<button class="btn btn-default" type="button">
-											<span class="glyphicon glyphicon-search"></span>
-										</button>
-									</span>
-								</div>
-							</div>
-						</div>
 						<table class="table table-hover table-striped">
 							<thead>
 								<tr>
