@@ -39,11 +39,8 @@
 	
 	<!-- 전체 페이지 -->
 	<select id="read" resultType="BidProductVO">
-		select
-			*
-		from
-			bidproduct
-		where bid_id>0
+		select * from bidproduct
+		where bid_id>0 and bid_state = '진행중'
 	</select>
 	
 	<select id="read2" parameterType="String" resultType="BidProductVO">
@@ -88,6 +85,11 @@
    <update id="addBidTime" parameterType="HashMap">
   		update bidproduct set addTime = addTime + 1
   		where bid_id = #{bid_id} 
+   </update>
+   
+   <update id="updateBidState" parameterType="String">
+   		update bidproduct set bid_state = '판매 종료'
+   		where bid_id = #{bid_id}
    </update>
    
 </mapper>

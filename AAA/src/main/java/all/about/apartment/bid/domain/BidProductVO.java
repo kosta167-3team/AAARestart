@@ -27,6 +27,14 @@ public class BidProductVO {
 	private String bid_evaluation;
 	private String bid_filename;
 	private int addTime;
+	private String bid_state;
+	
+	public String getBid_state() {
+		return bid_state;
+	}
+	public void setBid_state(String bid_state) {
+		this.bid_state = bid_state;
+	}
 	public int getBid_id() {
 		return bid_id;
 	}
@@ -104,13 +112,7 @@ public class BidProductVO {
 		return "BidProductVO [bid_id=" + bid_id + ", bid_seller=" + bid_seller + ", bid_name=" + bid_name
 				+ ", bid_start=" + bid_start + ", bid_date=" + bid_date + ", bid_time=" + bid_time + ", bid_nowprice="
 				+ bid_nowprice + ", bid_bidder=" + bid_bidder + ", bid_content=" + bid_content + ", bid_evaluation="
-				+ bid_evaluation + ", bid_filename=" + bid_filename + ", addTime=" + addTime + "]";
-	}
-	
-	
-	
-	
-	
-	
-	
+				+ bid_evaluation + ", bid_filename=" + bid_filename + ", addTime=" + addTime + ", bid_state="
+				+ bid_state + "]";
+	}	
 }
