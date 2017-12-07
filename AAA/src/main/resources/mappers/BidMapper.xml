@@ -9,9 +9,9 @@
 	<!-- 등록 -->
 	<insert id="create" parameterType="BidProductVO">
 		insert into bidproduct(bid_id,bid_name,bid_start,
-		bid_date,bid_time,bid_nowprice,bid_content,bid_filename, addtime)
+		bid_date,bid_time,bid_nowprice,bid_content,bid_filename, addtime, bid_state)
 		values(bid_seq.nextval,#{bid_name},#{bid_start},
-		sysdate,#{bid_time},#{bid_start},#{bid_content},#{bid_filename}, 0)
+		sysdate,#{bid_time},#{bid_start},#{bid_content},#{bid_filename}, 0, '진행중')
 	</insert>
 	
 	<!-- 수정 -->
@@ -46,7 +46,7 @@
 	<select id="read2" parameterType="String" resultType="BidProductVO">
 		select *
 		from bidproduct
-		
+		where bid_state = '진행중'
 		order by ${value} desc
 	</select>
 

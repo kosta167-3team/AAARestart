@@ -49,7 +49,7 @@ Licence URI: http://www.os-templates.com/template-terms
 				<p class="addTimeCount" value = "${bidProduct.addTime }">경매 시간 연장 횟수 : ${bidProduct.addTime }</p>
 				<button class="addBidTime">입찰 시간 추가</button>
 				</li>
-					<li class="one_third"><input type="button" value="입찰하기"></li>
+					<li class="one_third"><input type="button" value="입찰하기" class="bidButton"></li>
 				</ul>
 			</div>
 			<!--// content-->
