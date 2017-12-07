@@ -29,7 +29,10 @@ import all.about.apartment.bid.util.MediaUtils;
 import all.about.apartment.facility.domain.Facility;
 import all.about.apartment.facility.domain.Facility_reservation;
 import all.about.apartment.facility.domain.Facility_state;
+import all.about.apartment.facility.domain.Facility_stateVO;
 import all.about.apartment.facility.service.FacilityService;
+import all.about.apartment.publicDomain.Criteria;
+import all.about.apartment.publicDomain.PageMaker;
 import all.about.apartment.publicDomain.ResidentVO;
 
 @Controller
@@ -40,7 +43,7 @@ public class FacilityController {
 	FacilityService service;
 
 	@Inject
-	Facility facility;
+	Facility facility; 
 
 	@RequestMapping(value = "/reserveFacility", method = RequestMethod.GET)
 	public String getList(Model model) throws Exception {
@@ -178,14 +181,23 @@ public class FacilityController {
 
 	
 	@RequestMapping(value = "/manageFacility", method = RequestMethod.GET)
-	public String manageFacility(Model model) throws Exception {
-
+	public String manageFacility(Model model, Facility facility, Criteria cri) throws Exception {
+ 
 		List<Facility> facilityList = service.getFacilityList();
-
-		List<Facility_state> stateList = service.getStateList();
-		
 		model.addAttribute("facilityList", facilityList);
+		
+		cri.setPerPageNum(5);
+		facility.setF_id(0);
+		
+		List<Facility_stateVO> stateList = service.getStatePage(facility, cri); 
 		model.addAttribute("stateList", stateList);
+		
+		
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCri(cri);
+		pageMaker.setDisplayPageNum(3);
+		pageMaker.setTotalCount(service.getStateCount(facility));
+		model.addAttribute("pageMaker", pageMaker);
 		
 		return "/facility/manageFacility";
 	}

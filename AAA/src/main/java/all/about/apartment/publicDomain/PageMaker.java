@@ -16,6 +16,11 @@ public class PageMaker {
 	private int displayPageNum = 10;
 	private Criteria cri;
 
+	
+	public void setDisplayPageNum(int displayPageNum) {
+		this.displayPageNum = displayPageNum;
+	}
+
 	public void setCri(Criteria cri) {
 		this.cri = cri;
 	}
