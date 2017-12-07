@@ -25,10 +25,12 @@ import com.google.zxing.qrcode.QRCodeWriter;
 import all.about.apartment.facility.domain.Facility;
 import all.about.apartment.facility.domain.Facility_reservation;
 import all.about.apartment.facility.domain.Facility_state;
+import all.about.apartment.facility.domain.Facility_stateVO;
 import all.about.apartment.facility.domain.Facility_time;
 import all.about.apartment.facility.persistence.FacilityDAO;
 import all.about.apartment.message.domain.MessageDTO;
 import all.about.apartment.message.persistence.MessageDAO;
+import all.about.apartment.publicDomain.Criteria;
 
 @Service
 public class FacilityServiceImpl implements FacilityService {
@@ -272,7 +274,12 @@ public class FacilityServiceImpl implements FacilityService {
 
 			MessageDTO messageDTO = new MessageDTO();
 
-			messageDTO.setMsg_content(state.getFs_reason());
+			String msg = "예약 취소 알림";  
+			msg += facilityDao.getDetail(state.getF_id()).getF_name() +" 사용 불가"; 
+			msg+= "기간: "+state.getFs_start() +" ~ " + state.getFs_end();
+			msg+= "사유: " + state.getFs_reason();
+			
+			messageDTO.setMsg_content(msg);
 			messageDTO.setSender("wjdrl123");
 			messageDTO.setType_id(7);
 
@@ -294,14 +301,20 @@ public class FacilityServiceImpl implements FacilityService {
 		}
 		return receiver.size();
 	}
-
 	
 	@Override
-	public List<Facility_state> getStateList() throws Exception {
-		 
-		return facilityDao.getStateList();
+	public List<Facility_stateVO> getStatePage(Facility facility, Criteria cri) throws Exception {
+		
+		cri.setPerPageNum(5);
+		
+		return facilityDao.getStatePage(facility, cri);
 	}
+	
+	@Override
+	public int getStateCount(Facility facility) throws Exception {
 
+		return facilityDao.getStateCount(facility);
+	}
 	
 	@Override
 	public void deleteState(int fs_id) throws Exception {
