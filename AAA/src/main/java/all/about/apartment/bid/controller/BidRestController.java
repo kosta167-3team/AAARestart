@@ -73,7 +73,14 @@ public class BidRestController {
 		}
 		return entity;
 	}
-	
+	@RequestMapping(value="updateBidState", method=RequestMethod.GET)
+	public ResponseEntity<List<BidProductVO>> updateBidState(@RequestParam(value="bid_id") String bid_id) throws Exception {
+		ResponseEntity<List<BidProductVO>> entity = null;
+		System.out.println("updateBidState : "+bid_id);
+		service.updateBidState(bid_id);
+		entity = new ResponseEntity<List<BidProductVO>>(service.read(), HttpStatus.OK);
+		return entity;
+	}
 	
 	/*@RequestMapping(value="/review/{bid_id}",method=RequestMethod.POST)
 	@ResponseBody

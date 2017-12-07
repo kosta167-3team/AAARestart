@@ -21,5 +21,5 @@ public interface BidService {
 	BidProductVO bidDetail(String bid_id) throws Exception;
 	
 	public void addBidTime(HashMap<String , Object> map) throws Exception;
-	
+	public void updateBidState(String bid_id) throws Exception;
 }

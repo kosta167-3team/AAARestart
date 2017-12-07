@@ -101,5 +101,10 @@ public class BidDAOImpl implements BidDAO {
 		session.update(namespace + ".addBidTime", map);
 	}
 
+	@Override
+	public void updateBidState(String bid_id) throws Exception {
+		session.update(namespace + ".updateBidState", bid_id);
+	}
+
 
 }
