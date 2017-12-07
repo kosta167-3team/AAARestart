@@ -100,7 +100,11 @@ public class BillTest {
 		int month = cal.get(Calendar.MONTH)+1;
 		String p_month = year + "-" + month;
 		int power = 0;
+		
+		/* weight 설정 0.1 ~ 0.3 정도가 적당하다. */
+		
 		double weight = 0.1;
+		
 		double num = 0.0;
 		DecimalFormat df = new DecimalFormat("0.00000");
 		double df_num = 0.0;
@@ -123,7 +127,7 @@ public class BillTest {
 			
 			year -= 1;
 		}
-		System.out.println(df_num);
+		System.out.println("result : "+df_num);
 	}
 	
 	public double getSquare(double weight, double num, int power){
