@@ -8,7 +8,9 @@ import java.util.Map;
 import all.about.apartment.facility.domain.Facility;
 import all.about.apartment.facility.domain.Facility_reservation;
 import all.about.apartment.facility.domain.Facility_state;
+import all.about.apartment.facility.domain.Facility_stateVO;
 import all.about.apartment.facility.domain.Facility_time;
+import all.about.apartment.publicDomain.Criteria;
 
 public interface FacilityService {
 	
@@ -41,9 +43,11 @@ public interface FacilityService {
 	
 	public int insertState(Facility_state state) throws Exception;
 	
-	public void deleteState (int fs_id) throws Exception;
+	public List<Facility_stateVO> getStatePage (Facility factility, Criteria cri) throws Exception;
 	
-	public List<Facility_state> getStateList () throws Exception;
+	public int getStateCount (Facility facility) throws Exception;
+	
+	public void deleteState (int fs_id) throws Exception;
 	
 	public List<String> getCancelmsgList (Map<String, Object> map) throws Exception;
 	

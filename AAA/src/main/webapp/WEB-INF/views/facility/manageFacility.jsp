@@ -26,7 +26,7 @@ Licence URI: http://www.os-templates.com/template-terms
 <script
 	src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 <script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>
-<script src="/resources/layout/scripts/date.js"></script>
+<script src="/resources/layout/scripts/facility/date.js"></script>
 
 <link href="/resources/layout/styles/layout.css" rel="stylesheet"
 	type="text/css" media="all">
@@ -76,9 +76,11 @@ Licence URI: http://www.os-templates.com/template-terms
 				</table>
 			</div>
 
+			<label for="url">&nbsp;</label><label for="url">&nbsp;</label>
 			<h1>시설 관리 내역</h1>
 			<div class="scrollable" id="state">
-				<select id="f_id" name="f_id" style="width: 100px; height: 30px;">
+				<select id="category" name="category" style="width: 100px; height: 30px;">
+					<option value="0">전체</option>
 					<c:forEach var="facilityList" items="${facilityList}">
 						<option value="${facilityList.f_id }">${facilityList.f_name }</option>
 					</c:forEach>
@@ -95,62 +97,166 @@ Licence URI: http://www.os-templates.com/template-terms
 					<tbody>
 						<c:forEach var="stateList" items="${stateList}">
 							<tr id="${stateList.fs_id }">
-								<td><fmt:formatDate value="${stateList.fs_start  }"
-										pattern="yy-MM-dd" /> ~ <fmt:formatDate
-										value="${stateList.fs_end }" pattern="yy-MM-dd" /></td>
-								<c:forEach var="facilityList" items="${facilityList }">
-									<c:if test="${stateList.f_id==facilityList.f_id}">
-										<td>${facilityList.f_name}</td>
-									</c:if>
-								</c:forEach>
-								<td>${stateList.fs_reason}</td>
-								<td><button class="cancel" value="${stateList.fs_id }">취소</button></td>
+								<td style="width:20%;">${stateList.fs_start  }~${stateList.fs_end }</td>
+								<td style="width:20%;">${stateList.f_name}</td>
+								<td style="width:53.5%;">${stateList.fs_reason}</td>
+								<td style="width: 6.5%;"><button class="cancel" value="${stateList.fs_id }">취소</button></td>
 							</tr>
 						</c:forEach>
 					</tbody>
 				</table>
 			</div>
-			<nav class="pagination">
-				<ul>
-					<li><a href="#">&laquo;</a></li>
-					<li class="current"><a href="#">1</a></li>
-					<li><a href="#">2</a></li>
-					<li><a href="#">3</a></li>
-					<li><a href="#">4</a></li>
-					<li><a href="#">5</a></li>
-					<!--  <li><strong>&hellip;</strong></li>
-          <li><a href="#">6</a></li>
-          <li><strong>7</strong></li>
-          <li><a href="#">8</a></li>
-          <li><a href="#">9</a></li>
-          <li><strong>&hellip;</strong></li>
-          <li><a href="#">14</a></li>
-          <li><a href="#">15</a></li> -->
-					<li><a href="#">&raquo;</a></li>
-				</ul>
-			</nav>
+
 
 			<script type="text/javascript">
-
-$('#state').on('click', '.cancel', function() {
-	var fs_id = $(this).val();
-	
-	$.ajax({
-		url:"/facility/deleteState/"+fs_id,
-		success:function(){
-			$('tr[id='+fs_id+']').remove();
-			alert("취소되었습니다.");
-		}
-	})
+$('#category').on('change', function () {
+	 
+	  var f_id = $(this).val();
+			
+	 $.ajax({
+		url:"/facility/getCategoryList/"+f_id,
+		success:function(data){
+			
+	  		$('#state').find('tbody').empty();
+			$('#pagination').empty();
+			
+			var stateList = data.stateList;
+			var pageMaker = data.pageMaker;
+			var cri = pageMaker.cri;
+			
+			printStateList(stateList);
+			
+			printPagination(pageMaker,cri);
+			}
+		})  
+	 
 })
-
-
+	 
 </script>
 
 
 
+<script type="text/javascript">
+
+$('#state').on('click', '.cancel', function() {
+	
+	var fs_id = $(this).val();
+	var page = $('#pagination li[class=current]').find('a').attr('value'); 
+	var f_id =$('#category').val();
+	
+	if(confirm("취소하시겠습니까?")){
+	
+	$.ajax({
+		url:"/facility/deleteState/"+f_id+"/"+page+"/"+fs_id,
+		success:function(data){
+			
+			$('#state').find('tbody').empty(); 
+			$('#pagination').empty();
+
+			var stateList = data.stateList_page;
+			var pageMaker = data.pageMaker;
+			var cri = pageMaker.cri;
+			 			
+			printStateList(stateList);
+			
+			printPagination(pageMaker,cri);
+			
+			}
+		})
+	}
+})
+</script>
+			<nav class="pagination" id="pagination">
+				<ul>
+					<c:if test="${pageMaker.prev }">
+						<li><a href="#">&laquo;</a></li>
+					</c:if>
+
+					<c:forEach begin="${pageMaker.startPage }"
+						end="${pageMaker.endPage }" var="index">
+						<li
+							<c:out value="${pageMaker.cri.page == index?'class=current':''}"/>><a
+							href="#" value="${index }">${index }</a></li>
+					</c:forEach>
+					<c:if test="${pageMaker.next && pageMaker.endPage >0 }">
+						<li><a href="#" value="${pageMaker.endPage+1 }">&raquo;</a></li>
+					</c:if>
+				</ul>
+			</nav>
+
+			<script type="text/javascript">
+	$('#pagination').on('click', 'a', function() {
+		
+		event.preventDefault();
+				
+		var page = $(this).attr('value');
+		var f_id = $('#category').val();
+		 		
+		$.ajax({
+				url:"/facility/manageFacility/"+f_id+"/"+page,
+				success: function(data) { 
+					
+					$('#state').find('tbody').empty(); 
+					$('#pagination').empty();
+  
+					var stateList = data.stateList_page;
+					var pageMaker = data.pageMaker;
+					var cri = pageMaker.cri;
+					 
+					printStateList(stateList);
+					
+					printPagination(pageMaker,cri);
+									
+				}
+		})  
+		
+	}) 
+	
+	
+	
+ 	function printPagination(pageMaker,cri){
+	var str ="";
+	
+	if(pageMaker.prev){
+		str+='<li><a href="#">&laquo;</a></li>';
+	}
+	for(var index = pageMaker.startPage, len = pageMaker.endPage; index<=len; index++){
+		var Class = pageMaker.cri.page == index?'class = current':'';
+		
+		str += '<li '+Class+'><a href="#" value="'+index+'">'+index+'</a></li>';
+		
+	}
+	
+	if(pageMaker.next){
+		str += '<li><a href="#" value="'+pageMaker.endPage+1+'">&raquo;</a></li>';
+	}
+	
+	$('#pagination').append(str);
+} 
+	
+	
+	
+	function printStateList(stateList) {
+
+		var html= "";
+		 		
+		$.each(stateList, function(index, s){ 
+			 
+			html+= '<tr id="'+s.fs_id+'">';
+			html+= '<td style="width:20%;">'+s.fs_start+' ~ '+s.fs_end +'</td>';
+			html+= '<td style="width:20%;">'+s.f_name+'</td>'; 
+			html+= '<td style="width:53.5%;">'+s.fs_reason+'</td>';
+			html+= '<td style="width:6.5%;"><button class="cancel" value="'+s.fs_id+'">취소</button></td></tr>'; 						
+		})
+		
+		$('#state').find('tbody').append(html);
+	}
+	
+	
+	</script>
+
 			<div id="comments">
-				<label for="url">&nbsp;</label> <label for="url">&nbsp;</label>
+				<label for="url">&nbsp;</label><label for="url">&nbsp;</label>
 				<h2>시설 관리</h2>
 				<form action="#" method="post">
 
@@ -173,7 +279,8 @@ $('#state').on('click', '.cancel', function() {
 					</div>
 					<div class="block clear">
 						<label for="comment">사유 <span>*</span></label>
-						<textarea name="fs_reason" id="fs_reason" cols="25" rows="10" placeholder="사용 불가 사유가 쪽지로 전송됩니다."></textarea>
+						<textarea name="fs_reason" id="fs_reason" cols="25" rows="10"
+							placeholder="사용 불가 사유가 쪽지로 전송됩니다."></textarea>
 					</div>
 					<div>
 						<input name="submit" type="submit" value="확인" id="submit" />
@@ -181,6 +288,9 @@ $('#state').on('click', '.cancel', function() {
 					</div>
 				</form>
 			</div>
+
+
+
 
 			<script type="text/javascript">
 					$("#fs_start").datepicker({
@@ -201,8 +311,17 @@ $('#state').on('click', '.cancel', function() {
 					});
 				
 				$('#submit').on("click", function() {
-
-					event.preventDefault();
+					
+					event.preventDefault();	
+							 
+					var fs_start = $("fs_start").val();
+					var fs_end = $("fs_start").val();
+					var fs_reason = $('#fs_reason').val();
+					
+					if(fs_start=="" || fs_end==""||fs_reason==""){
+						alert("전부 입력해주세요!");
+						return;
+					}					
 			
 					var popupX = (window.screen.width/2) - (400/2);
 					var popupY= (window.screen.height/2) - (400/2);
