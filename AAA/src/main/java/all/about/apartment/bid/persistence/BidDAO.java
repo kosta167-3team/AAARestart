@@ -26,6 +26,7 @@ public interface BidDAO {
 	public void addBidTime(HashMap<String, Object> map);
 	/*public void deleteAttach(Integer bid_id)throws Exception;
 	public void replaceAttach(String fullName,Integer bno)throws Exception;*/
+	public void updateBidState(String bid_id) throws Exception;
 	
 	
 

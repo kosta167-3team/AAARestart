@@ -96,5 +96,10 @@ public class BidServiceImpl implements BidService {
 		dao.addBidTime(map);
 	}
 
+	@Override
+	public void updateBidState(String bid_id) throws Exception {
+		dao.updateBidState(bid_id);
+	}
+
 	
 }
