@@ -1,21 +1,19 @@
 package all.about.apartment.bid.controller;
 
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.forwardedUrl;
+
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.LinkedList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
-
 import javax.annotation.Resource;
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
-
 import org.apache.commons.io.IOUtils;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -33,10 +31,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
 
 import all.about.apartment.bid.domain.BidContentVO;
 import all.about.apartment.bid.domain.BidPenalty;
+
 import all.about.apartment.bid.domain.BidProductVO;
 import all.about.apartment.bid.service.BidService;
 import all.about.apartment.bid.util.MediaUtils;
@@ -110,7 +111,8 @@ public class BidController {
 	 * model.addAttribute(service.readDetail(bid_id)); System.out.println("gg");
 	 * }
 	 */
-
+          
+	
 	@RequestMapping(value = "/bidmodify", method = RequestMethod.GET)
 	public void modifyGET(@RequestParam("bid_id") int bid_id, Model model) throws Exception {
 		System.out.println("ggg");
@@ -312,5 +314,22 @@ public class BidController {
 	public void gallery(Integer bid_id, Model model)throws Exception{
 		model.addAttribute("listAll", service.read());
 	}
-
+	@RequestMapping(value="/bidDetail/{bid_id}",method=RequestMethod.GET)
+	public ModelAndView bidDetail(@PathVariable String bid_id, HttpServletRequest request)throws Exception{	
+		HttpSession session = request.getSession();
+		ResidentVO resident = (ResidentVO)session.getAttribute("login");
+		
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("/bid/bidDetail");
+		System.out.println("bid_id : " + bid_id);
+		System.out.println("로그인한 사람 : " + resident.getR_id());
+		mav.addObject("bid_id", bid_id);
+		mav.addObject("r_id", resident.getR_id());
+		mav.addObject("bidProduct", service.readDetail(Integer.parseInt(bid_id)));
+		return mav;	
+	}
+	
+	
+	
+	
 }

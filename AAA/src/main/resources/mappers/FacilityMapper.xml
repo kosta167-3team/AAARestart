@@ -109,6 +109,55 @@
 		#{fs_reason}, SYSDATE)
 	</insert>
 
+
+
+	<!-- 1-1.관리 내역 조회 -->
+ <select id="getStatePage" resultType="Facility_stateVO">
+	
+	<![CDATA[ 
+    select s.fs_id, s.f_id, f.f_name, s.fs_start, s.fs_end, s.fs_reason, s.fs_regdate 
+		from facility_state s, facility f
+		where s.f_id = f.f_id
+  	    and ((TRUNC(s.fs_start) >= sysdate) or (TRUNC(s.fs_end) >=sysdate))
+		]]>
+
+	<if test="f_id!= 0"> 
+		and s.f_id = #{f_id}
+	</if>
+	
+  	    order by s.fs_start
+	</select> 
+
+
+<!--   	<select id="getStatePage" resultType="Facility_stateVO">
+	
+	<![CDATA[ 
+    select s.fs_id, s.f_id, f.f_name, s.fs_start, s.fs_end, s.fs_reason, s.fs_regdate 
+		from facility_state s, facility f
+		where s.f_id = f.f_id
+  	    and ((TRUNC(s.fs_start) >= sysdate) or (TRUNC(s.fs_end) >=sysdate))
+  	    order by s.fs_start
+		]]>
+	</select>  -->
+
+
+
+	<!-- 1-2.전체 개수 -->
+	<select id="getStateCount" resultType="int">
+	select count(*) from facility_state
+	
+	<if test="f_id!= 0"> 
+		where f_id = #{f_id}
+	</if>
+	
+	</select> 
+
+	<!-- 1-2.시설 관리 내역 취소 -->
+	<delete id="deleteState" parameterType="int">
+		delete from facility_state
+			where fs_id = #{fs_id}
+	</delete>
+
 	<!-- 2.예약 취소자 명단 -->
 	<select id="getCancelmsgList" parameterType="java.util.Map"
 		resultType="String">
@@ -134,16 +183,19 @@
 	<!-- 4.시설 상태 변경 -->
 	<update id="alterState_bad">
 		update facility set f_state = '사용불가'
-			where f_id in(
-				select f_id from facility_state
-					where sysdate between TRUNC(fs_start) and TRUNC(fs_end))
+		where f_id in(
+		select f_id from facility_state
+		where sysdate between TRUNC(fs_start)
+		and TRUNC(fs_end))
 	</update>
 
 	<update id="alterState_ok">
 		update facility set f_state = '사용가능'
-			where f_id not in(
-				select f_id from facility_state
-					where sysdate between TRUNC(fs_start) and TRUNC(fs_end)) 
+		where f_id not
+		in(
+		select f_id from facility_state
+		where sysdate between
+		TRUNC(fs_start) and TRUNC(fs_end))
 	</update>
 
 </mapper>  

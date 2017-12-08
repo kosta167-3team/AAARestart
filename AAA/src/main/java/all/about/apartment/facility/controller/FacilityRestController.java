@@ -1,36 +1,29 @@
 package all.about.apartment.facility.controller;
-
-import java.sql.Timestamp;
-import java.util.Date;
+ 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import javax.inject.Inject;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpServletRequest; 
 import javax.servlet.http.HttpSession;
-
-import org.apache.ibatis.session.SqlSession;
+ 
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.http.ResponseEntity; 
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.databind.jsonFormatVisitors.JsonFormatTypes;
-
 import all.about.apartment.facility.domain.Facility;
 import all.about.apartment.facility.domain.Facility_reservation;
 import all.about.apartment.facility.domain.Facility_state;
-import all.about.apartment.facility.domain.Facility_time;
+import all.about.apartment.facility.domain.Facility_stateVO; 
 import all.about.apartment.facility.service.FacilityService;
-import all.about.apartment.publicDomain.LoginDTO;
+import all.about.apartment.publicDomain.Criteria; 
+import all.about.apartment.publicDomain.PageMaker;
 import all.about.apartment.publicDomain.ResidentVO;
 
 @RestController
@@ -50,7 +43,7 @@ public class FacilityRestController {
 
 		HttpSession session = request.getSession();
 		String r_id = ((ResidentVO) session.getAttribute("login")).getR_id();
- 
+
 		map.put("r_id", r_id);
 		map.put("f_id", f_id);
 
@@ -64,7 +57,7 @@ public class FacilityRestController {
 			map.put("facility", facility);
 			map.put("dateList", dateList);
 			map.put("stringList", stringList);
- 
+
 			entity = new ResponseEntity<Map<String, Object>>(map, HttpStatus.OK);
 
 		} catch (Exception e) {
@@ -189,8 +182,6 @@ public class FacilityRestController {
 		try {
 			service.insertReservation(map);
 
-			// map.put("new_spotList", service.getOptions(map).get("spotList"));
-
 			map.put("success_reserve", "예약 내역을 확인하시겠습니까?");
 
 			entity = new ResponseEntity<Map<String, Object>>(map, HttpStatus.OK);
@@ -202,7 +193,6 @@ public class FacilityRestController {
 
 		return entity;
 	}
-
 
 	@RequestMapping(value = "/cancleReservation/{fr_id}", method = RequestMethod.GET)
 	public ResponseEntity<String> cancleReservation(@PathVariable("fr_id") int fr_id) {
@@ -227,34 +217,134 @@ public class FacilityRestController {
 
 	@RequestMapping(value = "/changeState", method = RequestMethod.POST)
 	public ResponseEntity<Map<String, Object>> changeState(@RequestBody Facility_state state) {
- 
+
 		System.out.println("레스트 컨트롤러");
 		System.out.println(state.getF_id());
 		System.out.println(state.getFs_reason());
 		System.out.println(state.getFs_start());
 		System.out.println(state.getFs_end());
-		
+
 		ResponseEntity<Map<String, Object>> entity = null;
- 
+
 		try {
-	
-			//0.인서트
-			service.insertState(state);
-			
-			//두가지 작업을 트랜젝션으로 처리
-			//1.기간 내 예약을 취소
-			//2.취소자에 쪽지 발송
-					
-			
-			//3.시설 상태 변경 (예약) ← 완료
- 
+
+			// 0.인서트
+			int cancel_cnt = service.insertState(state);
+
+			// 두가지 작업을 트랜젝션으로 처리
+			// 1.기간 내 예약을 취소
+			// 2.취소자에 쪽지 발송
+
+			// 3.시설 상태 변경 (예약) ← 완료
+
+			map.put("cancel_cnt", cancel_cnt);
+
 			entity = new ResponseEntity<Map<String, Object>>(map, HttpStatus.OK);
-			
+
 		} catch (Exception e) {
 			e.printStackTrace();
 			entity = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
 
+		return entity;
+	}
+	
+	@RequestMapping(value="/manageFacility/{f_id}/{page}", method= RequestMethod.GET)
+	public ResponseEntity<Map<String, Object>> stateList (@PathVariable ("f_id") int f_id, @PathVariable ("page") int page, Facility facility, Criteria cri){
+		
+		ResponseEntity<Map<String, Object>> entity = null;
+		
+		Map<String, Object> pageMap = new HashMap<>();
+		
+		try {
+			cri.setPerPageNum(5);
+			cri.setPage(page); 
+			facility.setF_id(f_id);
+
+			PageMaker pageMaker = new PageMaker();
+			pageMaker.setCri(cri);
+			pageMaker.setDisplayPageNum(3);
+			pageMaker.setTotalCount(service.getStateCount(facility));
+			
+			List<Facility_stateVO> stateList_page = service.getStatePage(facility, cri);  
+			
+			pageMap.put("pageMaker", pageMaker);		
+			pageMap.put("stateList_page", stateList_page); 
+						
+			entity = new ResponseEntity<Map<String,Object>>(pageMap, HttpStatus.OK);
+			
+		} catch (Exception e) {
+			 e.printStackTrace();
+			 entity = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		}
+		return entity;
+	}
+	
+
+	@RequestMapping(value = "/deleteState/{f_id}/{page}/{fs_id}", method = RequestMethod.GET)
+	public ResponseEntity<Map<String, Object>> deleteState(@PathVariable("f_id") int f_id, @PathVariable("page") int page, @PathVariable("fs_id") int fs_id, Facility facility, Criteria cri) throws Exception {
+
+		ResponseEntity<Map<String, Object>> entity = null;
+		
+		Map<String, Object> pageMap = new HashMap<>();
+		 
+		try {
+			//취소
+			service.deleteState(fs_id);
+
+			//리스트 출력
+			cri.setPerPageNum(5);
+			cri.setPage(page); 
+			facility.setF_id(f_id);
+			
+			List<Facility_stateVO> stateList_page = service.getStatePage(facility, cri); 
+			
+			PageMaker pageMaker = new PageMaker();
+			pageMaker.setCri(cri);
+			pageMaker.setDisplayPageNum(3);
+			pageMaker.setTotalCount(service.getStateCount(facility)); 
+			
+			pageMap.put("pageMaker", pageMaker);		
+			pageMap.put("stateList_page", stateList_page); 
+						
+			entity = new ResponseEntity<Map<String,Object>>(pageMap, HttpStatus.OK);
+			
+		} catch (Exception e) {
+			 e.printStackTrace();
+			 entity = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		}
+		
+		return entity;
+	}
+	
+	@RequestMapping(value="/getCategoryList/{f_id}", method=RequestMethod.GET)
+	public ResponseEntity<Map<String, Object>> getCategoryList (@PathVariable ("f_id") int f_id, Facility facility, Criteria cri){
+		
+		ResponseEntity<Map<String, Object>> entity = null;
+		
+		Map<String, Object> category = new HashMap<>();
+		
+		try {
+			facility.setF_id(f_id);
+			cri.setPerPageNum(5);
+
+			List<Facility_stateVO> stateList = service.getStatePage(facility, cri);
+			
+			PageMaker pageMaker = new PageMaker();
+			pageMaker.setCri(cri);
+			pageMaker.setDisplayPageNum(3);
+			pageMaker.setTotalCount(service.getStateCount(facility)); 
+						
+			category.put("stateList", stateList);
+			category.put("pageMaker", pageMaker);	
+			
+			entity = new ResponseEntity<Map<String,Object>>(category, HttpStatus.OK);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			entity = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		}		
+		
 		return entity;
 	}
 

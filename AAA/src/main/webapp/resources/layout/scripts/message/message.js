@@ -1,13 +1,18 @@
 $(function() {
 	$('#sendMessage').on('click', function(event) {
+		alert('dd');
 		
 		event.preventDefault();
 	
 		var form = $('#messageForm');
-		var sender = $('[ name="sender"]').val();
-		var receiver=$('[ name="receiver"]').val();
-		var type_id=$('[ name="type_id"]').val();
-		var msg_content =$('[ name="msg_content"]').val();
+		
+		//ㅇㄴㅇㄴㅇㄴㅁㄴㅁㄴ
+		
+		var sender = $(form).find('[name="sender"]').val();
+		var receiver=$(form).find('[name="receiver"]').val();
+		
+		var type_id= $(form).find('[ name="type_id"]').val();
+		var msg_content =$(form).find('[ name="msg_content"]').val();
 		
 		
 		console.log(sender+"," + receiver + "," + msg_content);

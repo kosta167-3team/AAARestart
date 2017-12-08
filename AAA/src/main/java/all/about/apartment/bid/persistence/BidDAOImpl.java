@@ -98,9 +98,19 @@ public class BidDAOImpl implements BidDAO {
 	}*/
 
 	@Override
+
 	public Integer penalty(BidProductVO vo) throws Exception {
 		
 		return session.selectOne(namespace+".penalty",vo);
+	}
+	public void addBidTime(HashMap<String, Object> map) {
+		session.update(namespace + ".addBidTime", map);
+	}
+
+	@Override
+	public void updateBidState(String bid_id) throws Exception {
+		session.update(namespace + ".updateBidState", bid_id);
+
 	}
 
 

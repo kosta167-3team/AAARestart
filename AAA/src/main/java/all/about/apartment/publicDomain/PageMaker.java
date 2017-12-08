@@ -1,94 +1,110 @@
 package all.about.apartment.publicDomain;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+
 import org.springframework.web.util.UriComponents;
 import org.springframework.web.util.UriComponentsBuilder;
 
 public class PageMaker {
 
-  private int totalCount;
-  private int startPage;
-  private int endPage;
-  private boolean prev;
-  private boolean next;
-  private int displayPageNum = 10;
-  private Criteria cri;
+	private int totalCount;
+	private int startPage;
+	private int endPage;
+	private boolean prev;
+	private boolean next;
+	private int displayPageNum = 10;
+	private Criteria cri;
 
-  public void setCri(Criteria cri) {
-    this.cri = cri;
-  }
+	
+	public void setDisplayPageNum(int displayPageNum) {
+		this.displayPageNum = displayPageNum;
+	}
 
-  public void setTotalCount(int totalCount) {
-    this.totalCount = totalCount;
+	public void setCri(Criteria cri) {
+		this.cri = cri;
+	}
 
-    calcData();
-  }
+	public void setTotalCount(int totalCount) {
+		this.totalCount = totalCount;
 
-  private void calcData() {
+		calcData();
+	}
 
-    endPage = (int) (Math.ceil(cri.getPage() / (double) displayPageNum) * displayPageNum);
+	private void calcData() {
 
-    startPage = (endPage - displayPageNum) + 1;
+		endPage = (int) (Math.ceil(cri.getPage() / (double) displayPageNum) * displayPageNum);
 
-    int tempEndPage = (int) (Math.ceil(totalCount / (double) cri.getPerPageNum()));
+		startPage = (endPage - displayPageNum) + 1;
 
-    if (endPage > tempEndPage) {
-      endPage = tempEndPage;
-    }
+		int tempEndPage = (int) (Math.ceil(totalCount / (double) cri.getPerPageNum()));
 
-    prev = startPage == 1 ? false : true;
+		if (endPage > tempEndPage) {
+			endPage = tempEndPage;
+		}
 
-    next = endPage * cri.getPerPageNum() >= totalCount ? false : true;
+		prev = startPage == 1 ? false : true;
 
-  }
+		next = endPage * cri.getPerPageNum() >= totalCount ? false : true;
 
-  public int getTotalCount() {
-    return totalCount;
-  }
+	}
 
-  public int getStartPage() {
-    return startPage;
-  }
+	public int getTotalCount() {
+		return totalCount;
+	}
 
-  public int getEndPage() {
-    return endPage;
-  }
+	public int getStartPage() {
+		return startPage;
+	}
 
-  public boolean isPrev() {
-    return prev;
-  }
+	public int getEndPage() {
+		return endPage;
+	}
 
-  public boolean isNext() {
-    return next;
-  }
+	public boolean isPrev() {
+		return prev;
+	}
 
-  public int getDisplayPageNum() {
-    return displayPageNum;
-  }
+	public boolean isNext() {
+		return next;
+	}
 
-  public Criteria getCri() {
-    return cri;
-  }
+	public int getDisplayPageNum() {
+		return displayPageNum;
+	}
 
-  public String makeQuery(int page) {
+	public Criteria getCri() {
+		return cri;
+	}
 
-    UriComponents uriComponents = 
-    		UriComponentsBuilder.newInstance()
-    		.queryParam("page", page)
-    		.queryParam("perPageNum", cri.getPerPageNum())
-    		.build();
+	public String makeQuery(int page) {
 
-    return uriComponents.toUriString();
-  }
-  
-  
-  public String makeSearch(int page){
-    
-    UriComponents uriComponents =
-              UriComponentsBuilder.newInstance()
-              .queryParam("page", page)	//쿼리문 만들어서 전달해달라!
-              .queryParam("perPageNum", cri.getPerPageNum())
-              .build();             
-    
-    return uriComponents.toUriString();
-  }
+		UriComponents uriComponents = UriComponentsBuilder.newInstance().queryParam("page", page)
+				.queryParam("perPageNum", cri.getPerPageNum()).build();
+
+		return uriComponents.toUriString();
+	}
+
+	public String makeSearch(int page) {
+
+		UriComponents uriComponents = UriComponentsBuilder.newInstance().queryParam("page", page)
+				.queryParam("perPageNum", cri.getPerPageNum())
+				.queryParam("searchType", ((SearchCriteria) cri).getSearchType())
+				.queryParam("keyword", ((SearchCriteria) cri).getKeyword()).build();
+
+		return uriComponents.toUriString();
+	}
+
+	private String encoding(String keyword) {
+		if (keyword == null || keyword.trim().length() == 0) {
+			return "";
+		}
+
+		try {
+			return URLEncoder.encode(keyword, "utf-8");
+		} catch (UnsupportedEncodingException e) {
+			return "";
+		}
+	}
+
 }

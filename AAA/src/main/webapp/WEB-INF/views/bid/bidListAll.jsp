@@ -27,6 +27,9 @@ Licence URI: http://www.os-templates.com/template-terms
 <html>
 <head>
 <title>Viral | Pages | Gallery</title>
+   	<script src="/resources/layout/scripts/jquery.min.js"></script>
+	<script src="/resources/layout/scripts/jquery.backtotop.js"></script>
+	<script src="/resources/layout/scripts/jquery.mobilemenu.js"></script>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <link href="/resources/layout/styles/layout.css" rel="stylesheet" type="text/css" media="all">
@@ -189,12 +192,14 @@ Licence URI: http://www.os-templates.com/template-terms
             <c:forEach var="BidProductVO" items="${listAll }">                     
       		
 
-            <li class="one_quarter" name="imageList"><a href="#">
-            <img src="/bid/displayFile?fileName=${BidProductVO.bid_filename }" 
-            id="bid_filename"  alt="" width="800" height="800"></a>
-            <%-- <p id="bid_seller">판매자 : ${BidProductVO.bid_seller }</p> --%>
-            <p id="bid_seller"> 판매자 : ${BidProductVO.bid_seller } </p>
-            <p id="bid_name">상품명 : ${BidProductVO.bid_name }</p>
+
+            <li class="one_quarter" name="imageList">
+            <a>
+            <img src="/bid/displayFile?fileName=${BidProductVO.bid_filename }"
+             etc="${BidProductVO.bid_id }" id="bid_filename" class="bid_filename"  alt="" width="800" height="800"></a>
+            <p id="bid_seller">판매자 : ${BidProductVO.bid_seller }</p>
+            <p id="bid_name">상품 이름 : ${BidProductVO.bid_name }</p>
+
             <p id="bid_start" >가격 : ${BidProductVO.bid_start }</p>            
             
             &nbsp;&nbsp;&nbsp;&nbsp;
@@ -374,7 +379,11 @@ Licence URI: http://www.os-templates.com/template-terms
   	
     </style>
     
-    <script>
+    
+
+	
+</body>
+<script>
     $(".sort").on("click",function(){
     	var sort= $(this).html();
     	var obj = new Object();
@@ -407,87 +416,19 @@ Licence URI: http://www.os-templates.com/template-terms
     });
     
     
+
     
     $("#gg").on("click",function(){
     	console.log("gg11");
     	 onClick="location.href='/bid/bidmodify?bid_id=${BidProductVO.bid_id }'";
-    });
-    
-  	/* function link(){
-  		
-  		location.replace('/bid/bidmodify?bid_id=${BidProductVO.bid_id}');
-    	 location.href='/bid/bidmodify?bid_id=${BidProductVO.bid_id}
-    	 
-    }  */
+    });     
 
-      
+	$('.bid_filename').on('click', function(){
+		//location.href="/bidder/bidDetail?bid_id=" +$(this).attr('etc');
+		var detail=$(this).attr('etc');
+		console.log(detail);
+		location.href="/bid/bidDetail/"+detail;
+	})
+
     </script>
-    
- 
-    
-<!--
-<script id="templateAttach" type="text/x-handlebars-template">
-
-<li data-src='{{content_filename}}'>
-  <span class="mailbox-attachment-icon has-img"><img src="{{imgsrc}}" alt="Attachment"></span>
-  <div class="mailbox-attachment-info">
-	<a href="{{getLink}}" class="mailbox-attachment-name">{{fileName}}</a>
-	</span>
-  </div>
-</li>       
-
-      
-</script>  
- -->
- 
- 
-<!-- <script>
-
-$(".uploadedList").on("click", ".mailbox-attachment-info a", function(event){
-	
-	var fileLink = $(this).attr("href");
-	
-	if(checkImageType(fileLink)){
-		
-		event.preventDefault();
-				
-		var imgTag = $("#popup_img");
-		imgTag.attr("src", fileLink);
-		
-		console.log(imgTag.attr("src"));
-				
-		$(".popup").show('slow');
-		imgTag.addClass("show");		
-	}	
-});
-
-$("#popup_img").on("click", function(){
-	
-	$(".popup").hide('slow');
-	
-});	
-
-
-/* var bid_id = $
-{
-	BidContentVO.bid_id
-}; */
-
-var template = Handlebars.compile($("#templateAttach").html());
-
-$.getJSON("/bid/bidListAll", function(list) {
-	$(list).each(function() {
-		var fileInfo = getFileInfo(this);
-		var html = template(fileInfo);
-
-		$(".uploadedList").append(html);
-	});
-});
-</script>
-
- 
-  -->
-
-	
-</body>
 </html>

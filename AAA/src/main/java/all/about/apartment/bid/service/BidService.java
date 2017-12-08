@@ -21,6 +21,11 @@ public interface BidService {
 	public List<String> getAttach(Integer bid_id)throws Exception;
 	BidProductVO bidDetail(String bid_id) throws Exception;
 	
+
 	public Integer penalty(BidProductVO vo)throws Exception;
 	
+
+	public void addBidTime(HashMap<String , Object> map) throws Exception;
+	public void updateBidState(String bid_id) throws Exception;
+
 }

@@ -25,15 +25,21 @@ import com.google.zxing.qrcode.QRCodeWriter;
 import all.about.apartment.facility.domain.Facility;
 import all.about.apartment.facility.domain.Facility_reservation;
 import all.about.apartment.facility.domain.Facility_state;
+import all.about.apartment.facility.domain.Facility_stateVO;
 import all.about.apartment.facility.domain.Facility_time;
 import all.about.apartment.facility.persistence.FacilityDAO;
-import sun.print.resources.serviceui;
+import all.about.apartment.message.domain.MessageDTO;
+import all.about.apartment.message.persistence.MessageDAO;
+import all.about.apartment.publicDomain.Criteria;
 
 @Service
 public class FacilityServiceImpl implements FacilityService {
 
 	@Inject
 	FacilityDAO facilityDao;
+
+	@Inject
+	MessageDAO messageDao;
 
 	private static int open;
 	private static int close;
@@ -178,7 +184,7 @@ public class FacilityServiceImpl implements FacilityService {
 	public void deleteQR() throws Exception {
 
 		System.out.println("스케쥴러 - qr 삭제");
-		
+
 		File file = null;
 		String imgpath = "/C:/Users/conve/git/AAA/AAA/src/main/webapp/resources/images/facility_qr";
 
@@ -213,7 +219,7 @@ public class FacilityServiceImpl implements FacilityService {
 	public void alterFacilityState() throws Exception {
 
 		System.out.println("스케쥴러 - 시설 상태 변경");
-		
+
 		facilityDao.alterState_bad();
 		facilityDao.alterState_ok();
 	}
@@ -252,7 +258,7 @@ public class FacilityServiceImpl implements FacilityService {
 
 	@Transactional(propagation = Propagation.REQUIRED, rollbackFor = { Exception.class })
 	@Override
-	public void insertState(Facility_state state) throws Exception {
+	public int insertState(Facility_state state) throws Exception {
 
 		facilityDao.insertState(state);
 
@@ -262,26 +268,56 @@ public class FacilityServiceImpl implements FacilityService {
 		cancelMap.put("fs_start", state.getFs_start());
 		cancelMap.put("fs_end", state.getFs_end());
 
-		System.out.println("map에서 찾기" + cancelMap.get("f_id"));
+		List<String> receiver = facilityDao.getCancelmsgList(cancelMap);
 
-		if (facilityDao.getCancelmsgList(cancelMap) != null) {
+		if (receiver.size() > 0) {
+
+			MessageDTO messageDTO = new MessageDTO();
+
+			String msg = "예약 취소 알림";  
+			msg += facilityDao.getDetail(state.getF_id()).getF_name() +" 사용 불가"; 
+			msg+= "기간: "+state.getFs_start() +" ~ " + state.getFs_end();
+			msg+= "사유: " + state.getFs_reason();
+			
+			messageDTO.setMsg_content(msg);
+			messageDTO.setSender("wjdrl123");
+			messageDTO.setType_id(7);
 
 			// 1.취소하기
-			if (facilityDao.cancelAllReservation(cancelMap) > 0) {
+			facilityDao.cancelAllReservation(cancelMap);
 
-				// 2.쪽지 보내기
-				// cancelMap에 1.쪽지 유형 넣기 2.사유 넣기 3.받는 사람 목록(List<String>) 있음
+			for (int i = 0; i < receiver.size(); i++) {
 
-				// 쪽지에 set하기
+				messageDTO.setReceiver(receiver.get(i));
+				try {
+					messageDao.sendMessage(messageDTO);
 
-				// 쪽지 받는 사람 목록
-				facilityDao.getCancelmsgList(cancelMap);
-
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
 			}
-			throw new Exception("쪽지 발송 실패;대상 없음");
-
 		}
-
+		return receiver.size();
 	}
+	
+	@Override
+	public List<Facility_stateVO> getStatePage(Facility facility, Criteria cri) throws Exception {
+		
+		cri.setPerPageNum(5);
+		
+		return facilityDao.getStatePage(facility, cri);
+	}
+	
+	@Override
+	public int getStateCount(Facility facility) throws Exception {
 
+		return facilityDao.getStateCount(facility);
+	}
+	
+	@Override
+	public void deleteState(int fs_id) throws Exception {
+	
+		facilityDao.deleteState(fs_id);
+		
+	}
 }

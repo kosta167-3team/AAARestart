@@ -24,9 +24,10 @@ public interface BidDAO {
 	public void addAttach(FileVO vo)throws Exception;
 	public int maxNum()throws Exception;
 	public List<String> getAttach(Integer bid_id)throws Exception;
-	
+	public void addBidTime(HashMap<String, Object> map);
 	/*public void deleteAttach(Integer bid_id)throws Exception;
 	public void replaceAttach(String fullName,Integer bno)throws Exception;*/
+	public void updateBidState(String bid_id) throws Exception;
 	
 	public Integer penalty(BidProductVO vo)throws Exception;
 

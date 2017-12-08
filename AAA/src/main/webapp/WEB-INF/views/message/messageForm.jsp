@@ -17,8 +17,7 @@
 	rel="stylesheet" type="text/css" media="all">
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+<link rel="stylesheet" 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
 
 <!-- Script -->
 <script src="/resources/layout/scripts/jquery.min.js"></script>
@@ -50,19 +49,18 @@
 					<div class="modal-body">
 
 						<form id="messageForm">
-							<input type="hidden" name="type_id" value="1">
+							<input type="hidden" name="type_id" value="6">
 							<div class="form-group">
-								<label for="recipient-name" class="control-label ">보내는
-									사람</label>
+								<label for="recipient-name" class="control-label">보내는사람</label>
 								<!-- <input type="text" class="form-control" id="recipient-name"> -->
-								<p class="form-control-static">보내는 사람 id 들어갈 자리</p>
-								<input type="hidden" name="sender" value="dmsql123">
+								<input type="hidden" class="form-control" name="sender" value="dmsql123">
+								<p class="form-control-static sender"></p>
 							</div>
 							<div class="form-group">
 								<label for="recipient-name" class="control-label">받는 사람</label>
 								<input type="hidden" class="form-control" name="receiver"
 									value="dustks123">
-								<p class="form-control-static">email@example.com</p>
+								<p class="form-control-static receiver"></p>
 							</div>
 							<div class="form-group">
 								<label for="message-text" class="control-label">메세지 내용:</label>
@@ -83,12 +81,13 @@
 			</div>
 		</div>
 	</div>
-</body>,
+</body>
 <!-- Large modal -->
-<a class="btn" data-toggle="modal"
-	data-target=".messageListmodal">Large modal</a>
+<a class="btn" data-toggle="modal" data-target=".messageListmodal">Large
+	modal</a>
 
-<div class="modal fade messageListmodal" tabindex="-1" role="dialog"aria-labelledby="myLargeModalLabel" aria-hidden="true">
+<div class="modal fade messageListmodal" tabindex="-1" role="dialog"
+	aria-labelledby="myLargeModalLabel" aria-hidden="true">
 	<div class="modal-dialog modal-lg">
 		<div class="modal-content">
 			<div class="modal-header">
@@ -98,9 +97,7 @@
 				</button>
 				<h4 class="modal-title" id="exampleModalLabel">새로운 쪽지</h4>
 			</div>
-			<div class="modal-body">
-
-			</div>
+			<div class="modal-body"></div>
 		</div>
 	</div>
 </div>

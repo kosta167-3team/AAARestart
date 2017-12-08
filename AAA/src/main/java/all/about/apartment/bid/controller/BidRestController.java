@@ -2,6 +2,7 @@ package all.about.apartment.bid.controller;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
 
 import all.about.apartment.bid.domain.BidProductVO;
 import all.about.apartment.bid.service.BidService;
@@ -54,7 +56,31 @@ public class BidRestController {
 		return entity;
 	}
 	
-	
+	@RequestMapping(value="/addBidTime", method=RequestMethod.GET)
+	public ResponseEntity<BidProductVO> addBidTime(@RequestParam("bid_id")String bid_id) {
+		ResponseEntity<BidProductVO> entity = null;
+		HashMap<String, Object> map = new HashMap<>();
+		System.out.println(bid_id);
+		map.put("bid_id", bid_id);
+		System.out.println(map);
+		try {
+			service.addBidTime(map);
+			map.put("BidProductVO", service.bidDetail(bid_id));
+			entity = new ResponseEntity<>(service.readDetail(Integer.parseInt(bid_id)), HttpStatus.OK);
+			System.out.println("success" + service.readDetail(Integer.parseInt(bid_id)).toString());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return entity;
+	}
+	@RequestMapping(value="updateBidState", method=RequestMethod.GET)
+	public ResponseEntity<List<BidProductVO>> updateBidState(@RequestParam(value="bid_id") String bid_id) throws Exception {
+		ResponseEntity<List<BidProductVO>> entity = null;
+		System.out.println("updateBidState : "+bid_id);
+		service.updateBidState(bid_id);
+		entity = new ResponseEntity<List<BidProductVO>>(service.read(), HttpStatus.OK);
+		return entity;
+	}
 	
 	/*@RequestMapping(value="/review/{bid_id}",method=RequestMethod.POST)
 	@ResponseBody
@@ -104,5 +130,6 @@ public class BidRestController {
 		return entity;
 	}
 	*/
+
 	
 }

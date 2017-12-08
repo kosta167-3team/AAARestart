@@ -19,6 +19,9 @@
 	<definition name="/billScore/billScoreBody" extends="base_layout">	
 		<put-attribute name="body" value="/WEB-INF/views/billScore/billScoreBody.jsp"/>
 	</definition> 
+	<definition name="/billPrediction/billPredictionBody" extends="base_layout">	
+		<put-attribute name="body" value="/WEB-INF/views/billPrediction/billPredictionBody.jsp"/>
+	</definition>
 	
 	<definition name="/main" extends="base_layout">
 		<put-attribute name="body" value="/WEB-INF/views/main_body.jsp"/>

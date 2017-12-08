@@ -6,13 +6,16 @@ import java.util.Map;
 
 import javax.inject.Inject;
 
+import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 import all.about.apartment.facility.domain.Facility;
 import all.about.apartment.facility.domain.Facility_reservation;
 import all.about.apartment.facility.domain.Facility_state;
+import all.about.apartment.facility.domain.Facility_stateVO;
 import all.about.apartment.facility.domain.Facility_time;
+import all.about.apartment.publicDomain.Criteria;
 
 @Repository
 public class FacilityDAOImpl implements FacilityDAO {
@@ -36,7 +39,7 @@ public class FacilityDAOImpl implements FacilityDAO {
 
 	@Override
 	public int checkState(Map<String, Object> map) throws Exception {
-		
+
 		return session.selectOne(namespace + ".checkState", map);
 	}
 
@@ -95,14 +98,14 @@ public class FacilityDAOImpl implements FacilityDAO {
 	}
 
 	@Override
-	public void alterState_ok () throws Exception {
+	public void alterState_ok() throws Exception {
 
 		session.update(namespace + ".alterState_ok");
 
 	}
-	
+
 	@Override
-	public void alterState_bad () throws Exception {
+	public void alterState_bad() throws Exception {
 
 		session.update(namespace + ".alterState_bad");
 
@@ -110,9 +113,36 @@ public class FacilityDAOImpl implements FacilityDAO {
 
 	@Override
 	public void insertState(Facility_state state) throws Exception {
-	
+
 		session.insert(namespace + ".insertState", state);
 	}
 
+/*	@Override
+	public List<Facility_stateVO> getStatePage(Criteria cri) throws Exception {
+		
+		return session.selectList(namespace+".getStatePage", cri, new RowBounds(cri.getPageStart(), cri.getPerPageNum()));
+	}*/ 
+	
+	
+	@Override
+	public List<Facility_stateVO> getStatePage(Facility facility, Criteria cri) throws Exception {
+		
+		return session.selectList(namespace+".getStatePage", facility, new RowBounds(cri.getPageStart(), cri.getPerPageNum()));
+	}
  
+	
+	@Override
+	public int getStateCount(Facility facility) throws Exception {
+		 
+		return session.selectOne(namespace+".getStateCount", facility);
+	}
+	
+	@Override
+	public void deleteState(int fs_id) throws Exception {
+
+		session.delete(namespace + ".deleteState", fs_id);
+
+	}
+
+
 }

@@ -5,35 +5,82 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="all.about.apartment.mappers.MessageMapper">
-	
+
 	<!-- 메세지 보내기 -->
 	<insert id="sendMessage" parameterType="MessageDTO">
 		insert into message
-			(msg_id, msg_content,msg_regdate,sender, receiver, type_id)
+		(msg_id, msg_content,msg_regdate,sender, receiver, type_id)
 		values
-			(msg_seq.nextval,#{msg_content},sysdate,#{sender},#{receiver},#{type_id})
+		(msg_seq.nextval,#{msg_content},sysdate,#{sender},#{receiver},#{type_id})
 	</insert>
-	
+
 	<!-- 메세지 내역 확인 -->
-	<select id="recieveMessage" parameterType="String" resultType="MessageVO">
-		SELECT m.msg_content, m.msg_regdate , m.read_check, m.sender, r.r_authority
+
+	<select id="recieveMessage" resultType="MessageVO">
+		SELECT m.receiver,m.msg_id, m.msg_content, m.msg_regdate , m.read_check, m.sender, r.r_authority
 		FROM message m JOIN resident r
-		on m.sender = r.r_id
-		WHERE m.receiver = #{reciever}
-		ORDER BY m.msg_regdate DESC	
+		on	m.sender = r.r_id
+		WHERE receiver = #{receiver}
+		<include refid="search"></include>
+		and r.r_authority like #{r_authority}
+		ORDER BY msg_regdate DESC
 	</select>
 	
 	<!-- 새로운 메세지 갯수 -->
-	<select id="newMsgCount" parameterType="String" resultType="int">
+	<select id="newMsgCount" resultType="int">
 		SELECT count(*) from message
 		WHERE read_check = 'N'
-		and receiver = #{reciever}
+
+		and receiver = #{receiver}
 	</select>
+
+
+	<!-- 읽음 처리 -->
+	<update id="update_ck" parameterType="int">
+		update message set
+		read_check ='Y'
+		where msg_id = #{msg_id}
+	</update>
+
+	<!-- 페이징 처리를 위한 쪽지 총 갯수 -->
+	<select id="msgCnt" resultType="int">
+		SELECT count(*)
+		FROM message m JOIN resident r
+		on	m.sender = r.r_id
+		WHERE receiver =#{receiver}
+		<include refid="search"></include>
+		and r.r_authority like #{r_authority}
+	</select>
+
+	<!-- 검색 -->
+	<sql id="search">
+		<if test="searchType != null">
+			<if test="searchType == 'c'.toString()">
+				and msg_content like '%'|| #{keyword}||'%'
+			</if>
+			<if test="searchType == 's'.toString()">
+				and sender like '%'|| #{keyword}||'%'
+			</if>
+			<if test="searchType == 'cs'.toString()">
+				and ( sender like '%'|| #{keyword}||'%' OR msg_content like
+				'%'||
+				#{keyword}||'%')
+			</if>/
+			<!-- <if test="searchType == 'cw'.toString()">
+				and ( content like '%'|| #{keyword}||'%' OR writer like
+				'%'||
+				#{keyword}||'%')
+			</if>
+			<if test="searchType == 'tcw'.toString()">
+				and ( title like '%'|| #{keyword}||'%'
+				OR
+				content like
+				'%'|| #{keyword}||'%'
+				OR
+				writer like '%'|| #{keyword}||'%')
+			</if> -->
+		</if>
+	</sql>
+	<!-- 카테고리 -->
+
 </mapper>
-
-
-
-
-
-
-
