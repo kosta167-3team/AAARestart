@@ -308,7 +308,14 @@ public class BidController {
 		return mav;	
 	}
 	
-	
+	@RequestMapping(value="/inputBidPrice/{bid_id}/{nowPrice}", method=RequestMethod.GET)
+	public ModelAndView inputBidPrice(@PathVariable int nowPrice, @PathVariable int bid_id) {
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("nowPrice", nowPrice);
+		mav.addObject("bid_id", bid_id);
+		mav.setViewName("/bid/inputBidPrice");
+		return mav;
+	}
 	
 	
 }

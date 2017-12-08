@@ -2,6 +2,7 @@ package all.about.apartment.bid.service;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -99,6 +100,11 @@ public class BidServiceImpl implements BidService {
 	@Override
 	public void updateBidState(String bid_id) throws Exception {
 		dao.updateBidState(bid_id);
+	}
+
+	@Override
+	public void updateBidPrice(Map<String, Object> map) throws Exception {
+		dao.updateBidPrice(map);
 	}
 
 	

@@ -152,9 +152,21 @@ Licence URI: http://www.os-templates.com/template-terms
 								<td>${application.v_date}</td>
 								<td>${application.v_contents}</td>
 								<td>
+								
 									<select id="state" name="state">
-										<option etc="accept" selected="selected">승인</option>
-										<option etc="denial">거부</option>										
+									<c:set var="data" value="${application.v_state}"/>
+									<c:choose>
+										<c:when test="${data == '거부'} ">
+											<option etc="accept">승인</option>
+											<option etc="denial" selected="selected">거부</option>		
+										</c:when>
+										
+										<c:otherwise> 
+											<option etc="accept"  selected="selected">승인</option>
+											<option etc="denial">거부</option>	
+										</c:otherwise>
+									
+									</c:choose>						
 									</select>
 									<input class="vr_id" type="hidden" value="${application.vr_id}">
 								</td>
@@ -171,7 +183,7 @@ Licence URI: http://www.os-templates.com/template-terms
 				</table>
 			</div>
 			<div class="text-center">
-				<ul class="pagination">
+			<%-- 	<ul class="pagination">
 
 					<c:if test="${pageMaker.prev}">
 						<li><a
@@ -191,7 +203,7 @@ Licence URI: http://www.os-templates.com/template-terms
 							href="applicationList${pageMaker.makeSearch(pageMaker.endPage +1) }">&raquo;</a></li>
 					</c:if>
 
-				</ul>
+				</ul> --%>
 			</div>
 		</div>
 		<!-- / main body -->

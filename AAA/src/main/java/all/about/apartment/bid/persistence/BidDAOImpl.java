@@ -3,6 +3,7 @@ package all.about.apartment.bid.persistence;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -104,6 +105,11 @@ public class BidDAOImpl implements BidDAO {
 	@Override
 	public void updateBidState(String bid_id) throws Exception {
 		session.update(namespace + ".updateBidState", bid_id);
+	}
+
+	@Override
+	public void updateBidPrice(Map<String, Object> map) throws Exception {
+		session.update(namespace+".updateBidPrice", map);
 	}
 
 

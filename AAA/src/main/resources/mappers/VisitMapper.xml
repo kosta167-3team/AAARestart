@@ -54,13 +54,13 @@
     	where vr_id = #{vr_id}
     </update>
     <update id="updateCheck" parameterType="Map">
-    	update visit_reservation set v_state = #{check}
+    	update visit_reservation set v_check = #{check}
     	where vr_id = #{vr_id}
     </update>
     
     <select id="adminListPage" parameterType="String" resultType="ApplicationVO">
             <![CDATA[
-                   select * from visit_reservation                 
+                   select distinct * from visit_reservation                 
                    where v_state in ('미확인', '승인') and v_date = #{selectedDate} and v_check='X'
                    order by v_date desc
             ]]>

@@ -26,100 +26,6 @@ Licence URI: http://www.os-templates.com/template-terms
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <link href="/resources/layout/styles/layout.css" rel="stylesheet" type="text/css" media="all">
 </head>
-<body id="top">
-<!-- ################################################################################################ -->
-<!-- ################################################################################################ -->
-<!-- ################################################################################################ -->
-<div class="wrapper row0">
-  <div id="topbar" class="clear"> 
-    <!-- ################################################################################################ -->
-    <div class="fl_left">
-      <ul class="nospace inline">
-        <li><i class="fa fa-phone"></i> +00 (123) 456 7890</li>
-        <li><i class="fa fa-envelope-o"></i> info@domain.com</li>
-      </ul>
-    </div>
-    <div class="fl_right">
-      <ul class="faico clear">
-        <li><a class="faicon-facebook" href="#"><i class="fa fa-facebook"></i></a></li>
-        <li><a class="faicon-pinterest" href="#"><i class="fa fa-pinterest"></i></a></li>
-        <li><a class="faicon-twitter" href="#"><i class="fa fa-twitter"></i></a></li>
-        <li><a class="faicon-dribble" href="#"><i class="fa fa-dribbble"></i></a></li>
-        <li><a class="faicon-linkedin" href="#"><i class="fa fa-linkedin"></i></a></li>
-        <li><a class="faicon-google-plus" href="#"><i class="fa fa-google-plus"></i></a></li>
-        <li><a class="faicon-rss" href="#"><i class="fa fa-rss"></i></a></li>
-      </ul>
-    </div>
-    <!-- ################################################################################################ -->
-  </div>
-</div>
-<!-- ################################################################################################ -->
-<!-- ################################################################################################ -->
-<!-- ################################################################################################ -->
-<div class="wrapper row1">
-  <header id="header" class="clear"> 
-    <!-- ################################################################################################ -->
-    <div id="logo" class="fl_left">
-      <h1><a href="/"><img src="/resources/images/main/main_log_mini.png" alt="" class="main_log_img"></a></h1>
-    </div>
-    <nav id="mainav" class="fl_right">
-      <ul class="clear">
-        <li><a href="/resources/index.html">Home</a></li>
-        <li class="active"><a class="drop" href="#">Pages</a>
-          <ul>
-            <li class="active"><a href="gallery.html">Gallery</a></li>
-            <li><a href="full-width.html">Full Width</a></li>
-            <li><a href="sidebar-left.html">Sidebar Left</a></li>
-            <li><a href="sidebar-right.html">Sidebar Right</a></li>
-            <li><a href="basic-grid.html">Basic Grid</a></li>
-          </ul>
-        </li>
-        <li><a class="drop" href="#">Dropdown</a>
-          <ul>
-            <li><a href="#">Level 2</a></li>
-            <li><a class="drop" href="#">Level 2 + Drop</a>
-              <ul>
-                <li><a href="#">Level 3</a></li>
-                <li><a href="#">Level 3</a></li>
-              </ul>
-            </li>
-          </ul>
-        </li>
-        <li><a href="#">Link Text</a></li>
-        <li><a href="#">Link Text</a></li>
-      </ul>
-    </nav>
-    <!-- ################################################################################################ -->
-  </header>
-</div>
-<!-- ################################################################################################ -->
-<!-- ################################################################################################ -->
-<!-- ################################################################################################ -->
-<div class="wrapper row2 bgded" style="background-image:url('/resources/images/main/backgrounds/01.png');">
-  <div class="overlay">
-    <div id="breadcrumb" class="clear"> 
-      <!-- ################################################################################################ -->
-      <ul>
-        <li><a href="#">Home</a></li>
-        <li><a href="#">Lorem</a></li>
-        <li><a href="#">Ipsum</a></li>
-        <li><a href="#">Gallery</a></li>
-      </ul>
-      <!-- ################################################################################################ -->
-    </div>
-  </div>
-</div>
-
-
-
-
-<!-- <div class='popup back' style="display:none;"></div>
-    <div id="popup_front" class='popup front' style="display:none;">
-     <img id="popup_img">
-    </div> -->
-
-
-
 
 <!-- ################################################################################################ -->
 <!-- ################################################################################################ -->
@@ -170,7 +76,7 @@ Licence URI: http://www.os-templates.com/template-terms
              etc="${BidProductVO.bid_id }" id="bid_filename" class="bid_filename"  alt="" width="800" height="800"></a>
             <p id="bid_seller">판매자 : ${BidProductVO.bid_seller }</p>
             <p id="bid_name">상품 이름 : ${BidProductVO.bid_name }</p>
-            <p id="bid_start" >가격 : ${BidProductVO.bid_start }</p>            
+            <p id="bid_start" >가격 : ${BidProductVO.bid_nowprice }</p>            
             
             <input type="button" value="수정" class="button"
             onClick="location.href='/bid/bidmodify?bid_id=${BidProductVO.bid_id }'">
@@ -370,7 +276,7 @@ Licence URI: http://www.os-templates.com/template-terms
     						'" id="bid_filename" alt="" width="800" height="400"></a>';
     				html+='<p> 판매자 : ' + item.bid_seller  + '</p>';
     				html+='<p> 상품이름 : ' + item.bid_name  + '</p>';
-    				html+='<p> 상품가격 : ' + item.bid_start + '</p>';
+    				html+='<p> 상품가격 : ' + item.bid_nowprice + '</p>';
     				html+='<input type="button" value="수정" class="button" id="gg">';
     				html+='&nbsp;&nbsp;&nbsp;&nbsp'
     				html+='<input type="button" value="삭제" class="button" ></li>';

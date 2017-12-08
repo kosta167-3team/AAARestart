@@ -2,6 +2,7 @@ package all.about.apartment.bid.service;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import all.about.apartment.bid.domain.BidProductVO;
 
@@ -22,4 +23,5 @@ public interface BidService {
 	
 	public void addBidTime(HashMap<String , Object> map) throws Exception;
 	public void updateBidState(String bid_id) throws Exception;
+	public void updateBidPrice(Map<String, Object> map) throws Exception;
 }

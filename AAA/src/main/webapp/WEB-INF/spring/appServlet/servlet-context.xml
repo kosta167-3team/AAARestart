@@ -84,6 +84,16 @@
 		</interceptor>
 		
 		<interceptor>
+			<mapping path="/visit/applicationList" />
+			<beans:ref bean="authInterceptor" />
+		</interceptor>
+		
+		<interceptor>
+			<mapping path="/visit/visitManageMent" />
+			<beans:ref bean="authInterceptor" />
+		</interceptor>
+		
+		<interceptor>
 			<mapping path="/comm/checkFeed" />
 			<beans:ref bean="authInterceptor" />
 		</interceptor>

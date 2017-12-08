@@ -92,4 +92,9 @@
    		where bid_id = #{bid_id}
    </update>
    
+   <update id="updateBidPrice" parameterType="Map">
+  		update bidproduct set bid_nowprice = #{bidPrice}
+  		where bid_id = ${bid_id}
+   </update>
+   
 </mapper>
