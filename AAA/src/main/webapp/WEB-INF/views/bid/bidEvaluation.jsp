@@ -8,13 +8,20 @@
 <style>
 	#comments{
   position: absolute;
-height: 100px;
-top: 20%;
+height: 50px;
+top: 5%;
+
 
 margin-top: -20px;
 margin-left: 50px; 
 }
  
+ h2{
+ 	text-align: center;
+ }
+ body{
+ 	background: #fff3f3;
+ }
 
 </style>
 
@@ -87,30 +94,30 @@ margin-left: 50px;
 
 	<div id="comments">
 
-		<h2>상품평 등록</h2>
+		<h2>상품평 등록</h2><br>
 		<form role="form" id="formid">
 			<input type='hidden' name='bid_id' id='bid_id'
 				value="${list.bid_id }">
 
 			<div class="one_third first">
 
-				<label for="name">판매자 </label> <input type="text" name="bid_seller"
-					id="name" value="${list.bid_seller }" size="22" readonly="readonly">
+				<label for="name">판매자 : </label> &nbsp&nbsp&nbsp <input type="text" name="bid_seller"
+					id="name" value="${list.bid_seller }" size="12" readonly="readonly">
 			</div>
 			<br>
 			<div class="one_third">
-				<label for="email">상품이름</label> <input type="text" name="bid_name"
-					id="email" value="${list.bid_name }" size="22" readonly="readonly">
+				<label for="email">상품이름 : </label>&nbsp <input type="text" name="bid_name"
+					id="email" value="${list.bid_name }" size="12" readonly="readonly">
 			</div>
 
 			<br>
 
 			<div class="block clear">
-				<label for="comment">내용</label><br>
-				<textarea name="bid_evaluation" id="comment" value="${evaluation }"
-					cols="25" rows="5"></textarea>
+				<label for="comment">내용</label><br><br>
+				<textarea name="bid_evaluation" id="comment" placeholder="내용을 작성해주세요 " value="${evaluation }"
+					cols="35" rows="5"></textarea>
 			</div>
-
+			<br>
 			<button type="submit" id="input" value="${list.bid_id }"
 				class="btn btn-primary">등록</button>
 		</form>

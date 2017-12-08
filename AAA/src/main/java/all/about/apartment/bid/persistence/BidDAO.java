@@ -3,6 +3,7 @@ package all.about.apartment.bid.persistence;
 import java.util.HashMap;
 import java.util.List;
 
+import all.about.apartment.bid.domain.BidPenalty;
 import all.about.apartment.bid.domain.BidProductVO;
 import all.about.apartment.bid.domain.FileVO;
 
@@ -28,6 +29,6 @@ public interface BidDAO {
 	public void replaceAttach(String fullName,Integer bno)throws Exception;*/
 	public void updateBidState(String bid_id) throws Exception;
 	
-	
+	public Integer penalty(BidProductVO vo)throws Exception;
 
 }

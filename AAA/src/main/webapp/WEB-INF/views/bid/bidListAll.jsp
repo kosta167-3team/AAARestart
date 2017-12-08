@@ -16,6 +16,14 @@ Author URI: http://www.os-templates.com/
 Licence: Free to use under our free template licence terms
 Licence URI: http://www.os-templates.com/template-terms
 -->
+<style>
+	li {
+		font-size: 18px;
+	}
+	.one_quarter{
+	font-size:14px;
+	}
+</style>
 <html>
 <head>
 <title>Viral | Pages | Gallery</title>
@@ -63,30 +71,50 @@ Licence URI: http://www.os-templates.com/template-terms
       <h1><a href="/"><img src="/resources/images/main/main_log_mini.png" alt="" class="main_log_img"></a></h1>
     </div>
     <nav id="mainav" class="fl_right">
-      <ul class="clear">
-        <li><a href="/resources/index.html">Home</a></li>
-        <li class="active"><a class="drop" href="#">Pages</a>
+       <ul class="clear">
+        <li><a href="/">홈</a></li>
+        
+        <li class="active"><a class="drop" href="#">관리비</a>
           <ul>
-            <li class="active"><a href="gallery.html">Gallery</a></li>
-            <li><a href="full-width.html">Full Width</a></li>
-            <li><a href="sidebar-left.html">Sidebar Left</a></li>
-            <li><a href="sidebar-right.html">Sidebar Right</a></li>
-            <li><a href="basic-grid.html">Basic Grid</a></li>
-          </ul>
-        </li>
-        <li><a class="drop" href="#">Dropdown</a>
-          <ul>
-            <li><a href="#">Level 2</a></li>
-            <li><a class="drop" href="#">Level 2 + Drop</a>
-              <ul>
-                <li><a href="#">Level 3</a></li>
-                <li><a href="#">Level 3</a></li>
-              </ul>
+            <li><a href="/">Gallery</a></li>
+            <li class="active"><a class="drop" href="/bill/full-width">관리비 조회</a>
+            	<ul>
+            		<li> <a href="/billScore/billScoreBody">관리비 성적표</a></li>
+            	</ul>
             </li>
+            <li><a href="/">관리비 1</a></li>
+            <li><a href="/">관리비 2</a></li>
+            <li><a href="/">관리비 3</a></li>
           </ul>
         </li>
-        <li><a href="#">Link Text</a></li>
-        <li><a href="#">Link Text</a></li>
+         <li class="active"><a class="drop" href="#">방문객</a>
+          <ul>
+            <li><a href="/visit/application">방문 신청</a></li>
+            <li><a href="/visit/applicationList">방문 예약 내역 조회</a></li>
+            <li><a href="/visit/visitManagement">방문 예약 내역</a></li>
+          </ul>
+        </li>
+         <li class="active"><a class="drop" href="#">시설</a>
+          <ul>
+            <li><a href="/">시설 예약</a></li>
+            <li><a href="/">시설 예약 조회</a></li>
+          </ul>
+        </li>
+        <li><a class="drop" href="#">항의</a>
+          <ul>
+            <li><a href="/">항의하기</a></li>
+            <li><a href="/">항의..</a></li>
+          </ul>
+        </li>
+        <li><a href="#">커뮤니티</a></li>
+        <li><a href="/real_estate">부동산</a></li>
+        <li><a class="drop" href="#">경매</a>
+          <ul>
+          	<li><a href="/bid/bidListAll">경매 목록</a></li>
+            <li><a href="/bidd/bidDetail">경매 물품보기</a></li>
+            <li><a href="/">내 입찰 내역 조회</a></li>
+          </ul>
+        </li>
       </ul>
     </nav>
     <!-- ################################################################################################ -->
@@ -103,7 +131,7 @@ Licence URI: http://www.os-templates.com/template-terms
         <li><a href="#">Home</a></li>
         <li><a href="#">Lorem</a></li>
         <li><a href="#">Ipsum</a></li>
-        <li><a href="#">Gallery</a></li>
+        <li><a href="#">경매 리스트</a></li>
       </ul>
       <!-- ################################################################################################ -->
     </div>
@@ -164,22 +192,26 @@ Licence URI: http://www.os-templates.com/template-terms
             <c:forEach var="BidProductVO" items="${listAll }">                     
       		
 
+
             <li class="one_quarter" name="imageList">
             <a>
             <img src="/bid/displayFile?fileName=${BidProductVO.bid_filename }"
              etc="${BidProductVO.bid_id }" id="bid_filename" class="bid_filename"  alt="" width="800" height="800"></a>
             <p id="bid_seller">판매자 : ${BidProductVO.bid_seller }</p>
             <p id="bid_name">상품 이름 : ${BidProductVO.bid_name }</p>
+
             <p id="bid_start" >가격 : ${BidProductVO.bid_start }</p>            
             
-            <input type="button" value="수정" class="button"
+            &nbsp;&nbsp;&nbsp;&nbsp;
+             <c:if test="${login.r_id == BidProductVO.bid_seller || login.r_id == BidProductVO.admin}">
+            <input type="button" value="수정" class="button" size="10"
             onClick="location.href='/bid/bidmodify?bid_id=${BidProductVO.bid_id }'">
             
             &nbsp;&nbsp;&nbsp;
-            
+           
             <input type="button" value="삭제" class="button"
             onClick="location.href='/bid/bidremove?bid_id=${BidProductVO.bid_id }'">
-
+			</c:if>
 
             <%--  <a href='/bid/bidmodify?bid_id=${BidProductVO.bid_id }'>수정
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a> 
@@ -297,9 +329,9 @@ Licence URI: http://www.os-templates.com/template-terms
   color:#fff;
   border:none;
   position:relative;
-  height:20px;
+  height:28px;
   font-size:1em;
-  padding:0 1em;
+  padding:0.1em 0.7em 0.5em 0.7em;
   cursor:pointer;
   transition:800ms ease all;
   outline:none;
@@ -336,6 +368,8 @@ Licence URI: http://www.os-templates.com/template-terms
   		border-left:1px solid #c8c8c8;
   		border-right:1px solid #c8c8c8;
   		padding: 7px;
+  		width: 180px;
+    height: 320px;
   	}
   	
  #bid_filename{
@@ -370,7 +404,8 @@ Licence URI: http://www.os-templates.com/template-terms
     						'" id="bid_filename" alt="" width="800" height="400"></a>';
     				html+='<p> 판매자 : ' + item.bid_seller  + '</p>';
     				html+='<p> 상품이름 : ' + item.bid_name  + '</p>';
-    				html+='<p> 상품가격 : ' + item.bid_start + '</p>';
+    				html+='<p> 가격 : ' + item.bid_start + '</p>';
+    				html+='&nbsp;&nbsp;&nbsp;&nbsp;'
     				html+='<input type="button" value="수정" class="button" id="gg">';
     				html+='&nbsp;&nbsp;&nbsp;&nbsp'
     				html+='<input type="button" value="삭제" class="button" ></li>';
@@ -381,11 +416,19 @@ Licence URI: http://www.os-templates.com/template-terms
     });
     
     
+
+    
+    $("#gg").on("click",function(){
+    	console.log("gg11");
+    	 onClick="location.href='/bid/bidmodify?bid_id=${BidProductVO.bid_id }'";
+    });     
+
 	$('.bid_filename').on('click', function(){
 		//location.href="/bidder/bidDetail?bid_id=" +$(this).attr('etc');
 		var detail=$(this).attr('etc');
 		console.log(detail);
 		location.href="/bid/bidDetail/"+detail;
 	})
+
     </script>
 </html>

@@ -8,10 +8,12 @@
 
 	<!-- 등록 -->
 	<insert id="create" parameterType="BidProductVO">
-		insert into bidproduct(bid_id,bid_name,bid_start,
+
+		insert into bidproduct(bid_id,bid_seller,bid_name,bid_start,
 		bid_date,bid_time,bid_nowprice,bid_content,bid_filename, addtime, bid_state)
-		values(bid_seq.nextval,#{bid_name},#{bid_start},
+		values(bid_seq.nextval,#{bid_seller},#{bid_name},#{bid_start},
 		sysdate,#{bid_time},#{bid_start},#{bid_content},#{bid_filename}, 0, '진행중')
+
 	</insert>
 	
 	<!-- 수정 -->
@@ -57,6 +59,15 @@
 
 	</select>
 	
+
+	<select id="penalty" parameterType="BidProductVO" resultType="Integer">
+	
+	select count(*)
+	from penalty P, bidproduct B
+	where P.bid_id = B.bid_id and B.bid_bidder = #{bid_bidder}
+	
+	</select>
+
 	 <insert id="addAttach" parameterType="FileVO">
 		insert into bidcontent(content_id,bid_id,content_filename)
 		values (content_id_seq.nextval,#{bid_id},#{content_filename})

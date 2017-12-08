@@ -4,6 +4,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import all.about.apartment.facility.domain.ReviewVO;
 import all.about.apartment.facility.domain.TodayGuest;
 import all.about.apartment.facility.service.ReviewService;
+import all.about.apartment.publicDomain.ResidentVO;
 
 @Controller
 @RequestMapping("/review/*")
@@ -27,7 +30,12 @@ public class ReviewController {
 	}
 	
 	@RequestMapping(value="/insertReview",method=RequestMethod.POST)
-	public String ReviewPOST(ReviewVO review,Model model)throws Exception{
+	public String ReviewPOST(ReviewVO review,Model model,HttpServletRequest request)throws Exception{
+		HttpSession session =request.getSession();
+		ResidentVO resident = (ResidentVO)session.getAttribute("login");
+		String r_id = resident.getR_id();
+		review.setR_id(r_id);
+		
 		service.regist(review);
 		
 		//model.addAttribute("result", "success");
