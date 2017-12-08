@@ -8,6 +8,7 @@ import javax.inject.Inject;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import all.about.apartment.bid.domain.BidPenalty;
 import all.about.apartment.bid.domain.BidProductVO;
 import all.about.apartment.bid.domain.FileVO;
 import all.about.apartment.bid.persistence.BidDAO;
@@ -98,6 +99,12 @@ public class BidServiceImpl implements BidService {
 	public BidProductVO bidDetail(String bid_id) throws Exception {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public Integer penalty(BidProductVO vo) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.penalty(vo);
 	}
 
 	

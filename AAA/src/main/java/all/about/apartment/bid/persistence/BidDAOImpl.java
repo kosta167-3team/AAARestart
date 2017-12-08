@@ -9,6 +9,7 @@ import javax.inject.Inject;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
+import all.about.apartment.bid.domain.BidPenalty;
 import all.about.apartment.bid.domain.BidProductVO;
 import all.about.apartment.bid.domain.FileVO;
 
@@ -95,6 +96,12 @@ public class BidDAOImpl implements BidDAO {
 		
 		session.insert(namespace+".replaceAttach", paramMap);
 	}*/
+
+	@Override
+	public Integer penalty(BidProductVO vo) throws Exception {
+		
+		return session.selectOne(namespace+".penalty",vo);
+	}
 
 
 }

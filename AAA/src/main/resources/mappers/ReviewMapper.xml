@@ -23,7 +23,7 @@
 	</select>
 	
 	<select id="selectedGuest" parameterType="String" resultType="TodayGuest">
-		select* from visit_history where vh_date = #{date}
+		select* from visit_reservation where vr_date = #{date}
 		
 	</select>
 

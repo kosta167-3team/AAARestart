@@ -13,6 +13,15 @@ Author URI: http://www.os-templates.com/
 Licence: Free to use under our free template licence terms
 Licence URI: http://www.os-templates.com/template-terms
 -->
+<style>
+	li {
+		font-size: 18px;
+	}
+	
+	#tt{
+		width: 200px;
+	}
+</style>
 <html>
 <head>
 <title>Viral | Pages | Sidebar Left</title>
@@ -68,30 +77,52 @@ Licence URI: http://www.os-templates.com/template-terms
 				</h1>
 			</div>
 			<nav id="mainav" class="fl_right">
-				<ul class="clear">
-					<li><a href="/resources/index.html">Home</a></li>
-					<li class="active"><a class="drop" href="#">Pages</a>
-						<ul>
-							<li><a href="gallery.html">Gallery</a></li>
-							<li><a href="full-width.html">Full Width</a></li>
-							<li class="active"><a href="sidebar-left.html">Sidebar
-									Left</a></li>
-							<li><a href="sidebar-right.html">Sidebar Right</a></li>
-							<li><a href="basic-grid.html">Basic Grid</a></li>
-						</ul></li>
-					<li><a class="drop" href="#">Dropdown</a>
-						<ul>
-							<li><a href="#">Level 2</a></li>
-							<li><a class="drop" href="#">Level 2 + Drop</a>
-								<ul>
-									<li><a href="#">Level 3</a></li>
-									<li><a href="#">Level 3</a></li>
-								</ul></li>
-						</ul></li>
-					<li><a href="#">Link Text</a></li>
-					<li><a href="#">Link Text</a></li>
-				</ul>
-			</nav>
+      <ul class="clear">
+        <li><a href="/">홈</a></li>
+        
+        <li class="active"><a class="drop" href="#">관리비</a>
+          <ul>
+            <li><a href="/">Gallery</a></li>
+            <li class="active"><a class="drop" href="/bill/full-width">관리비 조회</a>
+            	<ul>
+            		<li> <a href="/billScore/billScoreBody">관리비 성적표</a></li>
+            	</ul>
+            </li>
+            <li><a href="/">관리비 1</a></li>
+            <li><a href="/">관리비 2</a></li>
+            <li><a href="/">관리비 3</a></li>
+          </ul>
+        </li>
+         <li class="active"><a class="drop" href="#">방문객</a>
+          <ul>
+            <li><a href="/visit/application">방문 신청</a></li>
+            <li><a href="/visit/applicationList">방문 예약 내역 조회</a></li>
+            <li><a href="/visit/visitManagement">방문 예약 내역</a></li>
+          </ul>
+        </li>
+         <li class="active"><a class="drop" href="#">시설</a>
+          <ul>
+            <li><a href="/">시설 예약</a></li>
+            <li><a href="/">시설 예약 조회</a></li>
+          </ul>
+        </li>
+        <li><a class="drop" href="#">항의</a>
+          <ul>
+            <li><a href="/">항의하기</a></li>
+            <li><a href="/">항의..</a></li>
+          </ul>
+        </li>
+        <li><a href="#">커뮤니티</a></li>
+        <li><a href="/real_estate">부동산</a></li>
+        <li><a class="drop" href="#">경매</a>
+          <ul>
+          	<li><a href="/bid/bidListAll">경매 목록</a></li>
+            <li><a href="/bidd/bidDetail">경매 물품보기</a></li>
+            <li><a href="/">내 입찰 내역 조회</a></li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
 			<!-- ################################################################################################ -->
 		</header>
 	</div>
@@ -107,7 +138,7 @@ Licence URI: http://www.os-templates.com/template-terms
 					<li><a href="#">Home</a></li>
 					<li><a href="#">Lorem</a></li>
 					<li><a href="#">Ipsum</a></li>
-					<li><a href="#">Sidebar Left</a></li>
+					<li><a href="#">경매 조회</a></li>
 				</ul>
 				<!-- ################################################################################################ -->
 			</div>
@@ -137,13 +168,20 @@ Licence URI: http://www.os-templates.com/template-terms
 		<!-- ################################################################################################ -->
 		<div class="content three_quarter">
 			<!-- ################################################################################################ -->
-
-
-
+			
+			<c:if test="${login.r_id == 'wjdrl123' }">
+				<h1>관리자</h1>
+				 <input type="text" placeholder="입찰자 ID 입력 " class="button" size="20">
+				 <br>
+				 <input type="button" value="패널티 부여" class="button" size="10">
+			<br><br>
+			</c:if>
+			
 			<h1>입찰 목록</h1>
 			<div class="scrollable">
 				<table>
 					<thead>
+					
 						<tr>
 							<th>판매자</th>
 							<th>상품이름</th>
@@ -151,10 +189,13 @@ Licence URI: http://www.os-templates.com/template-terms
 							<th>입찰 시작일</th>
 							<th>경매 시간</th>
 							<th>상품평</th>
+			
 						</tr>
+						
 					</thead>
 					<tbody>
 						<c:forEach var="BidProductVO" items="${list }">
+						
 							<tr id="${BidProductVO.bid_id }">
 
 								<td>${BidProductVO.bid_seller }</td>
@@ -163,16 +204,22 @@ Licence URI: http://www.os-templates.com/template-terms
 								<td>${BidProductVO.bid_date }</td>
 								<td >${BidProductVO.bid_time }</td>
 								<td >
-									<c:set var="data" value="${BidProductVO.bid_evaluation }" /> <c:choose>
+								<div id="test123"></div>
+									<c:set var="data" value="${BidProductVO.bid_evaluation }" /> 
+									<c:choose>
 										<c:when test="${data != null}">
             								${BidProductVO.bid_evaluation }
           							  	</c:when>
 
 										<c:otherwise>
 											<input type="button" value="상품평 쓰기" 
-												onclick="window.open('bidEvaluation?bid_id=${BidProductVO.bid_id}','window','width=400,height=400');">
+												onclick="window.open('bidEvaluation?bid_id=${BidProductVO.bid_id}',
+												'window','left=500,top=100,width=400,height=400');">
 										</c:otherwise>
 									</c:choose></td>
+								
+								
+								
 							</tr>
 						</c:forEach>
 
@@ -180,6 +227,32 @@ Licence URI: http://www.os-templates.com/template-terms
 					</tbody>
 				</table>
 			</div>
+			
+			<br><br>
+			
+			<h1>패널티</h1>
+			
+			<table id="tt">
+				<thead>
+					<tr>
+						<th  >패널티</th>
+						<th >점수</th>
+						
+						
+					</tr>
+				</thead>
+				<tbody>
+				
+					<tr>
+						<td>${login.r_id }</td>
+						<%-- <td>${list.get(0).bid_seller }</td> --%>
+						<td>2</td>
+					</tr>
+				
+				</tbody>
+			
+			</table>
+			
 			<!-- ################################################################################################ -->
 		</div>
 		<!-- ################################################################################################ -->
@@ -269,7 +342,7 @@ Licence URI: http://www.os-templates.com/template-terms
 	<script src="/resources/layout/scripts/jquery.backtotop.js"></script>
 	<script src="/resources/layout/scripts/jquery.mobilemenu.js"></script>
 
-	<script>
+	<script type="text/javascript">
 	 /* 	var result = '${msg}';
 
 		if (result == 'SUCCESS') {

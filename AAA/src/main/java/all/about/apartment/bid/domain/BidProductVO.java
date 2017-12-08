@@ -11,7 +11,18 @@ public class BidProductVO {
 	private int bid_id;
 
 	private String bid_seller;
+	private String admin;
 	
+	public String getAdmin() {
+		String admin = "wjdrl123";
+		
+		return admin;
+	}
+
+	public void setAdmin(String admin) {
+		this.admin = admin;
+	}
+
 	@NotEmpty(message="입력하세요")
 	private String bid_name;
 
