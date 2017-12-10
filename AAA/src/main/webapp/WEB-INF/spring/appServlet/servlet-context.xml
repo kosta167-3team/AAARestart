@@ -94,7 +94,10 @@
 			<beans:ref bean="authInterceptor" />
 		</interceptor>
 
-
+		<interceptor>
+			<mapping path="/complain/register"/>
+			<beans:ref bean="authInterceptor"/> 
+		</interceptor>
 
 	</interceptors>
 

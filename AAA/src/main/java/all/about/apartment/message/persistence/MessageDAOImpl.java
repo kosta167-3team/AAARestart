@@ -64,9 +64,11 @@ public class MessageDAOImpl implements MessageDAO {
 		
 		Map<String, Object> map = new HashMap<>();
 		map.put("receiver", receiver);
+		
 		map.put("keyword",cri.getKeyword());
 		map.put("searchType",cri.getSearchType());
 		map.put("r_authority", "%"+r_authority+"%");
+		
 		return session.selectOne(namespace+".msgCnt", map);
 	}
 

@@ -50,11 +50,7 @@ public class MessageRestController{
 		return entity;
 	}
 	
-	/*쪽지 확인*/	
-	@RequestMapping(value="/recieve" ,method = RequestMethod.POST)
-	public ResponseEntity<List<MessageVO>> recieveGET(@RequestBody ResidentVO vo){
-		return null;
-	}
+
 
 	/*쪽지 확인*/	
 	@RequestMapping(value="/receive" ,method = RequestMethod.POST)
