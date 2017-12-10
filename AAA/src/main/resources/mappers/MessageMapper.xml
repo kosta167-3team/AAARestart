@@ -30,7 +30,6 @@
 	<select id="newMsgCount" resultType="int">
 		SELECT count(*) from message
 		WHERE read_check = 'N'
-
 		and receiver = #{receiver}
 	</select>
 
@@ -62,23 +61,10 @@
 				and sender like '%'|| #{keyword}||'%'
 			</if>
 			<if test="searchType == 'cs'.toString()">
-				and ( sender like '%'|| #{keyword}||'%' OR msg_content like
-				'%'||
-				#{keyword}||'%')
-			</if>/
-			<!-- <if test="searchType == 'cw'.toString()">
-				and ( content like '%'|| #{keyword}||'%' OR writer like
-				'%'||
-				#{keyword}||'%')
+				and ( sender like '%'|| #{keyword}||'%' 
+				OR msg_content like '%'||#{keyword}||'%')
 			</if>
-			<if test="searchType == 'tcw'.toString()">
-				and ( title like '%'|| #{keyword}||'%'
-				OR
-				content like
-				'%'|| #{keyword}||'%'
-				OR
-				writer like '%'|| #{keyword}||'%')
-			</if> -->
+		
 		</if>
 	</sql>
 	<!-- 카테고리 -->

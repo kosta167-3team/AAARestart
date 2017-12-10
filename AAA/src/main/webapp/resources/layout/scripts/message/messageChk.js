@@ -7,6 +7,10 @@ $(function () {
        $(this).popover('show');
     })
    msgcnt(id);
+    //권한
+    var r_authority = $('.type_select').attr('href');
+	console.log(r_authority);
+	
     $('#msg').on('click', function() {
     	var cri= '?page=1&keyword=null&searchType=null';
         recieveList(id,cri,r_authority);
@@ -46,8 +50,6 @@ $(function () {
 	 })
 	msgcnt(id);
 	
-	 var r_authority = $('.type_select').attr('href');
-	console.log(r_authority);
 	 //메세지 목록 조회
 	 
 	$('tbody').on('click','a',function(event){
