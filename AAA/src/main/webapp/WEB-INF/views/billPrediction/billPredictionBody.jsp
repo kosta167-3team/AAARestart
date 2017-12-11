@@ -27,20 +27,24 @@ Licence URI: http://www.os-templates.com/template-terms
 
 <script type="text/javascript" src="https://www.google.com/jsapi"></script>
 <script type="text/javascript">
+
+
+
+var doubleArray=[["asdf","321sa"],['2005',  1170],
+    ['2006',  660],
+    ['2007',  1030],
+    ['2008',  102],
+    ['2009',  130],
+    ['2010',  140]];
+    
+    
 	google.load("visualization", "1", {packages:["corechart"]});
-	google.setOnLoadCallback(drawChart);
 	
-	var titleArray = ['year','sales','expenses','seses'];
-	var firstArray = ['2004',400,200,300];
-	var doubleArray=[titleArray,firstArray,['2005',  1170,      460,			200],
-        ['2006',  660,       1120,		500],
-        ['2007',  1030,      540,			350],
-        ['2008',  102,      544,			480],
-        ['2009',  130,      123,			900],
-        ['2010',  140,      588,			301]];
-	
-	
-	function drawChart(){
+	var qurter = "oneQ";
+	function drawChart(titleArray){
+       
+		doubleArray = titleArray;
+        console.log("doubleArray : "+ doubleArray );
 		var data = google.visualization.arrayToDataTable(doubleArray);
 		var options = {
 		          title: '관리비 예측 (전기)'
@@ -48,10 +52,47 @@ Licence URI: http://www.os-templates.com/template-terms
 		var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
 		chart.draw(data, options);
 	}
-	function getDoubleArray(){
+	
+		var titleArray = new Array();
+		titleArray.push(["year","높은 예상","낮은 예상","전기 사용량"]);
 		
-		var doubleArray;
-	}
+		$.ajax({
+			type : 'GET',
+			url : "/billPrediction/getPredictElec/" + "oneQ",
+			headers : {
+				"Content-Type" : "application/json",
+				"X-HTTP-Method-Override" : "GET"
+			},
+			dataType : 'json',
+			success : function(result) {
+				for(key in result){
+					
+					if( key == 'topAllElecAVG'){
+						titleArray.push(['예상값',result['topAllElecAVG'],result['bottomAllElecAVG'],null]);
+						break;
+					}else{
+						titleArray.push([key,result[key],result[key],result[key]]);
+					}	
+					console.log(titleArray);
+				}
+				google.setOnLoadCallback(drawChart(titleArray));
+				console.log( "titleArray : " + titleArray);
+			}
+		});
+		
+		
+		
+
+
+
+	
+/* 	google.setOnLoadCallback(drawChart); */
+	
+	
+	/* var firstArray = ['2004',400]; */
+	
+	
+  
 </script>
 
 </head>

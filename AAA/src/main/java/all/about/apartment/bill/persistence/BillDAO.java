@@ -23,5 +23,5 @@ public interface BillDAO {
 	public List<ScorePMEVO> getHeatList() throws Exception;
 	public int getScoreNum(String viewName) throws Exception;
 	public List<ScorePMEVO> getSelectEnergyList(String viewName) throws Exception;
-	public double getAVGelecMonth(String p_month) throws Exception;
+	public double getAVGelecMonth(SetMonthBill setMonthBill) throws Exception;
 }

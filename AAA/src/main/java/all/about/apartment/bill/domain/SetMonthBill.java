@@ -24,6 +24,12 @@ public class SetMonthBill {
 	public void setP_month(String p_month) {
 		this.p_month = p_month;
 	}
+
+	@Override
+	public String toString() {
+		return "SetMonthBill [u_id=" + u_id + ", p_month=" + p_month + "]";
+	}
+	
 	
 	
 

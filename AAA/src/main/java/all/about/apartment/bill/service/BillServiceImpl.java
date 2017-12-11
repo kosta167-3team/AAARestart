@@ -83,8 +83,8 @@ public class BillServiceImpl implements BillService {
 		return dao.getSelectEnergyList(viewName);
 	}
 	@Override
-	public double getAVGelecMonth(String p_month) throws Exception {
-		return dao.getAVGelecMonth(p_month);
+	public double getAVGelecMonth(SetMonthBill setMonthBill) throws Exception {
+		return dao.getAVGelecMonth(setMonthBill);
 	}
 
 
