@@ -62,11 +62,11 @@
 	</select>
 
 
-	<select id="getAVGelecMonth" parameterType="string" resultType="double">
+	<select id="getAVGelecMonth" resultType="double">
 		SELECT
 		ROUND(AVG(e.elec),3) as elecAVG
 		FROM personal_mgmt_ex p ,energy e
-		WHERE p.input_num = e.input_num AND p.p_month like #{value}
+		WHERE p.input_num = e.input_num AND p.p_month = #{p_month} AND p.u_id = #{u_id}
 	</select>
 	
 
