@@ -60,6 +60,7 @@
 			<mapping path="/bill/full-width" />
 			<mapping path="/billScore/billScoreBody" />
 			<mapping path="/billPrediction/billPredictionBody" />
+			<mapping path="//billPrediction/billPredictionBody"/>
 			<beans:ref bean="authInterceptor" />
 
 		</interceptor>
