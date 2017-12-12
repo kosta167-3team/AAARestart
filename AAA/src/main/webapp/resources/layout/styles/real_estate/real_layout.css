@@ -93,7 +93,15 @@ table .area:FIRST-CHILD {
  	text-decoration: underline;
  }
  
- 
+ td.max{
+ 	color: #4683ea;
+ }
+ td.min{
+ 	color: #ea4335;
+ }
+ .chart{
+ 	margin-top: 10px;
+ }
  
  
  

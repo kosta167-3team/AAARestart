@@ -87,23 +87,31 @@
 	SELECT * FROM(
               select  rent.RENT_AREA , max(rent."rent_max") "rent_max" , min(rent."rent_min") "rent_min" 
               from(
-                SELECT RENT_YEAR,RENT_MONTH, RENT_AREA,MAX(RENT_DEPOSIT) "rent_max" ,MIN(RENT_DEPOSIT) "rent_min"FROM APT_RENT
-                GROUP BY APARTCODE , RENT_AREA ,RENT_MONTH ,RENT_YEAR
-                HAVING APARTCODE ='A13522007'
-                AND RENT_MONTH   between TO_NUMBER(TO_CHAR(add_months(SYSDATE,-5),'MM'))AND TO_NUMBER(TO_CHAR(add_months(SYSDATE,0),'MM'))
-                ORDER BY RENT_YEAR DESC ,RENT_MONTH DESC
+                SELECT RENT_YEAR,RENT_MONTH, RENT_AREA,MAX(RENT_DEPOSIT) "rent_max" ,
+              	  			MIN(RENT_DEPOSIT) "rent_min" 
+                	FROM APT_RENT
+                	GROUP BY APARTCODE , RENT_AREA ,RENT_MONTH ,RENT_YEAR
+                	HAVING APARTCODE ='A13522007'
+                	AND RENT_MONTH   between TO_NUMBER(TO_CHAR(add_months(SYSDATE,-5),'MM'))
+                							AND TO_NUMBER(TO_CHAR(add_months(SYSDATE,0),'MM'))
+                	ORDER BY RENT_YEAR DESC ,RENT_MONTH DESC
               )rent
               group by rent.RENT_AREA
               order by rent.RENT_AREA
       ) rent FULL JOIN (
-        	select trade.trade_area , max(trade."trade_max") "trade_max", max(trade."trade_min") "trade_min" from
-		      (SELECT TRADE_YEAR,TRADE_MONTH, TRADE_AREA,MAX(TRADE_PRICE) "trade_max" ,MIN(TRADE_PRICE) "trade_min"FROM APT_TRADE
+        	select trade.trade_area , max(trade."trade_max") "trade_max", max(trade."trade_min") "trade_min" 
+        	from(
+        		SELECT TRADE_YEAR,TRADE_MONTH, TRADE_AREA,MAX(TRADE_PRICE) "trade_max" ,
+        					MIN(TRADE_PRICE) "trade_min"
+        				FROM APT_TRADE
 					GROUP BY APARTCODE  ,TRADE_MONTH ,TRADE_YEAR , TRADE_AREA
 					HAVING APARTCODE ='A13522007'
-					AND TRADE_MONTH between TO_NUMBER(TO_CHAR(add_months(SYSDATE,-5),'MM'))AND TO_NUMBER(TO_CHAR(add_months(SYSDATE,0),'MM'))
-					ORDER BY TRADE_YEAR DESC ,TRADE_MONTH DESC)trade
-		      group by trade.trade_area
-		      ORDER BY trade.trade_area
+					AND TRADE_MONTH between TO_NUMBER(TO_CHAR(add_months(SYSDATE,-5),'MM'))
+											AND TO_NUMBER(TO_CHAR(add_months(SYSDATE,0),'MM'))
+					ORDER BY TRADE_YEAR DESC ,TRADE_MONTH DESC
+			)trade
+		    group by trade.trade_area
+		    ORDER BY trade.trade_area
       
       )trade
       ON rent.rent_area = trade.trade_area
@@ -111,7 +119,8 @@
 	
 	<!-- 전세 일년치 상한가 하한가 -->
 	<select id="annualRent" parameterType="int" resultType="AnnualMinMaxVO">
-		SELECT  RENT_YEAR ,RENT_MONTH,APARTCODE ,RENT_AREA ,MAX(RENT_DEPOSIT) "rent_max",MIN(RENT_DEPOSIT) "rent_min"  FROM APT_RENT
+		SELECT  RENT_YEAR ,RENT_MONTH,APARTCODE ,RENT_AREA ,MAX(RENT_DEPOSIT) "rent_max",
+			MIN(RENT_DEPOSIT) "rent_min"  FROM APT_RENT
 		GROUP BY RENT_YEAR,RENT_MONTH ,APARTCODE ,RENT_AREA
 		HAVING APARTCODE ='A13522007'
 		AND RENT_AREA = #{area}
@@ -120,7 +129,8 @@
 	
 	<!-- 매매 일년치 상한가 하한가 -->
 	<select id="annualTrade" parameterType="int" resultType="AnnualMinMaxVO">
-		SELECT TRADE_YEAR ,TRADE_MONTH ,MAX(TRADE_PRICE)"trade_max" , MIN(TRADE_PRICE) "trade_min" FROM APT_TRADE
+		SELECT TRADE_YEAR ,TRADE_MONTH ,MAX(TRADE_PRICE)"trade_max" , 
+			MIN(TRADE_PRICE) "trade_min" FROM APT_TRADE
 		GROUP BY TRADE_YEAR,TRADE_MONTH,APARTCODE,TRADE_AREA
 		HAVING APARTCODE ='A13522007'
 		AND TRADE_AREA = #{area}
@@ -130,18 +140,22 @@
 	
 	<!-- 전세 / 매매 1년치 -->
 	<select id="annualRentTrade" parameterType="int" resultType="AnnualMinMaxVO">
-	      select a.rent_year, a.rent_month,b.trade_year, b.trade_month, a."rent_max" , a."rent_min", b."trade_max", b."trade_min"
-     	 from (
-         	SELECT RENT_YEAR,RENT_MONTH, RENT_AREA,MAX(RENT_DEPOSIT) "rent_max" ,MIN(RENT_DEPOSIT) "rent_min"FROM APT_RENT
-			GROUP BY APARTCODE  ,RENT_MONTH ,RENT_YEAR , RENT_AREA
-			HAVING APARTCODE ='A13522007'
-     		 AND RENT_AREA = #{area}
-			ORDER BY RENT_YEAR DESC ,RENT_MONTH DESC
+	     SELECT a.rent_year, a.rent_month,b.trade_year, b.trade_month,
+	     	 a."rent_max" , a."rent_min", b."trade_max", b."trade_min"
+     	 FROM (
+         	SELECT RENT_YEAR,RENT_MONTH, RENT_AREA,MAX(RENT_DEPOSIT) "rent_max" ,
+         	MIN(RENT_DEPOSIT) "rent_min"
+         	FROM APT_RENT
+				GROUP BY APARTCODE  ,RENT_MONTH ,RENT_YEAR , RENT_AREA
+				HAVING APARTCODE ='A13522007'
+     				AND RENT_AREA = #{area}
+				ORDER BY RENT_YEAR DESC ,RENT_MONTH DESC
      	 ) a FULL JOIN (
-      		SELECT TRADE_YEAR,TRADE_MONTH, TRADE_AREA,MAX(TRADE_PRICE) "trade_max" ,MIN(TRADE_PRICE) "trade_min"FROM APT_TRADE
+      		SELECT TRADE_YEAR,TRADE_MONTH, TRADE_AREA,MAX(TRADE_PRICE) "trade_max" ,MIN(TRADE_PRICE) "trade_min"
+      		FROM APT_TRADE
 				GROUP BY APARTCODE  ,TRADE_MONTH ,TRADE_YEAR , TRADE_AREA
 				HAVING APARTCODE ='A13522007'
-     			 AND TRADE_AREA = #{area}
+     			 	AND TRADE_AREA = #{area}
 				ORDER BY TRADE_YEAR DESC ,TRADE_MONTH DESC
     	  )b
      	 ON a.RENT_MONTH = b.TRADE_MONTH

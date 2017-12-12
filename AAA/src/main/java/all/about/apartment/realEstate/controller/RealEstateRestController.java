@@ -106,12 +106,12 @@ public class RealEstateRestController {
 	}
 	
 	@RequestMapping(value ="/annulTrade" ,method = RequestMethod.POST)
-	public ResponseEntity<List<AnnualMinMaxVO>> annulTrade(@RequestBody AptTradeVO tradeVO){
+	public ResponseEntity<List<AnnualMinMaxVO>> annulTrade(@RequestBody AptRentVO rentVO){
 		ResponseEntity<List<AnnualMinMaxVO>> entity = null;
 		List<AnnualMinMaxVO> list  = null;
 		
 		try {
-			list = service.annualTrade(tradeVO.getTrade_area());
+			list = service.annualTrade(rentVO.getRent_area());
 			entity = new ResponseEntity<List<AnnualMinMaxVO>>(list, HttpStatus.OK);
 		} catch (Exception e) {
 			e.printStackTrace();
