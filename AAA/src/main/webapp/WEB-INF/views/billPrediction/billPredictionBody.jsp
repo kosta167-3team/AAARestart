@@ -30,14 +30,12 @@ Licence URI: http://www.os-templates.com/template-terms
 
 
 
-var doubleArray=[["asdf","321sa"],['2005',  1170],
-    ['2006',  660],
-    ['2007',  1030],
-    ['2008',  102],
-    ['2009',  130],
-    ['2010',  140]];
+	var doubleArray;
     
     
+	
+	
+	
 	google.load("visualization", "1", {packages:["corechart"]});
 	
 	var qurter = "oneQ";
@@ -76,7 +74,6 @@ var doubleArray=[["asdf","321sa"],['2005',  1170],
 					console.log(titleArray);
 				}
 				google.setOnLoadCallback(drawChart(titleArray));
-				console.log( "titleArray : " + titleArray);
 			}
 		});
 		
