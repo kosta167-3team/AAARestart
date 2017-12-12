@@ -6,8 +6,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
-public class AuthInterceptor extends HandlerInterceptorAdapter{
-	
+public class AuthInterceptor extends HandlerInterceptorAdapter{	
 	private void saveDest(HttpServletRequest request){
 		String uri = request.getRequestURI();
 		
@@ -18,7 +17,6 @@ public class AuthInterceptor extends HandlerInterceptorAdapter{
 		}else{
 			query ="?"+query;
 		}
-		
 		if(request.getMethod().equals("GET")){
 			request.getSession().setAttribute("dest", uri + query);
 		}
@@ -33,14 +31,12 @@ public class AuthInterceptor extends HandlerInterceptorAdapter{
 		if(session.getAttribute("login") == null){
 			
 			saveDest(request);
-			
 			response.sendRedirect("/user/login");
 			
 			return false;
-		}
-		
+		}	
 		return true;
-	}
-
-		
+	}		
 }
+
+
