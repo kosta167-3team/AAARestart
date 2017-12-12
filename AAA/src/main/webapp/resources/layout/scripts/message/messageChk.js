@@ -31,7 +31,7 @@ $(function () {
 	   
 	   $('#messageModal').find('[name="receiver"]').attr('type','text');
 	   $('#messageModal').find('[name="receiver"]').val('');
-	   
+	   $('#messageModal').find('.receiver').text('');
 	   $('#messageForm').find('[name="type_id"]').val(6);
    })
    
@@ -243,16 +243,12 @@ function recieveList(id,cri,r_authority){
 	})
 }
 
-function printPaging(pageMaker,cri){
+function printPaging(pageMaker){
 	var str ="";
-	
-	console.log(pageMaker);
 	var cri = pageMaker.cri;
-	
-	console.log(cri);
-	
 	if(pageMaker.prev){
-		str+="<li><a href='"+(pageMaker.makeSearch(pageMaker.startPage-1))+"'>&laquo; Previous</a></li>";
+		str+="<li><a href='"+(makeUrl(pageMaker.startPage-1,cri))
+			+"'>&laquo; Previous</a></li>";
 	}
 	for(var i = pageMaker.startPage, len = pageMaker.endPage; i<=len ; i++){
 		var strClass = pageMaker.cri.page == i?'class = current':'';
@@ -260,21 +256,18 @@ function printPaging(pageMaker,cri){
 		var searchType = cri.searchType;
 		str += "<li "+strClass+"><a href ='"+makeUrl(i,cri)+"'>"+i+"</a></li>";
 	}
-	
 	if(pageMaker.next){
-		str += "<li><a href='"+(pageMaker.makeSearch(pageMaker.endPage+1))+"'>Next &raquo;</a></li>";
+		str += "<li><a href='"+(makeUrl(pageMaker.endPage+1,cri))
+			+"'>Next &raquo;</a></li>";
 	}
-	
 	$('.pagination').html(str);
 }
 
+
 function makeUrl(page,cri){
-	var location = "?page="+page+"&keyword="+cri.keyword+"&searchType="+cri.searchType;
-	
-	console.log(location);
-	
-	return location;
-	
+	var location = "?page="+page+"&keyword="+cri.keyword
+				+"&searchType="+cri.searchType;
+	return location;	
 }
 
 

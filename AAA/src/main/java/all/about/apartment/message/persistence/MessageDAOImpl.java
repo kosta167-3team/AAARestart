@@ -44,10 +44,8 @@ public class MessageDAOImpl implements MessageDAO {
 	}
 	//페이징 처리해서 글 목록 불러오기
 	@Override
-	public List<MessageVO> recieveMessage(String reciever,String r_authority,SearchCriteria cri) throws Exception {
-		
-		
-		System.out.println(cri.toString());
+	public List<MessageVO> recieveMessage(
+			String reciever,String r_authority,SearchCriteria cri) throws Exception {
 		
 		Map<String, Object> map = new HashMap<>();
 		map.put("receiver", reciever);
@@ -55,10 +53,10 @@ public class MessageDAOImpl implements MessageDAO {
 		map.put("keyword",cri.getKeyword());
 		map.put("searchType",cri.getSearchType());
 		
-		return session.selectList(namespace+".recieveMessage", map, new RowBounds(cri.getPageStart(), cri.getPerPageNum()));
+		return session.selectList(namespace+".recieveMessage", map, 
+				new RowBounds(cri.getPageStart(), cri.getPerPageNum()));
 	}
 	
-	//총 쪽지 갯수
 	@Override
 	public int msgCnt(String receiver,String r_authority,SearchCriteria cri) throws Exception {
 		
@@ -80,3 +78,14 @@ public class MessageDAOImpl implements MessageDAO {
 
 
 }
+
+
+
+
+
+
+
+
+
+
+
