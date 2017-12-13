@@ -23,11 +23,37 @@ import all.about.apartment.bill.persistence.BillDAO;
 import all.about.apartment.bill.service.BillService;
 
 
+class Super{
+	public int i = 0;
+	public Super(){};
+	public Super(String text){
+		i = 0;
+	}
+}
+class Sub extends Super{
+	public Sub(String tex){
+		i=2;
+	}
+}
+
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebAppConfiguration
 @ContextConfiguration( locations = {"file:src/main/webapp/WEB-INF/spring/**/*.xml"})
 public class BillTest {
+	
+	
+	interface fish {};
+	interface asdf extends fish{};
+	
+	
+	class perch implements fish{};
+	class aaa extends perch {};
+	class bbb {};
+	
+	
+	
+	
 	
 	@Inject
 	BillDAO dao;
@@ -94,7 +120,7 @@ public class BillTest {
 		
 	}*/
 	
-	@Test
+	/*@Test
 	public void getAVGelecMonth() throws Exception{
 		
 		GetEnergySelector ges = new GetEnergySelector();		
@@ -117,6 +143,28 @@ public class BillTest {
 		}
 		
 		return result;		
+	}*/
+	
+	
+	
+	
+	
+	/*@Test
+	public void asb(){
+		fish f = new aaa();
+		aaa A = new aaa();
+		bbb B =new bbb();
+		
+		if(f instanceof aaa )System.out.println("f-p ");
+		if( A instanceof fish) System.out.println("w-f ");
+		
+		
+	}*/
+	@Test
+	public void sdfsdf(){
+		Sub sub = new Sub("hello");
+		System.out.println(sub.i);
+		System.out.println( 10 == 10.0);
 	}
 	
 	
