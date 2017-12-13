@@ -25,6 +25,8 @@
 		
 		<package name="all.about.apartment.message.domain"/>
 		
+		<package name="all.about.apartment.complain.domain"/>
+		
 	</typeAliases>
 	
 

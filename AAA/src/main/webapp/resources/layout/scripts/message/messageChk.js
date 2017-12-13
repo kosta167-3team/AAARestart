@@ -1,5 +1,6 @@
 $(function () {
    var id = $('[ name="user_id"]').val();
+   
     $('[data-toggle="popover"]').popover()
     $('table').on('popover','[data-toggle="popover"]',function(){})
     $('#messageListmodal').on('click','a',function(){
@@ -7,6 +8,10 @@ $(function () {
        $(this).popover('show');
     })
    msgcnt(id);
+    //권한
+    var r_authority = $('.type_select').attr('href');
+	console.log(r_authority);
+	
     $('#msg').on('click', function() {
     	var cri= '?page=1&keyword=null&searchType=null';
         recieveList(id,cri,r_authority);
@@ -17,11 +22,32 @@ $(function () {
       update_ck(id,msg_target);
    })
    
+   //새로운 쪽지
+   $('#new_message').on('click', function(){
+	   $('#messageTitle').html('새로운 쪽지');
+	  // $('#messageModal').find('[name="sender"]').attr('type','text');
+	   $('#messageModal').find('[name="sender"]').val(id);
+	   $('#messageModal').find('.sender').text(id);
+	   
+	   $('#messageModal').find('[name="receiver"]').attr('type','text');
+	   $('#messageModal').find('[name="receiver"]').val('');
+	   $('#messageModal').find('.receiver').text('');
+	   $('#messageForm').find('[name="type_id"]').val(6);
+   })
+   
+   
+   //답장
    $('table').on('click','.send_btn',function(){
       var sender = $(this).parent().prevAll('[name="receiver"]').val();
+      
+      $('#messageModal').find('[name="sender"]').attr('type','hidden');
+      $('#messageModal').find('[name="receiver"]').attr('type','hidden');
+     
       $('#messageModal').find('.sender').text(sender);
       $('#messageModal').find('[name="sender"]').val(sender);
       console.log(sender);
+      
+      $('#messageTitle').html('쪽지 답장 하기');
       
       var receiver = $(this).prevAll('a').find('span').attr('value');
       $('#messageModal').find('.receiver').text(receiver);
@@ -29,7 +55,9 @@ $(function () {
       console.log(receiver);
       
       $('#messageForm').find('[name="type_id"]').val(6);
-   })
+   });
+    
+    
    $('.pagination').on('click','li a', function(event){
       event.preventDefault();
       
@@ -46,8 +74,6 @@ $(function () {
 	 })
 	msgcnt(id);
 	
-	 var r_authority = $('.type_select').attr('href');
-	console.log(r_authority);
 	 //메세지 목록 조회
 	 
 	$('tbody').on('click','a',function(event){
@@ -134,6 +160,7 @@ function update_ck(id,msg_target){
 
    })
 }
+
 function msgcnt(id){
    $.ajax({
       type : 'post',
@@ -150,10 +177,11 @@ function msgcnt(id){
          $('#msg').find('.badge').text(data);
       },
       error:function(){
-         alert('ddd');
+         alert('success');
       }
    })
 }
+
 function recieveList(id,cri,r_authority){
 	
 	var target = $('.modal-body').find('tbody');
@@ -183,11 +211,13 @@ function recieveList(id,cri,r_authority){
 				}else{
 					html += '<td class="read-ck">읽음</td>';
 				}
-				//html += '<td class="read-ok">'+item.sender+'</td>';
 				if(item.r_authority == '관리소'){
 					html += '<td ><a tabindex="0" role="button" data-toggle="popover" data-placement="bottom" data-trigger="focus"';
 					html += 'title="from > 관리소" data-content="'+item.msg_content+'">';
 					html +='관리소로부터 쪽지가 도착했습니다.'+'</a></td>';
+					html += '<td>';
+					html +='<span class="glyphicons glyphicons-message-minus"></span>';
+					html += '</td>';
 				}else{
 					html += '<td>';
 					html+='<a tabindex="0" role="button" data-toggle="popover" data-placement="bottom" data-trigger="focus"';
@@ -213,16 +243,12 @@ function recieveList(id,cri,r_authority){
 	})
 }
 
-function printPaging(pageMaker,cri){
+function printPaging(pageMaker){
 	var str ="";
-	
-	console.log(pageMaker);
 	var cri = pageMaker.cri;
-	
-	console.log(cri);
-	
 	if(pageMaker.prev){
-		str+="<li><a href='"+(pageMaker.makeSearch(pageMaker.startPage-1))+"'>&laquo; Previous</a></li>";
+		str+="<li><a href='"+(makeUrl(pageMaker.startPage-1,cri))
+			+"'>&laquo; Previous</a></li>";
 	}
 	for(var i = pageMaker.startPage, len = pageMaker.endPage; i<=len ; i++){
 		var strClass = pageMaker.cri.page == i?'class = current':'';
@@ -230,21 +256,18 @@ function printPaging(pageMaker,cri){
 		var searchType = cri.searchType;
 		str += "<li "+strClass+"><a href ='"+makeUrl(i,cri)+"'>"+i+"</a></li>";
 	}
-	
 	if(pageMaker.next){
-		str += "<li><a href='"+(pageMaker.makeSearch(pageMaker.endPage+1))+"'>Next &raquo;</a></li>";
+		str += "<li><a href='"+(makeUrl(pageMaker.endPage+1,cri))
+			+"'>Next &raquo;</a></li>";
 	}
-	
 	$('.pagination').html(str);
 }
 
+
 function makeUrl(page,cri){
-	var location = "?page="+page+"&keyword="+cri.keyword+"&searchType="+cri.searchType;
-	
-	console.log(location);
-	
-	return location;
-	
+	var location = "?page="+page+"&keyword="+cri.keyword
+				+"&searchType="+cri.searchType;
+	return location;	
 }
 
 

@@ -71,7 +71,7 @@ public class MessageTest {
 		
 		SearchCriteria cri = new SearchCriteria();
 		cri.setSearchType("c");
-		cri.setKeyword("하연산");
+		cri.setKeyword("fd");
 		
 		
 		List<MessageVO> list;

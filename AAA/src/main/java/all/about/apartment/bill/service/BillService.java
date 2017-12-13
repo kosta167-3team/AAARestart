@@ -6,6 +6,7 @@ import all.about.apartment.bill.domain.EnergyVO;
 import all.about.apartment.bill.domain.Personal_mgmt_exVO;
 import all.about.apartment.bill.domain.SaleBillVO;
 import all.about.apartment.bill.domain.ScorePMEVO;
+import all.about.apartment.bill.domain.SetMonthBill;
 
 public interface BillService {
 	
@@ -20,5 +21,5 @@ public interface BillService {
 	public List<ScorePMEVO> getHeatList() throws Exception;
 	public int getScoreNum(String energyName) throws Exception;
 	public List<ScorePMEVO> getSelectEnergyList(String energyName) throws Exception;
-	public double getAVGelecMonth(String p_month) throws Exception;
+	public double getAVGelecMonth(SetMonthBill setMonthBill) throws Exception;
 }

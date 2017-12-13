@@ -8,10 +8,7 @@ $(function () {
 		 
 		 var that = $(this);
 		 
-		 if (textfield.val() != "" && pass.val() != "") {
-             //$("body").scrollTo("#output");
-            // $("#output").addClass("alert alert-success animated fadeInUp").html("Welcome back " + "<span style='text-transform:uppercase'>" + textfield.val() + "</span>");
-            // $("#output").removeClass(' alert-danger');
+		 if (textfield.val() != "" && pass.val() != "") {     
              $("input").css({
              "height":"0",
              "padding":"0",
@@ -45,7 +42,7 @@ $(function () {
                  $("#output").addClass("alert alert-danger animated fadeInUp").html("비밀번호를 입력해주세요~");
         	 }
          }
-         //console.log(textfield.val());
+ 
      });
 	
 })

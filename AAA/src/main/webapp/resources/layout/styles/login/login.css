@@ -1,5 +1,5 @@
 @CHARSET "UTF-8";
-body{background: #eee url(http://subtlepatterns.com/patterns/sativa.png);}
+body{background: #eee url(http://subtlepatterns.com/patterns/footer_lodyas.png);}
 html,body{
     position: relative;
     height: 100%;
@@ -58,9 +58,10 @@ html,body{
 .avatar{
     width: 100px;height: 100px;
     margin: 10px auto 30px;
-    border-radius: 100%;
-    border: 2px solid #aaa;
-    background-size: cover;
+    /* border-radius: 100%; */
+   /*  border: 2px solid #aaa; */
+    background-size: cover; 
+    background-image: url("/resources/images/main/main_log_mini.png");
 }
 
 .form-box input{

@@ -71,6 +71,10 @@
 		<put-attribute name="body" value="/WEB-INF/views/real_estate/res_body.jsp"/>
 	</definition>
 
+	<!-- 항의 -->
+	<definition name="/complain/register" extends="base_layout">
+		<put-attribute name="body" value="/WEB-INF/views/complain/complainForm.jsp"/>
+	</definition>
 
 <!-- 시설 -->
 	<definition name="/facility/reserveFacility" extends="base_layout">
