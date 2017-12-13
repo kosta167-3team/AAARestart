@@ -38,7 +38,7 @@ public class BillScoreRestController {
 		
 		billGradeSeletor.setEnergyName(energyName);
 		String grade = billGradeSeletor.getGrade(input_num);	
-		System.out.println("in REST COntroller");
+		System.out.println("in REST Controller");
 		entity = new ResponseEntity<String>(grade, HttpStatus.OK);
 		
 		
