@@ -20,7 +20,7 @@ public class VisitServiceImpl implements VisitService {
 	private VisitDAO dao;
 	
 	@Override
-	public ResidentVO getResident(ApplicationDTO dto) {
+	public List<ResidentVO> getResident(ApplicationDTO dto) {
 		System.out.println("service : " + dto.toString());
 		return dao.get(dto);
 	}

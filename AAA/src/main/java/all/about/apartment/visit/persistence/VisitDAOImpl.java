@@ -22,9 +22,9 @@ public class VisitDAOImpl implements VisitDAO {
 	
 	private static String namespace = "all.about.apartment.mappers.visitMapper";
 	@Override
-	public ResidentVO get(ApplicationDTO dto) {
+	public List<ResidentVO> get(ApplicationDTO dto) {
 		System.out.println("dao : " + dto.toString());
-		return session.selectOne(namespace + ".get", dto);
+		return session.selectList(namespace + ".get", dto);
 	}
 	@Override
 	public Integer maxVR() {

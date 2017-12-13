@@ -34,92 +34,9 @@ Licence URI: http://www.os-templates.com/template-terms
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <link href="/resources/layout/styles/layout.css" rel="stylesheet" type="text/css" media="all">
 </head>
+
 <body id="top">
-<!-- ################################################################################################ -->
-<!-- ################################################################################################ -->
-<!-- ################################################################################################ -->
-<div class="wrapper row0">
-  <div id="topbar" class="clear"> 
-    <!-- ################################################################################################ -->
-    <div class="fl_left">
-      <ul class="nospace inline">
-        <li><i class="fa fa-phone"></i> +00 (123) 456 7890</li>
-        <li><i class="fa fa-envelope-o"></i> info@domain.com</li>
-      </ul>
-    </div>
-    <div class="fl_right">
-      <ul class="faico clear">
-        <li><a class="faicon-facebook" href="#"><i class="fa fa-facebook"></i></a></li>
-        <li><a class="faicon-pinterest" href="#"><i class="fa fa-pinterest"></i></a></li>
-        <li><a class="faicon-twitter" href="#"><i class="fa fa-twitter"></i></a></li>
-        <li><a class="faicon-dribble" href="#"><i class="fa fa-dribbble"></i></a></li>
-        <li><a class="faicon-linkedin" href="#"><i class="fa fa-linkedin"></i></a></li>
-        <li><a class="faicon-google-plus" href="#"><i class="fa fa-google-plus"></i></a></li>
-        <li><a class="faicon-rss" href="#"><i class="fa fa-rss"></i></a></li>
-      </ul>
-    </div>
-    <!-- ################################################################################################ -->
-  </div>
-</div>
-<!-- ################################################################################################ -->
-<!-- ################################################################################################ -->
-<!-- ################################################################################################ -->
-<div class="wrapper row1">
-  <header id="header" class="clear"> 
-    <!-- ################################################################################################ -->
-    <div id="logo" class="fl_left">
-      <h1><a href="/"><img src="/resources/images/main/main_log_mini.png" alt="" class="main_log_img"></a></h1>
-    </div>
-    <nav id="mainav" class="fl_right">
-       <ul class="clear">
-        <li><a href="/">홈</a></li>
-        
-        <li class="active"><a class="drop" href="#">관리비</a>
-          <ul>
-            <li><a href="/">Gallery</a></li>
-            <li class="active"><a class="drop" href="/bill/full-width">관리비 조회</a>
-            	<ul>
-            		<li> <a href="/billScore/billScoreBody">관리비 성적표</a></li>
-            	</ul>
-            </li>
-            <li><a href="/">관리비 1</a></li>
-            <li><a href="/">관리비 2</a></li>
-            <li><a href="/">관리비 3</a></li>
-          </ul>
-        </li>
-         <li class="active"><a class="drop" href="#">방문객</a>
-          <ul>
-            <li><a href="/visit/application">방문 신청</a></li>
-            <li><a href="/visit/applicationList">방문 예약 내역 조회</a></li>
-            <li><a href="/visit/visitManagement">방문 예약 내역</a></li>
-          </ul>
-        </li>
-         <li class="active"><a class="drop" href="#">시설</a>
-          <ul>
-            <li><a href="/">시설 예약</a></li>
-            <li><a href="/">시설 예약 조회</a></li>
-          </ul>
-        </li>
-        <li><a class="drop" href="#">항의</a>
-          <ul>
-            <li><a href="/">항의하기</a></li>
-            <li><a href="/">항의..</a></li>
-          </ul>
-        </li>
-        <li><a href="#">커뮤니티</a></li>
-        <li><a href="/real_estate">부동산</a></li>
-        <li><a class="drop" href="#">경매</a>
-          <ul>
-          	<li><a href="/bid/bidListAll">경매 목록</a></li>
-            <li><a href="/bidd/bidDetail">경매 물품보기</a></li>
-            <li><a href="/">내 입찰 내역 조회</a></li>
-          </ul>
-        </li>
-      </ul>
-    </nav>
-    <!-- ################################################################################################ -->
-  </header>
-</div>
+
 <!-- ################################################################################################ -->
 <!-- ################################################################################################ -->
 <!-- ################################################################################################ -->
@@ -145,8 +62,6 @@ Licence URI: http://www.os-templates.com/template-terms
     <div id="popup_front" class='popup front' style="display:none;">
      <img id="popup_img">
     </div> -->
-
-
 
 
 <!-- ################################################################################################ -->
@@ -199,8 +114,8 @@ Licence URI: http://www.os-templates.com/template-terms
              etc="${BidProductVO.bid_id }" id="bid_filename" class="bid_filename"  alt="" width="800" height="800"></a>
             <p id="bid_seller">판매자 : ${BidProductVO.bid_seller }</p>
             <p id="bid_name">상품 이름 : ${BidProductVO.bid_name }</p>
+            <p id="bid_start" >가격 : ${BidProductVO.bid_nowprice }</p>            
 
-            <p id="bid_start" >가격 : ${BidProductVO.bid_start }</p>            
             
             &nbsp;&nbsp;&nbsp;&nbsp;
              <c:if test="${login.r_id == BidProductVO.bid_seller || login.r_id == BidProductVO.admin}">
@@ -239,68 +154,7 @@ Licence URI: http://www.os-templates.com/template-terms
 <!-- ################################################################################################ -->
 <!-- ################################################################################################ -->
 <!-- ################################################################################################ -->
-<div class="wrapper row5">
-  <footer id="footer" class="clear"> 
-    <!-- ################################################################################################ -->
-    <div class="one_quarter first">
-      <h6 class="title">Viral</h6>
-      <address class="btmspace-15">
-      Company Name<br>
-      Street Name &amp; Number<br>
-      Town<br>
-      Postcode/Zip
-      </address>
-      <ul class="nospace">
-        <li class="btmspace-10"><span class="fa fa-phone"></span> +00 (123) 456 7890</li>
-        <li><span class="fa fa-envelope-o"></span> info@domain.com</li>
-      </ul>
-    </div>
-    <div class="one_quarter">
-      <h6 class="title">Quick Links</h6>
-      <ul class="nospace linklist">
-        <li><a href="#">Home Page</a></li>
-        <li><a href="#">Blog</a></li>
-        <li><a href="#">Gallery</a></li>
-        <li><a href="#">Portfolio</a></li>
-        <li><a href="#">Contact Us</a></li>
-      </ul>
-    </div>
-    <div class="one_quarter">
-      <h6 class="title">From The Blog</h6>
-      <article>
-        <h2 class="nospace"><a href="#">Praesent Vestibulum</a></h2>
-        <time class="smallfont" datetime="2045-04-06">Friday, 6<sup>th</sup> April 2045</time>
-        <p>Vestibulumaccumsan egestibulum eu justo convallis augue estas aenean elit intesque sed.</p>
-      </article>
-    </div>
-    <div class="one_quarter">
-      <h6 class="title">Grab Our Newsletter</h6>
-      <form method="post" action="#">
-        <fieldset>
-          <legend>Newsletter:</legend>
-          <input class="btmspace-15" type="text" value="" placeholder="Name">
-          <input class="btmspace-15" type="text" value="" placeholder="Email">
-          <button type="submit" value="submit">Submit</button>
-        </fieldset>
-      </form>
-    </div>
-    <!-- ################################################################################################ -->
-  </footer>
-</div>
-<!-- ################################################################################################ -->
-<!-- ################################################################################################ -->
-<!-- ################################################################################################ -->
-<div class="wrapper row6">
-  <div id="copyright" class="clear"> 
-    <!-- ################################################################################################ -->
-    <p class="fl_left">Copyright &copy; 2015 - All Rights Reserved - <a href="#">Domain Name</a></p>
-    <p class="fl_right">Template by <a target="_blank" href="http://www.os-templates.com/" title="Free Website Templates">OS Templates</a></p>
-    <!-- ################################################################################################ -->
-  </div>
-</div>
-<!-- ################################################################################################ -->
-<!-- ################################################################################################ -->
-<!-- ################################################################################################ -->
+
 <a id="backtotop" href="#top"><i class="fa fa-chevron-up"></i></a> 
 <!-- JAVASCRIPTS -->
 <script src="/resources/layout/scripts/jquery.min.js"></script>
@@ -404,8 +258,8 @@ Licence URI: http://www.os-templates.com/template-terms
     						'" id="bid_filename" alt="" width="800" height="400"></a>';
     				html+='<p> 판매자 : ' + item.bid_seller  + '</p>';
     				html+='<p> 상품이름 : ' + item.bid_name  + '</p>';
-    				html+='<p> 가격 : ' + item.bid_start + '</p>';
-    				html+='&nbsp;&nbsp;&nbsp;&nbsp;'
+    				html+='<p> 상품가격 : ' + item.bid_nowprice + '</p>';
+
     				html+='<input type="button" value="수정" class="button" id="gg">';
     				html+='&nbsp;&nbsp;&nbsp;&nbsp'
     				html+='<input type="button" value="삭제" class="button" ></li>';

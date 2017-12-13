@@ -28,6 +28,7 @@ Licence URI: http://www.os-templates.com/template-terms
 		<div class="group">
 			<div class="one_third first">
 				<img src="/resources/images/main/460x700.png" alt="">
+				<!-- 사진이 안나온드아~~ -->
 			</div>
 			<div class="two_third">
 				<h2 class="heading">${bidProduct.bid_name }</h2>
@@ -48,6 +49,8 @@ Licence URI: http://www.os-templates.com/template-terms
 				<li>
 				<p class="addTimeCount" value = "${bidProduct.addTime }">경매 시간 연장 횟수 : ${bidProduct.addTime }</p>
 				<button class="addBidTime">입찰 시간 추가</button>
+				<br>
+				
 				</li>
 					<li class="one_third"><input type="button" value="입찰하기" class="bidButton"></li>
 				</ul>
@@ -75,14 +78,11 @@ Licence URI: http://www.os-templates.com/template-terms
 	function getTime() {
 		var date = new Date();
 		date = "${bidProduct.bid_date }";
-		console.log("date : " + date);
 		var remainTime = new Date(); // 남은 시간
 		var bidTime = new Date(); // 경매 시작시간
 		var split = date.split(' '); // split : 날짜 / 시간 구분
 		var splitDate = split[0].split('-'); // splitDate : 년 / 월 / 일로 구분
 		var splitTime = split[1].split(':'); // splitTime : 시 / 분 / 초로 구분
-		console.log(splitDate);
-		console.log(splitTime);
 		bidTime.setFullYear(splitDate[0]); // 경매 시간 세팅
 		bidTime.setMonth(splitDate[1]-1);
 		bidTime.setDate(splitDate[2]);
@@ -158,6 +158,13 @@ Licence URI: http://www.os-templates.com/template-terms
 		}); 
 	}
 });
+	
+	$('.bidButton').on('click', function() {
+		var bid_id = ${bidProduct.bid_id};
+		var nowPrice = ${bidProduct.bid_nowprice};
+		console.log("qwe");
+		 window.open("/bid/inputBidPrice/"+bid_id+"/"+nowPrice, "a", "width=400, height=300, left=100, top=50"); 
+	})
 	
 </script>
 <script>getTime();</script>
