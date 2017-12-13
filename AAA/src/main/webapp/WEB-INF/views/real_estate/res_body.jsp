@@ -115,7 +115,7 @@
 
 							</div>
 							<div class="apt_type">
-								<a href="rent" class="type_select">전세</a> <a href="trade">매매</a>
+								<a href="rent" class="apt_type_select">전세</a> <a href="trade">매매</a>
 							</div>
 							<div class="real_estateData">
 								<div class="chart"></div>

@@ -1,10 +1,7 @@
 package all.about.apartment.visit.controller;
 
-import static org.hamcrest.CoreMatchers.nullValue;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -37,23 +34,32 @@ public class VisitController {
 	private VisitService service;
 
 	@RequestMapping(value = "/application", method = RequestMethod.GET)
-	public void visitApplication() throws Exception { // 방문신청
-
+	public String visitApplication(HttpServletRequest request, Model model) throws Exception { // 방문신청
+		HttpSession session = request.getSession();
+		ResidentVO resident = (ResidentVO)session.getAttribute("login");
+		if(resident != null) {
+			model.addAttribute("r_id", resident.getR_id());
+		} else {
+			model.addAttribute("r_id", null);
+		}
+		return "/visit/application";
 	}
 
 	@RequestMapping(value = "/application", method = RequestMethod.POST)
 	public String visitApplication(ApplicationDTO dto, RedirectAttributes rttr, HttpServletRequest request) throws Exception {
 		HttpSession session = request.getSession();
-		ResidentVO getResident = service.getResident(dto);
+		List<ResidentVO> getResident = service.getResident(dto);
 		if(getResident == null) {
 			session.setAttribute("state", "success");
 			return "redirect:/visit/application";
 		} else {
 			session.setAttribute("state", "fail");
-			dto.setR_id(getResident.getR_id());
-			dto.setVr_id(Integer.toString(service.maxVR()));
-			System.out.println(dto.toString());
-			service.applicationVisit(dto);
+			for(int i=0;i<getResident.size();i++) {
+				dto.setR_id(getResident.get(i).getR_id());
+				dto.setVr_id(Integer.toString(service.maxVR()));
+				service.applicationVisit(dto);
+			}
+			
 			rttr.addAttribute("dto", dto.getV_date());
 			return "redirect:/visit/sendPassImage";
 		}		
@@ -71,17 +77,20 @@ public class VisitController {
 	}
 
 	@RequestMapping(value = "/applicationList", method = RequestMethod.GET)
-	public ModelAndView applicationList(Criteria cri, Model model) throws Exception {
+	public ModelAndView applicationList(Criteria cri, Model model, HttpServletRequest request) throws Exception {
+		HttpSession session = request.getSession();
+		ResidentVO resident = (ResidentVO)session.getAttribute("login");
 		ModelAndView modelAndView = new ModelAndView();
 		PageMaker pageMaker = new PageMaker();
-		String r_id = "alstlr123";
+		String r_id = resident.getR_id();
+		System.out.println("applicationList" + resident.getR_id());
 		modelAndView.addObject("applicationList", service.applicationList(r_id));
 		cri.setR_id(r_id);
 		pageMaker.setCri(cri);
 		pageMaker.setTotalCount(service.totalCount(r_id));
 		System.out.println(service.totalCount(r_id));
 		model.addAttribute("pageMaker", pageMaker);
-
+		modelAndView.setViewName("/visit/applicationList");
 		model.addAttribute("list", service.listCriteria(cri));
 		return modelAndView;
 	}

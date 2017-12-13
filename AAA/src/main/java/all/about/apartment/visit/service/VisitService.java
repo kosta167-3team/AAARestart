@@ -10,7 +10,7 @@ import all.about.apartment.visit.domain.ApplicationVO;
 import all.about.apartment.visit.dto.ApplicationDTO;
 
 public interface VisitService {
-	public ResidentVO getResident(ApplicationDTO dto);
+	public List<ResidentVO> getResident(ApplicationDTO dto);
 	public int maxVR();
 	public void applicationVisit(ApplicationDTO dto);
 	public List<ApplicationVO> applicationList(String r_id);

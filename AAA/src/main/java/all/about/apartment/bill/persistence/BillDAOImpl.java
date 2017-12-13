@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
@@ -88,9 +89,8 @@ public class BillDAOImpl implements BillDAO {
 	}
 
 	@Override
-	public double getAVGelecMonth(String p_month) throws Exception {
-		
-		return session.selectOne(namespace + ".getAVGelecMonth", p_month);
+	public double getAVGelecMonth(SetMonthBill setMonthBill) throws Exception {
+		return session.selectOne(namespace + ".getAVGelecMonth", setMonthBill);
 	}
 
 

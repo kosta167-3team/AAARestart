@@ -14,8 +14,8 @@ public interface RealEstateService {
 	
 	public void inputData() throws Exception;
 	
-	public void inputRentData(List<Map<String, Object>> rent_list , String day) throws Exception;
-	public void inputTradeData(List<Map<String, Object>> trade_list,String day) throws Exception;
+	public void inputRentData(List<Map<String, Object>> rent_list ) throws Exception;
+	public void inputTradeData(List<Map<String, Object>> trade_list) throws Exception;
 	
 	public List<Map<String, Object>> getRentData(String deal_ymd) throws Exception;
 	public List<Map<String, Object>> getTradeData(String deal_ymd) throws Exception;

@@ -3,6 +3,7 @@ package all.about.apartment.billTest;
 
 import java.text.DecimalFormat;
 import java.util.Calendar;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -14,6 +15,7 @@ import org.springframework.test.context.web.WebAppConfiguration;
 
 import org.springframework.web.context.annotation.ApplicationScope;
 
+import all.about.apartment.bill.domain.GetEnergySelector;
 import all.about.apartment.bill.domain.SetEnergyAVG;
 import all.about.apartment.bill.domain.SetMonthBill;
 
@@ -21,11 +23,37 @@ import all.about.apartment.bill.persistence.BillDAO;
 import all.about.apartment.bill.service.BillService;
 
 
+class Super{
+	public int i = 0;
+	public Super(){};
+	public Super(String text){
+		i = 0;
+	}
+}
+class Sub extends Super{
+	public Sub(String tex){
+		i=2;
+	}
+}
+
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebAppConfiguration
 @ContextConfiguration( locations = {"file:src/main/webapp/WEB-INF/spring/**/*.xml"})
 public class BillTest {
+	
+	
+	interface fish {};
+	interface asdf extends fish{};
+	
+	
+	class perch implements fish{};
+	class aaa extends perch {};
+	class bbb {};
+	
+	
+	
+	
 	
 	@Inject
 	BillDAO dao;
@@ -92,44 +120,19 @@ public class BillTest {
 		
 	}*/
 	
-	@Test
+	/*@Test
 	public void getAVGelecMonth() throws Exception{
-		Calendar cal = Calendar.getInstance();
 		
-		int year = cal.get(Calendar.YEAR);
-		int month = cal.get(Calendar.MONTH)+1;
-		String p_month = year + "-" + month;
-		int power = 0;
+		GetEnergySelector ges = new GetEnergySelector();		
+
+		Map<String,Double> quterBillMap ;
+
+		quterBillMap = ges.getAVGelecMonth(service,"alstlr123" ,"oneQ");
 		
-		/* weight 설정 0.1 ~ 0.3 정도가 적당하다. */
-		
-		double weight = 0.1;
-		
-		double num = 0.0;
-		DecimalFormat df = new DecimalFormat("0.00000");
-		double df_num = 0.0;
-		/*System.out.println(dao.getAVGelecMonth(p_month));
-		DecimalFormat df = new DecimalFormat("0.00000");
-		double num = getSquare(weight,dao.getAVGelecMonth(p_month), 0);
-		
-		double df_num = Double.parseDouble(df.format(num));*/
-		
-		while( year >= 2002 ){
-			for(int i = 1; i <4; i++){
-				power += 1;
-				month = i;
-				p_month = year + "-" + month;
-				System.out.println(power);
-				num = getSquare(weight,dao.getAVGelecMonth(p_month), power);
-				df_num += Double.parseDouble(df.format(num));
-				System.out.println(p_month + " : " + num);
-			}
-			
-			year -= 1;
-		}
-		System.out.println("result : "+df_num);
+		System.out.println("Billtest num : " + quterBillMap);
+
 	}
-	
+
 	public double getSquare(double weight, double num, int power){
 		double result = 0.0;
 		if( power > 0){
@@ -140,6 +143,28 @@ public class BillTest {
 		}
 		
 		return result;		
+	}*/
+	
+	
+	
+	
+	
+	/*@Test
+	public void asb(){
+		fish f = new aaa();
+		aaa A = new aaa();
+		bbb B =new bbb();
+		
+		if(f instanceof aaa )System.out.println("f-p ");
+		if( A instanceof fish) System.out.println("w-f ");
+		
+		
+	}*/
+	@Test
+	public void sdfsdf(){
+		Sub sub = new Sub("hello");
+		System.out.println(sub.i);
+		System.out.println( 10 == 10.0);
 	}
 	
 	

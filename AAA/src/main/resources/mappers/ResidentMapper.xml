@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="all.about.apartment.mappers.ResidentMapper">
+
+	<!-- 동 목록 불러오기 -->
+	<select id="get_dongList" resultType="Integer">
+		SELECT r_dong FROM resident
+		GROUP BY r_dong
+		HAVING r_dong is not null
+		order by r_dong
+	</select>
+
+	<!-- 호 목록 불러오기 -->
+	<select id="get_hoList" resultType="Integer">
+		SELECT r_ho FROM resident
+		GROUP BY r_dong, r_ho
+		having r_dong = #{r_dong}
+		order by r_ho
+	</select>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

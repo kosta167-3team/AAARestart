@@ -2,6 +2,7 @@ package all.about.apartment.bid.persistence;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import all.about.apartment.bid.domain.BidPenalty;
 import all.about.apartment.bid.domain.BidProductVO;
@@ -28,7 +29,7 @@ public interface BidDAO {
 	/*public void deleteAttach(Integer bid_id)throws Exception;
 	public void replaceAttach(String fullName,Integer bno)throws Exception;*/
 	public void updateBidState(String bid_id) throws Exception;
-	
+	public void updateBidPrice(Map<String, Object> map) throws Exception;
 	public Integer penalty(BidProductVO vo)throws Exception;
 
 }

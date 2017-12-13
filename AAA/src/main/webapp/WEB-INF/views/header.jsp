@@ -204,9 +204,11 @@ li {
 						</div>
 					</div>
 					<div class="sender-group">
-						<a href="" class="type_select" >전체</a> <a href="관리소">관리소</a>
+						<a href="" class="type_select">전체</a> 
+						<a href="관리소">관리소</a>
 						<a href="입주민">커뮤니티</a>
 					</div>
+					
 				</div>
 				<div class="modal-body">
 					<div class="scrollable">
@@ -226,6 +228,11 @@ li {
 						</table>
 					</div>
 				</div>
+				<div class= "col-md-6 col-md-offset-8">
+					<button id = "new_message" type="button" class="btn btn-success" data-toggle="modal"
+						data-target="#messageModal">새쪽지</button>
+					<button type="button" class="btn btn-danger">선택 삭제</button>
+				</div>
 				<nav class="pagination">
 					<ul>
 					</ul>
@@ -242,7 +249,7 @@ li {
 						aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
-					<h4 class="modal-title" id="exampleModalLabel">새로운 쪽지</h4>
+					<h4 class="modal-title" id="messageTitle">새로운 쪽지</h4>
 				</div>
 				<div class="modal-body">
 

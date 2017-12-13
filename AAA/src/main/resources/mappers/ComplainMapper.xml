@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="all.about.apartment.mappers.ComplainMapper">
+
+	<!-- 유형 -->
+	<select id="getTypeList" resultType="java.util.HashMap">
+		SELECT type_id,type_detail
+		FROM TYPE
+		WHERE type_target = #{select_type}
+		and type_name='항의'
+	</select>
+
+	<!-- 글번호 가져오기 -->
+	<select id="get_compNo" resultType="Integer">
+		SELECT max(comp_no) FROM complain
+	</select>
+	
+	<!-- 항의 등록 -->
+	<insert id="complain_register" parameterType="ComplainDTO">
+	 	insert into complain (comp_no, comp_target,comp_content, comp_regdate, disclosure_status, comp_writer, type_id)
+	 	values(#{comp_no}, #{comp_target},#{comp_content},sysdate, #{disclosure_status}, #{comp_writer}, #{type_id})
+	 </insert>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
