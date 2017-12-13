@@ -109,33 +109,30 @@ Licence URI: http://www.os-templates.com/template-terms
 		<div class="content three_quarter">
 			<div id="comments">
 				<h2>방문 신청</h2>
-				<a id="kakao-login-btn"></a> <a
-					href="http://developers.kakao.com/login"></a>
+				<a id="kakao-login-btn"></a> <a	href="http://developers.kakao.com/login"></a> 
 				<script type='text/javascript' charset="utf-8">
 					var date = "${date}";
-					Kakao.init('ae9f974b5119a84092f103b5834f90ea'); // ê°ë°ìì Javascript Key		
-
+					Kakao.init('ae9f974b5119a84092f103b5834f90ea'); // 개발자 Javascript Key		
 					Kakao.Auth.createLoginButton({ // create login button
 						container : '#kakao-login-btn',
 
 						success : function(authObj) {
-							Kakao.Auth.login({ // ì¹´ì¹´ì¤í¡ ë¡ê·¸ì¸
+							Kakao.Auth.login({
 								scope : "PROFILE,TALK_MESSAGE",
 								success : function(res) {
-									Kakao.API.request({ // ì¹´ì¹´ì¤í¡ 						
+									Kakao.API.request({			
 										url : '/v1/api/talk/memo/send',
 										data : {
 											template_id : '6174',
-											args : '{"\${date}" : "'
-													+ date + '"}',
+											args : '{"\${date}" : "' + date + '"}',
 										},
 
-										success : function(res) { // ë³´ë´ê¸° ì±ê³µ
+										success : function(res) { 
 											Kakao.Auth.logout();
 											alert("'" + date + "' 방문 신청되었습니다.");
 											location.href = "application";
 										},
-										fail : function(error) { // ë³´ë´ê¸° ì¤í¨
+										fail : function(error) {
 											Kakao.Auth.logout();
 											alert(JSON.stringify(error));
 										}
@@ -148,7 +145,7 @@ Licence URI: http://www.os-templates.com/template-terms
 								}
 							});
 						},
-						fail : function(err) { // ë²í¼ ìì± ì¤í¨ ì
+						fail : function(err) {
 							alert("create button fail");
 						}
 					});

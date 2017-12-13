@@ -10,22 +10,17 @@ import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import javax.inject.Inject;
 
 import org.json.JSONObject;
 import org.json.XML;
-import org.springframework.aop.ThrowsAdvice;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
-import org.springframework.test.annotation.IfProfileValue;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.sun.org.apache.xerces.internal.impl.xpath.regex.Match;
 
 import all.about.apartment.realEstate.domain.AnnualMinMaxVO;
 import all.about.apartment.realEstate.domain.AptRentVO;
@@ -47,9 +42,8 @@ public class RealEstateServiceImpl implements RealEstateService {
 
 	// @Scheduled(cron ="0 18 20 ? ? ? ?")
 
-
 	@Override
-	@Scheduled(cron = "0 0 15 9 * *")
+	@Scheduled(cron = "0 0 15 1 * *")
 	@Transactional
 	public void firstAutoUpdate() {
 		Calendar cal = Calendar.getInstance();
@@ -57,20 +51,18 @@ public class RealEstateServiceImpl implements RealEstateService {
 		int year = cal.get(cal.YEAR);
 		int month = cal.get(cal.MONTH) + 1;
 
-		int day = cal.get(cal.DAY_OF_MONTH) - 1;
-
 		String date = year + "" + month;
 		try {
 			deleteOldest();
-			inputRentData(getRentData(date), "" + day);
-			inputTradeData(getTradeData(date), "" + day);
+			inputRentData(getRentData(date));
+			inputTradeData(getTradeData(date));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 
 	@Override
-	@Scheduled(cron = "0 0 10 12,22 * *")
+	@Scheduled(cron = "0 0 15 2 * *")
 	public void autoUpdate() {
 
 		Calendar cal = Calendar.getInstance();
@@ -78,13 +70,11 @@ public class RealEstateServiceImpl implements RealEstateService {
 		int year = cal.get(cal.YEAR);
 		int month = cal.get(cal.MONTH) + 1;
 
-		int day = cal.get(cal.DAY_OF_MONTH) - 1;
-
 		String date = year + "" + month;
 
 		try {
-			inputRentData(getRentData(date), "" + day);
-			inputTradeData(getTradeData(date), "" + day);
+			inputRentData(getRentData(date));
+			inputTradeData(getTradeData(date));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -153,19 +143,14 @@ public class RealEstateServiceImpl implements RealEstateService {
 
 		JSONObject xmlJSONObj = XML.toJSONObject(sb.toString());
 		String xmlJSONObjString = xmlJSONObj.toString();
-		// System.out.println("### xmlJSONObjString=>" + xmlJSONObjString);
-
 		ObjectMapper objectMapper = new ObjectMapper();
 		Map<String, Object> map = new HashMap<>();
-		map = objectMapper.readValue(xmlJSONObjString, new TypeReference<Map<String, Object>>() {
-		});
+		map = objectMapper.readValue(xmlJSONObjString, new TypeReference<Map<String, Object>>() {});
 		Map<String, Object> dataResponse = (Map<String, Object>) map.get("response");
 
 		Map<String, Object> body = (Map<String, Object>) dataResponse.get("body");
 		Map<String, Object> items = null;
 		List<Map<String, Object>> itemList = new ArrayList<>();
-
-		// System.out.println(body);
 
 		int totalCount = (int) (body.get("totalCount"));
 
@@ -182,8 +167,6 @@ public class RealEstateServiceImpl implements RealEstateService {
 		} else {
 			itemList = (List<Map<String, Object>>) (items.get("item"));
 		}
-
-		// System.out.println(itemList.size());
 
 		return itemList;
 	}
@@ -245,12 +228,12 @@ public class RealEstateServiceImpl implements RealEstateService {
 			throw new Exception("검색결과 없음", new Throwable("검색결과없음"));
 
 		}
-		System.out.println("trade_"+items);
+		System.out.println("trade_" + items);
 		if (items.get("item") instanceof Map) {
 			@SuppressWarnings("unchecked")
 			Map<String, Object> item = (Map<String, Object>) (items.get("item"));
-			System.out.println("trade map >"+item);
-			if(item != null){
+			System.out.println("trade map >" + item);
+			if (item != null) {
 				itemList.add(item);
 			}
 		} else {
@@ -290,99 +273,28 @@ public class RealEstateServiceImpl implements RealEstateService {
 
 			strMonth += remonth;
 			String date = reyear + strMonth;
-			 System.out.println(date);
-			inputRentData(getRentData(date), "");
-			inputTradeData(getTradeData(date), "");
+			System.out.println(date);
+			inputRentData(getRentData(date));
+			inputTradeData(getTradeData(date));
 		}
 
 	}
 
 	@Override
-	public void inputRentData(List<Map<String, Object>> rent_list, String day) throws Exception {
-
-		String dayPattern = "^" + day + "+";
-		Pattern pattern = Pattern.compile(dayPattern);
-		Matcher m;
+	public void inputRentData(List<Map<String, Object>> rent_list) throws Exception {
 
 		for (Map<String, Object> map : rent_list) {
 
 			String dataDay = (String) map.get("일");
 
-			m = pattern.matcher(dataDay);
-
-			if (m.find()) {
-				int deposit;
-				if (map.get("월세금액") instanceof String) {
-					deposit = Integer.parseInt(((String) map.get("월세금액")).replaceAll("[^0-9]", ""));
-				} else {
-					deposit = (int) map.get("월세금액");
-				}
-				if (deposit == 0) {
-					System.out.println(map);
-					String dong = (String) map.get("법정동");
-
-					String roadNum = "";
-
-					if (map.get("지번") instanceof Integer) {
-						int lotNum = (int) map.get("지번");
-						roadNum += lotNum;
-					} else {
-						roadNum = (String) map.get("지번");
-					}
-					// System.out.println(dong + roadNum);
-
-					String aptname = ((String) map.get("아파트"));
-					aptname = aptname.replaceAll(" ", "%");
-					aptname = aptname.replaceAll("동", "%");
-
-					// System.out.println(aptname);
-
-					String aptCode = getAptCode(aptname, dong, roadNum);
-
-					if (aptCode == null) {
-						continue;
-					}
-
-					AptRentVO vo = new AptRentVO();
-					int rent_area;
-					if (map.get("전용면적") instanceof Double) {
-						rent_area = (int) ((double) map.get("전용면적"));
-					} else {
-
-						rent_area = (int) (map.get("전용면적"));
-					}
-					int rent_deposit = Integer.parseInt(((String) map.get("보증금액")).replaceAll("[^0-9]", ""));
-					int rent_year = (int) map.get("년");
-					int rent_month = (int) map.get("월");
-
-					vo.setApartcode(aptCode);
-					vo.setRent_area(rent_area);
-					vo.setRent_year(rent_year);
-					vo.setRent_month(rent_month);
-					vo.setRent_deposit(rent_deposit);
-
-					// System.out.println(vo.toString());
-					dao.insertRentData(vo);
-				}
+			int deposit;
+			if (map.get("월세금액") instanceof String) {
+				deposit = Integer.parseInt(((String) map.get("월세금액")).replaceAll("[^0-9]", ""));
+			} else {
+				deposit = (int) map.get("월세금액");
 			}
-		}
-
-	}
-
-	@Override
-	public void inputTradeData(List<Map<String, Object>> trade_list, String day) throws Exception {
-
-		String dayPattern = "^" + day + "+";
-		Pattern pattern = Pattern.compile(dayPattern);
-		Matcher m;
-
-		for (Map<String, Object> map : trade_list) {
-			String dataDay = (String) map.get("일");
-
-			m = pattern.matcher(dataDay);
-
-			if (m.find()) {
-
+			if (deposit == 0) {
+				System.out.println(map);
 				String dong = (String) map.get("법정동");
 
 				String roadNum = "";
@@ -407,27 +319,83 @@ public class RealEstateServiceImpl implements RealEstateService {
 					continue;
 				}
 
-				AptTradeVO vo = new AptTradeVO();
-				int trade_area;
+				AptRentVO vo = new AptRentVO();
+				int rent_area;
 				if (map.get("전용면적") instanceof Double) {
-					trade_area = (int) ((double) map.get("전용면적"));
+					rent_area = (int) ((double) map.get("전용면적"));
 				} else {
 
-					trade_area = (int) (map.get("전용면적"));
+					rent_area = (int) (map.get("전용면적"));
 				}
-				int trade_price = Integer.parseInt(((String) map.get("거래금액")).replaceAll("[^0-9]", ""));
-				int trade_year = (int) map.get("년");
-				int trade_month = (int) map.get("월");
+				int rent_deposit = Integer.parseInt(((String) map.get("보증금액")).replaceAll("[^0-9]", ""));
+				int rent_year = (int) map.get("년");
+				int rent_month = (int) map.get("월");
 
 				vo.setApartcode(aptCode);
-				vo.setTrade_area(trade_area);
-				vo.setTrade_price(trade_price);
-				vo.setTrade_year(trade_year);
-				vo.setTrade_month(trade_month);
+				vo.setRent_area(rent_area);
+				vo.setRent_year(rent_year);
+				vo.setRent_month(rent_month);
+				vo.setRent_deposit(rent_deposit);
 
 				// System.out.println(vo.toString());
-				dao.insertTradeData(vo);
+				dao.insertRentData(vo);
 			}
+
+		}
+
+	}
+
+	@Override
+	public void inputTradeData(List<Map<String, Object>> trade_list) throws Exception {
+
+		for (Map<String, Object> map : trade_list) {
+			String dataDay = (String) map.get("일");
+
+			String dong = (String) map.get("법정동");
+
+			String roadNum = "";
+
+			if (map.get("지번") instanceof Integer) {
+				int lotNum = (int) map.get("지번");
+				roadNum += lotNum;
+			} else {
+				roadNum = (String) map.get("지번");
+			}
+			// System.out.println(dong + roadNum);
+
+			String aptname = ((String) map.get("아파트"));
+			aptname = aptname.replaceAll(" ", "%");
+			aptname = aptname.replaceAll("동", "%");
+
+			// System.out.println(aptname);
+
+			String aptCode = getAptCode(aptname, dong, roadNum);
+
+			if (aptCode == null) {
+				continue;
+			}
+
+			AptTradeVO vo = new AptTradeVO();
+			int trade_area;
+			if (map.get("전용면적") instanceof Double) {
+				trade_area = (int) ((double) map.get("전용면적"));
+			} else {
+
+				trade_area = (int) (map.get("전용면적"));
+			}
+			int trade_price = Integer.parseInt(((String) map.get("거래금액")).replaceAll("[^0-9]", ""));
+			int trade_year = (int) map.get("년");
+			int trade_month = (int) map.get("월");
+
+			vo.setApartcode(aptCode);
+			vo.setTrade_area(trade_area);
+			vo.setTrade_price(trade_price);
+			vo.setTrade_year(trade_year);
+			vo.setTrade_month(trade_month);
+
+			// System.out.println(vo.toString());
+			dao.insertTradeData(vo);
+
 		}
 	}
 

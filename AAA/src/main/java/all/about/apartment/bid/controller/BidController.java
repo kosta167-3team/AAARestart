@@ -55,8 +55,10 @@ public class BidController {
 	private String uploadPath;
 
 	@RequestMapping(value = "/bidRegister", method = RequestMethod.GET)
-	public void registerGET(@ModelAttribute("BidProductVO") BidProductVO vo) throws Exception {
+	public String registerGET(@ModelAttribute("BidProductVO") BidProductVO vo) throws Exception {
 		System.out.println("register get...");
+		
+		return "/bid/bidRegister";
 
 	}
 
@@ -88,7 +90,7 @@ public class BidController {
 	}
 
 	@RequestMapping(value = "/bidRead", method = RequestMethod.GET)
-	public void read(Model model,BidProductVO vo, HttpServletRequest request) throws Exception {
+	public String read(Model model,BidProductVO vo, HttpServletRequest request) throws Exception {
 		
 		HttpSession session = request.getSession();
 
@@ -101,6 +103,8 @@ public class BidController {
 		model.addAttribute("list", service.read());
 		
 		/*model.addAttribute("penalty",service.penalty(vo));*/
+		
+		return "/bid/bidRead";
 	}
 
 	/*
@@ -161,10 +165,10 @@ public class BidController {
 	}*/
 
 	@RequestMapping(value = "/bidListAll", method = RequestMethod.GET)
-	public void getAttach(Integer bid_id, Model model) throws Exception {
+	public String getAttach(Integer bid_id, Model model) throws Exception {
 
 		model.addAttribute("listAll", service.read());
-
+		return "/bid/bidListAll";
 	}
 
 /*	@RequestMapping(value = "/bidListAll2", method = RequestMethod.GET)
@@ -329,7 +333,14 @@ public class BidController {
 		return mav;	
 	}
 	
-	
+	@RequestMapping(value="/inputBidPrice/{bid_id}/{nowPrice}", method=RequestMethod.GET)
+	public ModelAndView inputBidPrice(@PathVariable int nowPrice, @PathVariable int bid_id) {
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("nowPrice", nowPrice);
+		mav.addObject("bid_id", bid_id);
+		mav.setViewName("/bid/inputBidPrice");
+		return mav;
+	}
 	
 	
 }

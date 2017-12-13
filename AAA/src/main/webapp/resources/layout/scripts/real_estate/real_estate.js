@@ -98,6 +98,9 @@ function areaList(data){
 function draws(tab_id,area){
 	var url;
 	if(tab_id === 'tab1primary'){
+		
+		$('.page-header h2').html('면적별 시세 조회<span class="pull-right label label-default">부동산</span>');
+		
 		console.log('면적별 시세 조회');
 		chart_tartget = $('#' + tab_id).find('.real_estateData').find('.chart');
 		drawLastMonth(chart_tartget);
@@ -105,17 +108,23 @@ function draws(tab_id,area){
 		table_target =  $('#' + tab_id).find('.real_estateData').find('tbody');
 		url ='/real_estate/rest/getmonthlyList';
 		showTable(table_target,url);
+		
 	}
 	else if(tab_id === 'tab2primary'){
 		console.log('면적별 시세 추이');
 		
+		$('.page-header h2').html('시세 변동 추이<span class="pull-right label label-default">부동산</span>');
+		
 		chart_tartget = $('#' + tab_id).find('.real_estateData').find('.chart');
 		console.log(chart_tartget);
-		if( $('.type_select').attr('href') == 'rent'){
-			drawAnnualRentChart(chart_tartget);
+		
+		drawAnnualChart(chart_tartget,'/real_estate/rest/annulRent');
+		
+		if( $('.apt_type_select').attr('href') == 'rent'){
+			drawAnnualChart(chart_tartget,'/real_estate/rest/annulRent');
 			
-		}else if($('.type_select').attr('href') == 'trade'){
-			drawAnnualTradeChart(chart_tartget);
+		}else if($('.apt_type_select').attr('href') == 'trade'){
+			drawAnnualChart(chart_tartget,'/real_estate/rest/annulTrade');
 		}
 		console.log(tab_id);
 		table_target =  $('#' + tab_id).find('.real_estateData').find('tbody');
@@ -146,16 +155,11 @@ function showTable(table_target,url){
 		},
 		success:function(data){
 			
-			
 			$(data).each(function(index,item){
-				
-				//console.log(item);
-				
-				aptName = item.kaptname;
+
 				html += '<tr>';
 				
 				if(url =='/real_estate/rest/getmonthlyList'){
-					
 					html += '<td class="area">'+item.area+'㎡'+'</td>';
 				}else{
 					if(item.trade_month != 0){
@@ -184,7 +188,6 @@ function showTable(table_target,url){
 				html+= '</tr>';
 			})
 			
-			//console.log(html);
 			$('#apart_title').find('h1').text(aptName);
 			$(table_target).append(html);
 		}
@@ -194,14 +197,11 @@ function showTable(table_target,url){
 
 
 function drawLastMonth(chart_tartget) {
-
 	var width = $(chart_tartget).parent().parent().css('width');
+	
 	width = parseInt(width);
-//	console.log(width);
-	
 	width = width * 0.8 ;
-//	console.log(width);
-	
+
 	$.ajax({
 		url : '/real_estate/rest/lastMonth',
 		type : 'post',
@@ -222,11 +222,6 @@ function drawLastMonth(chart_tartget) {
 			google.charts.setOnLoadCallback(drawChart);
 			function drawChart() {
 				var options = {
-					/*
-					 * title:
-					 * "${lastMonthRent.a_name}의\n${lastMonthRent.rr_year}
-					 * 년 ${lastMonthRent.rr_month}월시세 (㎡)",
-					 */
 					width : width,
 					height : 350,
 					bar : {
@@ -242,29 +237,19 @@ function drawLastMonth(chart_tartget) {
 					
 				};
 
-				var dataChart = [ [ "Element", "가격", {
-					role : "style"
-				} ] ];
+				var dataChart = [ [ "Element", "가격", { role : "style" } ] ];
 
-				console.log(vo.rent_deposit);
 				dataChart.push([ "전세", vo.rent_deposit, "#2E88D2" ]);
 				dataChart.push([ "매매", vo.trade_price, "#54A2CC" ]);
 
-				// dataChart.push([ "데이터가 없습니다.", 0 ,"#53C14B"])
-
-				var data = google.visualization
-						.arrayToDataTable(dataChart);
-
+				
+				var data = google.visualization.arrayToDataTable(dataChart);
 				var view = new google.visualization.DataView(data);
-
-				var chart = new google.visualization.ColumnChart(chart_tartget
-						.get(0));
+				var chart = new google.visualization.ColumnChart(chart_tartget.get(0));
 				chart.draw(view, options);
 			}
-
 		}
-	})
-
+	});
 }
 
 /*****************************************tab2****************************************************/
@@ -272,29 +257,31 @@ $(function(){
 	$('.apt_type').find('a').on('click',function(){
 		event.preventDefault();
 		
-		$(this).parent().find('a').removeClass('type_select');
-		$(this).addClass('type_select');
+		$(this).parent().find('a').removeClass('apt_type_select');
+		$(this).addClass('apt_type_select');
 		
 		var type = $(this).attr('href');
-		
-		console.log(type);
-		
 		chart_tartget = $('#' + tab_id).find('.real_estateData').find('.chart');
+	
 		if(type == 'rent'){
-			drawAnnualRentChart(chart_tartget);
+			drawAnnualChart(chart_tartget,'/real_estate/rest/annulRent');
 		}else if(type == 'trade'){
-			drawAnnualTradeChart(chart_tartget);
+			drawAnnualChart(chart_tartget,'/real_estate/rest/annulTrade');
 		}
 	})
 })
 
-function drawAnnualRentChart(chart_tartget){
-
+function drawAnnualChart(chart_tartget,url){
 	var width = $(chart_tartget).parent().parent().css('width');
 	width = parseInt(width);
-//	console.log(width);
+	
+	var max;
+	var min;
+	var year;
+	var month;
+
 	$.ajax({
-		url : '/real_estate/rest/annulRent',
+		url : url,
 		type : 'post',
 		async : false,
 		headers : {
@@ -314,17 +301,11 @@ function drawAnnualRentChart(chart_tartget){
 			
 			function drawChart() {
 				var options = {
-					chart : {
-						/*  title: "${lastMonthRent.a_name}의 전세/매매 추이 (1㎡)",
-		 			subtitle: '시세 추이' */
-					},
 					width : width,
 					height : 300,
 					 series: {
 			            0: { color: '#e13592' },
-			            1: { color: '#6276ec' }
-			           
-				       },
+			            1: { color: '#6276ec' }},
 				       vAxis: { gridlines: { count: 4 } }
 				};
 				var data = new google.visualization.DataTable();
@@ -334,16 +315,23 @@ function drawAnnualRentChart(chart_tartget){
 				data.addColumn('number', '최고가');
 				
 				$(list).each(function(index, item){
-					//console.log(item);
-					data.addRow([item.rent_year+'/'+item.rent_month,
-						item.rent_min,
-						item.rent_max]);
+					if( $('.apt_type_select').attr('href') == 'rent'){
+						max = item.rent_max;
+						min = item.rent_min;
+						year = item.rent_year;
+						month = item.rent_month;
+					}else {
+						max = item.trade_max;
+						min = item.trade_min;
+						year = item.trade_year;
+						month = item.trade_month;
+					}
+					data.addRow([year+'/'+month,
+						min,
+						max]);
 				})
 				
-				
-				
-				var chart = new google.charts.Line(chart_tartget.get(0));
-				
+				var chart = new google.charts.Line(chart_tartget.get(0));	
 				var formatter = new google.visualization.NumberFormat({pattern:'###,###'});
 				formatter.format(data,1);
 				formatter.format(data,2);
@@ -356,8 +344,9 @@ function drawAnnualRentChart(chart_tartget){
 	});
 	
 }
-function drawAnnualTradeChart(chart_tartget){
-	
+/*function drawAnnualTradeChart(chart_tartget){
+	var width = $(chart_tartget).parent().parent().css('width');
+	width = parseInt(width);
 	$.ajax({
 		url : '/real_estate/rest/annulTrade',
 		type : 'post',
@@ -379,11 +368,7 @@ function drawAnnualTradeChart(chart_tartget){
 			
 			function drawChart() {
 				var options = {
-						chart : {
-							/*  title: "${lastMonthRent.a_name}의 전세/매매 추이 (1㎡)",
-		 			subtitle: '시세 추이' */
-						},
-						width : 'auto',
+						width : width,
 						height : 300,
 						series: {
 							  0: { color: '#e13592' },
@@ -422,7 +407,7 @@ function drawAnnualTradeChart(chart_tartget){
 	
 }
 
-
+*/
 
 
 

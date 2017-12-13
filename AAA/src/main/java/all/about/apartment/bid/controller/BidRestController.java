@@ -6,6 +6,7 @@ import java.util.Map;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,6 +22,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import all.about.apartment.bid.domain.BidProductVO;
 import all.about.apartment.bid.service.BidService;
+import all.about.apartment.publicDomain.ResidentVO;
 
 @RestController
 @RequestMapping("/bid")
@@ -79,6 +81,27 @@ public class BidRestController {
 		System.out.println("updateBidState : "+bid_id);
 		service.updateBidState(bid_id);
 		entity = new ResponseEntity<List<BidProductVO>>(service.read(), HttpStatus.OK);
+		return entity;
+	}
+	
+	@RequestMapping(value="/updateBidPrice", method=RequestMethod.GET)
+	public ResponseEntity<Integer> updateBidPrice(@RequestParam(value="bid_id")int bid_id, @RequestParam(value="bidPrice")int bidPrice, HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		ResidentVO resident = (ResidentVO)session.getAttribute("login");
+		ResponseEntity<Integer> entity = null;
+		Map<String, Object> map = new HashMap<>();
+		System.out.println("여기오냐");
+		map.put("bid_id", bid_id);
+		map.put("bidPrice", bidPrice);
+		try {
+			service.updateBidPrice(map);
+			
+			entity = new ResponseEntity<Integer>(bid_id, HttpStatus.OK);
+			System.out.println("???");
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}	
 		return entity;
 	}
 	

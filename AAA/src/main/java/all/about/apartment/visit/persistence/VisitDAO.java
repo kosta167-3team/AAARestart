@@ -9,7 +9,7 @@ import all.about.apartment.visit.domain.ApplicationVO;
 import all.about.apartment.visit.dto.ApplicationDTO;
 
 public interface VisitDAO {
-	public ResidentVO get(ApplicationDTO dto);
+	public List<ResidentVO> get(ApplicationDTO dto);
 	public Integer maxVR();
 	public void applicationVisit(ApplicationDTO dto);
 	public int totalCount(String r_id);

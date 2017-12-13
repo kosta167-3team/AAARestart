@@ -15,25 +15,20 @@ public class LoginInteceptor extends HandlerInterceptorAdapter{
 	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
 			ModelAndView modelAndView) throws Exception {
 		
-		
-		System.out.println("post....");
 		HttpSession session = request.getSession();
 		
 		ModelMap  modelMap = modelAndView.getModelMap();
 		Object residentVO = modelMap.get("residentVO");
 		Object dest = null;
 		if(residentVO != null){
-			//System.out.println();
-			System.out.println("로그인 성공");
-			session.setAttribute(LOGIN, residentVO);
 			
+			session.setAttribute(LOGIN, residentVO);
 			
 			dest = session.getAttribute("dest");
 			session.removeAttribute("dest");
 			session.removeAttribute("error");
 			response.sendRedirect(dest!=null ? (String)dest : "/");
 			
-//			response.sendRedirect("/");
 		}else{
 			session.setAttribute("error","fail");
 			response.sendRedirect("/user/login");
@@ -45,7 +40,6 @@ public class LoginInteceptor extends HandlerInterceptorAdapter{
 			throws Exception {
 		HttpSession session = request.getSession();
 		
-		System.out.println("pre login post...");
 		if(session.getAttribute("login") != null){
 			session.removeAttribute("login");
 		}
@@ -55,3 +49,9 @@ public class LoginInteceptor extends HandlerInterceptorAdapter{
 	}
 	
 }
+
+
+
+
+
+

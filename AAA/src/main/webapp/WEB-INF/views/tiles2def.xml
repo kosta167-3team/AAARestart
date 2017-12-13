@@ -15,6 +15,28 @@
 	<definition name="/bill/full-width" extends="base_layout">
 		<put-attribute name="body" value="/WEB-INF/views/bill/body.jsp"/>
 	</definition>	
+	<definition name="/bid/bidListAll" extends="base_layout">
+		<put-attribute name="body" value="/WEB-INF/views/bid/bidListAll.jsp"/>
+	</definition>	
+	
+	<definition name="/bid/bidRegister" extends="base_layout">
+		<put-attribute name="body" value="/WEB-INF/views/bid/bidRegister.jsp"/>
+	</definition>
+	
+	<definition name="/bid/bidDetail" extends="base_layout">
+		<put-attribute name="body" value="/WEB-INF/views/bid/bidDetail.jsp"/>
+	</definition>	
+	
+	<definition name="/bid/bidRead" extends="base_layout">
+		<put-attribute name="body" value="/WEB-INF/views/bid/bidRead.jsp"/>
+	</definition>
+	
+	
+	<definition name="/visit/application" extends="base_layout">
+		<put-attribute name="body" value="/WEB-INF/views/visit/application.jsp"/>
+	</definition>
+	
+	
 	
 	<definition name="/billScore/billScoreBody" extends="base_layout">	
 		<put-attribute name="body" value="/WEB-INF/views/billScore/billScoreBody.jsp"/>
@@ -31,6 +53,7 @@
 		<put-attribute name="body" value="/WEB-INF/views/visit/application.jsp"/>
 	</definition>
 	
+	
 	<definition name="/visit/applicationList" extends="base_layout">
 		<put-attribute name="body" value="/WEB-INF/views/visit/applicationList.jsp"/>
 	</definition>
@@ -39,7 +62,7 @@
 		<put-attribute name="body" value="/WEB-INF/views/visit/sendPassImage.jsp"/>
 	</definition>
 	
-	<definition name="/visit/visitManagement" extends="base_layout">
+	<definition name="/visit/admin/visitManagement" extends="base_layout">
 		<put-attribute name="body" value="/WEB-INF/views/visit/admin/visitManagement.jsp"/>
 	</definition>
 
