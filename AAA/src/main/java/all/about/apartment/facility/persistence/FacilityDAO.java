@@ -7,7 +7,9 @@ import java.util.Map;
 import all.about.apartment.facility.domain.Facility;
 import all.about.apartment.facility.domain.Facility_reservation;
 import all.about.apartment.facility.domain.Facility_state;
+import all.about.apartment.facility.domain.Facility_stateVO;
 import all.about.apartment.facility.domain.Facility_time;
+import all.about.apartment.publicDomain.Criteria;
 
 public interface FacilityDAO {
 
@@ -31,9 +33,13 @@ public interface FacilityDAO {
 
 	public int cancelReservation(int fr_id) throws Exception;
 	
-	public void insertState (Facility_state state) throws Exception;
+	public void insertState (Facility_state state) throws Exception; 
 	
-	public List<Facility_state> getStateList () throws Exception;
+	//public List<Facility_stateVO> getStatePage (Criteria cri) throws Exception;
+	
+	public List<Facility_stateVO> getStatePage (Facility facility, Criteria cri) throws Exception;
+	
+	public int getStateCount (Facility facility) throws Exception;
 	
 	public void deleteState (int fs_id) throws Exception;
 	
@@ -44,5 +50,6 @@ public interface FacilityDAO {
 	public void alterState_bad () throws Exception;
 
 	public void alterState_ok () throws Exception;
+	
 
 }

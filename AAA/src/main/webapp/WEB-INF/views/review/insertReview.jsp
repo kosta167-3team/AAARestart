@@ -13,6 +13,12 @@ Author URI: http://www.os-templates.com/
 Licence: Free to use under our free template licence terms
 Licence URI: http://www.os-templates.com/template-terms
 -->
+<style>
+	li {
+		font-size: 18px;
+	}
+</style>
+
 <html>
 <head>
 <title>Viral | Pages | Sidebar Left</title>
@@ -58,29 +64,49 @@ Licence URI: http://www.os-templates.com/template-terms
     </div>
     <nav id="mainav" class="fl_right">
       <ul class="clear">
-        <li><a href="/resources/index.html">Home</a></li>
-        <li class="active"><a class="drop" href="#">Pages</a>
+        <li><a href="/">홈</a></li>
+        
+        <li class="active"><a class="drop" href="#">관리비</a>
           <ul>
-            <li><a href="gallery.html">Gallery</a></li>
-            <li><a href="full-width.html">Full Width</a></li>
-            <li class="active"><a href="sidebar-left.html">Sidebar Left</a></li>
-            <li><a href="sidebar-right.html">Sidebar Right</a></li>
-            <li><a href="basic-grid.html">Basic Grid</a></li>
-          </ul>
-        </li>
-        <li><a class="drop" href="#">Dropdown</a>
-          <ul>
-            <li><a href="#">Level 2</a></li>
-            <li><a class="drop" href="#">Level 2 + Drop</a>
-              <ul>
-                <li><a href="#">Level 3</a></li>
-                <li><a href="#">Level 3</a></li>
-              </ul>
+            <li><a href="/">Gallery</a></li>
+            <li class="active"><a class="drop" href="/bill/full-width">관리비 조회</a>
+            	<ul>
+            		<li> <a href="/billScore/billScoreBody">관리비 성적표</a></li>
+            	</ul>
             </li>
+            <li><a href="/">관리비 1</a></li>
+            <li><a href="/">관리비 2</a></li>
+            <li><a href="/">관리비 3</a></li>
           </ul>
         </li>
-        <li><a href="#">Link Text</a></li>
-        <li><a href="#">Link Text</a></li>
+         <li class="active"><a class="drop" href="#">방문객</a>
+          <ul>
+            <li><a href="/visit/application">방문 신청</a></li>
+            <li><a href="/visit/applicationList">방문 예약 내역 조회</a></li>
+            <li><a href="/visit/visitManagement">방문 예약 내역</a></li>
+          </ul>
+        </li>
+         <li class="active"><a class="drop" href="#">시설</a>
+          <ul>
+            <li><a href="/">시설 예약</a></li>
+            <li><a href="/">시설 예약 조회</a></li>
+          </ul>
+        </li>
+        <li><a class="drop" href="#">항의</a>
+          <ul>
+            <li><a href="/">항의하기</a></li>
+            <li><a href="/">항의..</a></li>
+          </ul>
+        </li>
+        <li><a href="#">커뮤니티</a></li>
+        <li><a href="/real_estate">부동산</a></li>
+        <li><a class="drop" href="#">경매</a>
+          <ul>
+          	<li><a href="/bid/bidListAll">경매 목록</a></li>
+            <li><a href="/bidd/bidDetail">경매 물품보기</a></li>
+            <li><a href="/">내 입찰 내역 조회</a></li>
+          </ul>
+        </li>
       </ul>
     </nav>
     <!-- ################################################################################################ -->
@@ -97,7 +123,7 @@ Licence URI: http://www.os-templates.com/template-terms
         <li><a href="#">Home</a></li>
         <li><a href="#">Lorem</a></li>
         <li><a href="#">Ipsum</a></li>
-        <li><a href="#">Sidebar Left</a></li>
+        <li><a href="#">시설 후기 작성</a></li>
       </ul>
       <!-- ################################################################################################ -->
     </div>
@@ -112,17 +138,17 @@ Licence URI: http://www.os-templates.com/template-terms
     <!-- ################################################################################################ -->
     <div class="sidebar one_quarter first"> 
       <!-- ################################################################################################ -->
-      <h6>시설</h6>
+      <!--  <h6>시설</h6>
       <nav class="sdb_holder">
         <ul>
-          <li><a href="#">시설 후기</a></li>
+           <li><a href="#">시설 후기</a></li>
           <li><a href="#">Navigation - Level 1</a>
        
-          </li>
+          </li> 
 
   
         </ul>
-      </nav>
+      </nav>  -->
       
       <!-- ################################################################################################ -->
     </div>
@@ -136,26 +162,39 @@ Licence URI: http://www.os-templates.com/template-terms
         <h2>시설 후기 작성</h2>
         <form action="#" method="post">
           <div class="one_third first">
-            <label for="name">시설 ID <span>*</span></label>
-            <input type="text" name="f_id" id="name" value="" size="22">
+           <label for="name">시설 ID <span>*</span></label> 
+          	<select name="f_id" style="width:200px;height:40px;">
+          		<option value="1"> 수영장 </option>
+          		<option value="2"> 테니스장 </option>
+          		<option value="3"> 헬스장 </option>
+          		<option value="4"> DVD </option>
+          		<option value="5"> 문화강좌실 </option>
+          		
+          	</select>
+          
+            
+            
+            <!-- <input type="text" name="f_id" placeholder="시설 ID를 입력하세요  " id="name" value="" size="22"><br>
+          	1.&nbsp수영장 2.&nbsp테니스장 3.&nbsp헬스장&nbsp 4.&nbsp dvd &nbsp&nbsp 5.&nbsp문화강좌실  -->
+          
           </div>
-          <div class="one_third">
-            <label for="email">입주민 ID <span>*</span></label>
+        <!--   <div class="one_third">
+             <label for="email">입주민 ID <span>*</span></label>
             <input type="text" name="r_id" id="email" value="" size="22">
-          </div>
+          </div> -->
           <div class="one_third">
             <label for="url">별점</label>
             <input type="text" name="rev_rate" id="url" value="" size="10">
           </div>
           <div class="block clear">
-            <label for="comment">후기</label>
-            <textarea name="rev_contents" id="comment" cols="25" rows="10"></textarea>
+            <br><label for="comment"><h3>후기</h3></label>
+            <textarea name="rev_contents" id="comment" cols="15" rows="10"></textarea>
           </div>
           <div>
             <input name="submit" type="submit" value="등록">
             &nbsp;
             
-          </div>
+          </div><br>
         </form>
       </div>
       
@@ -166,7 +205,7 @@ Licence URI: http://www.os-templates.com/template-terms
             <tr>
               <th>글번호</th>
               <th>입주민 ID</th>
-              <th>시설물 번호</th>
+              <th>시설물 이름</th>
               <th>내용</th>
               <th>날짜</th>
               <th>별점</th>
@@ -177,7 +216,25 @@ Licence URI: http://www.os-templates.com/template-terms
         	<tr>
            	<td> ${ReviewVO.rev_id } </td>
             <td> ${ReviewVO.r_id } </td>
-            <td> ${ReviewVO.f_id } </td>
+            <td> <c:if test="${ReviewVO.f_id >= 0 }">
+            	<c:choose>
+            		<c:when test="${ReviewVO.f_id == 1 }">
+            			수영장
+            		</c:when>
+            		<c:when test="${ReviewVO.f_id == 2 }">
+            			테니스장
+            		</c:when>
+            		<c:when test="${ReviewVO.f_id == 3 }">
+            			헬스장
+            		</c:when>
+            		<c:when test="${ReviewVO.f_id == 4 }">
+            			DVD
+            		</c:when>
+            		<c:when test="${ReviewVO.f_id == 5 }">
+            			문화강좌실
+            		</c:when>
+            	</c:choose>
+            </c:if> </td>
             <td> ${ReviewVO.rev_contents } </td>
             <td> ${ReviewVO.rev_date } </td>
             <td> ${ReviewVO.rev_rate } </td>            
@@ -263,5 +320,14 @@ Licence URI: http://www.os-templates.com/template-terms
 <script src="/resources/layout/scripts/jquery.min.js"></script>
 <script src="/resources/layout/scripts/jquery.backtotop.js"></script>
 <script src="/resources/layout/scripts/jquery.mobilemenu.js"></script>
+ <script type="text/javascript">
+
+	$("#f_id").val();
+</script> 
+<style>
+	.container .content {
+    margin-left: 180px;
+}
+</style>
 </body>
 </html>

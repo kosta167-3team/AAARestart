@@ -65,7 +65,7 @@
 				and ( sender like '%'|| #{keyword}||'%' OR msg_content like
 				'%'||
 				#{keyword}||'%')
-			</if>
+			</if>/
 			<!-- <if test="searchType == 'cw'.toString()">
 				and ( content like '%'|| #{keyword}||'%' OR writer like
 				'%'||

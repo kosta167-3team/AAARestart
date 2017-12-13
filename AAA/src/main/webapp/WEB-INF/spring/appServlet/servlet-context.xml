@@ -10,7 +10,8 @@
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
 
-	<!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure -->
+	<!-- DispatcherServlet Context: defines this servlet's request-processing 
+		infrastructure -->
 
 
 	<!-- Enables the Spring MVC @Controller programming model -->
@@ -51,16 +52,18 @@
 
 	<interceptors>
 		<interceptor>
-			<mapping path="/user/loginPost" />			
+			<mapping path="/user/loginPost" />
 			<beans:ref bean="loginInteceptor" />
 		</interceptor>
 
 		<interceptor>
 			<mapping path="/bill/full-width" />
-			<mapping path="/billScore/billScoreBody"/>
-			<mapping path="/billPrediction/billPredictionBody"/>
-			<beans:ref bean="authInterceptor" />
+			<mapping path="/billScore/billScoreBody" />
+			<mapping path="/billPrediction/billPredictionBody" />
 			
+			<mapping path="/bid/bidRead"/>			
+			<beans:ref bean="authInterceptor" />
+
 		</interceptor>
 
 		<interceptor>
@@ -74,6 +77,11 @@
 		</interceptor>
 
 		<interceptor>
+			<mapping path="/facility/manageFacility" />
+			<beans:ref bean="authInterceptor" />
+		</interceptor>
+
+		<interceptor>
 			<mapping path="/comm/registerComm" />
 			<beans:ref bean="authInterceptor" />
 		</interceptor>
@@ -82,7 +90,7 @@
 			<mapping path="/bid/bidListAll" />
 			<beans:ref bean="authInterceptor" />
 		</interceptor>
-		
+
 		<interceptor>
 			<mapping path="/visit/applicationList" />
 			<beans:ref bean="authInterceptor" />
@@ -99,6 +107,7 @@
 		</interceptor>
 
 
+
 	</interceptors>
 
 	<context:component-scan base-package="all.about.apartment" />
@@ -112,7 +121,7 @@
 	</interceptors>
 
 	<!-- 커뮤니티 -->
-		<!-- 1.피드 보러가기 전에 커뮤니티 이용 등록 -->
+	<!-- 1.피드 보러가기 전에 커뮤니티 이용 등록 -->
 	<interceptors>
 		<interceptor>
 			<mapping path="/comm/checkFeed" />

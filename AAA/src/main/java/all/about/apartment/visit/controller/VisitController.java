@@ -34,7 +34,7 @@ public class VisitController {
 	private VisitService service;
 
 	@RequestMapping(value = "/application", method = RequestMethod.GET)
-	public void visitApplication(HttpServletRequest request, Model model) throws Exception { // 방문신청
+	public String visitApplication(HttpServletRequest request, Model model) throws Exception { // 방문신청
 		HttpSession session = request.getSession();
 		ResidentVO resident = (ResidentVO)session.getAttribute("login");
 		if(resident != null) {
@@ -42,7 +42,7 @@ public class VisitController {
 		} else {
 			model.addAttribute("r_id", null);
 		}
-		
+		return "/visit/application";
 	}
 
 	@RequestMapping(value = "/application", method = RequestMethod.POST)
@@ -90,9 +90,8 @@ public class VisitController {
 		pageMaker.setTotalCount(service.totalCount(r_id));
 		System.out.println(service.totalCount(r_id));
 		model.addAttribute("pageMaker", pageMaker);
-
+		modelAndView.setViewName("/visit/applicationList");
 		model.addAttribute("list", service.listCriteria(cri));
-		System.out.println("qweqweqw1232131");
 		return modelAndView;
 	}
 

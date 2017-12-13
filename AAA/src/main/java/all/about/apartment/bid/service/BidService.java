@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import all.about.apartment.bid.domain.BidPenalty;
 import all.about.apartment.bid.domain.BidProductVO;
 
 public interface BidService {
@@ -21,7 +22,12 @@ public interface BidService {
 	public List<String> getAttach(Integer bid_id)throws Exception;
 	BidProductVO bidDetail(String bid_id) throws Exception;
 	
+
+	public Integer penalty(BidProductVO vo)throws Exception;
+	
+
 	public void addBidTime(HashMap<String , Object> map) throws Exception;
 	public void updateBidState(String bid_id) throws Exception;
 	public void updateBidPrice(Map<String, Object> map) throws Exception;
+
 }

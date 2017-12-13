@@ -16,6 +16,14 @@ Author URI: http://www.os-templates.com/
 Licence: Free to use under our free template licence terms
 Licence URI: http://www.os-templates.com/template-terms
 -->
+<style>
+	li {
+		font-size: 18px;
+	}
+	.one_quarter{
+	font-size:14px;
+	}
+</style>
 <html>
 <head>
 <title>Viral | Pages | Gallery</title>
@@ -26,6 +34,35 @@ Licence URI: http://www.os-templates.com/template-terms
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <link href="/resources/layout/styles/layout.css" rel="stylesheet" type="text/css" media="all">
 </head>
+
+<body id="top">
+
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<div class="wrapper row2 bgded" style="background-image:url('/resources/images/main/backgrounds/01.png');">
+  <div class="overlay">
+    <div id="breadcrumb" class="clear"> 
+      <!-- ################################################################################################ -->
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Lorem</a></li>
+        <li><a href="#">Ipsum</a></li>
+        <li><a href="#">경매 리스트</a></li>
+      </ul>
+      <!-- ################################################################################################ -->
+    </div>
+  </div>
+</div>
+
+
+
+
+<!-- <div class='popup back' style="display:none;"></div>
+    <div id="popup_front" class='popup front' style="display:none;">
+     <img id="popup_img">
+    </div> -->
+
 
 <!-- ################################################################################################ -->
 <!-- ################################################################################################ -->
@@ -70,6 +107,7 @@ Licence URI: http://www.os-templates.com/template-terms
             <c:forEach var="BidProductVO" items="${listAll }">                     
       		
 
+
             <li class="one_quarter" name="imageList">
             <a>
             <img src="/bid/displayFile?fileName=${BidProductVO.bid_filename }"
@@ -77,15 +115,18 @@ Licence URI: http://www.os-templates.com/template-terms
             <p id="bid_seller">판매자 : ${BidProductVO.bid_seller }</p>
             <p id="bid_name">상품 이름 : ${BidProductVO.bid_name }</p>
             <p id="bid_start" >가격 : ${BidProductVO.bid_nowprice }</p>            
+
             
-            <input type="button" value="수정" class="button"
+            &nbsp;&nbsp;&nbsp;&nbsp;
+             <c:if test="${login.r_id == BidProductVO.bid_seller || login.r_id == BidProductVO.admin}">
+            <input type="button" value="수정" class="button" size="10"
             onClick="location.href='/bid/bidmodify?bid_id=${BidProductVO.bid_id }'">
             
             &nbsp;&nbsp;&nbsp;
-            
+           
             <input type="button" value="삭제" class="button"
             onClick="location.href='/bid/bidremove?bid_id=${BidProductVO.bid_id }'">
-
+			</c:if>
 
             <%--  <a href='/bid/bidmodify?bid_id=${BidProductVO.bid_id }'>수정
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a> 
@@ -113,68 +154,7 @@ Licence URI: http://www.os-templates.com/template-terms
 <!-- ################################################################################################ -->
 <!-- ################################################################################################ -->
 <!-- ################################################################################################ -->
-<div class="wrapper row5">
-  <footer id="footer" class="clear"> 
-    <!-- ################################################################################################ -->
-    <div class="one_quarter first">
-      <h6 class="title">Viral</h6>
-      <address class="btmspace-15">
-      Company Name<br>
-      Street Name &amp; Number<br>
-      Town<br>
-      Postcode/Zip
-      </address>
-      <ul class="nospace">
-        <li class="btmspace-10"><span class="fa fa-phone"></span> +00 (123) 456 7890</li>
-        <li><span class="fa fa-envelope-o"></span> info@domain.com</li>
-      </ul>
-    </div>
-    <div class="one_quarter">
-      <h6 class="title">Quick Links</h6>
-      <ul class="nospace linklist">
-        <li><a href="#">Home Page</a></li>
-        <li><a href="#">Blog</a></li>
-        <li><a href="#">Gallery</a></li>
-        <li><a href="#">Portfolio</a></li>
-        <li><a href="#">Contact Us</a></li>
-      </ul>
-    </div>
-    <div class="one_quarter">
-      <h6 class="title">From The Blog</h6>
-      <article>
-        <h2 class="nospace"><a href="#">Praesent Vestibulum</a></h2>
-        <time class="smallfont" datetime="2045-04-06">Friday, 6<sup>th</sup> April 2045</time>
-        <p>Vestibulumaccumsan egestibulum eu justo convallis augue estas aenean elit intesque sed.</p>
-      </article>
-    </div>
-    <div class="one_quarter">
-      <h6 class="title">Grab Our Newsletter</h6>
-      <form method="post" action="#">
-        <fieldset>
-          <legend>Newsletter:</legend>
-          <input class="btmspace-15" type="text" value="" placeholder="Name">
-          <input class="btmspace-15" type="text" value="" placeholder="Email">
-          <button type="submit" value="submit">Submit</button>
-        </fieldset>
-      </form>
-    </div>
-    <!-- ################################################################################################ -->
-  </footer>
-</div>
-<!-- ################################################################################################ -->
-<!-- ################################################################################################ -->
-<!-- ################################################################################################ -->
-<div class="wrapper row6">
-  <div id="copyright" class="clear"> 
-    <!-- ################################################################################################ -->
-    <p class="fl_left">Copyright &copy; 2015 - All Rights Reserved - <a href="#">Domain Name</a></p>
-    <p class="fl_right">Template by <a target="_blank" href="http://www.os-templates.com/" title="Free Website Templates">OS Templates</a></p>
-    <!-- ################################################################################################ -->
-  </div>
-</div>
-<!-- ################################################################################################ -->
-<!-- ################################################################################################ -->
-<!-- ################################################################################################ -->
+
 <a id="backtotop" href="#top"><i class="fa fa-chevron-up"></i></a> 
 <!-- JAVASCRIPTS -->
 <script src="/resources/layout/scripts/jquery.min.js"></script>
@@ -203,9 +183,9 @@ Licence URI: http://www.os-templates.com/template-terms
   color:#fff;
   border:none;
   position:relative;
-  height:20px;
+  height:28px;
   font-size:1em;
-  padding:0 1em;
+  padding:0.1em 0.7em 0.5em 0.7em;
   cursor:pointer;
   transition:800ms ease all;
   outline:none;
@@ -242,6 +222,8 @@ Licence URI: http://www.os-templates.com/template-terms
   		border-left:1px solid #c8c8c8;
   		border-right:1px solid #c8c8c8;
   		padding: 7px;
+  		width: 180px;
+    height: 320px;
   	}
   	
  #bid_filename{
@@ -277,6 +259,7 @@ Licence URI: http://www.os-templates.com/template-terms
     				html+='<p> 판매자 : ' + item.bid_seller  + '</p>';
     				html+='<p> 상품이름 : ' + item.bid_name  + '</p>';
     				html+='<p> 상품가격 : ' + item.bid_nowprice + '</p>';
+
     				html+='<input type="button" value="수정" class="button" id="gg">';
     				html+='&nbsp;&nbsp;&nbsp;&nbsp'
     				html+='<input type="button" value="삭제" class="button" ></li>';
@@ -287,11 +270,19 @@ Licence URI: http://www.os-templates.com/template-terms
     });
     
     
+
+    
+    $("#gg").on("click",function(){
+    	console.log("gg11");
+    	 onClick="location.href='/bid/bidmodify?bid_id=${BidProductVO.bid_id }'";
+    });     
+
 	$('.bid_filename').on('click', function(){
 		//location.href="/bidder/bidDetail?bid_id=" +$(this).attr('etc');
 		var detail=$(this).attr('etc');
 		console.log(detail);
 		location.href="/bid/bidDetail/"+detail;
 	})
+
     </script>
 </html>

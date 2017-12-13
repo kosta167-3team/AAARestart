@@ -1,6 +1,6 @@
 package all.about.apartment.bid.controller;
 
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.forwardedUrl;
+
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -33,6 +33,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+
+import all.about.apartment.bid.domain.BidContentVO;
+import all.about.apartment.bid.domain.BidPenalty;
+
 import all.about.apartment.bid.domain.BidProductVO;
 import all.about.apartment.bid.service.BidService;
 import all.about.apartment.bid.util.MediaUtils;
@@ -50,15 +55,27 @@ public class BidController {
 	private String uploadPath;
 
 	@RequestMapping(value = "/bidRegister", method = RequestMethod.GET)
-	public void registerGET(@ModelAttribute("BidProductVO") BidProductVO vo) throws Exception {
+	public String registerGET(@ModelAttribute("BidProductVO") BidProductVO vo) throws Exception {
 		System.out.println("register get...");
+		
+		return "/bid/bidRegister";
 
 	}
 
 	@RequestMapping(value = "/bidRegister", method = RequestMethod.POST)
 	public String registerPOST(@ModelAttribute("BidProductVO") @Valid BidProductVO vo, BindingResult errors,
-			RedirectAttributes rttr, @RequestParam("file") MultipartFile file) throws Exception {
-
+			RedirectAttributes rttr, @RequestParam("file") MultipartFile file,HttpServletRequest request) throws Exception {
+		
+		HttpSession session =request.getSession();
+		
+		ResidentVO resident = (ResidentVO)session.getAttribute("login");
+		String r_id = resident.getR_id();
+		
+		System.out.println(r_id);
+		
+		vo.setBid_seller(r_id);
+		System.out.println(vo.toString());
+		
 		if (errors.hasErrors()) {
 			System.out.println("에러발생");
 			return "/bid/bidRegister";
@@ -73,9 +90,21 @@ public class BidController {
 	}
 
 	@RequestMapping(value = "/bidRead", method = RequestMethod.GET)
-	public void read(Model model) throws Exception {
+	public String read(Model model,BidProductVO vo, HttpServletRequest request) throws Exception {
+		
+		HttpSession session = request.getSession();
 
+		ResidentVO resident = (ResidentVO) session.getAttribute("login");
+		String r_id = resident.getR_id();
+		vo.setAdmin(r_id);
+
+		/*System.out.println("히히" + vo.getAdmin());*/
+		
 		model.addAttribute("list", service.read());
+		
+		/*model.addAttribute("penalty",service.penalty(vo));*/
+		
+		return "/bid/bidRead";
 	}
 
 	/*
@@ -136,10 +165,10 @@ public class BidController {
 	}*/
 
 	@RequestMapping(value = "/bidListAll", method = RequestMethod.GET)
-	public void getAttach(Integer bid_id, Model model) throws Exception {
+	public String getAttach(Integer bid_id, Model model) throws Exception {
 
 		model.addAttribute("listAll", service.read());
-
+		return "/bid/bidListAll";
 	}
 
 /*	@RequestMapping(value = "/bidListAll2", method = RequestMethod.GET)
@@ -285,10 +314,6 @@ public class BidController {
 		
 	}
 	
-	@RequestMapping(value="/map2",method=RequestMethod.GET)
-	public void map2()throws Exception{
-		
-	}
 	@RequestMapping(value="/gallery",method=RequestMethod.GET)
 	public void gallery(Integer bid_id, Model model)throws Exception{
 		model.addAttribute("listAll", service.read());

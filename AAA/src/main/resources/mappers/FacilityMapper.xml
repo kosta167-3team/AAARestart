@@ -109,23 +109,53 @@
 		#{fs_reason}, SYSDATE)
 	</insert>
 
-	<!-- 1-1.관리 내역 조회 -->
-	<select id="getStateList" resultType="Facility_state">
-		select *from facility_state
-		where TRUNC(fs_start) >= TRUNC(sysdate)
-		or TRUNC(fs_end) >=
-		TRUNC(sysdate)
-		order by fs_start
-	</select>
 
-	<!-- 1-3.관리 내역 페이징 -->
-	<!-- <select id=""></select> -->
+
+	<!-- 1-1.관리 내역 조회 -->
+ <select id="getStatePage" resultType="Facility_stateVO">
+	
+	<![CDATA[ 
+    select s.fs_id, s.f_id, f.f_name, s.fs_start, s.fs_end, s.fs_reason, s.fs_regdate 
+		from facility_state s, facility f
+		where s.f_id = f.f_id
+  	    and ((TRUNC(s.fs_start) >= sysdate) or (TRUNC(s.fs_end) >=sysdate))
+		]]>
+
+	<if test="f_id!= 0"> 
+		and s.f_id = #{f_id}
+	</if>
+	
+  	    order by s.fs_start
+	</select> 
+
+
+<!--   	<select id="getStatePage" resultType="Facility_stateVO">
+	
+	<![CDATA[ 
+    select s.fs_id, s.f_id, f.f_name, s.fs_start, s.fs_end, s.fs_reason, s.fs_regdate 
+		from facility_state s, facility f
+		where s.f_id = f.f_id
+  	    and ((TRUNC(s.fs_start) >= sysdate) or (TRUNC(s.fs_end) >=sysdate))
+  	    order by s.fs_start
+		]]>
+	</select>  -->
+
+
+
+	<!-- 1-2.전체 개수 -->
+	<select id="getStateCount" resultType="int">
+	select count(*) from facility_state
+	
+	<if test="f_id!= 0"> 
+		where f_id = #{f_id}
+	</if>
+	
+	</select> 
 
 	<!-- 1-2.시설 관리 내역 취소 -->
 	<delete id="deleteState" parameterType="int">
-		delete from
-		facility_state
-		where fs_id = #{fs_id}
+		delete from facility_state
+			where fs_id = #{fs_id}
 	</delete>
 
 	<!-- 2.예약 취소자 명단 -->
