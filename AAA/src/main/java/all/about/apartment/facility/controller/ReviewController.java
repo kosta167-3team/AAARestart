@@ -45,10 +45,8 @@ public class ReviewController {
 	
 	@RequestMapping(value="/todayGuest",method=RequestMethod.GET)
 	public void Guest(TodayGuest to,Model model)throws Exception{
-		System.out.println("TodayGuest...");
-		
+	
 		Date today = new Date();
-
 		SimpleDateFormat today_format = new SimpleDateFormat("yy/MM/dd");
 		String string_today = today_format.format(today);
 

@@ -36,50 +36,26 @@ margin-left: 50px;
 	<script>
 		$(function() {
 			$('#input').on('click', function(event) {
-				console.log("ddd");
+				
 				var bid_id=$('#bid_id').val();
-				var evaluation =  $('#comment').val();
-				
-				
+				var evaluation =  $('#comment').val();				
 				var params = $('#formid').serialize(); 
 				var obj = new Object();
 				
 				obj.bid_id = $('#bid_id').val();
 				obj.bid_evaluation = $('#comment').val();
-				console.log(JSON.stringify(params));
 				event.preventDefault();
-
-				/* var bid_id = $('#bid_id').val();
-				 var obj = new Object();
-				obj.bid_id = $(this).html();
-				alert(bid_id);  */
-
-				/* var b_id = $('#bid_id').val();
-				var ev = $('#comment').val();
-				console.log(b_id + ' ' + ev);
-				
-				var data={
-						b_id:b_id,
-						ev : ev
-				}; */
-				/* var params = $('#formid').serialize();
-				var bid_id = $('#formid').find('input:first-child').val(); */
-				/* console.log(bid_id);
-				console.log(JSON.stringify(params)); */
 
 				$.ajax({
 					type : 'post',
 					url : '/bid/review',
 					dataType : "text",
-					data : obj
-					,
+					data : obj,
 					success : function(data) {
 						alert("상품평 등록 완료");
 						$(opener.document).find('#' + bid_id ).children().last().remove();
-
 						$(opener.document).find('#' + bid_id).append("<td>" + evaluation + "</td>");
 						window.close();
-						
 					},
 					error : function(e) {
 						alert("error");
